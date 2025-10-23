@@ -238,9 +238,9 @@ export default function ParaclimberSite() {
               Fighting for gold, one hold at a time.
             </p>
             <div className="flex flex-wrap gap-6">
-              <Button onClick={() => setIsNewsletterOpen(true)} variant="primary" className="min-w-[160px] !bg-red-600 hover:!bg-red-700">
+              <button onClick={() => setIsNewsletterOpen(true)} className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 min-w-[160px] bg-red-600 hover:bg-red-700 text-white">
                 Ontvang updates
-              </Button>
+              </button>
               <button onClick={() => scrollToSection('about')} className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-zinc-300 transition-colors">
                 My Story <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </button>
