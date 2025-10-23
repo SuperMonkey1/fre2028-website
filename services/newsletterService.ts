@@ -22,7 +22,7 @@ class NewsletterService {
     } else {
       // For local development (if you run the function locally)
       // You might need to adjust this URL if your local setup differs
-      return 'http://localhost:5000/fre2028/us-central1/newsletter';
+      return '/api/newsletter';
     }
   }
 
@@ -78,7 +78,7 @@ class NewsletterService {
 
   private async subscribeDirectly(email: string): Promise<SubscribeResponse> {
     // This is the public URL of your deployed Firebase Function
-    const directUrl = 'https://us-central1-fre2028.cloudfunctions.net/newsletter';
+    const directUrl = 'https://us-central1-fre-2028-website.cloudfunctions.net/newsletter';
     console.log('Trying direct function URL:', `${directUrl}/subscribe`);
     
     const response = await fetch(`${directUrl}/subscribe`, {
