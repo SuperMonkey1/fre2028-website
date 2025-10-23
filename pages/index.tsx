@@ -82,7 +82,7 @@ const SPONSORS_GRID = [
 export default function ParaclimberSite() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
+  const [videoEnded, setVideoEnded] = useState(true); // Temporarily set to true to show image immediately
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -152,7 +152,7 @@ export default function ParaclimberSite() {
             isScrolled ? "text-black" : "text-white"
           )}>
              <Mountain className="w-6 h-6" />
-             <span>Fré.Climbs</span>
+             <span>Fré Klimt</span>
           </div>
 
           {/* Desktop Nav */}
@@ -161,17 +161,16 @@ export default function ParaclimberSite() {
             isScrolled ? "text-black" : "text-white"
           )}>
             <button onClick={() => scrollToSection('about')} className="hover:opacity-60 transition-opacity">Mijn verhaal</button>
-            <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Community</button>
-            <button onClick={() => scrollToSection('journey')} className="hover:opacity-60 transition-opacity">Journey</button>
+            <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Paraclimbing.be</button>
+            <button onClick={() => scrollToSection('journey')} className="hover:opacity-60 transition-opacity">Roadmap</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
-            <button onClick={() => scrollToSection('sponsors')} className="hover:opacity-60 transition-opacity">Supporters</button>
-            <Button 
-              onClick={() => scrollToSection('contact')} 
-              variant={isScrolled ? 'primary' : 'white'}
-              className="h-10 px-6 text-xs ml-4"
+            <button onClick={() => scrollToSection('contact')} className="hover:opacity-60 transition-opacity">Contact</button>
+            <button 
+              onClick={() => scrollToSection('sponsors')} 
+              className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-10 px-6 text-xs ml-4 bg-red-600 hover:bg-red-700 text-white"
             >
-              Contact
-            </Button>
+              Word partner
+            </button>
           </div>
 
           {/* Mobile Nav Toggle */}
@@ -193,7 +192,7 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Community</button>
              <button onClick={() => scrollToSection('journey')} className="text-left hover:opacity-60">Journey</button>
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Media</button>
-             <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Supporters</button>
+             <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Partners</button>
              <Button onClick={() => scrollToSection('contact')} className="w-full">Partner With Me</Button>
           </div>
         </div>
@@ -203,7 +202,13 @@ export default function ParaclimberSite() {
       <section className="relative h-screen flex items-center bg-black text-white px-4 md:px-8 overflow-hidden">
         
         {/* 1. The Static Image Background (FINAL STATE) - z-0 puts it at the bottom */}
-        <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1522163182402-834f871fd851?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80')] bg-cover bg-center grayscale mix-blend-screen z-0" />
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/images/me/me_innsbruck.webp"
+            alt="Fré climbing background"
+            className="w-full h-full object-cover opacity-40 grayscale mix-blend-screen"
+          />
+        </div>
 
         {/* 2. The Video Overlay (INITIAL STATE) - z-10 puts it on top. Fades out when 'videoEnded' is true. */}
         <div className={cn(
@@ -216,6 +221,10 @@ export default function ParaclimberSite() {
              muted
              playsInline
              onEnded={() => setVideoEnded(true)}
+             onError={() => {
+               console.log("Video failed to load, showing static image.");
+               setVideoEnded(true);
+             }}
              className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
            >
              <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
@@ -231,18 +240,18 @@ export default function ParaclimberSite() {
               Road to Los Angeles 2028
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
-              DEFY<br />GRAVITY.
+              DROOM<br />GROOTS.
             </h1>
             <p className="text-xl text-zinc-400 max-w-lg leading-relaxed mb-12">
-              I'm Fré Leys. Belgian Paraclimber. <br/>
-              Fighting for gold, one hold at a time.
+              Word ik in 2028, <br/>
+              de eerste Leuvense Paralympiër?
             </p>
             <div className="flex flex-wrap gap-6">
               <button onClick={() => setIsNewsletterOpen(true)} className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 min-w-[160px] bg-red-600 hover:bg-red-700 text-white">
                 Ontvang updates
               </button>
               <button onClick={() => scrollToSection('about')} className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-zinc-300 transition-colors">
-                My Story <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                Mijn verhaal <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
               </button>
             </div>
           </div>
@@ -251,12 +260,16 @@ export default function ParaclimberSite() {
         {/* Corner Stats */}
         <div className="absolute bottom-8 right-4 md:right-8 hidden md:flex gap-12 text-right z-30">
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Category</div>
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Klasse</div>
             <div className="text-3xl font-bold">AL-2</div>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Rank</div>
-            <div className="text-3xl font-bold">#2</div>
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">World Cup Medailles</div>
+            <div className="text-3xl font-bold">#6</div>
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Home Town</div>
+            <div className="text-3xl font-bold">Leuven</div>
           </div>
         </div>
       </section>
@@ -336,7 +349,7 @@ export default function ParaclimberSite() {
                   <Heart className="w-4 h-4 fill-white" /> Paraclimbing.be VZW
               </div>
               <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">
-                PARACLIMBING<br/>.BE
+                WORD PARAKLIMMER
               </h2>
               <p className="text-2xl font-bold text-white mb-8 leading-tight">
                 Climbing is more than a sport; it's a pathway to rediscovering strength.
@@ -467,15 +480,24 @@ export default function ParaclimberSite() {
             <div>
               <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest mb-4 text-xs text-zinc-500">
                 <Grid3X3 className="w-4 h-4" />
-                Supporters
+                Partners
               </div>
               <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
                 TEAM 2028.
               </h2>
             </div>
-            <Button onClick={() => scrollToSection('contact')} className="shrink-0">
-              Become a sponsor
-            </Button>
+            <div className="flex flex-wrap gap-4 shrink-0">
+              <a 
+                href="/Frederik-Leys-Partnership-Dossier.pdf" 
+                download
+                className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 border border-current bg-transparent hover:opacity-60 shrink-0"
+              >
+                Download sponsordossier
+              </a>
+              <Button onClick={() => scrollToSection('contact')} className="shrink-0">
+                Contacteer mij
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 grid-flow-dense border border-zinc-200 bg-white">
