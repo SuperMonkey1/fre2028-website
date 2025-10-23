@@ -1,5 +1,10 @@
 # Build & Deploy Guide
 
+## TEST lokaal
+cd functions
+npm run serve
+other terminal
+npm run dev
 ## Deploy Changes to Website (Next.js)
 
 ```powershell

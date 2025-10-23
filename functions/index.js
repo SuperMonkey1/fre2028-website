@@ -40,6 +40,37 @@ const sendConfirmationEmail = async (email) => {
   await transporter.sendMail(mailOptions);
 };
 
+// Send notification email to yourself
+const sendAdminNotificationEmail = async (subscriberEmail) => {
+  const transporter = createTransporter();
+  
+  const mailOptions = {
+    from: process.env.EMAIL_USER || 'your-email@gmail.com',
+    to: 'frederik.leys@gmail.com',
+    subject: 'Nieuwe inschrijving nieuwsbrief FRE2028',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #333;">Nieuwe Nieuwsbrief Inschrijving</h2>
+        <p style="color: #333; font-size: 16px;">
+          Er is een nieuwe abonnee voor je nieuwsbrief:
+        </p>
+        <p style="color: #0056b3; font-size: 18px; font-weight: bold;">
+          ${subscriberEmail}
+        </p>
+        <p style="color: #666; font-size: 14px; margin-top: 20px;">
+          Ingeschreven op: ${new Date().toLocaleString('nl-BE', { 
+            dateStyle: 'full', 
+            timeStyle: 'short',
+            timeZone: 'Europe/Brussels'
+          })}
+        </p>
+      </div>
+    `
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 // Subscribe to newsletter endpoint
 app.post("/subscribe", async (req, res) => {
   try {
@@ -83,6 +114,15 @@ app.post("/subscribe", async (req, res) => {
     } catch (emailError) {
       console.error("Error sending confirmation email:", emailError);
       // Don't fail the subscription if email fails
+    }
+
+    // Send notification email to admin
+    try {
+      await sendAdminNotificationEmail(email);
+      console.log(`Admin notification email sent for subscriber: ${email}`);
+    } catch (emailError) {
+      console.error("Error sending admin notification email:", emailError);
+      // Don't fail the subscription if notification email fails
     }
 
     console.log(`New subscriber: ${email}`);
