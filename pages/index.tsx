@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { newsletterService } from '../services/newsletterService';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -82,6 +83,10 @@ export default function ParaclimberSite() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [videoEnded, setVideoEnded] = useState(false);
+  const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -110,6 +115,26 @@ export default function ParaclimberSite() {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const response = await newsletterService.subscribe(email);
+      setSubmitMessage('Bedankt voor je inschrijving!');
+      setEmail('');
+      setTimeout(() => {
+        setIsNewsletterOpen(false);
+        setSubmitMessage('');
+      }, 2000);
+    } catch (error: any) {
+      setSubmitMessage(error.message || 'Er is iets misgegaan. Probeer het opnieuw.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -213,8 +238,8 @@ export default function ParaclimberSite() {
               Fighting for gold, one hold at a time.
             </p>
             <div className="flex flex-wrap gap-6">
-              <Button onClick={() => scrollToSection('journey')} variant="white" className="min-w-[160px]">
-                The Roadmap
+              <Button onClick={() => setIsNewsletterOpen(true)} variant="primary" className="min-w-[160px] !bg-red-600 hover:!bg-red-700">
+                Ontvang updates
               </Button>
               <button onClick={() => scrollToSection('about')} className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest hover:text-zinc-300 transition-colors">
                 My Story <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
@@ -554,6 +579,67 @@ export default function ParaclimberSite() {
           </div>
         </div>
       </footer>
+
+      {/* Newsletter Modal */}
+      {isNewsletterOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setIsNewsletterOpen(false)}>
+          <div className="bg-white max-w-md w-full p-8 shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setIsNewsletterOpen(false)}
+              className="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="mb-8">
+              <Mail className="w-12 h-12 mb-4" />
+              <h3 className="text-3xl font-bold tracking-tighter mb-3">
+                Schrijf je in voor mijn gratis nieuwsbrief
+              </h3>
+              <p className="text-zinc-600">
+                Ontvang elke twee weken een update
+              </p>
+            </div>
+
+            <form onSubmit={handleNewsletterSubmit} className="space-y-6">
+              <div className="group">
+                <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">
+                  Email
+                </label>
+                <input 
+                  type="email" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full py-3 px-4 bg-zinc-50 border border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg"
+                  placeholder="jouw@email.com"
+                  disabled={isSubmitting}
+                />
+              </div>
+
+              {submitMessage && (
+                <div className={cn(
+                  "text-sm font-medium p-3 border",
+                  submitMessage.includes('Bedankt') 
+                    ? "bg-green-50 text-green-800 border-green-200" 
+                    : "bg-red-50 text-red-800 border-red-200"
+                )}>
+                  {submitMessage}
+                </div>
+              )}
+
+              <Button 
+                type="submit" 
+                variant="primary" 
+                className="w-full !bg-red-600 hover:!bg-red-700"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Bezig...' : 'Inschrijven'}
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
