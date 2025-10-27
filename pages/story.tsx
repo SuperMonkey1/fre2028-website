@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { 
   Mountain, 
   ArrowLeft, 
@@ -120,6 +121,60 @@ export default function StoryPage() {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+      <Head>
+        <title>Mijn Verhaal - Van Luchtbal naar LA 2028 | Frederik Leys Paraklimmer</title>
+        <meta name="description" content="Het inspirerende verhaal van Frederik 'Fré' Leys uit Leuven: van ingenieur en Expeditie Robinson deelnemer tot wereldkampioen paraklimmen en paralympische atleet richting Los Angeles 2028." />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://www.fre2028.la/story" />
+        <meta property="og:title" content="Mijn Verhaal - Van de Luchtbal naar LA 2028 Paralympics" />
+        <meta property="og:description" content="Het inspirerende verhaal van Frederik 'Fré' Leys: van ingenieur tot wereldkampioen paraklimmen en paralympische atleet." />
+        <meta property="og:image" content="https://www.fre2028.la/images/me_busje.webp" />
+        <meta property="og:locale" content="nl_BE" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.fre2028.la/story" />
+        <meta property="twitter:title" content="Mijn Verhaal - Van de Luchtbal naar LA 2028 Paralympics" />
+        <meta property="twitter:description" content="Het inspirerende verhaal van Frederik 'Fré' Leys: van ingenieur tot wereldkampioen paraklimmen." />
+        <meta property="twitter:image" content="https://www.fre2028.la/images/me_busje.webp" />
+        
+        {/* Additional SEO */}
+        <meta name="author" content="Frederik Leys" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.fre2028.la/story" />
+        
+        {/* JSON-LD for Article */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              "headline": "Van de Luchtbal naar LA 2028 - Het verhaal van Frederik Leys",
+              "description": "Het inspirerende verhaal van Frederik 'Fré' Leys uit Leuven: van ingenieur en Expeditie Robinson deelnemer tot wereldkampioen paraklimmen en paralympische atleet richting Los Angeles 2028.",
+              "author": {
+                "@type": "Person",
+                "name": "Frederik Leys",
+                "url": "https://www.fre2028.la"
+              },
+              "datePublished": "2025-01-01",
+              "dateModified": "2025-01-01",
+              "publisher": {
+                "@type": "Person",
+                "name": "Frederik Leys"
+              },
+              "image": "https://www.fre2028.la/images/me_busje.webp",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://www.fre2028.la/story"
+              },
+              "keywords": "paraclimbing, paralympics, Leuven, België, Frederik Leys, Expeditie Robinson, KU Leuven, ingenieur, adaptive sports"
+            })
+          }}
+        />
+      </Head>
       
       {/* Navigation */}
       <nav className={cn(

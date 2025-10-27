@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
 import { 
   Mountain, 
@@ -173,6 +174,129 @@ export default function ParaclimberSite() {
 
   return (
     <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white">
+      <Head>
+        <title>Fré Leys - Paraklimmer op weg naar Los Angeles 2028 Paralympics | Leuven, België</title>
+        <meta name="description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028 in Los Angeles. Ontdek paraklimmen in België via paraclimbing.be" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.fre2028.la/" />
+        <meta property="og:title" content="Fré Leys - Paraklimmer uit Leuven op weg naar Paralympics 2028" />
+        <meta property="og:description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028 in Los Angeles." />
+        <meta property="og:image" content="https://www.fre2028.la/images/me/me_innsbruck.webp" />
+        <meta property="og:locale" content="nl_BE" />
+        <meta property="og:site_name" content="Fré Leys - Paraclimbing België" />
+        
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://www.fre2028.la/" />
+        <meta property="twitter:title" content="Fré Leys - Paraklimmer uit Leuven op weg naar Paralympics 2028" />
+        <meta property="twitter:description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028." />
+        <meta property="twitter:image" content="https://www.fre2028.la/images/me/me_innsbruck.webp" />
+        
+        {/* Additional SEO */}
+        <meta name="author" content="Frederik Leys" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://www.fre2028.la/" />
+        
+        {/* JSON-LD Structured Data for Person/Athlete */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Frederik Leys",
+              "alternateName": "Fré Leys",
+              "jobTitle": "Paralympic Athlete - Paraclimbing",
+              "description": "Belgische paraklimmer uit Leuven op weg naar de Paralympische Spelen 2028 in Los Angeles. Wereldkampioen en oprichter van paraclimbing.be",
+              "url": "https://www.fre2028.la",
+              "image": "https://www.fre2028.la/images/me.webp",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Leuven",
+                "addressCountry": "BE"
+              },
+              "nationality": {
+                "@type": "Country",
+                "name": "Belgium"
+              },
+              "sameAs": [
+                "https://www.instagram.com/fre.climbs",
+                "https://www.linkedin.com/in/frederik-leys-b7bb5b9/",
+                "https://www.youtube.com/@FreClimbs",
+                "https://paraclimbing.be"
+              ],
+              "knowsAbout": ["Paraclimbing", "Paralympics", "Adaptive Sports", "Sport Climbing", "Paralympic Games"],
+              "award": [
+                "IFSC World Championships Silver Medal 2023",
+                "Paraclimbing World Cup Gold Medal 2024"
+              ],
+              "memberOf": {
+                "@type": "Organization",
+                "name": "Paraclimbing.be VZW",
+                "url": "https://paraclimbing.be"
+              }
+            })
+          }}
+        />
+        
+        {/* JSON-LD for Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Paraclimbing.be VZW",
+              "description": "Belgische organisatie die paraklimmen toegankelijk maakt voor iedereen met een fysieke beperking",
+              "url": "https://paraclimbing.be",
+              "founder": {
+                "@type": "Person",
+                "name": "Frederik Leys"
+              },
+              "location": {
+                "@type": "Place",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressCountry": "BE"
+                }
+              }
+            })
+          }}
+        />
+
+        {/* JSON-LD for Event - Los Angeles 2028 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SportsEvent",
+              "name": "Los Angeles 2028 Paralympic Games",
+              "description": "Frederik Leys' doel om te participeren in de Paralympische Spelen 2028 in Los Angeles",
+              "startDate": "2028-08-15",
+              "endDate": "2028-08-27",
+              "location": {
+                "@type": "Place",
+                "name": "Los Angeles",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Los Angeles",
+                  "addressRegion": "CA",
+                  "addressCountry": "US"
+                }
+              },
+              "sport": "Paraclimbing",
+              "competitor": {
+                "@type": "Person",
+                "name": "Frederik Leys",
+                "url": "https://www.fre2028.la"
+              }
+            })
+          }}
+        />
+      </Head>
       
       {/* Navigation */}
       <nav className={cn(
