@@ -77,6 +77,13 @@ const SPONSORS_GRID = [
   { id: 8, name: "Leuven Partner 8" },
 ];
 
+const PERFORMANCE_TEAM = [
+  { id: 1, name: "Performance Partner 1" },
+  { id: 2, name: "Performance Partner 2" },
+  { id: 3, name: "Performance Partner 3" },
+  { id: 4, name: "Performance Partner 4" },
+];
+
 // --- Main Page Component ---
 
 export default function ParaclimberSite() {
@@ -576,13 +583,32 @@ export default function ParaclimberSite() {
       <section id="media" className="bg-white text-black py-32 border-t border-zinc-100">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex justify-between items-end mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">IN ACTION.</h2>
-            <a href="https://www.instagram.com/fre.climbs" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity">
-              <Instagram className="w-5 h-5" /> View Instagram
-            </a>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">PORTOFOLIO.</h2>
+            <div className="hidden md:flex items-center gap-4">
+              <Button 
+                onClick={() => window.location.href = '/story'} 
+                variant="outline"
+              >
+                Lees mijn persoonlijk verhaal
+              </Button>
+              <a href="https://www.instagram.com/fre.climbs" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity">
+                <Instagram className="w-5 h-5" /> View Instagram
+              </a>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[300px]">
+          {/* Mobile button - above the grid */}
+          <div className="mb-6 md:hidden">
+            <Button 
+              onClick={() => window.location.href = '/story'} 
+              variant="outline"
+              className="w-full"
+            >
+              Lees mijn persoonlijk verhaal
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[250px]">
             <div className="relative bg-zinc-100 overflow-hidden transition-all duration-500 col-span-2 row-span-2">
               <Image 
                 src="/images/gallery/Ifsc_FSC110590.jpg"
@@ -638,7 +664,7 @@ export default function ParaclimberSite() {
           {/* Sponsoring Partners Section */}
           <div>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Leuvense Sponsors
+              Financiële Partners "De Leuvense 8"
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
               {SPONSORS_GRID.map((sponsor) => (
@@ -691,6 +717,39 @@ export default function ParaclimberSite() {
                   <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
                     <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
                       Beschikbaar voor strategische partners
+                    </p>
+                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                      Word Partner
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Performance Team Section */}
+          <div className="mb-20">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+              Performance Team
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {PERFORMANCE_TEAM.map((member) => (
+                <div 
+                  key={member.id} 
+                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
+                        Open Slot
+                     </div>
+                     <div className="text-zinc-400 text-xs mt-2">
+                        {member.name}
+                     </div>
+                  </div>
+
+                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                      Beschikbaar voor performance partners
                     </p>
                     <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
                       Word Partner
