@@ -192,7 +192,7 @@ export default function StoryPage() {
 
       {/* Story Chapters */}
       <section className="py-20 md:py-32">
-        <div className="max-w-4xl mx-auto px-4 md:px-8">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="space-y-24 md:space-y-32">
             {STORY_CHAPTERS.map((chapter, index) => (
               <div key={chapter.id} className="relative">
@@ -212,14 +212,82 @@ export default function StoryPage() {
                   </p>
                 </div>
 
-                {/* Chapter Content */}
-                <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-zinc-700">
-                  {chapter.content.map((paragraph, pIndex) => (
-                    <p key={pIndex}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
+                {/* Chapter Content with Image */}
+                {(chapter.id === 'beginning' || chapter.id === 'youth' || chapter.id === 'university' || chapter.id === 'climbing' || chapter.id === 'future') ? (
+                  <div className={cn(
+                    "grid md:grid-cols-[1fr,400px] gap-8 md:gap-12 items-start",
+                    (chapter.id === 'youth' || chapter.id === 'climbing') && "md:grid-cols-[400px,1fr]"
+                  )}>
+                    {(chapter.id === 'youth' || chapter.id === 'climbing') ? (
+                      <>
+                        <div className="relative order-2 md:order-1">
+                          {chapter.id === 'youth' && (
+                            <img 
+                              src="/images/me_oude_landen.webp" 
+                              alt="Fré in De Oude Landen tijdens natuuronderhoud" 
+                              className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                            />
+                          )}
+                          {chapter.id === 'climbing' && (
+                            <img 
+                              src="/images/me_podium.webp" 
+                              alt="Fré tijdens het paraklimmen" 
+                              className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                            />
+                          )}
+                        </div>
+                        <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-zinc-700 order-1 md:order-2">
+                          {chapter.content.map((paragraph, pIndex) => (
+                            <p key={pIndex}>
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-zinc-700">
+                          {chapter.content.map((paragraph, pIndex) => (
+                            <p key={pIndex}>
+                              {paragraph}
+                            </p>
+                          ))}
+                        </div>
+                        <div className="relative">
+                          {chapter.id === 'beginning' && (
+                            <img 
+                              src="/images/me_peuter.webp" 
+                              alt="Fré als kind in de natuur" 
+                              className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                            />
+                          )}
+                          {chapter.id === 'university' && (
+                            <img 
+                              src="/images/me_kulibrie.webp" 
+                              alt="Fré met de KULibrie robotkolibrie" 
+                              className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                            />
+                          )}
+                          {chapter.id === 'future' && (
+                            <img 
+                              src="/images/me_winning.webp" 
+                              alt="Fré op het podium" 
+                              className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                            />
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ) : (
+                  <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-zinc-700">
+                    {chapter.content.map((paragraph, pIndex) => (
+                      <p key={pIndex}>
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                )}
 
                 {/* Chapter Visual Separator */}
                 {index < STORY_CHAPTERS.length - 1 && (

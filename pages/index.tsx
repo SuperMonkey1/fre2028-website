@@ -19,6 +19,7 @@ import {
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { newsletterService } from '../services/newsletterService';
+import { contactService } from '../services/contactService';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -56,25 +57,22 @@ const TIMELINE_EVENTS = [
   { year: '2028', title: 'LOS ANGELES PARALYMPICS', desc: 'The ultimate goal. Representing Belgium on the world\'s biggest stage.', milestone: true, highlight: true },
 ];
 
+const STRATEGIC_PARTNERS = [
+  { id: 1, name: "Strategic Partner 1" },
+  { id: 2, name: "Strategic Partner 2" },
+  { id: 3, name: "Strategic Partner 3" },
+  { id: 4, name: "Strategic Partner 4" },
+];
+
 const SPONSORS_GRID = [
-  { id: 1, name: "Belgian Climbing Fed", tier: "Partner", size: "2x2" },
-  { id: 2, name: "Performance Gear Co", tier: "Gold", size: "2x1" },
-  { id: 3, name: "Brussels Sports", tier: "Gold", size: "2x1" },
-  { id: 4, name: "Kineos Therapy", tier: "Supporter", size: "1x1" },
-  { id: 5, name: "Ghent Climbing Gym", tier: "Supporter", size: "1x1" },
-  { id: 6, name: "Alpine Nutrition", tier: "Partner", size: "2x2" },
-  { id: 7, name: "Solid Holds", tier: "Supporter", size: "1x1" },
-  { id: 8, name: "Peak Performance", tier: "Supporter", size: "1x1" },
-  { id: 9, name: "Adaptive Athletes BE", tier: "Gold", size: "2x1" },
-  { id: 10, name: "Local Gov Support", tier: "Supporter", size: "1x1" },
-  { id: 11, name: "Flemish Sport", tier: "Supporter", size: "1x1" },
-  { id: 12, name: "Vertical Life", tier: "Supporter", size: "1x1" },
-  { id: 13, name: "Chalk Matters", tier: "Supporter", size: "1x1" },
-  { id: 14, name: "Route Setters Anon", tier: "Supporter", size: "1x1" },
-  { id: 15, name: "Recovery Plus", tier: "Supporter", size: "1x1" },
-  { id: 16, name: "Explore More", tier: "Gold", size: "2x1" },
-  { id: 17, name: "Mountain Ready", tier: "Supporter", size: "1x1" },
-  { id: 18, name: "Basecamp Provisions", tier: "Supporter", size: "1x1" },
+  { id: 1, name: "Leuven Partner 1" },
+  { id: 2, name: "Leuven Partner 2" },
+  { id: 3, name: "Leuven Partner 3" },
+  { id: 4, name: "Leuven Partner 4" },
+  { id: 5, name: "Leuven Partner 5" },
+  { id: 6, name: "Leuven Partner 6" },
+  { id: 7, name: "Leuven Partner 7" },
+  { id: 8, name: "Leuven Partner 8" },
 ];
 
 // --- Main Page Component ---
@@ -88,6 +86,16 @@ export default function ParaclimberSite() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Contact form state
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    inquiryType: 'Sponsoring',
+    message: ''
+  });
+  const [isContactSubmitting, setIsContactSubmitting] = useState(false);
+  const [contactSubmitMessage, setContactSubmitMessage] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -135,6 +143,30 @@ export default function ParaclimberSite() {
       setSubmitMessage(error.message || 'Er is iets misgegaan. Probeer het opnieuw.');
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsContactSubmitting(true);
+    setContactSubmitMessage('');
+
+    try {
+      await contactService.sendMessage(contactForm);
+      setContactSubmitMessage('Bericht succesvol verstuurd! We nemen zo snel mogelijk contact met je op.');
+      setContactForm({
+        name: '',
+        email: '',
+        inquiryType: 'Sponsoring',
+        message: ''
+      });
+      setTimeout(() => {
+        setContactSubmitMessage('');
+      }, 5000);
+    } catch (error: any) {
+      setContactSubmitMessage(error.message || 'Er is iets misgegaan. Probeer het opnieuw.');
+    } finally {
+      setIsContactSubmitting(false);
     }
   };
 
@@ -243,8 +275,7 @@ export default function ParaclimberSite() {
               DROOM<br />GROOTS.
             </h1>
             <p className="text-xl text-zinc-400 max-w-lg leading-relaxed mb-12">
-              Word ik in 2028, <br/>
-              de eerste Leuvense Paralympiër?
+              Word ik in 2028 de eerste Leuvense Paralympiër?
             </p>
             <div className="flex flex-wrap gap-6">
               <button onClick={() => setIsNewsletterOpen(true)} className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 min-w-[160px] bg-red-600 hover:bg-red-700 text-white">
@@ -277,34 +308,29 @@ export default function ParaclimberSite() {
       {/* About Section */}
       <section id="about" className="py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid lg:grid-cols-12 gap-16 items-center">
+          <div className="grid lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-5">
-              <div className="aspect-[3/4] bg-zinc-100 relative overflow-hidden">
+              <div className="relative w-full">
                  <Image 
-                   src="/images/me/nakajima_timmerman_Ifsc_FSC121816.jpg"
+                   src="/images/me.webp"
                    alt="Fré Leys Portrait"
-                   fill
-                   className="object-cover"
+                   width={800}
+                   height={1000}
+                   className="w-full h-auto"
                    priority
                  />
               </div>
             </div>
             <div className="lg:col-span-7">
               <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">
-                MORE THAN CLIMBING.
+                Welkom!
               </h2>
               <div className="space-y-8 text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-2xl">
                 <p>
-                  Born in Ghent, my life changed after a motorcycle accident in 2018. For many, that's the end. For me, it was a rebirth.
+                  Welkom op mijn website. Hier deel ik mijn reis naar de Paralympische spelen van 2028 in Los Angeles. Ontdek mijn verhaal, volg mijn trainingen en steun me op weg naar mijn Paralympische droom.
                 </p>
                 <p>
-                  <strong className="text-black">Paraclimbing gave me purpose.</strong> The wall doesn't care about what you're missing; it only cares about what you have left to give.
-                </p>
-                <p>
-                  Now, my eyes are set on one goal: The Los Angeles 2028 Paralympics. It's a 4-year roadmap of grueling training and unwavering discipline.
-                </p>
-                <p>
-                   
+                  <strong className="text-black">Als mogelijks eerste Paralympiër van Leuven,</strong> wil ik jullie meenemen in mijn avontuur vol uitdagingen, overwinningen en de onwrikbare vastberadenheid om geschiedenis te schrijven.
                 </p>
               </div>
 
@@ -314,26 +340,8 @@ export default function ParaclimberSite() {
                   variant="outline" 
                   className="mb-16"
                 >
-                  Read My Full Story <ArrowRight className="ml-2 w-4 h-4" />
+                  Lees mijn persoonlijk verhaal <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-              </div>
-
-              <div className="grid grid-cols-3 gap-8 pt-16 border-t border-zinc-100">
-                <div>
-                  <Award className="w-8 h-8 mb-4" />
-                  <div className="text-3xl font-bold">6</div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">Podiums</div>
-                </div>
-                <div>
-                  <TrendingUp className="w-8 h-8 mb-4" />
-                  <div className="text-3xl font-bold">7c</div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">Top Grade</div>
-                </div>
-                <div>
-                  <MapPin className="w-8 h-8 mb-4" />
-                  <div className="text-3xl font-bold">BEL</div>
-                  <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mt-1">Team</div>
-                </div>
               </div>
             </div>
           </div>
@@ -343,55 +351,55 @@ export default function ParaclimberSite() {
       {/* Non-Profit / Community Section */}
       <section id="nonprofit" className="py-32 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-start">
             <div className="order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 text-white font-bold uppercase tracking-widest mb-8 text-xs border border-zinc-800 px-4 py-2">
                   <Heart className="w-4 h-4 fill-white" /> Paraclimbing.be VZW
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">
+              {/* <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">
                 WORD PARAKLIMMER
-              </h2>
+              </h2> */}
               <p className="text-2xl font-bold text-white mb-8 leading-tight">
-                Climbing is more than a sport; it's a pathway to rediscovering strength.
+                Klimmen is vaak meer dan een sport; het helpt bij het (her)ontdekken van wat mogelijk is.
               </p>
               <div className="space-y-6 text-lg text-zinc-400 leading-relaxed mb-12">
                 <p>
-                  I founded <strong>paraclimbing.be</strong> with a simple mission: to ensuring every person with a physical disability in Belgium has the opportunity to experience the vertical world. 
+                  Ik richtte <strong>paraclimbing.be</strong> op met een eenvoudige missie: ervoor zorgen dat elke persoon met een fysieke beperking in België de kans krijgt om het klimmen te ontdekken.
                 </p>
                 <p>
-                  We organize initiation days, provide specialized adaptive equipment to gyms, and are building a community that defies limitations.
+                  We organiseren initiatiedagen, helpen bij vragen, ondersteunen atleten en bouwen aan een gemeenschap van avonturiers met een hoekje af.
                 </p>
-              </div>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                 <div className="border border-zinc-800 p-6 text-center">
-                    <Users className="w-8 h-8 mx-auto mb-4" />
-                    <div className="font-bold uppercase tracking-widest text-xs">Community</div>
-                 </div>
-                 <div className="border border-zinc-800 p-6 text-center">
-                    <Mountain className="w-8 h-8 mx-auto mb-4" />
-                    <div className="font-bold uppercase tracking-widest text-xs">Discovery</div>
-                 </div>
-                 <div className="border border-zinc-800 p-6 text-center">
-                    <TrendingUp className="w-8 h-8 mx-auto mb-4" />
-                    <div className="font-bold uppercase tracking-widest text-xs">Growth</div>
-                 </div>
               </div>
 
               <Button variant="white" onClick={() => window.open('https://paraclimbing.be', '_blank')} className="w-full sm:w-auto">
-                Visit Paraclimbing.be <ArrowUpRight className="ml-2 w-4 h-4" />
+                Bezoek Paraclimbing.be <ArrowUpRight className="ml-2 w-4 h-4" />
               </Button>
             </div>
 
-            <div className="order-1 lg:order-2 relative aspect-square bg-zinc-900 border border-zinc-800 grayscale overflow-hidden">
-              {/* Image placeholder for a workshop/community event */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center text-zinc-700 p-8 text-center">
-                <Users className="w-16 h-16 mb-6 opacity-20" />
-                <span className="font-bold tracking-widest uppercase text-sm">
-                  [Initiation Day Photo]
-                </span>
+            <div className="order-1 lg:order-2 relative bg-zinc-900 border border-zinc-800 overflow-hidden">
+              <Image 
+                src="/images/paraclimbing_be_c.webp"
+                alt="Paraclimbing.be community"
+                width={800}
+                height={800}
+                className="w-full h-auto object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                 <div className="border border-zinc-800 p-6 text-center">
+                    <Users className="w-8 h-8 mx-auto mb-4" />
+                    <div className="font-bold uppercase tracking-widest text-xs">Gemeenschap</div>
+                 </div>
+                 <div className="border border-zinc-800 p-6 text-center">
+                    <Mountain className="w-8 h-8 mx-auto mb-4" />
+                    <div className="font-bold uppercase tracking-widest text-xs">Ontdekking</div>
+                 </div>
+                 <div className="border border-zinc-800 p-6 text-center">
+                    <TrendingUp className="w-8 h-8 mx-auto mb-4" />
+                    <div className="font-bold uppercase tracking-widest text-xs">Groei</div>
+                 </div>
               </div>
-               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
             </div>
           </div>
         </div>
@@ -500,82 +508,156 @@ export default function ParaclimberSite() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-0 grid-flow-dense border border-zinc-200 bg-white">
-            {SPONSORS_GRID.map((sponsor) => (
-              <div 
-                key={sponsor.id} 
-                className={cn(
-                  "relative group aspect-square bg-white outline outline-1 outline-zinc-100 overflow-hidden",
-                  sponsor.size === '2x2' && "col-span-2 row-span-2",
-                  sponsor.size === '2x1' && "col-span-2 row-span-1 aspect-auto",
-                )}
-              >
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 grayscale group-hover:grayscale-0 transition-all duration-500">
-                   <div className="w-full h-full flex items-center justify-center text-zinc-300 font-bold uppercase tracking-widest text-center text-xs md:text-sm">
-                      {sponsor.size === '1x1' ? 'Logo' : sponsor.name}
-                   </div>
-                </div>
+          
 
-                <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-4 text-center">
-                  <p className="text-white font-bold uppercase tracking-wider mb-2">
-                    {sponsor.name}
-                  </p>
-                  <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-2 py-1">
-                    {sponsor.tier}
-                  </span>
+          {/* Sponsoring Partners Section */}
+          <div>
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+              Leuven Circle of 8 Financial Partners
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+              {SPONSORS_GRID.map((sponsor) => (
+                <div 
+                  key={sponsor.id} 
+                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
+                        Open Slot
+                     </div>
+                     <div className="text-zinc-400 text-xs mt-2">
+                        {sponsor.name}
+                     </div>
+                  </div>
+
+                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                      Beschikbaar voor Leuvense partners
+                    </p>
+                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                      Word Partner
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
-            
-            {[...Array(6)].map((_, i) => (
-              <div key={`filler-${i}`} className="aspect-square bg-zinc-50/50 outline outline-1 outline-zinc-100 flex items-center justify-center">
-                <span className="text-zinc-300 text-[10px] uppercase tracking-widest">Open Slot</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Strategic Partners Section */}
+          <div className="mb-20">
+            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+              Strategical Partners
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              {STRATEGIC_PARTNERS.map((partner) => (
+                <div 
+                  key={partner.id} 
+                  className="relative group aspect-square bg-white border-2 border-zinc-300 overflow-hidden hover:border-black transition-colors"
+                >
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
+                        Open Slot
+                     </div>
+                     <div className="text-zinc-400 text-xs mt-2">
+                        {partner.name}
+                     </div>
+                  </div>
+
+                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                      Strategische Partner
+                    </p>
+                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                      Word Partner
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-white">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">PARTNER WITH ME.</h2>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Contacteer me.</h2>
             <p className="text-xl text-zinc-600 max-w-2xl mx-auto">
-              Elite paraclimbing requires elite support. Join the team and champion resilience on the global stage.
+              Heb je vragen, opmerkingen of stuur je gewoon graag mails?
             </p>
           </div>
 
           <div className="bg-white p-8 md:p-16 shadow-xl shadow-zinc-100/50 border border-zinc-100">
-            <form className="space-y-8">
+            <form onSubmit={handleContactSubmit} className="space-y-8">
               <div className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="group">
-                    <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Name</label>
-                    <input type="text" className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg" placeholder="John Doe" />
+                    <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Naam</label>
+                    <input 
+                      type="text" 
+                      value={contactForm.name}
+                      onChange={(e) => setContactForm({...contactForm, name: e.target.value})}
+                      required
+                      disabled={isContactSubmitting}
+                      className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg" 
+                      placeholder="Jan Janssens" 
+                    />
                   </div>
                   <div className="group">
                     <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Email</label>
-                    <input type="email" className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg" placeholder="john@company.com" />
+                    <input 
+                      type="email" 
+                      value={contactForm.email}
+                      onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                      required
+                      disabled={isContactSubmitting}
+                      className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg" 
+                      placeholder="jan@bedrijf.be" 
+                    />
                   </div>
                 </div>
                 <div className="group">
-                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Inquiry Type</label>
-                  <select className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg appearance-none rounded-none">
-                    <option>Sponsorship</option>
-                    <option>Non-Profit / Paraclimbing.be</option>
-                    <option>Media Request</option>
-                    <option>General</option>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Type vraag</label>
+                  <select 
+                    value={contactForm.inquiryType}
+                    onChange={(e) => setContactForm({...contactForm, inquiryType: e.target.value})}
+                    disabled={isContactSubmitting}
+                    className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg appearance-none rounded-none"
+                  >
+                    <option>Sponsoring</option>
+                    <option>Paraclimbing.be</option>
+                    <option>Media</option>
+                    <option>Algemeen</option>
                   </select>
                 </div>
                 <div className="group">
-                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Message</label>
-                  <textarea rows={4} className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg resize-none" placeholder="How can we work together?"></textarea>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2 group-focus-within:text-black transition-colors">Bericht</label>
+                  <textarea 
+                    rows={4} 
+                    value={contactForm.message}
+                    onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                    required
+                    disabled={isContactSubmitting}
+                    className="w-full py-3 bg-transparent border-b border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg resize-none" 
+                    placeholder="Hoe kunnen we samenwerken?"
+                  ></textarea>
                 </div>
               </div>
 
-              <Button type="submit" className="w-full">
-                Send Inquiry
+              {contactSubmitMessage && (
+                <div className={cn(
+                  "text-sm font-medium p-3 border",
+                  contactSubmitMessage.includes('succesvol') 
+                    ? "bg-green-50 text-green-800 border-green-200" 
+                    : "bg-red-50 text-red-800 border-red-200"
+                )}>
+                  {contactSubmitMessage}
+                </div>
+              )}
+
+              <Button type="submit" className="w-full" disabled={isContactSubmitting}>
+                {isContactSubmitting ? 'Bezig met versturen...' : 'Verstuur bericht'}
               </Button>
             </form>
           </div>
@@ -587,7 +669,7 @@ export default function ParaclimberSite() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-2 font-bold uppercase tracking-widest">
             <Mountain className="w-6 h-6" />
-            <span>Fré.Climbs</span>
+            <span>Fré Klimt</span>
           </div>
           
           <div className="flex gap-8 text-zinc-400">

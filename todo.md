@@ -1,6 +1,3 @@
-- change about section
-- change my story page
-- translate community section
 - add community picture
 - change roadmap content
 - add more in action pictures
