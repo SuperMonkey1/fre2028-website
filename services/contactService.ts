@@ -74,6 +74,7 @@ class ContactService {
   }
 
   private async sendMessageDirectly(data: ContactRequest): Promise<ContactResponse> {
+    // Note: The function URL from deployment is the base URL without /send
     const directUrl = 'https://us-central1-fre-2028-website.cloudfunctions.net/contact';
     console.log('Trying direct function URL:', `${directUrl}/send`);
     

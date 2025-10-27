@@ -5,7 +5,7 @@ import {
   Award, 
   Mail, 
   Instagram, 
-  Twitter, 
+  Linkedin, 
   Menu, 
   X, 
   MapPin, 
@@ -14,7 +14,8 @@ import {
   Grid3X3,
   Heart,
   ArrowUpRight,
-  Users
+  Users,
+  Youtube
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -513,7 +514,7 @@ export default function ParaclimberSite() {
           {/* Sponsoring Partners Section */}
           <div>
             <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Leuven Circle of 8 Financial Partners
+              Leuvense Sponsors
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
               {SPONSORS_GRID.map((sponsor) => (
@@ -542,19 +543,17 @@ export default function ParaclimberSite() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Strategic Partners Section */}
-          <div className="mb-20">
+          {/* Strategic Partners Section */}
+          <div className="mb-20 mt-20">
             <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Strategical Partners
+              Strategische Partners
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
               {STRATEGIC_PARTNERS.map((partner) => (
                 <div 
                   key={partner.id} 
-                  className="relative group aspect-square bg-white border-2 border-zinc-300 overflow-hidden hover:border-black transition-colors"
+                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
                 >
                   <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
                      <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
@@ -567,7 +566,7 @@ export default function ParaclimberSite() {
 
                   <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
                     <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
-                      Strategische Partner
+                      Beschikbaar voor strategische partners
                     </p>
                     <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
                       Word Partner
@@ -577,6 +576,9 @@ export default function ParaclimberSite() {
               ))}
             </div>
           </div>
+
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-32 bg-white">
@@ -674,8 +676,8 @@ export default function ParaclimberSite() {
           
           <div className="flex gap-8 text-zinc-400">
             <a href="https://www.instagram.com/fre.climbs" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors"><Instagram className="w-5 h-5" /></a>
-            <a href="https://twitter.com/fre.climbs" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors"><Twitter className="w-5 h-5" /></a>
-            <a href="mailto:contact@freleys.com" className="hover:text-black transition-colors"><Mail className="w-5 h-5" /></a>
+            <a href="https://www.linkedin.com/in/frederik-leys-b7bb5b9/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors"><Linkedin className="w-5 h-5" /></a>
+            <a href="https://www.youtube.com/@FreClimbs" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors"><Youtube className="w-5 h-5" /></a>
           </div>
 
           <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">
