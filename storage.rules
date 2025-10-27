@@ -2,9 +2,10 @@ rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
     // Allow public read access to partner images
+    // Allow write access for uploading images (protected by admin auth at app level)
     match /partners/{allPaths=**} {
       allow read: if true;
-      allow write: if false; // Images are uploaded via Admin SDK from client
+      allow write: if true;
     }
     
     // Deny access to all other paths

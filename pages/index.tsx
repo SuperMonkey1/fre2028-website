@@ -22,6 +22,9 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { newsletterService } from '../services/newsletterService';
 import { contactService } from '../services/contactService';
+import { partnerService } from '../services/partnerService';
+import { Partner } from '../types/partner';
+import { useRouter } from 'next/router';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -59,34 +62,10 @@ const TIMELINE_EVENTS = [
   { year: '2028', title: 'LOS ANGELES PARALYMPICS', desc: 'The ultimate goal. Representing Belgium on the world\'s biggest stage.', milestone: true, highlight: true },
 ];
 
-const STRATEGIC_PARTNERS = [
-  { id: 1, name: "Strategic Partner 1" },
-  { id: 2, name: "Strategic Partner 2" },
-  { id: 3, name: "Strategic Partner 3" },
-  { id: 4, name: "Strategic Partner 4" },
-];
-
-const SPONSORS_GRID = [
-  { id: 1, name: "Leuven Partner 1" },
-  { id: 2, name: "Leuven Partner 2" },
-  { id: 3, name: "Leuven Partner 3" },
-  { id: 4, name: "Leuven Partner 4" },
-  { id: 5, name: "Leuven Partner 5" },
-  { id: 6, name: "Leuven Partner 6" },
-  { id: 7, name: "Leuven Partner 7" },
-  { id: 8, name: "Leuven Partner 8" },
-];
-
-const PERFORMANCE_TEAM = [
-  { id: 1, name: "Performance Partner 1" },
-  { id: 2, name: "Performance Partner 2" },
-  { id: 3, name: "Performance Partner 3" },
-  { id: 4, name: "Performance Partner 4" },
-];
-
 // --- Main Page Component ---
 
 export default function ParaclimberSite() {
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [videoEnded, setVideoEnded] = useState(true); // Temporarily set to true to show image immediately
@@ -95,6 +74,10 @@ export default function ParaclimberSite() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Partners state
+  const [partners, setPartners] = useState<Partner[]>([]);
+  const [isLoadingPartners, setIsLoadingPartners] = useState(true);
 
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -113,6 +96,23 @@ export default function ParaclimberSite() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Load partners from Firestore
+  useEffect(() => {
+    loadPartners();
+  }, []);
+
+  const loadPartners = async () => {
+    try {
+      setIsLoadingPartners(true);
+      const data = await partnerService.getAllPartners();
+      setPartners(data);
+    } catch (error) {
+      console.error('Error loading partners:', error);
+    } finally {
+      setIsLoadingPartners(false);
+    }
+  };
 
   // Attempt to autoplay video on load
   useEffect(() => {
@@ -659,106 +659,150 @@ export default function ParaclimberSite() {
             </div>
           </div>
 
-          
-
-          {/* Sponsoring Partners Section */}
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Financiële Partners "De Leuvense 8"
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-              {SPONSORS_GRID.map((sponsor) => (
-                <div 
-                  key={sponsor.id} 
-                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
-                        Open Slot
-                     </div>
-                     <div className="text-zinc-400 text-xs mt-2">
-                        {sponsor.name}
-                     </div>
-                  </div>
-
-                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
-                      Beschikbaar voor Leuvense partners
-                    </p>
-                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
-                      Word Partner
-                    </span>
+          {isLoadingPartners ? (
+            <div className="text-center py-20">
+              <div className="inline-block w-8 h-8 border-4 border-zinc-300 border-t-black rounded-full animate-spin"></div>
+              <p className="mt-4 text-zinc-600">Partners laden...</p>
+            </div>
+          ) : (
+            <>
+              {/* Financiële Partners Section */}
+              {partners.filter(p => p.category === 'Financiële Partner').length > 0 && (
+                <div className="mb-20">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+                    Financiële Partners
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                    {partners
+                      .filter(p => p.category === 'Financiële Partner')
+                      .map((partner) => (
+                        <div 
+                          key={partner.id} 
+                          className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
+                          onClick={() => router.push('/partners')}
+                        >
+                          {partner.imageUrl ? (
+                            <img 
+                              src={partner.imageUrl}
+                              alt={partner.name}
+                              className="w-full h-full object-contain p-4"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                              <div className="text-zinc-600 font-bold uppercase tracking-widest text-xs">
+                                {partner.name}
+                              </div>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                            <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                              {partner.name}
+                            </p>
+                            <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                              Bekijk Partner
+                            </span>
+                          </div>
+                        </div>
+                      ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
 
-          {/* Strategic Partners Section */}
-          <div className="mb-20 mt-20">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Strategische Partners
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-              {STRATEGIC_PARTNERS.map((partner) => (
-                <div 
-                  key={partner.id} 
-                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
-                        Open Slot
-                     </div>
-                     <div className="text-zinc-400 text-xs mt-2">
-                        {partner.name}
-                     </div>
-                  </div>
-
-                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
-                      Beschikbaar voor strategische partners
-                    </p>
-                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
-                      Word Partner
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Performance Team Section */}
-          <div className="mb-20">
-            <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-              Performance Team
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-              {PERFORMANCE_TEAM.map((member) => (
-                <div 
-                  key={member.id} 
-                  className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors"
-                >
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                     <div className="text-zinc-300 font-bold uppercase tracking-widest text-xs">
-                        Open Slot
-                     </div>
-                     <div className="text-zinc-400 text-xs mt-2">
-                        {member.name}
-                     </div>
-                  </div>
-
-                  <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                    <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
-                      Beschikbaar voor performance partners
-                    </p>
-                    <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
-                      Word Partner
-                    </span>
+              {/* Strategic Partners Section */}
+              {partners.filter(p => p.category === 'Strategische Partner').length > 0 && (
+                <div className="mb-20">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+                    Strategische Partners
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                    {partners
+                      .filter(p => p.category === 'Strategische Partner')
+                      .map((partner) => (
+                        <div 
+                          key={partner.id} 
+                          className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
+                          onClick={() => router.push('/partners')}
+                        >
+                          {partner.imageUrl ? (
+                            <img 
+                              src={partner.imageUrl}
+                              alt={partner.name}
+                              className="w-full h-full object-contain p-4"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                              <div className="text-zinc-600 font-bold uppercase tracking-widest text-xs">
+                                {partner.name}
+                              </div>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                            <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                              {partner.name}
+                            </p>
+                            <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                              Bekijk Partner
+                            </span>
+                          </div>
+                        </div>
+                      ))}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
+
+              {/* Performance Team Section */}
+              {partners.filter(p => p.category === 'Performance Team').length > 0 && (
+                <div className="mb-20">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
+                    Performance Team
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                    {partners
+                      .filter(p => p.category === 'Performance Team')
+                      .map((partner) => (
+                        <div 
+                          key={partner.id} 
+                          className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
+                          onClick={() => router.push('/partners')}
+                        >
+                          {partner.imageUrl ? (
+                            <img 
+                              src={partner.imageUrl}
+                              alt={partner.name}
+                              className="w-full h-full object-contain p-4"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                              <div className="text-zinc-600 font-bold uppercase tracking-widest text-xs">
+                                {partner.name}
+                              </div>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-black/95 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                            <p className="text-white font-bold uppercase tracking-wider mb-2 text-sm">
+                              {partner.name}
+                            </p>
+                            <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-widest border border-zinc-700 px-3 py-1">
+                              Bekijk Partner
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Show message if no partners yet */}
+              {partners.length === 0 && (
+                <div className="text-center py-20">
+                  <p className="text-xl text-zinc-600 mb-6">Nog geen partners beschikbaar.</p>
+                  <Button onClick={() => scrollToSection('contact')}>
+                    Word de eerste partner
+                  </Button>
+                </div>
+              )}
+            </>
+          )}
 
         </div>
       </section>
