@@ -261,7 +261,7 @@ export default function ParaclimberSite() {
         <div className="absolute bottom-8 right-4 md:right-8 hidden md:flex gap-12 text-right z-30">
           <div>
             <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Klasse</div>
-            <div className="text-3xl font-bold">AL-2</div>
+            <div className="text-3xl font-bold">Leg Amputees (AL-2)</div>
           </div>
           <div>
             <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">World Cup Medailles</div>
@@ -619,7 +619,7 @@ export default function ParaclimberSite() {
                 Schrijf je in voor mijn gratis nieuwsbrief
               </h3>
               <p className="text-zinc-600">
-                Ontvang elke twee weken een update
+                Ontvang elke maand een update
               </p>
             </div>
 
