@@ -283,7 +283,7 @@ export default function ParaclimberSite() {
         <meta property="og:url" content="https://www.fre2028.la/" />
         <meta property="og:title" content="Fré Leys - Paraklimmer uit Leuven op weg naar Paralympics 2028" />
         <meta property="og:description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028 in Los Angeles." />
-        <meta property="og:image" content="https://www.fre2028.la/images/me/me_innsbruck.webp" />
+        <meta property="og:image" content="https://www.fre2028.la/images/me_innsbruck.webp" />
         <meta property="og:locale" content="nl_BE" />
         <meta property="og:site_name" content="Fré Leys - Paraclimbing België" />
         
@@ -461,7 +461,7 @@ export default function ParaclimberSite() {
         {/* 1. The Static Image Background (FINAL STATE) - z-0 puts it at the bottom */}
         <div className="absolute inset-0 z-0">
           <img 
-            src="/images/me/me_innsbruck.webp"
+            src="/images/me_innsbruck.webp"
             alt="Fré climbing background"
             className="w-full h-full object-cover opacity-40 grayscale mix-blend-screen"
           />
@@ -961,7 +961,7 @@ export default function ParaclimberSite() {
                         <div 
                           key={partner.id} 
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
-                          onClick={() => router.push('/partners')}
+                          onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
                             <img 
@@ -1003,7 +1003,7 @@ export default function ParaclimberSite() {
                         <div 
                           key={partner.id} 
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
-                          onClick={() => router.push('/partners')}
+                          onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
                             <img 
@@ -1045,7 +1045,7 @@ export default function ParaclimberSite() {
                         <div 
                           key={partner.id} 
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
-                          onClick={() => router.push('/partners')}
+                          onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
                             <img 

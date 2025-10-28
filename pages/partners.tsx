@@ -48,6 +48,7 @@ export default function PartnersPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [partners, setPartners] = useState<Partner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [highlightedPartnerId, setHighlightedPartnerId] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +61,31 @@ export default function PartnersPage() {
   useEffect(() => {
     loadPartners();
   }, []);
+
+  useEffect(() => {
+    // Scroll to specific partner if hash is present in URL
+    if (router.isReady && router.asPath.includes('#') && partners.length > 0) {
+      const partnerId = router.asPath.split('#')[1];
+      const element = document.getElementById(`partner-${partnerId}`);
+      if (element) {
+        // Highlight the partner
+        setHighlightedPartnerId(partnerId);
+        
+        // Add a small delay to ensure the page is fully rendered
+        setTimeout(() => {
+          element.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'center'
+          });
+        }, 300);
+
+        // Remove highlight after animation
+        setTimeout(() => {
+          setHighlightedPartnerId(null);
+        }, 3000);
+      }
+    }
+  }, [router.isReady, router.asPath, partners]);
 
   const loadPartners = async () => {
     try {
@@ -142,9 +168,11 @@ export default function PartnersPage() {
               {partners.map((partner, index) => (
                 <div 
                   key={partner.id} 
+                  id={`partner-${partner.id}`}
                   className={cn(
-                    "grid lg:grid-cols-2 gap-12 lg:gap-16 items-center",
-                    index % 2 === 1 && "lg:grid-flow-dense"
+                    "grid lg:grid-cols-2 gap-12 lg:gap-16 items-center scroll-mt-24 rounded-lg transition-all duration-1000 p-8 -m-8",
+                    index % 2 === 1 && "lg:grid-flow-dense",
+                    highlightedPartnerId === partner.id && "bg-zinc-50 border border-zinc-200 shadow-lg"
                   )}
                 >
                   {/* Image */}

@@ -1,7 +1,8 @@
-- add partners that i have (Bushido, Guido, Joris, iVOX)
+- add partners that i have (Guido, Joris, iVOX)
 - change menu: home, my story, partners, pers/media, blog, roadmap, contact
 - add analytics
 - check safety of firebase firestore
+- load images faster
 
 - add Banner Video
 - add countdown clock
