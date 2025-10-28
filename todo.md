@@ -1,4 +1,4 @@
-- add partners that i have (Guido, Joris, iVOX)
+- add partners that i have (Guido, Joris, iVOX) and placeholder: looking for
 - change menu: home, my story, partners, pers/media, blog, roadmap, contact
 - add analytics
 - check safety of firebase firestore
