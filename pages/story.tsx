@@ -9,11 +9,15 @@ import {
   Zap,
   Target,
   Users,
-  TrendingUp
+  TrendingUp,
+  Trophy,
+  Medal,
+  MapPin
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useRouter } from 'next/router';
+import resultsData from '../public/data/results.json';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -249,7 +253,7 @@ export default function StoryPage() {
       <section className="py-20 md:py-32">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
           <div className="space-y-24 md:space-y-32">
-            {STORY_CHAPTERS.map((chapter, index) => (
+            {STORY_CHAPTERS.slice(0, 4).map((chapter, index) => (
               <div key={chapter.id} className="relative">
                 {/* Chapter Header */}
                 <div className="mb-8 md:mb-12">
@@ -345,11 +349,180 @@ export default function StoryPage() {
                 )}
 
                 {/* Chapter Visual Separator */}
-                {index < STORY_CHAPTERS.length - 1 && (
-                  <div className="mt-12 md:mt-16 flex justify-center">
-                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-zinc-300 to-transparent" />
+                <div className="mt-12 md:mt-16 flex justify-center">
+                  <div className="w-12 h-px bg-gradient-to-r from-transparent via-zinc-300 to-transparent" />
+                </div>
+              </div>
+            ))}
+
+            {/* Results Section */}
+            <div className="relative">
+              {/* Results Header */}
+              <div className="mb-8 md:mb-12">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-zinc-400">
+                    2016-2025
+                  </span>
+                  <div className="flex-1 h-px bg-zinc-200" />
+                </div>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 md:mb-4">
+                  Resultaten
+                </h2>
+                <p className="text-base md:text-lg text-zinc-600 italic">
+                  Mijn Top Prestaties
+                </p>
+              </div>
+
+              {/* Scrollable Results List */}
+              <div className="overflow-y-auto space-y-4 md:space-y-6 pr-2" style={{ maxHeight: '416px' }}>
+                {resultsData.results
+                  .filter(result => result.rank <= 4)
+                  .map((result, index) => (
+                    <div 
+                      key={index}
+                      className="group bg-white border border-zinc-200 rounded-lg p-6 md:p-8 hover:border-zinc-300 transition-all duration-200 hover:shadow-lg"
+                    >
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="flex items-start gap-4">
+                          {/* Rank Badge */}
+                          <div className={cn(
+                            "flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-lg flex-shrink-0",
+                            result.rank === 1 && "bg-yellow-500",
+                            result.rank === 2 && "bg-gray-400", 
+                            result.rank === 3 && "bg-amber-600",
+                            result.rank > 3 && "bg-zinc-600"
+                          )}>
+                            {result.rank === 1 && <Trophy className="w-6 h-6" />}
+                            {result.rank === 2 && <Medal className="w-6 h-6" />}
+                            {result.rank === 3 && <Medal className="w-6 h-6" />}
+                            {result.rank > 3 && result.rank}
+                          </div>
+
+                          {/* Event Info */}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-semibold text-lg md:text-xl text-zinc-900 mb-1 leading-tight">
+                              {result.eventName}
+                            </h3>
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-zinc-600">
+                              <div className="flex items-center gap-1">
+                                <MapPin className="w-4 h-4" />
+                                <span>{result.location}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Calendar className="w-4 h-4" />
+                                <span>{result.date}</span>
+                              </div>
+                              <div className="inline-block px-2 py-1 bg-zinc-100 text-zinc-700 rounded text-xs font-medium">
+                                {result.discipline}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Position Label */}
+                        <div className="text-right">
+                          <div className="text-2xl md:text-3xl font-bold text-zinc-900">
+                            #{result.rank}
+                          </div>
+                          <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                            Plaats
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {/* View All Results Button */}
+              <div className="mt-11 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                {/* Medal Statistics */}
+                <div className="bg-gradient-to-r from-zinc-50 to-white p-6 rounded-lg border border-zinc-200">
+                  <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-4">
+                    World Cup Medailles
+                  </h4>
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                        <Trophy className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-xl font-bold">2</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center">
+                        <Medal className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-xl font-bold">1</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                        <Medal className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-xl font-bold">3</span>
+                    </div>
                   </div>
-                )}
+                  <p className="text-xs text-zinc-500 mt-2">
+                    6 medailles in totaal
+                  </p>
+                </div>
+
+                {/* Right aligned text and button */}
+                <div className="text-right">
+                  <p className="text-sm text-zinc-600 mb-4">
+                    Top 4 prestaties uit {resultsData.results.length} internationale wedstrijden
+                  </p>
+                  <Button 
+                    onClick={() => window.open('https://ifsc.results.info/athlete/351', '_blank')}
+                    variant="outline"
+                    className="h-10 px-6 text-xs"
+                  >
+                    <Award className="w-4 h-4 mr-2" />
+                    Bekijk Op IFSC Website
+                  </Button>
+                </div>
+              </div>
+
+              {/* Chapter Visual Separator */}
+              <div className="mt-12 md:mt-16 flex justify-center">
+                <div className="w-12 h-px bg-gradient-to-r from-transparent via-zinc-300 to-transparent" />
+              </div>
+            </div>
+
+            {/* Future Chapter */}
+            {STORY_CHAPTERS.slice(4).map((chapter, index) => (
+              <div key={chapter.id} className="relative">
+                {/* Chapter Header */}
+                <div className="mb-8 md:mb-12">
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="text-xs md:text-sm font-bold tracking-widest uppercase text-zinc-400">
+                      {chapter.year}
+                    </span>
+                    <div className="flex-1 h-px bg-zinc-200" />
+                  </div>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 md:mb-4">
+                    {chapter.title}
+                  </h2>
+                  <p className="text-base md:text-lg text-zinc-600 italic">
+                    {chapter.subtitle}
+                  </p>
+                </div>
+
+                {/* Chapter Content with Image */}
+                <div className="grid md:grid-cols-[1fr,400px] gap-8 md:gap-12 items-start">
+                  <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-zinc-700">
+                    {chapter.content.map((paragraph, pIndex) => (
+                      <p key={pIndex}>
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="relative">
+                    <img 
+                      src="/images/me_winning.webp" 
+                      alt="Fré op het podium" 
+                      className="w-full h-auto rounded-lg shadow-lg sticky top-24"
+                    />
+                  </div>
+                </div>
               </div>
             ))}
           </div>

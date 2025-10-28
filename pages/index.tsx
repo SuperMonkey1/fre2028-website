@@ -16,7 +16,10 @@ import {
   Heart,
   ArrowUpRight,
   Users,
-  Youtube
+  Youtube,
+  Trophy,
+  Medal,
+  Calendar
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -25,6 +28,7 @@ import { contactService } from '../services/contactService';
 import { partnerService } from '../services/partnerService';
 import { Partner } from '../types/partner';
 import { useRouter } from 'next/router';
+import resultsData from '../public/data/results.json';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -53,20 +57,46 @@ Button.displayName = "Button"
 
 // --- Data ---
 
-const TIMELINE_EVENTS = [
-  { year: '2023', title: 'IFSC World Championships Bern', desc: 'Silver Medal - Men\'s AL2 Category', milestone: true },
-  { year: '2024', title: 'Paraclimbing World Cup Innsbruck', desc: 'Gold Medal - Secured top world ranking', milestone: true },
-  { year: '2025', title: 'Intensive Training Block', desc: 'Focus on strength conditioning in Fontainebleau and bespoke gym training in Brussels.', milestone: false },
-  { year: '2026', title: 'European Championships', desc: 'Defending the continental title.', milestone: false },
-  { year: '2027', title: 'Paralympic Qualifiers', desc: 'The final hurdle before the big stage.', milestone: true },
-  { year: '2028', title: 'LOS ANGELES PARALYMPICS', desc: 'The ultimate goal. Representing Belgium on the world\'s biggest stage.', milestone: true, highlight: true },
-];
+// Parse CSV function
+const parseCSV = (csvText: string) => {
+  const lines = csvText.trim().split('\n');
+  const headers = lines[0].split(',');
+  
+  return lines.slice(1).map(line => {
+    const values = line.split(',');
+    const obj: any = {};
+    headers.forEach((header, index) => {
+      obj[header.trim()] = values[index]?.trim() || '';
+    });
+    return obj;
+  });
+};
+
+// Convert CSV milestone to timeline format
+const convertMilestoneToTimeline = (milestone: any) => {
+  // Extract year from date
+  const dateParts = milestone.Date.split('/');
+  const year = dateParts.length === 3 ? dateParts[2] : milestone.Date;
+  
+  // Determine if this should be highlighted (LA Paralympics)
+  const isHighlight = milestone.Title.toUpperCase().includes('LOS ANGELES') || 
+                     milestone.Title.toUpperCase().includes('PARALYMPICS');
+  
+  return {
+    year,
+    title: milestone.Title,
+    desc: milestone.Description,
+    milestone: milestone.type === 'Milestone',
+    highlight: isHighlight
+  };
+};
 
 // --- Main Page Component ---
 
 export default function ParaclimberSite() {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [timelineEvents, setTimelineEvents] = useState<any[]>([]);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [videoEnded, setVideoEnded] = useState(true); // Temporarily set to true to show image immediately
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
@@ -101,6 +131,25 @@ export default function ParaclimberSite() {
   useEffect(() => {
     loadPartners();
   }, []);
+
+  // Load milestones from CSV
+  useEffect(() => {
+    loadMilestones();
+  }, []);
+
+  const loadMilestones = async () => {
+    try {
+      const response = await fetch('/data/FRE2028 content - Milestones.csv');
+      const csvText = await response.text();
+      const milestones = parseCSV(csvText);
+      const events = milestones.map(convertMilestoneToTimeline);
+      setTimelineEvents(events);
+    } catch (error) {
+      console.error('Error loading milestones:', error);
+      // Fallback to empty array if CSV fails to load
+      setTimelineEvents([]);
+    }
+  };
 
   const loadPartners = async () => {
     try {
@@ -537,6 +586,134 @@ export default function ParaclimberSite() {
         </div>
       </section>
 
+      {/* Results Section */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="relative">
+            {/* Results Header */}
+            <div className="mb-8 md:mb-12 text-center">
+              <div className="inline-block px-4 py-2 mb-6 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
+                2016-2025
+              </div>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mb-3 md:mb-4">
+                Resultaten
+              </h2>
+              <p className="text-base md:text-lg text-zinc-600 italic">
+                Mijn Top 4 Prestaties (1e-4e Plaats)
+              </p>
+            </div>
+
+            {/* Scrollable Results List */}
+            <div className="overflow-y-auto space-y-4 md:space-y-6 pr-2" style={{ maxHeight: '396px' }}>
+              {resultsData.results
+                .filter(result => result.rank <= 4)
+                .map((result, index) => (
+                  <div 
+                    key={index}
+                    className="group bg-white border border-zinc-200 rounded-lg p-6 md:p-8 hover:border-zinc-300 transition-all duration-200 hover:shadow-lg"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="flex items-start gap-4">
+                        {/* Rank Badge */}
+                        <div className={cn(
+                          "flex items-center justify-center w-12 h-12 rounded-full text-white font-bold text-lg flex-shrink-0",
+                          result.rank === 1 && "bg-yellow-500",
+                          result.rank === 2 && "bg-gray-400", 
+                          result.rank === 3 && "bg-amber-600",
+                          result.rank > 3 && "bg-zinc-600"
+                        )}>
+                          {result.rank === 1 && <Trophy className="w-6 h-6" />}
+                          {result.rank === 2 && <Medal className="w-6 h-6" />}
+                          {result.rank === 3 && <Medal className="w-6 h-6" />}
+                          {result.rank > 3 && result.rank}
+                        </div>
+
+                        {/* Event Info */}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-lg md:text-xl text-zinc-900 mb-1 leading-tight">
+                            {result.eventName}
+                          </h3>
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-zinc-600">
+                            <div className="flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              <span>{result.location}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              <span>{result.date}</span>
+                            </div>
+                            <div className="inline-block px-2 py-1 bg-zinc-100 text-zinc-700 rounded text-xs font-medium">
+                              {result.discipline}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Position Label */}
+                      <div className="text-right">
+                        <div className="text-2xl md:text-3xl font-bold text-zinc-900">
+                          #{result.rank}
+                        </div>
+                        <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                          Plaats
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            {/* View All Results Button */}
+            <div className="mt-11 flex flex-col md:flex-row md:items-center justify-between gap-6">
+              {/* Medal Statistics */}
+              <div className="bg-gradient-to-r from-zinc-50 to-white p-6 rounded-lg border border-zinc-200">
+                <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-400 mb-4">
+                  World Cup Medailles
+                </h4>
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-yellow-500 rounded-full flex items-center justify-center">
+                      <Trophy className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-xl font-bold">2</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center">
+                      <Medal className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-xl font-bold">1</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-amber-600 rounded-full flex items-center justify-center">
+                      <Medal className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-xl font-bold">3</span>
+                  </div>
+                </div>
+                <p className="text-xs text-zinc-500 mt-2">
+                  6 medailles in totaal
+                </p>
+              </div>
+
+              {/* Right aligned text and button */}
+              <div className="text-right">
+                <p className="text-sm text-zinc-600 mb-4">
+                  Top 4 prestaties uit {resultsData.results.length} internationale wedstrijden
+                </p>
+                <Button 
+                  onClick={() => window.open('https://ifsc.results.info/athlete/351', '_blank')}
+                  variant="outline"
+                  className="h-10 px-6 text-xs"
+                >
+                  <Award className="w-4 h-4 mr-2" />
+                  Bekijk Op IFSC Website
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Journey Section */}
       <section id="journey" className="py-32 bg-zinc-50">
         <div className="max-w-3xl mx-auto px-4 md:px-8">
@@ -546,7 +723,7 @@ export default function ParaclimberSite() {
 
           <div className="relative border-l border-zinc-200 ml-4 md:ml-0">
             <div className="space-y-16">
-              {TIMELINE_EVENTS.map((event, index) => (
+              {timelineEvents.map((event: any, index: number) => (
                 <div key={index} className="relative pl-12 md:pl-0 md:grid md:grid-cols-5 items-start group">
                   {/* Timeline Node */}
                   <div className={cn(
@@ -611,7 +788,7 @@ export default function ParaclimberSite() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[250px]">
             <div className="relative bg-zinc-100 overflow-hidden transition-all duration-500 col-span-2 row-span-2">
               <Image 
-                src="/images/gallery/Ifsc_FSC110590.jpg"
+                src="/images/portofolio/2025_innsbruck_na.webp"
                 alt="Fré climbing in action"
                 fill
                 className="object-cover"

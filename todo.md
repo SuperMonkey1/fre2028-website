@@ -1,4 +1,3 @@
-- change roadmap content
 - add more in action pictures and add podcast and docu links
 - add partners that i have (Bushido, Guido, Joris, iVOX)
 - change menu: home, my story, partners, pers/media, blog, roadmap, contact
@@ -11,3 +10,4 @@
 - add blog with rss feed
 - voeg stukje avontuur, natuur en rotsen toe
 - voeg projecten pagina toe
+- googe sheets cms

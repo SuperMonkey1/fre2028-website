@@ -1,0 +1,228 @@
+{
+  "pageTitle": "IFSC Climbing Result Service",
+  "ogUrl": "https://ifsc.results.info",
+  "ogTitle": "IFSC Climbing Result Service",
+  "ogDescription": "The result site of IFSC climbing competitions, with starters, live results and rankings powered by Vertical-Life",
+  "athleteInfo": {
+    "name": "Frederik LEYS",
+    "portraitUrl": "https://d1n1qj9geboqnb.cloudfront.net/ifsc/public/xcj3ojpgpvwcmu265qna0f6dly8q",
+    "countryCode": "BEL",
+    "countryFlagUrl": "https://d1n1qj9geboqnb.cloudfront.net/flags/BEL.png",
+    "location": "Leuven",
+    "club": "CMBEL",
+    "age": 38,
+    "height": "-",
+    "activeSince": 2016,
+    "participations": 26
+  },
+  "results": [
+    {
+      "rank": 7,
+      "eventName": "IFSC Para Climbing World Cup Laval 2025",
+      "eventUrl": "/event/1464/general/lead",
+      "discipline": "Lead",
+      "location": "Laval, FRA",
+      "date": "26 Oct 2025"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC Para Climbing World Championships Seoul 2025",
+      "eventUrl": "/event/1462/general/lead",
+      "discipline": "Lead",
+      "location": "Seoul, KOR",
+      "date": "25 Sep 2025"
+    },
+    {
+      "rank": 6,
+      "eventName": "IFSC Para Climbing World Cup Innsbruck 2025",
+      "eventUrl": "/event/1463/general/lead",
+      "discipline": "Lead",
+      "location": "Innsbruck, AUT",
+      "date": "24 Jun 2025"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC Para Climbing World Cup Salt Lake City 2025",
+      "eventUrl": "/event/1461/general/lead",
+      "discipline": "Lead",
+      "location": "Salt Lake City, USA",
+      "date": "22 May 2025"
+    },
+    {
+      "rank": 5,
+      "eventName": "IFSC Paraclimbing World Cup Arco 2024",
+      "eventUrl": "/event/1391/general/lead",
+      "discipline": "Lead",
+      "location": "Arco (TN)",
+      "date": "28 Sep 2024"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC Paraclimbing European Championships Villars 2024",
+      "eventUrl": "/event/1395/general/lead",
+      "discipline": "Lead",
+      "location": "Villars",
+      "date": "25 Aug 2024"
+    },
+    {
+      "rank": 3,
+      "eventName": "IFSC Paraclimbing World Cup Innsbruck 2024",
+      "eventUrl": "/event/1387/general/lead",
+      "discipline": "Lead",
+      "location": "Innsbruck",
+      "date": "25 Jun 2024"
+    },
+    {
+      "rank": 5,
+      "eventName": "IFSC Paraclimbing World Championships Bern 2023",
+      "eventUrl": "/event/1338/general/lead",
+      "discipline": "Lead",
+      "location": "Bern",
+      "date": "10 Aug 2023"
+    },
+    {
+      "rank": 7,
+      "eventName": "IFSC Paraclimbing World Cup Villars 2023",
+      "eventUrl": "/event/1341/general/lead",
+      "discipline": "Lead",
+      "location": "Villars-sur-Ollon",
+      "date": "24 Jun 2023"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC Paraclimbing World Cup Innsbruck 2023",
+      "eventUrl": "/event/1337/general/lead",
+      "discipline": "Lead",
+      "location": "Innsbruck",
+      "date": "13 Jun 2023"
+    },
+    {
+      "rank": 1,
+      "eventName": "IFSC Paraclimbing World Cup Salt Lake City 2023",
+      "eventUrl": "/event/1335/general/lead",
+      "discipline": "Lead",
+      "location": "Salt Lake City",
+      "date": "18 May 2023"
+    },
+    {
+      "rank": 2,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Villars (SUI) 2022",
+      "eventUrl": "/event/1280/general/lead",
+      "discipline": "Lead",
+      "location": "Villars",
+      "date": "9 Jul 2022"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Innsbruck (AUT) 2022",
+      "eventUrl": "/event/1277/general/lead",
+      "discipline": "Lead",
+      "location": "Innsbruck",
+      "date": "22 Jun 2022"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Salt Lake City (USA) 2022",
+      "eventUrl": "/event/1278/general/lead",
+      "discipline": "Lead",
+      "location": "Salt Lake City",
+      "date": "26 May 2022"
+    },
+    {
+      "rank": 1,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Los Angeles (USA) 2021",
+      "eventUrl": "/event/1224/general/lead",
+      "discipline": "Lead",
+      "location": "United States",
+      "date": "11 Oct 2021"
+    },
+    {
+      "rank": 2,
+      "eventName": "IFSC - Paraclimbing World Championships (L) - Moscow 2021",
+      "eventUrl": "/event/1225/general/lead",
+      "discipline": "Lead",
+      "location": "Moscow",
+      "date": "17 Sep 2021"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Briançon (FRA) 2021",
+      "eventUrl": "/event/1223/general/lead",
+      "discipline": "Lead",
+      "location": "Briançon",
+      "date": "15 Jul 2021"
+    },
+    {
+      "rank": 3,
+      "eventName": "IFSC - Paraclimbing World Cup (L) - Innsbruck (AUT) 2021",
+      "eventUrl": "/event/1222/general/lead",
+      "discipline": "Lead",
+      "location": "Innsbruck",
+      "date": "24 Jun 2021"
+    },
+    {
+      "rank": 5,
+      "eventName": "IFSC Paraclimbing World Championships - Briançon (FRA) 2019",
+      "eventUrl": "/event/1128/general/lead",
+      "discipline": "Lead",
+      "location": "Paraclimbing_WCH_1",
+      "date": "17 Jul 2019"
+    },
+    {
+      "rank": 4,
+      "eventName": "IFSC Paraclimbing World Championships - Innsbruck (AUT) 2018",
+      "eventUrl": "/event/1064/general/lead",
+      "discipline": "Lead",
+      "location": "Paraclimbing_WCH_18",
+      "date": "16 Sep 2018"
+    },
+    {
+      "rank": 4,
+      "eventName": "Paraclimbing Cup (L) - Sheffield (GBR) 2017",
+      "eventUrl": "/event/1003/general/lead",
+      "discipline": "Lead",
+      "location": "She_Paraclimbing_17",
+      "date": "8 Oct 2017"
+    },
+    {
+      "rank": 4,
+      "eventName": "Paraclimbing Cup (L) - Edinburgh (GBR) 2017",
+      "eventUrl": "/event/1002/general/lead",
+      "discipline": "Lead",
+      "location": "Edi_Paraclimbing_17",
+      "date": "24 Sep 2017"
+    },
+    {
+      "rank": 5,
+      "eventName": "Paraclimbing Cup (L) - Briançon (FRA) 2017",
+      "eventUrl": "/event/1001/general/lead",
+      "discipline": "Lead",
+      "location": "Bri_Paraclimbing_17",
+      "date": "26 Jul 2017"
+    },
+    {
+      "rank": 2,
+      "eventName": "Paraclimbing Master (L) - Imst (AUT) 2017",
+      "eventUrl": "/event/1000/general/lead",
+      "discipline": "Lead",
+      "location": "Ims_Paraclimbing_17",
+      "date": "9 Jul 2017"
+    },
+    {
+      "rank": 5,
+      "eventName": "IFSC Paraclimbing World Championships - Paris (FRA) 2016",
+      "eventUrl": "/event/956/general/lead",
+      "discipline": "Lead",
+      "location": "Paraclimbing_WCH_16",
+      "date": "18 Sep 2016"
+    },
+    {
+      "rank": 3,
+      "eventName": "Paraclimbing Master (L) - Imst (AUT) 2016",
+      "eventUrl": "/event/955/general/lead",
+      "discipline": "Lead",
+      "location": "Imst_Paraclimbing_16",
+      "date": "17 Jul 2016"
+    }
+  ]
+}
