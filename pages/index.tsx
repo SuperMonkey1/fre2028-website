@@ -57,6 +57,46 @@ Button.displayName = "Button"
 
 // --- Data ---
 
+// Portfolio images
+const portfolioImages = [
+  {
+    src: "/images/portofolio/2025_innsbruck_na.webp",
+    alt: "Fré climbing in Innsbruck 2025"
+  },
+  {
+    src: "/images/portofolio/20240625_innsbruck_2_Drapella.webp",
+    alt: "Innsbruck competition 2024"
+  },
+  {
+    src: "/images/portofolio/20240625_innsbruck_Drapella.webp",
+    alt: "Innsbruck climbing 2024"
+  },
+  {
+    src: "/images/portofolio/20240625_innsbruck_Nicholas.webp",
+    alt: "Innsbruck event 2024"
+  },
+  {
+    src: "/images/portofolio/20250925_seoul_na.webp",
+    alt: "Seoul competition 2025"
+  },
+  {
+    src: "/images/portofolio/20251025_Laval_JANVIRT.webp",
+    alt: "Laval competition 2025"
+  },
+  {
+    src: "/images/portofolio/20230613_4438_JANVIRT.webp",
+    alt: "Competition 2023"
+  },
+  {
+    src: "/images/portofolio/group_xsloba.webp",
+    alt: "Team photo"
+  },
+  {
+    src: "/images/portofolio/Slobodan Miskovic-xsloba-IFSC Para WC-SLC-17.05.23 2-3238-1501.webp",
+    alt: "IFSC Para World Cup SLC 2023"
+  }
+];
+
 // Parse CSV function
 const parseCSV = (csvText: string) => {
   const lines = csvText.trim().split('\n');
@@ -103,6 +143,10 @@ export default function ParaclimberSite() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [isMediaDialogOpen, setIsMediaDialogOpen] = useState(false);
+  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
+  const [isPortfolioSliderOpen, setIsPortfolioSliderOpen] = useState(false);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Partners state
@@ -794,11 +838,72 @@ export default function ParaclimberSite() {
                 className="object-cover"
               />
             </div>
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="relative bg-zinc-100 overflow-hidden flex items-center justify-center text-zinc-300 font-bold tracking-widest uppercase text-xs">
-                [Image {i + 2}]
+            <div 
+              className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105 aspect-auto"
+              onClick={() => setIsMediaDialogOpen(true)}
+            >
+              <Image 
+                src="/images/media/grensverleggers_2.webp"
+                alt="Grensverleggers podcast"
+                width={400}
+                height={300}
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <div className="bg-white/90 rounded-full p-2">
+                  <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
               </div>
-            ))}
+            </div>
+            <div 
+              className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
+              onClick={() => setIsVideoDialogOpen(true)}
+            >
+              <img 
+                src="https://img.youtube.com/vi/MZuKnpXXbUo/maxresdefault.jpg"
+                alt="Climbing for Gold video thumbnail"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <div className="bg-red-600 rounded-full p-3">
+                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="absolute bottom-2 left-2 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+                Video
+              </div>
+            </div>
+            <div 
+              className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
+              onClick={() => setIsPortfolioSliderOpen(true)}
+            >
+              <div className="grid grid-cols-2 h-full gap-0.5">
+                {portfolioImages.slice(0, 4).map((image, index) => (
+                  <div key={index} className="relative overflow-hidden">
+                    <Image 
+                      src={image.src}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <div className="bg-white/90 rounded-full p-2">
+                  <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="absolute bottom-2 left-2 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+                {portfolioImages.length} foto's
+              </div>
+            </div>
           </div>
 
           <div className="mt-16 text-center md:hidden">
@@ -1147,6 +1252,201 @@ export default function ParaclimberSite() {
                 {isSubmitting ? 'Bezig...' : 'Inschrijven'}
               </Button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Media Dialog */}
+      {isMediaDialogOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setIsMediaDialogOpen(false)}>
+          <div className="bg-white max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setIsMediaDialogOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/90 rounded-full p-2 text-zinc-600 hover:text-black transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="relative bg-zinc-100">
+              <Image 
+                src="/images/media/grensverleggers_2.webp"
+                alt="Grensverleggers podcast"
+                width={600}
+                height={300}
+                className="w-full h-auto"
+              />
+            </div>
+
+            <div className="p-6">
+              <div className="mb-4">
+                <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-semibold uppercase tracking-wider rounded-full mb-3">
+                  Podcast
+                </span>
+                <h3 className="text-xl font-bold tracking-tight mb-2">
+                  Grensverleggers over veerkracht
+                </h3>
+                <p className="text-sm text-zinc-500 mb-4">
+                  20 juli 2025
+                </p>
+              </div>
+
+              <p className="text-zinc-700 leading-relaxed mb-4 text-sm">
+                Fré Leys traint 30 uur per week, won al meerdere World Cups en droomt van een deelname aan de Paralympische Spelen. De ambitieuze klimmer laat zich niet hinderen door zijn beperking. Integendeel, hij vermoedt dat het zijn grenzeloze ambitie en doorzettingsvermogen verklaart. Zo ambieert Fré de titel van wereldkampioen.
+              </p>
+              
+              <p className="text-zinc-700 leading-relaxed mb-6 text-sm">
+                Host Pieter Embrechts ontmoet Fré voor een gesprek over veerkracht en vooroordelen. En hoe het enige echte falen simpelweg niet proberen is.
+              </p>
+
+              <div className="border border-zinc-200 rounded-lg p-4">
+                <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider text-zinc-600">
+                  Beluister hier
+                </h4>
+                <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg overflow-hidden">
+                  <div className="flex items-center p-3 text-white">
+                    <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
+                      <svg className="w-5 h-5 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+                      </svg>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium">Grensverleggers</p>
+                      <p className="text-xs opacity-90 truncate">The Only Way Is Up. Paralympisch klimmer Fré Leys...</p>
+                    </div>
+                    <button 
+                      onClick={() => window.open('https://open.spotify.com/episode/793kva7MtYLL5YVmndbILI', '_blank')}
+                      className="bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors flex-shrink-0"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Video Dialog */}
+      {isVideoDialogOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setIsVideoDialogOpen(false)}>
+          <div className="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setIsVideoDialogOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/90 rounded-full p-2 text-zinc-600 hover:text-black transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <article className="blog-post-content">
+              <header className="post-header p-6 pb-0">
+                <span className="inline-block px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold uppercase tracking-wider rounded-full mb-3">
+                  Video
+                </span>
+                <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">Climbing for Gold</h1>
+                <p className="post-intro text-lg text-zinc-600 leading-relaxed">
+                  Vincent Groos, volgde me een jaar lang doorheen het competitie circuit.
+                </p>
+              </header>
+              
+              <main className="post-main p-6 pt-4">
+                <div className="video-content">
+                  <div className="video-embed">
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                      <iframe 
+                        src="https://www.youtube.com/embed/MZuKnpXXbUo" 
+                        title="Climbing for Gold" 
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </main>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {/* Portfolio Slider Dialog */}
+      {isPortfolioSliderOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm" onClick={() => setIsPortfolioSliderOpen(false)}>
+          <div className="relative w-full max-w-4xl mx-auto" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setIsPortfolioSliderOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/90 rounded-full p-2 text-zinc-600 hover:text-black transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Main Image */}
+            <div className="relative bg-black rounded-lg overflow-hidden" style={{ aspectRatio: '16/10' }}>
+              <Image 
+                src={portfolioImages[currentSlideIndex]?.src}
+                alt={portfolioImages[currentSlideIndex]?.alt}
+                fill
+                className="object-contain"
+              />
+              
+              {/* Navigation Arrows */}
+              {portfolioImages.length > 1 && (
+                <>
+                  <button 
+                    onClick={() => setCurrentSlideIndex(prev => prev === 0 ? portfolioImages.length - 1 : prev - 1)}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-colors"
+                  >
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button 
+                    onClick={() => setCurrentSlideIndex(prev => prev === portfolioImages.length - 1 ? 0 : prev + 1)}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 rounded-full p-3 transition-colors"
+                  >
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {currentSlideIndex + 1} / {portfolioImages.length}
+              </div>
+            </div>
+
+            {/* Thumbnail Strip */}
+            <div className="mt-4 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+              {portfolioImages.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlideIndex(index)}
+                  className={cn(
+                    "relative flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all",
+                    currentSlideIndex === index ? "border-white scale-105" : "border-transparent opacity-60 hover:opacity-100"
+                  )}
+                >
+                  <Image 
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+
+            {/* Image Title */}
+            <div className="mt-4 text-center">
+              <h3 className="text-white text-lg font-semibold">
+                {portfolioImages[currentSlideIndex]?.alt}
+              </h3>
+            </div>
           </div>
         </div>
       )}

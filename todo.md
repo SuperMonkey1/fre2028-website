@@ -1,7 +1,5 @@
-- add more in action pictures and add podcast and docu links
 - add partners that i have (Bushido, Guido, Joris, iVOX)
 - change menu: home, my story, partners, pers/media, blog, roadmap, contact
-
 - add analytics
 - check safety of firebase firestore
 
