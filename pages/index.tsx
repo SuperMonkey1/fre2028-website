@@ -88,10 +88,6 @@ const portfolioImages = [
     alt: "Competition 2023"
   },
   {
-    src: "/images/portofolio/group_xsloba.webp",
-    alt: "Team photo"
-  },
-  {
     src: "/images/portofolio/Slobodan Miskovic-xsloba-IFSC Para WC-SLC-17.05.23 2-3238-1501.webp",
     alt: "IFSC Para World Cup SLC 2023"
   }
@@ -460,10 +456,14 @@ export default function ParaclimberSite() {
         
         {/* 1. The Static Image Background (FINAL STATE) - z-0 puts it at the bottom */}
         <div className="absolute inset-0 z-0">
-          <img 
+          <Image 
             src="/images/me_innsbruck.webp"
             alt="Fré climbing background"
-            className="w-full h-full object-cover opacity-40 grayscale mix-blend-screen"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-40 grayscale mix-blend-screen"
+            priority
+            quality={60}
           />
         </div>
 
@@ -848,11 +848,12 @@ export default function ParaclimberSite() {
                 width={400}
                 height={300}
                 className="w-full h-auto"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                <div className="bg-white/90 rounded-full p-2">
-                  <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
+                <div className="bg-white/90 rounded-full p-3">
+                  <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-9c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
                   </svg>
                 </div>
               </div>
@@ -861,14 +862,17 @@ export default function ParaclimberSite() {
               className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
               onClick={() => setIsVideoDialogOpen(true)}
             >
-              <img 
+              <Image 
                 src="https://img.youtube.com/vi/MZuKnpXXbUo/maxresdefault.jpg"
                 alt="Climbing for Gold video thumbnail"
+                width={480}
+                height={360}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
                 <div className="bg-red-600 rounded-full p-3">
-                  <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                 </div>
@@ -894,7 +898,7 @@ export default function ParaclimberSite() {
                 ))}
               </div>
               <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-                <div className="bg-white/90 rounded-full p-2">
+                <div className="bg-white/90 rounded-full p-3">
                   <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
@@ -964,10 +968,13 @@ export default function ParaclimberSite() {
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
-                            <img 
+                            <Image 
                               src={partner.imageUrl}
                               alt={partner.name}
-                              className="w-full h-full object-contain p-4"
+                              fill
+                              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                              className="object-contain p-4"
+                              loading="lazy"
                             />
                           ) : (
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -1006,10 +1013,13 @@ export default function ParaclimberSite() {
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
-                            <img 
+                            <Image 
                               src={partner.imageUrl}
                               alt={partner.name}
-                              className="w-full h-full object-contain p-4"
+                              fill
+                              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                              className="object-contain p-4"
+                              loading="lazy"
                             />
                           ) : (
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
@@ -1048,10 +1058,13 @@ export default function ParaclimberSite() {
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
                           {partner.imageUrl ? (
-                            <img 
+                            <Image 
                               src={partner.imageUrl}
                               alt={partner.name}
-                              className="w-full h-full object-contain p-4"
+                              fill
+                              sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                              className="object-contain p-4"
+                              loading="lazy"
                             />
                           ) : (
                             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">

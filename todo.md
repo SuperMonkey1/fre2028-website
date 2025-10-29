@@ -2,8 +2,10 @@
 - change menu: home, my story, partners, pers/media, blog, roadmap, contact
 - add analytics
 - check safety of firebase firestore
-- load images faster
 - my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
+- info bij foto's
+- foto's laden nog traag
+
 
 - add Banner Video
 - add countdown clock
