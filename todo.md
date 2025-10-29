@@ -3,6 +3,7 @@
 - add analytics
 - check safety of firebase firestore
 - load images faster
+- my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
 
 - add Banner Video
 - add countdown clock
@@ -10,3 +11,4 @@
 - voeg stukje avontuur, natuur en rotsen toe
 - voeg projecten pagina toe
 - googe sheets cms
+- AL2 klasse info
