@@ -134,7 +134,7 @@ export default function StoryPage() {
         <meta property="og:url" content="https://www.fre2028.la/story" />
         <meta property="og:title" content="Mijn Verhaal - Van de Luchtbal naar LA 2028 Paralympics" />
         <meta property="og:description" content="Het inspirerende verhaal van Frederik 'Fré' Leys: van ingenieur tot wereldkampioen paraklimmen en paralympische atleet." />
-        <meta property="og:image" content="https://www.fre2028.la/images/me_busje.webp" />
+        <meta property="og:image" content="https://www.fre2028.la/images/web/me_busje_web.webp" />
         <meta property="og:locale" content="nl_BE" />
         
         {/* Twitter */}
@@ -142,7 +142,7 @@ export default function StoryPage() {
         <meta property="twitter:url" content="https://www.fre2028.la/story" />
         <meta property="twitter:title" content="Mijn Verhaal - Van de Luchtbal naar LA 2028 Paralympics" />
         <meta property="twitter:description" content="Het inspirerende verhaal van Frederik 'Fré' Leys: van ingenieur tot wereldkampioen paraklimmen." />
-        <meta property="twitter:image" content="https://www.fre2028.la/images/me_busje.webp" />
+        <meta property="twitter:image" content="https://www.fre2028.la/images/web/me_busje_web.webp" />
         
         {/* Additional SEO */}
         <meta name="author" content="Frederik Leys" />
@@ -169,7 +169,7 @@ export default function StoryPage() {
                 "@type": "Person",
                 "name": "Frederik Leys"
               },
-              "image": "https://www.fre2028.la/images/me_busje.webp",
+              "image": "https://www.fre2028.la/images/web/me_busje_web.webp",
               "mainEntityOfPage": {
                 "@type": "WebPage",
                 "@id": "https://www.fre2028.la/story"
@@ -223,7 +223,7 @@ export default function StoryPage() {
             </div>
             <div className="relative">
               <img 
-                src="/images/me_busje.webp" 
+                src="/images/web/me_busje_web.webp" 
                 alt="Fré met zijn Volkswagenbusje" 
                 className="w-full h-auto rounded-lg shadow-2xl"
               />
@@ -282,14 +282,14 @@ export default function StoryPage() {
                         <div className="relative order-2 md:order-1">
                           {chapter.id === 'youth' && (
                             <img 
-                              src="/images/me_oude_landen.webp" 
+                              src="/images/web/me_oude_landen_web.webp" 
                               alt="Fré in De Oude Landen tijdens natuuronderhoud" 
                               className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                             />
                           )}
                           {chapter.id === 'climbing' && (
                             <img 
-                              src="/images/me_podium.webp" 
+                              src="/images/web/me_podium_moskou_web.webp" 
                               alt="Fré tijdens het paraklimmen" 
                               className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                             />
@@ -315,21 +315,21 @@ export default function StoryPage() {
                         <div className="relative">
                           {chapter.id === 'beginning' && (
                             <img 
-                              src="/images/me_peuter.webp" 
+                              src="/images/web/me_peuter_web.webp" 
                               alt="Fré als kind in de natuur" 
                               className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                             />
                           )}
                           {chapter.id === 'university' && (
                             <img 
-                              src="/images/me_kulibrie.webp" 
+                              src="/images/web/me_kulibrie_web.webp" 
                               alt="Fré met de KULibrie robotkolibrie" 
                               className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                             />
                           )}
                           {chapter.id === 'future' && (
                             <img 
-                              src="/images/me_winning.webp" 
+                              src="/images/web/me_winning_innsbruck_web.webp" 
                               alt="Fré op het podium" 
                               className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                             />
@@ -517,7 +517,7 @@ export default function StoryPage() {
                   </div>
                   <div className="relative">
                     <img 
-                      src="/images/me_winning.webp" 
+                      src="/images/web/me_winning_innsbruck_web.webp" 
                       alt="Fré op het podium" 
                       className="w-full h-auto rounded-lg shadow-lg sticky top-24"
                     />

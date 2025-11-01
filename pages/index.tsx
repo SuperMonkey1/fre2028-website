@@ -60,35 +60,35 @@ Button.displayName = "Button"
 // Portfolio images
 const portfolioImages = [
   {
-    src: "/images/portofolio/2025_innsbruck_na.webp",
+    src: "/images/web/me_innsbruck_banner_web.webp",
     alt: "Fré climbing in Innsbruck 2025"
   },
   {
-    src: "/images/portofolio/20240625_innsbruck_2_Drapella.webp",
+    src: "/images/web/20240625_innsbruck_Drapella_web.webp",
     alt: "Innsbruck competition 2024"
   },
   {
-    src: "/images/portofolio/20240625_innsbruck_Drapella.webp",
+    src: "/images/web/20240625_innsbruck_Drapella_web.webp",
     alt: "Innsbruck climbing 2024"
   },
   {
-    src: "/images/portofolio/20240625_innsbruck_Nicholas.webp",
+    src: "/images/web/20240625_innsbruck_Nicholas_web.webp",
     alt: "Innsbruck event 2024"
   },
   {
-    src: "/images/portofolio/20250925_seoul_na.webp",
+    src: "/images/web/20250925_seoul_na_web.webp",
     alt: "Seoul competition 2025"
   },
   {
-    src: "/images/portofolio/20251025_Laval_JANVIRT.webp",
+    src: "/images/web/20251025_Laval_JANVIRT_web.webp",
     alt: "Laval competition 2025"
   },
   {
-    src: "/images/portofolio/20230613_4438_JANVIRT.webp",
+    src: "/images/web/20230613_JANVIRT_web.webp",
     alt: "Competition 2023"
   },
   {
-    src: "/images/portofolio/Slobodan Miskovic-xsloba-IFSC Para WC-SLC-17.05.23 2-3238-1501.webp",
+    src: "/images/web/me_podium_gold_xsloba_web.webp",
     alt: "IFSC Para World Cup SLC 2023"
   }
 ];
@@ -143,7 +143,9 @@ export default function ParaclimberSite() {
   const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
   const [isPortfolioSliderOpen, setIsPortfolioSliderOpen] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [portfolioSectionVisible, setPortfolioSectionVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const portfolioRef = useRef<HTMLDivElement>(null);
 
   // Partners state
   const [partners, setPartners] = useState<Partner[]>([]);
@@ -175,6 +177,27 @@ export default function ParaclimberSite() {
   // Load milestones from CSV
   useEffect(() => {
     loadMilestones();
+  }, []);
+
+  // Intersection observer for portfolio section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setPortfolioSectionVisible(true);
+            observer.disconnect(); // Stop observing once loaded
+          }
+        });
+      },
+      { rootMargin: '200px' } // Start loading 200px before section is visible
+    );
+
+    if (portfolioRef.current) {
+      observer.observe(portfolioRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   const loadMilestones = async () => {
@@ -279,7 +302,7 @@ export default function ParaclimberSite() {
         <meta property="og:url" content="https://www.fre2028.la/" />
         <meta property="og:title" content="Fré Leys - Paraklimmer uit Leuven op weg naar Paralympics 2028" />
         <meta property="og:description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028 in Los Angeles." />
-        <meta property="og:image" content="https://www.fre2028.la/images/me_innsbruck.webp" />
+        <meta property="og:image" content="https://www.fre2028.la/images/web/me_innsbruck_banner_web.webp" />
         <meta property="og:locale" content="nl_BE" />
         <meta property="og:site_name" content="Fré Leys - Paraclimbing België" />
         
@@ -288,7 +311,7 @@ export default function ParaclimberSite() {
         <meta property="twitter:url" content="https://www.fre2028.la/" />
         <meta property="twitter:title" content="Fré Leys - Paraklimmer uit Leuven op weg naar Paralympics 2028" />
         <meta property="twitter:description" content="Frederik 'Fré' Leys, Leuvense paraklimmer met wereldkampioenschappen op zak. Volg mijn reis naar de Paralympische Spelen 2028." />
-        <meta property="twitter:image" content="https://www.fre2028.la/images/me/me_innsbruck.webp" />
+        <meta property="twitter:image" content="https://www.fre2028.la/images/web/me_innsbruck_banner_web.webp" />
         
         {/* Additional SEO */}
         <meta name="author" content="Frederik Leys" />
@@ -307,7 +330,7 @@ export default function ParaclimberSite() {
               "jobTitle": "Paralympic Athlete - Paraclimbing",
               "description": "Belgische paraklimmer uit Leuven op weg naar de Paralympische Spelen 2028 in Los Angeles. Wereldkampioen en oprichter van paraclimbing.be",
               "url": "https://www.fre2028.la",
-              "image": "https://www.fre2028.la/images/me.webp",
+              "image": "https://www.fre2028.la/images/web/me_web.webp",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Leuven",
@@ -457,7 +480,7 @@ export default function ParaclimberSite() {
         {/* 1. The Static Image Background (FINAL STATE) - z-0 puts it at the bottom */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/me_innsbruck.webp"
+            src="/images/web/me_innsbruck_banner_web.webp"
             alt="Fré climbing background"
             fill
             sizes="100vw"
@@ -537,7 +560,7 @@ export default function ParaclimberSite() {
             <div className="lg:col-span-5">
               <div className="relative w-full">
                  <Image 
-                   src="/images/me.webp"
+                   src="/images/web/me_web.webp"
                    alt="Fré Leys Portrait"
                    width={800}
                    height={1000}
@@ -603,7 +626,7 @@ export default function ParaclimberSite() {
 
             <div className="order-1 lg:order-2 relative bg-zinc-900 border border-zinc-800 overflow-hidden">
               <Image 
-                src="/images/paraclimbing_be_c.webp"
+                src="/images/web/paraclimbing_be_web.webp"
                 alt="Paraclimbing.be community"
                 width={800}
                 height={800}
@@ -801,7 +824,7 @@ export default function ParaclimberSite() {
       </section>
 
       {/* Media Section */}
-      <section id="media" className="bg-white text-black py-32 border-t border-zinc-100">
+      <section id="media" ref={portfolioRef} className="bg-white text-black py-32 border-t border-zinc-100">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex justify-between items-end mb-16">
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">PORTOFOLIO.</h2>
@@ -832,7 +855,7 @@ export default function ParaclimberSite() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[250px]">
             <div className="relative bg-zinc-100 overflow-hidden transition-all duration-500 col-span-2 row-span-2">
               <Image 
-                src="/images/portofolio/2025_innsbruck_na.webp"
+                src="/images/web/me_winning_innsbruck_web.webp"
                 alt="Fré climbing in action"
                 fill
                 className="object-cover"
@@ -843,7 +866,7 @@ export default function ParaclimberSite() {
               onClick={() => setIsMediaDialogOpen(true)}
             >
               <Image 
-                src="/images/media/grensverleggers_2.webp"
+                src="/images/web/grensverleggers_web.webp"
                 alt="Grensverleggers podcast"
                 width={400}
                 height={300}
@@ -885,18 +908,24 @@ export default function ParaclimberSite() {
               className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
               onClick={() => setIsPortfolioSliderOpen(true)}
             >
-              <div className="grid grid-cols-2 h-full gap-0.5">
-                {portfolioImages.slice(0, 4).map((image, index) => (
-                  <div key={index} className="relative overflow-hidden">
-                    <Image 
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+              {portfolioSectionVisible ? (
+                <div className="grid grid-cols-2 h-full gap-0.5">
+                  {portfolioImages.slice(0, 4).map((image, index) => (
+                    <div key={index} className="relative overflow-hidden">
+                      <Image 
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        unoptimized
+                        loading="lazy"
+                        className="object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 h-full gap-0.5 animate-pulse bg-zinc-200" />
+              )}
               <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
                 <div className="bg-white/90 rounded-full p-3">
                   <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1282,7 +1311,7 @@ export default function ParaclimberSite() {
 
             <div className="relative bg-zinc-100">
               <Image 
-                src="/images/media/grensverleggers_2.webp"
+                src="/images/web/grensverleggers_web.webp"
                 alt="Grensverleggers podcast"
                 width={600}
                 height={300}
@@ -1402,6 +1431,8 @@ export default function ParaclimberSite() {
                 src={portfolioImages[currentSlideIndex]?.src}
                 alt={portfolioImages[currentSlideIndex]?.alt}
                 fill
+                unoptimized
+                priority
                 className="object-contain"
               />
               
@@ -1448,6 +1479,7 @@ export default function ParaclimberSite() {
                     src={image.src}
                     alt={image.alt}
                     fill
+                    unoptimized
                     className="object-cover"
                   />
                 </button>

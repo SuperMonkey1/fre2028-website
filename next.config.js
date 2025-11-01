@@ -11,7 +11,36 @@ const nextConfig = {
   compress: true,
   // Optimize images
   images: {
-    domains: ['images.unsplash.com', 'assets.mixkit.co', 'www.fre2028.la', 'fre2028.la', 'img.youtube.com', 'storage.googleapis.com', 'firebasestorage.googleapis.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.mixkit.co',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.fre2028.la',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fre2028.la',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'storage.googleapis.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
+    ],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
