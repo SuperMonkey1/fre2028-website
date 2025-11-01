@@ -151,6 +151,64 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* Partnership Strategy Section */}
+      <section className="py-20 bg-white border-b border-zinc-100">
+        <div className="max-w-5xl mx-auto px-4 md:px-8">
+          {/* Strategy Overview */}
+          <div className="bg-black text-white p-12 md:p-16">
+            <h3 className="text-3xl md:text-4xl font-bold tracking-tighter mb-8">
+              Een strategische aanpak
+            </h3>
+            <div className="prose prose-lg prose-invert max-w-none">
+              <p className="text-zinc-300 leading-relaxed mb-6">
+                Het doel van dit "FRE2028.LA" project is niet enkel om goud te behalen in 2028, maar ook om Para Klimmen en de Paralympische Spelen te promoten. Momenteel bouw ik een team dat deze droom kan realiseren. Heb je interesse om hierbij te helpen, neem dan zeker contact op!
+              </p>
+              
+              <div className="space-y-8 mt-8">
+                <div className="border-l-4 border-white pl-6">
+                  <h4 className="text-xl font-bold mb-2">De Leuven Founding Circle</h4>
+                  <p className="text-zinc-300">
+                    8 lokale partners die als founding members de seed funds leveren voor het FRE2028.LA project. 
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-white pl-6">
+                  <h4 className="text-xl font-bold mb-2">National Lead Partners</h4>
+                  <p className="text-zinc-300">
+                    3 partners voor maximale impact. Deze partners maken het mogelijk om mij in 2028 voor 100% te focussen op enerzijds sportieve prestaties en anderzijds het creëren van nationale zichtbaarheid.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-white pl-6">
+                  <h4 className="text-xl font-bold mb-2">Strategische Communicatie Partners</h4>
+                  <p className="text-zinc-300">
+                    Een viertal strategische partners (branding, content, digital, PR) die hun expertise bro-bono inzetten. 
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-white pl-6">
+                  <h4 className="text-xl font-bold mb-2">Performance Team</h4>
+                  <p className="text-zinc-300">
+                    Deze partners maken van mij  de beste klimmer met één been ter wereld. 
+                    Coaches, trainers, fysiotherapeuten, sportpsychologen... — samen gaan we voor goud.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12 pt-8 border-t border-zinc-700">
+                <p className="text-zinc-300 leading-relaxed">
+                  Dit is geen traditionele sponsordeal — dit is een investering in een authentiek verhaal met 
+                  <strong className="text-white"> meetbare ROI</strong>, 
+                  <strong className="text-white"> emotionele connectie</strong> en 
+                  <strong className="text-white"> strategische waarde</strong>. 
+                  Samen bouwen we aan iets groters dan sport alleen.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Partners Sections */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 md:px-8">

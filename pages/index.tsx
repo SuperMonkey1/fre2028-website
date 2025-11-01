@@ -441,6 +441,7 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('journey')} className="hover:opacity-60 transition-opacity">Roadmap</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
             <button onClick={() => scrollToSection('contact')} className="hover:opacity-60 transition-opacity">Contact</button>
+            <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button 
               onClick={() => scrollToSection('sponsors')} 
               className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-10 px-6 text-xs ml-4 bg-red-600 hover:bg-red-700 text-white"
@@ -468,7 +469,8 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Community</button>
              <button onClick={() => scrollToSection('journey')} className="text-left hover:opacity-60">Journey</button>
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Media</button>
-             <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Partners</button>
+             <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Sponsors</button>
+             <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <Button onClick={() => scrollToSection('contact')} className="w-full">Partner With Me</Button>
           </div>
         </div>
@@ -507,7 +509,7 @@ export default function ParaclimberSite() {
              }}
              className="w-full h-full object-cover grayscale opacity-40 mix-blend-screen"
            >
-             <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+             <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp9" type="video/mp4" />
            </video>
         </div>
 
