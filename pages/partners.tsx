@@ -122,7 +122,7 @@ export default function PartnersPage() {
             className="flex items-center gap-3 font-bold text-lg tracking-widest uppercase hover:opacity-60 transition-opacity"
           >
             <Mountain className="w-6 h-6" />
-            <span>Fré Klimt</span>
+            <span>Fré2028.LA</span>
           </button>
 
           <Button 
@@ -139,7 +139,7 @@ export default function PartnersPage() {
       <section className="pt-32 pb-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
           <div className="inline-block px-4 py-2 mb-8 border border-zinc-200 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-            Team 2028
+            Team Fré2028.LA
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
             Mijn Partners
@@ -161,14 +161,14 @@ export default function PartnersPage() {
             </h3>
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-zinc-300 leading-relaxed mb-6">
-                Het doel van dit "FRE2028.LA" project is niet enkel om goud te behalen in 2028, maar ook om Para Klimmen en de Paralympische Spelen te promoten. Momenteel bouw ik een team dat deze droom kan realiseren. Heb je interesse om hierbij te helpen, neem dan zeker contact op!
+                Het doel van dit Fré2028.LA project is niet enkel om goud te behalen in 2028, maar ook om Para Klimmen en de Paralympische Spelen te promoten. Momenteel bouw ik een team dat deze droom kan realiseren. Heb je interesse om hierbij te helpen, neem dan zeker contact op!
               </p>
               
               <div className="space-y-8 mt-8">
                 <div className="border-l-4 border-white pl-6">
                   <h4 className="text-xl font-bold mb-2">De Leuven Founding Circle</h4>
                   <p className="text-zinc-300">
-                    8 lokale partners die als founding members de seed funds leveren voor het FRE2028.LA project. 
+                    8 lokale partners die als founding members de seed funds leveren voor het Fré2028.LA project. 
                   </p>
                 </div>
 
@@ -182,7 +182,7 @@ export default function PartnersPage() {
                 <div className="border-l-4 border-white pl-6">
                   <h4 className="text-xl font-bold mb-2">Strategische Communicatie Partners</h4>
                   <p className="text-zinc-300">
-                    Een viertal strategische partners (branding, content, digital, PR) die hun expertise bro-bono inzetten. 
+                    Een viertal strategische partners vormen de megafoon voor Fré2028.LA. Deze partners zetten hun expertise bro-bono in om het verhaal van Fré en de Paralympische spelen breed te verspreiden. 
                   </p>
                 </div>
 
@@ -195,15 +195,7 @@ export default function PartnersPage() {
                 </div>
               </div>
 
-              <div className="mt-12 pt-8 border-t border-zinc-700">
-                <p className="text-zinc-300 leading-relaxed">
-                  Dit is geen traditionele sponsordeal — dit is een investering in een authentiek verhaal met 
-                  <strong className="text-white"> meetbare ROI</strong>, 
-                  <strong className="text-white"> emotionele connectie</strong> en 
-                  <strong className="text-white"> strategische waarde</strong>. 
-                  Samen bouwen we aan iets groters dan sport alleen.
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
@@ -235,7 +227,7 @@ export default function PartnersPage() {
                 >
                   {/* Image */}
                   <div className={cn(
-                    "relative aspect-[4/3] bg-zinc-100 overflow-hidden",
+                    "relative aspect-[4/3] bg-white overflow-hidden",
                     index % 2 === 1 && "lg:col-start-2"
                   )}>
                     {partner.imageUrl ? (
@@ -392,7 +384,7 @@ export default function PartnersPage() {
             className="flex items-center gap-2 font-bold uppercase tracking-widest mx-auto hover:opacity-60 transition-opacity"
           >
             <Mountain className="w-6 h-6" />
-            <span>Fré Klimt</span>
+            <span>Fré2028.LA</span>
           </button>
           <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mt-6">
             © 2025 Fré Leys

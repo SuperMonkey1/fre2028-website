@@ -1,7 +1,5 @@
-- add partners that i have (Guido, Joris, iVOX) and placeholder: looking for
-- check safety of firebase firestore
 - my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
-- info bij foto's
+- info bij foto's zowel bij verhaal als in collectie
 
 - add blog with rss feed
 - add countdown clock

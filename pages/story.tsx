@@ -191,7 +191,7 @@ export default function StoryPage() {
             className="flex items-center gap-3 font-bold text-lg tracking-widest uppercase text-black hover:opacity-60 transition-opacity"
           >
              <Mountain className="w-6 h-6" />
-             <span>Fré Klimt</span>
+             <span>Fré2028.LA</span>
           </button>
 
           <Button 
@@ -565,7 +565,7 @@ export default function StoryPage() {
             className="flex items-center gap-2 font-bold uppercase tracking-widest hover:opacity-60 transition-opacity"
           >
             <Mountain className="w-6 h-6" />
-            <span>Fré Klimt</span>
+            <span>Fré2028.LA</span>
           </button>
           
           <div className="text-xs font-bold uppercase tracking-widest text-zinc-400">

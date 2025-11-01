@@ -60,6 +60,10 @@ Button.displayName = "Button"
 // Portfolio images
 const portfolioImages = [
   {
+    src: "/images/web/me_winning_innsbruck_web.webp",
+    alt: "Fré climbing in Innsbruck 2025"
+  },
+  {
     src: "/images/web/me_innsbruck_banner_web.webp",
     alt: "Fré climbing in Innsbruck 2025"
   },
@@ -68,8 +72,12 @@ const portfolioImages = [
     alt: "Innsbruck competition 2024"
   },
   {
-    src: "/images/web/20240625_innsbruck_Drapella_web.webp",
+    src: "/images/web/me_on_rocks_web.webp",
     alt: "Innsbruck climbing 2024"
+  },
+  {
+    src: "/images/web/paraclimbing_be_web.webp",
+    alt: "Fré climbing in Innsbruck 2025"
   },
   {
     src: "/images/web/20240625_innsbruck_Nicholas_web.webp",
@@ -428,7 +436,7 @@ export default function ParaclimberSite() {
             isScrolled ? "text-black" : "text-white"
           )}>
              <Mountain className="w-6 h-6" />
-             <span>Fré Klimt</span>
+             <span>Fré2028.LA</span>
           </div>
 
           {/* Desktop Nav */}
@@ -668,7 +676,7 @@ export default function ParaclimberSite() {
                 Resultaten
               </h2>
               <p className="text-base md:text-lg text-zinc-600 italic">
-                Mijn Top 4 Prestaties (1e-4e Plaats)
+                Mijn Top 4 Prestaties
               </p>
             </div>
 
@@ -1224,7 +1232,7 @@ export default function ParaclimberSite() {
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-2 font-bold uppercase tracking-widest">
             <Mountain className="w-6 h-6" />
-            <span>Fré Klimt</span>
+            <span>Fré2028.LA</span>
           </div>
           
           <div className="flex gap-8 text-zinc-400">
