@@ -872,7 +872,6 @@ export default function ParaclimberSite() {
                 alt="Fré climbing in action"
                 fill
                 className="object-cover"
-                loading="lazy"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>

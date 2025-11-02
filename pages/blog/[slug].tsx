@@ -234,20 +234,6 @@ export default function BlogPostPage({ post }: BlogPostPageProps) {
             {post.title}
           </h1>
 
-          {/* Featured Image */}
-          {post.imageUrl && (
-            <div className="relative aspect-[16/9] bg-zinc-100 overflow-hidden mb-12 border border-zinc-200">
-              <Image 
-                src={post.imageUrl}
-                alt={post.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 896px"
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
-
           {/* Post Content */}
           <div 
             className="prose prose-lg prose-zinc max-w-none

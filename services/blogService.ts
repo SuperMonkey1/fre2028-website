@@ -60,6 +60,69 @@ function stripHtml(html: string, maxLength: number = 200): string {
 }
 
 /**
+ * Clean HTML content by removing unwanted elements like image-link-expand divs
+ */
+function cleanHtmlContent(html: string): string {
+  if (!html) return '';
+  
+  let cleanedHtml = html;
+  
+  // Remove image-link-expand divs and their content
+  // Use a more reliable approach by finding the start and end positions
+  while (true) {
+    const startPattern = '<div class="image-link-expand"';
+    const startIndex = cleanedHtml.indexOf(startPattern);
+    
+    if (startIndex === -1) break; // No more image-link-expand divs found
+    
+    // Find the end of the opening tag
+    const openTagEnd = cleanedHtml.indexOf('>', startIndex);
+    if (openTagEnd === -1) break;
+    
+    // Now count nested divs to find the matching closing div
+    let divCount = 1;
+    let pos = openTagEnd + 1;
+    
+    while (pos < cleanedHtml.length && divCount > 0) {
+      const nextOpenDiv = cleanedHtml.indexOf('<div', pos);
+      const nextCloseDiv = cleanedHtml.indexOf('</div>', pos);
+      
+      if (nextCloseDiv === -1) {
+        // No more closing divs, something's wrong - just remove from start to end
+        cleanedHtml = cleanedHtml.substring(0, startIndex);
+        break;
+      }
+      
+      if (nextOpenDiv !== -1 && nextOpenDiv < nextCloseDiv) {
+        // Found an opening div before the closing div
+        divCount++;
+        pos = nextOpenDiv + 4; // Move past '<div'
+      } else {
+        // Found a closing div
+        divCount--;
+        if (divCount === 0) {
+          // This is our matching closing div
+          const endPos = nextCloseDiv + 6; // Include '</div>'
+          cleanedHtml = cleanedHtml.substring(0, startIndex) + cleanedHtml.substring(endPos);
+          break;
+        } else {
+          pos = nextCloseDiv + 6; // Move past '</div>'
+        }
+      }
+    }
+    
+    // Safety check to prevent infinite loops
+    if (pos >= cleanedHtml.length && divCount > 0) {
+      // Malformed HTML, just remove from startIndex to end
+      cleanedHtml = cleanedHtml.substring(0, startIndex);
+      break;
+    }
+  }
+  
+  return cleanedHtml;
+}
+
+/**
  * Fetch and parse the RSS feed from Substack - Lightweight version for blog listing
  */
 export async function fetchBlogPostsListing(): Promise<BlogListItem[]> {
@@ -68,14 +131,15 @@ export async function fetchBlogPostsListing(): Promise<BlogListItem[]> {
     
     return feed.items.map((item: any) => {
       // Try multiple possible content fields
-      const content = item.contentEncoded || item['content:encoded'] || item.content || item.description || '';
-      const imageUrl = extractFirstImage(content) || null;
+      const rawContent = item.contentEncoded || item['content:encoded'] || item.content || item.description || '';
+      const cleanedContent = cleanHtmlContent(rawContent);
+      const imageUrl = extractFirstImage(rawContent) || null;
       const slug = generateSlug(item.title || '');
       
       return {
         title: item.title || 'Untitled',
         slug,
-        excerpt: stripHtml(content, 250),
+        excerpt: stripHtml(cleanedContent, 250),
         content: '', // Don't include full content for listing - saves bandwidth
         date: item.isoDate || item.pubDate || new Date().toISOString(),
         imageUrl,
@@ -98,15 +162,16 @@ export async function fetchBlogPosts(): Promise<BlogListItem[]> {
     
     return feed.items.map((item: any) => {
       // Try multiple possible content fields
-      const content = item.contentEncoded || item['content:encoded'] || item.content || item.description || '';
-      const imageUrl = extractFirstImage(content) || null;
+      const rawContent = item.contentEncoded || item['content:encoded'] || item.content || item.description || '';
+      const cleanedContent = cleanHtmlContent(rawContent);
+      const imageUrl = extractFirstImage(rawContent) || null;
       const slug = generateSlug(item.title || '');
       
       return {
         title: item.title || 'Untitled',
         slug,
-        excerpt: stripHtml(content, 250),
-        content,
+        excerpt: stripHtml(cleanedContent, 250),
+        content: cleanedContent,
         date: item.isoDate || item.pubDate || new Date().toISOString(),
         imageUrl,
         link: item.link || '',
