@@ -18,7 +18,8 @@ export default function AdminPage() {
     name: '',
     category: 'Financiële Partner',
     description: '',
-    imageUrl: '',
+    logoUrl: '',
+    funImageUrl: '',
     website: '',
     socials: {
       instagram: '',
@@ -29,8 +30,10 @@ export default function AdminPage() {
     },
     order: 0,
   });
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [funImageFile, setFunImageFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string>('');
+  const [funImagePreview, setFunImagePreview] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -57,13 +60,25 @@ export default function AdminPage() {
     }
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImageFile(file);
+      setLogoFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string);
+        setLogoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleFunImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFunImageFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setFunImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -86,16 +101,25 @@ export default function AdminPage() {
     setSuccess('');
 
     try {
-      let imageUrl = formData.imageUrl || '';
+      let logoUrl = formData.logoUrl || '';
+      let funImageUrl = formData.funImageUrl || '';
 
-      // Upload new image if selected
-      if (imageFile) {
-        imageUrl = await uploadImage(imageFile);
+      // Upload new logo if selected
+      if (logoFile) {
+        logoUrl = await uploadImage(logoFile);
+      }
+
+      // Upload new fun image if selected
+      if (funImageFile) {
+        funImageUrl = await uploadImage(funImageFile);
       }
 
       const partnerData: Partial<Partner> = {
         ...formData,
-        imageUrl,
+        logoUrl,
+        funImageUrl,
+        // For backwards compatibility, set imageUrl to logoUrl
+        imageUrl: logoUrl,
       };
 
       if (editingPartner?.id) {
@@ -123,7 +147,8 @@ export default function AdminPage() {
       name: partner.name,
       category: partner.category,
       description: partner.description,
-      imageUrl: partner.imageUrl,
+      logoUrl: partner.logoUrl || partner.imageUrl || '',
+      funImageUrl: partner.funImageUrl || '',
       website: partner.website || '',
       socials: partner.socials || {
         instagram: '',
@@ -134,7 +159,8 @@ export default function AdminPage() {
       },
       order: partner.order || 0,
     });
-    setImagePreview(partner.imageUrl);
+    setLogoPreview(partner.logoUrl || partner.imageUrl || '');
+    setFunImagePreview(partner.funImageUrl || '');
     setIsModalOpen(true);
   };
 
@@ -159,7 +185,8 @@ export default function AdminPage() {
       name: '',
       category: 'Financiële Partner',
       description: '',
-      imageUrl: '',
+      logoUrl: '',
+      funImageUrl: '',
       website: '',
       socials: {
         instagram: '',
@@ -170,16 +197,20 @@ export default function AdminPage() {
       },
       order: 0,
     });
-    setImageFile(null);
-    setImagePreview('');
+    setLogoFile(null);
+    setFunImageFile(null);
+    setLogoPreview('');
+    setFunImagePreview('');
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setEditingPartner(null);
-    setImageFile(null);
-    setImagePreview('');
+    setLogoFile(null);
+    setFunImageFile(null);
+    setLogoPreview('');
+    setFunImagePreview('');
     setError('');
   };
 
@@ -274,15 +305,15 @@ export default function AdminPage() {
               >
                 <div className="flex gap-6">
                   <div className="w-32 h-32 bg-zinc-100 flex-shrink-0 overflow-hidden">
-                    {partner.imageUrl ? (
+                    {(partner.logoUrl || partner.imageUrl) ? (
                       <img
-                        src={partner.imageUrl}
+                        src={partner.logoUrl || partner.imageUrl || ''}
                         alt={partner.name}
                         className="w-full h-full object-cover"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-zinc-400 text-xs">
-                        No Image
+                        No Logo
                       </div>
                     )}
                   </div>
@@ -371,15 +402,15 @@ export default function AdminPage() {
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Image Upload */}
+              {/* Logo Upload */}
               <div>
                 <label className="block text-sm font-bold uppercase tracking-wider text-zinc-600 mb-3">
-                  Partner Image
+                  Partner Logo
                 </label>
                 <div className="flex gap-4 items-start">
                   <div className="w-40 h-40 bg-zinc-100 border-2 border-dashed border-zinc-300 flex items-center justify-center overflow-hidden">
-                    {imagePreview ? (
-                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                    {logoPreview ? (
+                      <img src={logoPreview} alt="Logo Preview" className="w-full h-full object-cover" />
                     ) : (
                       <Upload className="w-8 h-8 text-zinc-400" />
                     )}
@@ -388,12 +419,40 @@ export default function AdminPage() {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={handleImageChange}
+                      onChange={handleLogoChange}
                       className="w-full text-sm"
                       disabled={isSubmitting}
                     />
                     <p className="text-xs text-zinc-500 mt-2">
-                      Upload a logo or image for this partner. Recommended size: 800x800px
+                      Upload the partner's logo. This will be displayed on the home page. Recommended size: 800x800px
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Fun Image Upload */}
+              <div>
+                <label className="block text-sm font-bold uppercase tracking-wider text-zinc-600 mb-3">
+                  Partner Fun Image
+                </label>
+                <div className="flex gap-4 items-start">
+                  <div className="w-40 h-40 bg-zinc-100 border-2 border-dashed border-zinc-300 flex items-center justify-center overflow-hidden">
+                    {funImagePreview ? (
+                      <img src={funImagePreview} alt="Fun Image Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <Upload className="w-8 h-8 text-zinc-400" />
+                    )}
+                  </div>
+                  <div className="flex-1">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFunImageChange}
+                      className="w-full text-sm"
+                      disabled={isSubmitting}
+                    />
+                    <p className="text-xs text-zinc-500 mt-2">
+                      Upload a fun/action image for this partner. This will be displayed on the partners page. Recommended size: 1200x800px
                     </p>
                   </div>
                 </div>

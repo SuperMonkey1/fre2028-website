@@ -1007,9 +1007,9 @@ export default function ParaclimberSite() {
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
-                          {partner.imageUrl ? (
+                          {(partner.logoUrl || partner.imageUrl) ? (
                             <Image 
-                              src={partner.imageUrl}
+                              src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -1052,9 +1052,9 @@ export default function ParaclimberSite() {
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
-                          {partner.imageUrl ? (
+                          {(partner.logoUrl || partner.imageUrl) ? (
                             <Image 
-                              src={partner.imageUrl}
+                              src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -1097,9 +1097,9 @@ export default function ParaclimberSite() {
                           className="relative group aspect-square bg-white border border-zinc-200 overflow-hidden hover:border-black transition-colors cursor-pointer"
                           onClick={() => router.push(`/partners#${partner.id}`)}
                         >
-                          {partner.imageUrl ? (
+                          {(partner.logoUrl || partner.imageUrl) ? (
                             <Image 
-                              src={partner.imageUrl}
+                              src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"

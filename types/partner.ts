@@ -3,7 +3,10 @@ export interface Partner {
   name: string;
   category: string;
   description: string;
-  imageUrl: string;
+  logoUrl: string;
+  funImageUrl: string;
+  // Legacy field for backwards compatibility
+  imageUrl?: string;
   website?: string;
   socials?: {
     instagram?: string;

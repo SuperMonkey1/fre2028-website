@@ -230,9 +230,9 @@ export default function PartnersPage() {
                     "relative aspect-[4/3] bg-white overflow-hidden",
                     index % 2 === 1 && "lg:col-start-2"
                   )}>
-                    {partner.imageUrl ? (
+                    {(partner.funImageUrl || partner.imageUrl) ? (
                       <img 
-                        src={partner.imageUrl}
+                        src={partner.funImageUrl || partner.imageUrl || ''}
                         alt={partner.name}
                         className="w-full h-full object-contain p-8"
                       />
@@ -240,7 +240,7 @@ export default function PartnersPage() {
                       <div className="absolute inset-0 flex items-center justify-center">
                         <div className="text-center text-zinc-300">
                           <div className="text-sm font-bold uppercase tracking-widest mb-2">
-                            Partner Logo/Image
+                            Partner Image
                           </div>
                           <div className="text-xs text-zinc-400">
                             {partner.name}
