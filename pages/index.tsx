@@ -448,8 +448,9 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Paraclimbing.be</button>
             <button onClick={() => scrollToSection('journey')} className="hover:opacity-60 transition-opacity">Roadmap</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
-            <button onClick={() => scrollToSection('contact')} className="hover:opacity-60 transition-opacity">Contact</button>
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
+            <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
+            <button onClick={() => scrollToSection('contact')} className="hover:opacity-60 transition-opacity">Contact</button>
             <button 
               onClick={() => scrollToSection('sponsors')} 
               className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-10 px-6 text-xs ml-4 bg-red-600 hover:bg-red-700 text-white"
@@ -479,6 +480,7 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Media</button>
              <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Sponsors</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
+             <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
              <Button onClick={() => scrollToSection('contact')} className="w-full">Partner With Me</Button>
           </div>
         </div>
@@ -641,6 +643,7 @@ export default function ParaclimberSite() {
                 width={800}
                 height={800}
                 className="w-full h-auto object-top"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
               
@@ -869,6 +872,8 @@ export default function ParaclimberSite() {
                 alt="Fré climbing in action"
                 fill
                 className="object-cover"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
             <div 
