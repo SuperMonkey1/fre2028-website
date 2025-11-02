@@ -1,5 +1,7 @@
 - my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
 - info bij foto's zowel bij verhaal als in collectie
+- add logo & fun image for each sponsor
+- klimartners
 
 - add blog with rss feed
 - add countdown clock
