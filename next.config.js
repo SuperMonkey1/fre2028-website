@@ -11,6 +11,7 @@ const nextConfig = {
   compress: true,
   // Optimize images
   images: {
+    unoptimized: true, // Disable optimization for Firebase hosting compatibility
     remotePatterns: [
       {
         protocol: 'https',

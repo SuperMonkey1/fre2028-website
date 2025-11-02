@@ -1,10 +1,9 @@
 - my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
 - info bij foto's zowel bij verhaal als in collectie
-- klimartners
+- klimpartners
 
 - add countdown clock
 - add Banner Video
 - voeg stukje avontuur, natuur en rotsen toe
 - voeg projecten pagina toe
-- googe sheets cms
 - AL2 klasse info

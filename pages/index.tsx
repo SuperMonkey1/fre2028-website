@@ -575,6 +575,7 @@ export default function ParaclimberSite() {
                    height={1000}
                    className="w-full h-auto"
                    priority
+                   unoptimized
                  />
               </div>
             </div>
@@ -639,6 +640,7 @@ export default function ParaclimberSite() {
                 alt="Paraclimbing.be community"
                 width={800}
                 height={800}
+                unoptimized
                 className="w-full h-auto object-top"
                 loading="lazy"
               />
@@ -868,6 +870,7 @@ export default function ParaclimberSite() {
                 src="/images/web/me_winning_innsbruck_web.webp"
                 alt="Fré climbing in action"
                 fill
+                unoptimized
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
@@ -881,6 +884,7 @@ export default function ParaclimberSite() {
                 alt="Grensverleggers podcast"
                 width={400}
                 height={300}
+                unoptimized
                 className="w-full h-auto"
                 loading="lazy"
               />
@@ -1012,6 +1016,7 @@ export default function ParaclimberSite() {
                               src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
+                              unoptimized
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                               className="object-contain p-4"
                               loading="lazy"
@@ -1057,6 +1062,7 @@ export default function ParaclimberSite() {
                               src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
+                              unoptimized
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                               className="object-contain p-4"
                               loading="lazy"
@@ -1102,6 +1108,7 @@ export default function ParaclimberSite() {
                               src={partner.logoUrl || partner.imageUrl || ''}
                               alt={partner.name}
                               fill
+                              unoptimized
                               sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                               className="object-contain p-4"
                               loading="lazy"
@@ -1326,6 +1333,7 @@ export default function ParaclimberSite() {
                 alt="Grensverleggers podcast"
                 width={600}
                 height={300}
+                unoptimized
                 className="w-full h-auto"
               />
             </div>
