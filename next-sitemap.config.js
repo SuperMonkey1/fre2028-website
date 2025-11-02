@@ -37,6 +37,23 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
+    if (path === '/blog') {
+      return {
+        loc: path,
+        changefreq: 'daily',
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
+      }
+    }
+    // Blog post pages
+    if (path.startsWith('/blog/')) {
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.7,
+        lastmod: new Date().toISOString(),
+      }
+    }
     return {
       loc: path,
       changefreq: config.changefreq,
