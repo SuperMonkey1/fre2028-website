@@ -472,13 +472,12 @@ export default function ParaclimberSite() {
           isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         )}>
           <div className="flex flex-col p-6 gap-6 text-sm font-bold uppercase tracking-widest">
-             <button onClick={() => scrollToSection('about')} className="text-left hover:opacity-60">About</button>
-             <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Community</button>
-             <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Media</button>
-             <button onClick={() => scrollToSection('sponsors')} className="text-left hover:opacity-60">Sponsors</button>
+             <button onClick={() => scrollToSection('about')} className="text-left hover:opacity-60">Mijn verhaal</button>
+             <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Paraclimbing.be</button>
+             <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
-             <Button onClick={() => scrollToSection('sponsors')} className="w-full">Partner With Me</Button>
+             <Button onClick={() => scrollToSection('sponsors')} className="w-full">Word partner</Button>
           </div>
         </div>
       </nav>

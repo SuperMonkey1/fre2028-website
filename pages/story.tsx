@@ -51,7 +51,7 @@ const STORY_CHAPTERS = [
     title: 'De Kiementijd',
     subtitle: 'Sport, Natuur en Bewijsdrang',
     content: [
-      'Ik ben geboren in Merksem en opgegroeid op de Luchtbal in Antwerpen, als zoon van een leerkracht en een directiesecretaresse. Mijn lagere schooltijd heeft me diepgaand gevormd. Het was een school waar sport centraal stond. Ons kleine schooltje won met twee vingers in de neus zowat elk sporttoernooi waaraan we deelnamen. Hoewel er thuis geen aandacht was voor sport, moet mijn passie hier zijn ontstaan.',
+      'Ik ben geboren in Merksem en opgegroeid op de Luchtbal in Antwerpen, als zoon van een full-time mentor en een directiesecretaresse. Mijn lagere schooltijd heeft me diepgaand gevormd. Het was een school waar sport centraal stond. Ons kleine schooltje won met twee vingers in de neus zowat elk sporttoernooi waaraan we deelnamen. Hoewel er thuis geen aandacht was voor sport, moet mijn passie hier zijn ontstaan.',
       'Op die school voelde ik een constante drang om mezelf te bewijzen, niet alleen op sportief vlak, maar ook om door anderen als capabel en "normaal" te worden beschouwd. Ik merkte al snel dat volwassenen die me niet goed kenden, me ongevraagd in bescherming wilden nemen. In hun ogen was het zorgzaamheid, maar voor mij was het overbescherming die me soms uitsloot van activiteiten. Die noodzaak om telkens opnieuw te bewijzen dat ik alles kon, werd een van mijn sterkste karaktereigenschappen.',
       'Naast school bracht ik veel tijd door in de natuur. Mijn vader was conservator van verschillende natuurgebieden, waaronder De Oude Landen. Als kind en tiener hielp ik mee met het natuuronderhoud: hooien op de hooilanden en het knotten van knotwilgen werden vertrouwde bezigheden.'
     ]

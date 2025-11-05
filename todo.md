@@ -1,6 +1,8 @@
 - my story: betere foto van Kulibrie / stuk over hoe para klimmen gevolueerd is
 - info bij foto's zowel bij verhaal als in collectie
 - klimpartners
+- max en 9c als gear sponsors
+- 1000 dagen plan  en mijn resultaten wat minder nadrukkelijk
 
 - add countdown clock
 - add Banner Video
