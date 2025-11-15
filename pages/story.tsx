@@ -51,7 +51,7 @@ const STORY_CHAPTERS = [
     title: 'De Kiementijd',
     subtitle: 'Sport, Natuur en Bewijsdrang',
     content: [
-      'Ik ben geboren in Merksem en opgegroeid op de Luchtbal in Antwerpen, als zoon van een full-time mentor en een directiesecretaresse. Mijn lagere schooltijd heeft me diepgaand gevormd. Het was een school waar sport centraal stond. Ons kleine schooltje won met twee vingers in de neus zowat elk sporttoernooi waaraan we deelnamen. Hoewel er thuis geen aandacht was voor sport, moet mijn passie hier zijn ontstaan.',
+      'Ik ben geboren in Merksem en opgegroeid op de Luchtbal in Antwerpen, als zoon van een voltijds lector en een directiesecretaresse. Mijn lagere schooltijd heeft me diepgaand gevormd. Het was een school waar sport centraal stond. Ons kleine schooltje won met twee vingers in de neus zowat elk sporttoernooi waaraan we deelnamen. Hoewel er thuis geen interesse was voor sport, moet mijn passie hier zijn ontstaan.',
       'Op die school voelde ik een constante drang om mezelf te bewijzen, niet alleen op sportief vlak, maar ook om door anderen als capabel en "normaal" te worden beschouwd. Ik merkte al snel dat volwassenen die me niet goed kenden, me ongevraagd in bescherming wilden nemen. In hun ogen was het zorgzaamheid, maar voor mij was het overbescherming die me soms uitsloot van activiteiten. Die noodzaak om telkens opnieuw te bewijzen dat ik alles kon, werd een van mijn sterkste karaktereigenschappen.',
       'Naast school bracht ik veel tijd door in de natuur. Mijn vader was conservator van verschillende natuurgebieden, waaronder De Oude Landen. Als kind en tiener hielp ik mee met het natuuronderhoud: hooien op de hooilanden en het knotten van knotwilgen werden vertrouwde bezigheden.'
     ]
@@ -71,12 +71,21 @@ const STORY_CHAPTERS = [
     id: 'university',
     year: 'Universitaire Jaren',
     title: 'De Ingenieur als Avonturier',
-    subtitle: 'Van KULibrie tot Expeditie Robinson',
+    subtitle: 'Van VTK naar de KULibrie',
     content: [
-      'Aan de universiteit in Leuven koos ik voor de studie Burgerlijk Ingenieur. Eerlijk gezegd was ik geen topstudent; ik had een hekel aan het pure studeren. Mijn energie ging vooral naar studentenvertegenwoordiging, waar ik enorm veel leerde over organiseren, budgetteren en samenwerken. Een Erasmus-uitwisseling in Chennai, India, opende mijn ogen voor de wereld.',
-      'Mijn passie voor onderzoek en ontwikkeling ontdekte ik pas echt tijdens mijn masterproef: de ontwikkeling van een robotkolibrie. Inderdaad, een drone die vliegt door met zijn vleugels te flapperen. Mijn promotor, professor Dirk Vandepitte, bood me de kans om hierop te doctoreren. Vijf jaar lang was ik volledig geobsedeerd en het resultaat was de "KULibrie", een verwezenlijking waar ik enorm trots op ben.',
-      'Na mijn doctoraat probeerde ik dit via mijn bedrijfje Hummingdrones te commercialiseren. Hoewel het geen commercieel succes werd, was het een ongelooflijk leerrijk traject.',
-      'Een ander onvergetelijk avontuur was mijn deelname aan Expeditie Robinson. Het was een fantastische ervaring: loodzwaar, maar op vele vlakken ontzettend leerzaam. Een bijzondere speling van het lot wilde dat in dezelfde week in april 2018 de KULibrie voor het eerst succesvol vloog én ik het telefoontje kreeg dat ik geselecteerd was voor de expeditie. Het was een week waarin twee totaal verschillende dromen – een technologische en een avontuurlijke – samenkwamen.'
+      'Aan de universiteit in Leuven koos ik voor de studie Burgerlijk Ingenieur. Eerlijk gezegd was ik geen topstudent; ik had een hekel aan het pure studeren. Mijn energie ging vooral naar studentenvertegenwoordiging voor VTK en LOKO, waar ik enorm veel leerde over het organiseren van evenementen, de verkeerssituatie in Leuven en hoe je best samenwerkt in een grote enthousiaste, ambitieuze groep studenten. Een Erasmus Mundus uitwisseling in Chennai, India, viel samen met de start van mijn masterthesis.',
+      'Mijn passie voor onderzoek en ontwikkeling ontdekte ik pas echt tijdens mijn masterproef: de ontwikkeling van een robotkolibrie. Inderdaad, een drone die vliegt door met zijn vleugels te flapperen. Mijn promotor, professor Dirk Vandepitte, bood me de kans om hierop te doctoreren. Vijf jaar lang was ik volledig geobsedeerd en het resultaat was de "KULibrie", een verwezenlijking waar ik enorm trots op ben. De masterthesis schreef ik in een Volkswagenbusje uit 1975 waarmee ik in de zomer van 2016 doorheen de Alpen en de Pyreneeën reed. Het gaf me de ruimte om weg van alle afleiding van sociale media volledig te focussen op de synthese van alles dat ik tijdens mijn doctoraat geleerd had. De laatste halte van die tocht was trouwens Parijs waar ik deelnam aan mijn eerste wereldkampioenschap Paraklimmen. Een ervaring om nooit te vergeten.'
+    ]
+  },
+  {
+    id: 'leuven',
+    year: 'Na mijn Doctoraat',
+    title: 'Thuis in Leuven',
+    subtitle: 'Van Hummingdrones tot Expeditie Robinson',
+    content: [
+      'Na mijn doctoraat probeerde ik dit via mijn bedrijfje Hummingdrones te commercialiseren. Hoewel het geen commercieel succes werd, was het een ongelooflijk leerrijk traject. Ik leerde er ondermeer een fantastisch persoon kennen, Hans Verhoeven die mijn vennoot werd en ondertussen mijn werkgever is bij iVOX aan de vaartkom.',
+      'Het is pas tijdens mijn doctoraat dat ik Leuven echt leerde kennen. Eerst woonde ik boven Bar Stan, nadien in een huisje op het woonerf in de Vanden Tymplestraat. Ik fietse geregeld rond opzoek naar nieuwe dingen die ik in Leuven nog niet gezien had. Ik geef toe dat ik ook geregeld aan urban exploring deed, bijvoorbeeld in de oude fabrieksgebouwen van de Stella. Die staan er tegenwoordig bijna allemaal niet meer. Tijdens één van die tochten leerde ik de Valkerijgang kennen. Toen nog letterlijk in de schaduw van de gigantische bottelarij van de Stella. Ondertussen staat die bottelarij er niet meer en heeft de Valkerijgang die schaduw als een juk van zich afgeworpen en daar ben ik blij om want nu woon ik daar ergens tussen het Sluispark en de Boulenberg. Het is een gezellig doodlopend straatje van oude arbeiderswoningen met fijne mensen die ik mijn buren mag noemen.',
+      'Na mijn doctoraat ben ik in een ander avontuur beland namelijk Expeditie Robinson. Het was een fantastische ervaring: loodzwaar, maar op vele vlakken ontzettend leerzaam. Ik apprecieer het nog altijd enorm dat de productie mij durfde mee te nemen. Dat zal voor hen niet zo vanzelfsprekend geweest zijn en toch ergens een gok. Ze hebben mij trouwens helemaal niet geportreteerd als "de mindervalide" maar gewoon als Fré. Ook iets dat ik altijd heb geappreieerd.'
     ]
   },
   {
@@ -87,8 +96,9 @@ const STORY_CHAPTERS = [
     content: [
       'Tijdens mijn doctoraat kreeg ik een nieuw type prothese, wat een wereld van sporten voor me opende. Ik begon te lopen, te schaatsen en, belangrijker nog, te klimmen.',
       'Mijn eerste trainer, Tijl, spoorde me al snel aan om mee te doen aan wedstrijden. Ik zei: "Van zodra ik 6a klim, doe ik mee." De dag dat ik mijn eerste 6a klom, hield ik mijn woord. Op mijn allereerste wedstrijd werd ik meteen derde.',
-      'De volgende was het WK in Parijs in 2016. Ik had net mijn doctoraat geschreven in een Volkswagenbusje uit 1975 en als laatste stop van die trip werd ik, tot mijn eigen verbazing, vijfde op het wereldkampioenschap.',
-      'Ondertussen klim ik 7c. Zowel mijn eigen niveau als dat van de concurrentie is sindsdien explosief gestegen. Met 6b eindig je vandaag als laatste.'
+      'De volgende was het WK in Parijs in 2016. Waar ik, tot mijn eigen verbazing, vijfde werd op het wereldkampioenschap.',
+      'Ondertussen klim ik 7c. Zowel mijn eigen niveau als dat van de concurrentie is sindsdien explosief gestegen. Met 6b eindig je vandaag als laatste.',
+      'Ik heb me altijd heel erg thuis gevoeld tussen die bende van internationale paraklimmers. Allemaal mensen met een beetje dezelfde mindset. Mensen die niet bij de pakken blijven zitten, die van avontuur houden, nieuwsgierig zijn en boordelvol zonder vooroordelen zitten. Ik vind het dan ook heel fijn dat ik hen mag vertegenwoordigen naar het IFSC toe, de International Federation of Sport Climbing. Het is trouwens bijzonder dat het paraklimmen en het gewone sportklimmen gewoon door dezelfde federatie worden georganiseerd en dat het wereldkampioenschap ook gewoon één evenement is voor alle klimmers.'
     ]
   },
   {
@@ -97,7 +107,7 @@ const STORY_CHAPTERS = [
     title: 'De Toekomst',
     subtitle: 'De Weg naar Goud',
     content: [
-      'Vandaag combineer ik mijn topsportcarrière met mijn werk als zelfstandig ingenieur bij iVOX, een Leuvens onderzoeksbureau. Het is een boeiende job met fijne collega\'s die de perfecte balans biedt. Het werk brengt een belangrijk ritme in mijn leven en geeft me tegelijkertijd de flexibiliteit en tijd om voluit op mijn sport te focussen.',
+      'Vandaag combineer ik mijn topsportcarrière met mijn werk als zelfstandig ingenieur bij iVOX, een Leuvens marktonderzoeksbureau. Het is een boeiende job met fijne collega\'s die de perfecte balans biedt. Het werk brengt een belangrijk ritme in mijn leven en geeft me tegelijkertijd de flexibiliteit en tijd om voluit op mijn sport te focussen.',
       'Die stabiele basis is cruciaal, want de komende jaren staat alles in het teken van één doel: paralympisch goud. Om te winnen in 2028, schat ik dat ik een niveau van 8b zal moeten klimmen – een niveau waarmee ik mogelijks in de top 10 van het Belgisch kampioenschap voor valide klimmers zou staan.',
       'Dit doel is allesverslindend, maar ik doe het met passie. Ik zie het als een enorm privilege om voor België te mogen uitkomen en hoop dat ik anderen met een of twee benen kan inspireren om ook te starten met klimmen, of welke sport dan ook.'
     ]
@@ -105,7 +115,7 @@ const STORY_CHAPTERS = [
 ];
 
 const PERSONAL_STATS = [
-  { icon: Calendar, label: 'Jaren Klimmen', value: '9+' },
+  { icon: Calendar, label: 'Jaren Klimmen', value: '10+' },
   { icon: Award, label: 'Internationale Medailles', value: '12+' },
   { icon: TrendingUp, label: 'Hoogste Niveau', value: '7c' },
   { icon: Users, label: 'Geïnspireerde Mensen', value: '500+' }
