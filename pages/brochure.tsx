@@ -82,207 +82,194 @@ export default function PartnerBrochure() {
           </div>
         </section>
 
-        {/* INSIDE LEFT PANEL - About */}
+        {/* INSIDE LEFT PANEL - Personal Story */}
         <section className="brochure-panel inside-left bg-white text-black p-8 flex flex-col justify-between">
           <div>
             <div className="inline-block px-3 py-1 mb-4 border border-zinc-300 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">
-              Wie is Fré?
+              Jouw Leuvense Buur
             </div>
             
             <h2 className="text-3xl font-bold tracking-tighter mb-6">
-              Frederik Leys
+              Hallo, Ik ben Fré
             </h2>
 
             <div className="space-y-4 text-sm leading-relaxed text-zinc-700">
               <p>
-                <strong className="text-black">Frederik 'Fré' Leys</strong> is een 38-jarige paraklimmer uit Leuven die zich voorbereidt op de Paralympische Spelen 2028 in Los Angeles.
+                Ik woon in de <strong>Valkerijgang</strong>, ergens tussen het Sluispark en de Boulenberg. Een gezellig doodlopend straatje van oude arbeiderswoningen met fijne mensen.
               </p>
               
               <p>
-                Als lid van de AL-2 klasse (Leg Amputees) heeft Fré sinds 2016 al <strong>6 wereldbeker medailles</strong> verzameld, waaronder 2 gouden, 1 zilveren en 3 bronzen medailles.
+                Tijdens mijn doctoraat aan de <strong>KU Leuven</strong> leerde ik deze stad echt kennen. Eerst woonde ik boven Bar Stan, nadien op het woonerf in de Vanden Tymplestraat. Ik fiets geregeld rond op zoek naar nieuwe plekjes.
               </p>
 
               <p>
-                Met <strong>26 internationale deelnames</strong> en topprestaties op wereldkampioenschappen, werkt Fré elke dag hard aan zijn Paralympische droom.
+                Vandaag werk ik als zelfstandig ingenieur bij <strong>iVOX aan de vaartkom</strong> en train ik tot 30 uur per week voor de Paralympische spelen. Mijn droom? De <strong>eerste Leuvense Paralympiër</strong> worden in 2028.
               </p>
             </div>
           </div>
 
-          {/* Key Achievements */}
+          {/* Newsletter Signup */}
           <div className="mt-6 pt-6 border-t border-zinc-200">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
-              Top Prestaties
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">
+              Volg Mijn Reis
             </h3>
-            <div className="space-y-3 text-xs">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Trophy className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-zinc-700 leading-tight">
-                  <strong>2× Goud</strong> World Cup (2021, 2023)
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Medal className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-zinc-700 leading-tight">
-                  <strong>1× Zilver</strong> WK & World Cup (2017, 2021, 2022)
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-amber-600 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Medal className="w-3 h-3 text-white" />
-                </div>
-                <span className="text-zinc-700 leading-tight">
-                  <strong>3× Brons</strong> World Cup (2016, 2021, 2024)
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-zinc-600 rounded-full flex items-center justify-center flex-shrink-0 text-white text-[10px] font-bold">
-                  4
-                </div>
-                <span className="text-zinc-700 leading-tight">
-                  <strong>4de plaats</strong> WK Seoul 2025
-                </span>
+            <div className="bg-zinc-50 border border-zinc-200 p-4">
+              <p className="text-xs text-zinc-700 mb-3 leading-relaxed">
+                Ontvang maandelijks updates over mijn trainingen, wedstrijden en de weg naar LA 2028.
+              </p>
+              <div className="flex items-center gap-2 text-xs">
+                <Mail className="w-4 h-4 text-zinc-500" />
+                <span className="font-bold text-black">Schrijf je in via www.fre2028.la</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* INSIDE CENTER PANEL - Partnership Benefits */}
+        {/* INSIDE CENTER PANEL - Paraclimbing.be & Paralympic Logo */}
         <section className="brochure-panel inside-center bg-zinc-50 text-black p-8 flex flex-col">
           <div className="inline-block px-3 py-1 mb-4 border border-zinc-300 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">
-            Waarom Partner Worden?
+            Doe Mee
           </div>
           
           <h2 className="text-3xl font-bold tracking-tighter mb-6">
-            Jouw Impact
+            Paraclimbing.be
           </h2>
 
-          <div className="space-y-6 text-sm leading-relaxed text-zinc-700 flex-1">
-            <div>
-              <h3 className="font-bold text-black mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">1</span>
-                Zichtbaarheid
-              </h3>
-              <p className="text-xs pl-8">
-                Logo op persmateriaal, website, social media (8K+ bereik), wedstrijdkleding, en persdossiers met nationale en internationale exposure.
-              </p>
-            </div>
+          <div className="space-y-4 text-sm leading-relaxed text-zinc-700">
+            <p>
+              Ik richtte <strong>paraclimbing.be VZW</strong> op om klimmen toegankelijk te maken voor elke persoon met een fysieke beperking in België.
+            </p>
+            
+            <p className="text-xs">
+              We organiseren initiatiedagen, helpen bij vragen, ondersteunen atleten en bouwen aan een gemeenschap van avonturiers met een hoekje af.
+            </p>
+          </div>
 
-            <div>
-              <h3 className="font-bold text-black mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">2</span>
-                Maatschappelijke Impact
-              </h3>
-              <p className="text-xs pl-8">
-                Verbind je merk met inclusie, doorzettingsvermogen en het bereiken van onmogelijk geachte doelen. Inspireer klanten en medewerkers.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-black mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">3</span>
-                Paraclimbing.be VZW
-              </h3>
-              <p className="text-xs pl-8">
-                Steun de groeiende paraklimgemeenschap in België. Fré's organisatie maakt klimmen toegankelijk voor personen met fysieke beperkingen.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-black mb-2 flex items-center gap-2">
-                <span className="w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs">4</span>
-                Authenticiteit
-              </h3>
-              <p className="text-xs pl-8">
-                Geen oppervlakkige sponsoring. Bouw een echte relatie op met een atleet die volledig toegewijd is aan zijn sport en maatschappelijke missie.
-              </p>
+          {/* Call to Action */}
+          <div className="mt-6 bg-white border border-zinc-200 p-4">
+            <h3 className="font-bold text-black mb-2 text-sm">We zoeken:</h3>
+            <ul className="space-y-2 text-xs text-zinc-700">
+              <li className="flex items-start gap-2">
+                <span className="text-black">•</span>
+                <span><strong>Paraklimmers</strong> die willen starten</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-black">•</span>
+                <span><strong>Vrijwilligers</strong> voor evenementen</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-black">•</span>
+                <span><strong>Klimzalen</strong> die mee willen werken</span>
+              </li>
+            </ul>
+            <div className="mt-3 pt-3 border-t border-zinc-200">
+              <p className="text-xs font-bold">→ paraclimbing.be</p>
             </div>
           </div>
 
-          {/* Partnership Types Preview */}
+          {/* Paralympic Logo Section */}
           <div className="mt-6 pt-6 border-t border-zinc-300">
             <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">
-              Partnership Niveaus
+              Herken Je Dit Logo?
             </h3>
-            <div className="grid grid-cols-3 gap-2 text-[10px]">
-              <div className="border border-zinc-300 p-2 text-center">
-                <div className="font-bold">Financieel</div>
-              </div>
-              <div className="border border-zinc-300 p-2 text-center">
-                <div className="font-bold">Strategisch</div>
-              </div>
-              <div className="border border-zinc-300 p-2 text-center">
-                <div className="font-bold">Performance</div>
+            <div className="bg-white border-2 border-black p-6 flex items-center justify-center">
+              {/* Placeholder for Paralympic Logo */}
+              <div className="text-center">
+                <div className="w-24 h-24 mx-auto mb-3 bg-gradient-to-br from-red-500 via-blue-500 to-green-500 rounded-full flex items-center justify-center">
+                  <span className="text-white text-xs font-bold">LOGO</span>
+                </div>
+                <p className="text-[10px] font-bold uppercase tracking-wider">Paralympisch Logo</p>
               </div>
             </div>
+            <p className="text-xs text-zinc-600 mt-3 leading-relaxed">
+              Dit is het <strong>Paralympische logo</strong>. Help mee dit symbool van inclusie en topsport bekender te maken in Leuven!
+            </p>
           </div>
         </section>
 
-        {/* INSIDE RIGHT PANEL - Timeline & Goals */}
+        {/* INSIDE RIGHT PANEL - Communication Plan & Roadmap */}
         <section className="brochure-panel inside-right bg-white text-black p-8 flex flex-col">
           <div className="inline-block px-3 py-1 mb-4 border border-zinc-300 text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-600">
-            De Route naar 2028
+            De Campagne
           </div>
           
           <h2 className="text-3xl font-bold tracking-tighter mb-6">
-            Roadmap
+            Leuven naar LA
           </h2>
 
-          {/* Timeline */}
-          <div className="relative border-l border-zinc-200 ml-3 space-y-5 flex-1">
-            <div className="relative pl-6">
-              <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-black rounded-full border-2 border-white ring-1 ring-black" />
-              <div>
-                <span className="font-bold text-sm">2026</span>
-                <p className="text-xs text-zinc-600 mt-1">World Cup circuit & kwalificaties</p>
-              </div>
-            </div>
-
-            <div className="relative pl-6">
-              <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-black rounded-full border-2 border-white ring-1 ring-black" />
-              <div>
-                <span className="font-bold text-sm">2027</span>
-                <p className="text-xs text-zinc-600 mt-1">Wereldkampioenschappen & finale kwalificatie</p>
-              </div>
-            </div>
-
-            <div className="relative pl-6">
-              <div className="absolute left-[-5px] top-2 w-2.5 h-2.5 bg-red-600 rounded-full border-2 border-white ring-2 ring-red-600 scale-125" />
-              <div>
-                <span className="font-bold text-sm text-red-600">2028</span>
-                <p className="text-xs text-zinc-600 mt-1">
-                  <strong className="text-black">Paralympische Spelen Los Angeles</strong>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Training Stats */}
-          <div className="mt-6 pt-6 border-t border-zinc-200">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
-              Training & Toewijding
-            </h3>
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="text-center p-3 bg-zinc-50">
-                <div className="text-xl font-bold text-black">30u</div>
-                <div className="text-[10px] uppercase text-zinc-600 mt-1">per week</div>
-              </div>
-              <div className="text-center p-3 bg-zinc-50">
-                <div className="text-xl font-bold text-black">26</div>
-                <div className="text-[10px] uppercase text-zinc-600 mt-1">wedstrijden</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Paraclimbing.be mention */}
-          <div className="mt-6 p-4 bg-black text-white">
-            <div className="text-[10px] uppercase tracking-wider text-zinc-400 mb-2">Sociale Impact</div>
-            <p className="text-xs leading-relaxed">
-              Oprichter van <strong>paraclimbing.be</strong> - een VZW die paraklimmen toegankelijk maakt voor iedereen in België.
+          {/* Communication Plan Summary */}
+          <div className="space-y-4 text-sm leading-relaxed text-zinc-700 mb-6">
+            <p>
+              Deze reis begint in <strong>Leuven</strong>. In de komende jaren wil ik jullie meenemen in mijn avontuur naar de Paralympics via:
             </p>
+            
+            <ul className="space-y-2 text-xs pl-4">
+              <li className="flex items-start gap-2">
+                <span className="text-black font-bold">•</span>
+                <span><strong>Maandelijkse nieuwsbrief</strong> met updates</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-black font-bold">•</span>
+                <span><strong>Lokale evenementen</strong> en demo's</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-black font-bold">•</span>
+                <span><strong>YouTube serie</strong> met Belgische klimmers</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-black font-bold">•</span>
+                <span><strong>Belgisch Paraklim Kampioenschap</strong> in Leuven</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Roadmap Timeline */}
+          <div className="bg-zinc-50 border border-zinc-200 p-4 mb-6">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-4">
+              De Roadmap
+            </h3>
+            <div className="relative border-l-2 border-black ml-2 space-y-4">
+              <div className="relative pl-4">
+                <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 bg-black rounded-full" />
+                <div>
+                  <span className="font-bold text-xs">Nu - 2026</span>
+                  <p className="text-[10px] text-zinc-600 mt-0.5">Focus op Leuven & community</p>
+                </div>
+              </div>
+
+              <div className="relative pl-4">
+                <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 bg-black rounded-full" />
+                <div>
+                  <span className="font-bold text-xs">2027</span>
+                  <p className="text-[10px] text-zinc-600 mt-0.5">Uitbreiding naar Vlaanderen</p>
+                </div>
+              </div>
+
+              <div className="relative pl-4">
+                <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 bg-red-600 rounded-full ring-2 ring-red-300" />
+                <div>
+                  <span className="font-bold text-xs text-red-600">2028</span>
+                  <p className="text-[10px] text-zinc-600 mt-0.5"><strong>Los Angeles Paralympics</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Key Milestones */}
+          <div className="mt-auto">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">
+              Belangrijke Momenten
+            </h3>
+            <div className="grid grid-cols-2 gap-2 text-[10px]">
+              <div className="bg-zinc-50 border border-zinc-200 p-2 text-center">
+                <div className="font-bold text-xs mb-1">Nov 2025</div>
+                <div className="text-zinc-600">1000 dagen tot LA</div>
+              </div>
+              <div className="bg-zinc-50 border border-zinc-200 p-2 text-center">
+                <div className="font-bold text-xs mb-1">Jun 2026</div>
+                <div className="text-zinc-600">BEL Kampioenschap</div>
+              </div>
+            </div>
           </div>
         </section>
 
