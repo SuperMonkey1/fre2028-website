@@ -34,13 +34,13 @@ export default function PartnerBrochure() {
           {/* Background Image - Same as hero section */}
           <div className="absolute inset-0 z-0">
             <Image 
-              src="/images/web/me_innsbruck_banner_web.webp"
+              src="/images/web/me_innsbruck_f.webp"
               alt="Fré climbing"
               fill
               sizes="33vw"
               className="object-cover opacity-40 grayscale mix-blend-screen"
               priority
-              quality={60}
+              quality={90}
             />
           </div>
           
@@ -288,7 +288,7 @@ export default function PartnerBrochure() {
             </p>
             <div className="relative w-32 h-32 mx-auto mb-2">
               <Image 
-                src="/images/web/paralympic_logo.png"
+                src="/images/web/IPC_logo.svg"
                 alt="Paralympic Logo"
                 fill
                 className="object-contain"
@@ -467,28 +467,70 @@ export default function PartnerBrochure() {
           }
 
           .brochure-container {
-            display: grid;
-            grid-template-columns: repeat(3, 99mm);
-            grid-template-rows: repeat(2, 210mm);
+            display: flex;
+            flex-wrap: wrap;
             width: 297mm;
-            height: 420mm;
             background: white;
-            page-break-after: always;
           }
 
           .brochure-panel {
             width: 99mm;
             height: 210mm;
-            min-height: 210mm;
-            max-height: 210mm;
             overflow: hidden;
             page-break-inside: avoid;
+            padding: 4mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
           }
+
+          /* Page 1: back-cover (Laten we samenwerken), outer-back, front-cover */
+          .back-cover { order: -3; }
+          .outer-back { order: -2; }
+          .front-cover { order: -1; page-break-after: always; }
+
+          /* Page 2: inside-left (Jouw Leuvense buur), inside-center (Doe mee), inside-right (De Paralympische spelen) */
+          .inside-left { order: 1; }
+          .inside-center { order: 2; }
+          .inside-right { order: 3; }
 
           /* Ensure proper sizing for images in print */
           .brochure-panel img {
             print-color-adjust: exact;
             -webkit-print-color-adjust: exact;
+          }
+
+          /* Reduce all spacing in print to prevent overflow */
+          .brochure-panel h1 {
+            font-size: 2.5rem !important;
+            margin-bottom: 1mm !important;
+          }
+
+          .brochure-panel h2 {
+            font-size: 1.5rem !important;
+            margin-bottom: 2mm !important;
+          }
+
+          .brochure-panel h3 {
+            font-size: 0.8rem !important;
+            margin-bottom: 1mm !important;
+          }
+
+          .brochure-panel p {
+            margin-bottom: 2mm !important;
+            line-height: 1.3 !important;
+          }
+
+          .brochure-panel > div,
+          .brochure-panel > section > div {
+            margin-bottom: 2mm !important;
+            padding-bottom: 1mm !important;
+          }
+
+          .brochure-panel .space-y-4 > * + *,
+          .brochure-panel .space-y-3 > * + *,
+          .brochure-panel .space-y-2 > * + * {
+            margin-top: 2mm !important;
           }
         }
 

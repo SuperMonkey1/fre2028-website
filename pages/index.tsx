@@ -975,13 +975,13 @@ export default function ParaclimberSite() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
-              <a 
+              {/* <a 
                 href="/Frederik-Leys-Partnership-Dossier.pdf" 
                 download
                 className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 border border-current bg-transparent hover:opacity-60 shrink-0"
               >
                 Download sponsordossier
-              </a>
+              </a> */}
               <Button onClick={() => scrollToSection('contact')} className="shrink-0">
                 Contacteer mij
               </Button>
