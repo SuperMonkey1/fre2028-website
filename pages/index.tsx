@@ -19,7 +19,9 @@ import {
   Youtube,
   Trophy,
   Medal,
-  Calendar
+  Calendar,
+  Newspaper,
+  ExternalLink
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -864,7 +866,10 @@ export default function ParaclimberSite() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[250px]">
-            <div className="relative bg-zinc-100 overflow-hidden transition-all duration-500 col-span-2 row-span-2">
+            <div 
+              className="relative bg-zinc-100 overflow-hidden transition-all duration-500 col-span-2 row-span-2 cursor-pointer group"
+              onClick={() => window.open('https://www.vrt.be/vrtnws/nl/2025/11/20/fre-leys-leuven-paraklimmer-paralympische-spelen-la/', '_blank')}
+            >
               <Image 
                 src="/images/web/me_winning_innsbruck_web.webp"
                 alt="Fré climbing in action"
@@ -873,6 +878,26 @@ export default function ParaclimberSite() {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
+              {/* VRT Logo Overlay in top-left corner */}
+              <div className="absolute top-4 left-4 z-10">
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-2 shadow-lg hover:shadow-xl transition-all group-hover:scale-105">
+                  <Image 
+                    src="/images/web/logo_vrt.png"
+                    alt="VRT NWS Logo"
+                    width={80}
+                    height={40}
+                    className="w-16 md:w-20 h-auto"
+                  />
+                </div>
+              </div>
+              {/* News Article Indicator */}
+              <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-black/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg group-hover:bg-black/90 transition-all">
+                <Newspaper className="w-4 h-4" />
+                <span className="text-xs font-semibold uppercase tracking-wider">Nieuwsartikel</span>
+                <ExternalLink className="w-3 h-3 ml-1" />
+              </div>
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
             </div>
             <div 
               className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105 aspect-auto"

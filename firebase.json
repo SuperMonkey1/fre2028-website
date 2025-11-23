@@ -4,7 +4,8 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "public/images/web/2025_innsbruck_na_f.webp"
     ],
     "frameworksBackend": {
       "region": "europe-west1"
