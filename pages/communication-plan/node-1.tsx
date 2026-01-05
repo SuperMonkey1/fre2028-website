@@ -27,17 +27,17 @@ export default function Node1() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-r from-red-50 to-white border-b border-red-100">
+      <section className="py-16 md:py-24 bg-gradient-to-r from-green-50 to-white border-b border-green-100">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-red-600 text-xs font-bold uppercase tracking-[0.2em] text-red-600">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-green-600 text-xs font-bold uppercase tracking-[0.2em] text-green-600">
             <Calendar className="w-4 h-4" />
-            Node 1
+            Knooppunt 1
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            Campaign Launch
+            Campagne Lancering
           </h1>
           <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed">
-            1000 Days Out - November 20, 2025
+            1000 Dagen - 20 November 2025
           </p>
         </div>
       </section>
@@ -45,25 +45,25 @@ export default function Node1() {
       {/* Overview */}
       <section className="py-16 md:py-20 border-b border-zinc-100">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Overview</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Overzicht</h2>
           
-          <div className="bg-red-50 border-l-4 border-red-600 p-6 mb-8">
+          <div className="bg-green-50 border-l-4 border-green-600 p-6 mb-8">
             <p className="text-lg text-zinc-800 leading-relaxed">
-              This node marks the official start of the campaign, exactly <strong>1000 days before the Paralympics</strong>. 
-              It's the moment we announce to the world—and specifically to Leuven—that the journey to LA 2028 has begun.
+              Deze node markeert de officiële start van de campagne, exact <strong>1000 dagen voor de Paralympische Spelen</strong>. 
+              Het is het moment waarop we aan de wereld—en specifiek aan Leuven—aankondigen dat de reis naar LA 2028 is begonnen.
             </p>
           </div>
 
           <div className="prose prose-lg max-w-none">
             <p className="text-zinc-700 leading-relaxed mb-4">
-              The campaign launch is designed to create immediate visibility and momentum. By choosing the 1000-day milestone, 
-              we create a memorable marker that people can rally around. This is not just about announcing my goal—it's about 
-              inviting my community to be part of the journey from the very beginning.
+              De campagnelancering is ontworpen om onmiddellijke zichtbaarheid en momentum te creëren. Door de mijlpaal van 1000 dagen te kiezen, 
+              creëren we een gedenkwaardig moment waar mensen zich achter kunnen scharen. Dit gaat niet alleen over het aankondigen van mijn doel—het gaat erom 
+              mijn gemeenschap uit te nodigen om vanaf het allereerste begin deel uit te maken van deze reis.
             </p>
             
             <p className="text-zinc-700 leading-relaxed">
-              All elements of this launch work together: the website provides a central hub, the press conference generates 
-              media coverage, the team building creates partnerships, and the content strategy ensures ongoing engagement.
+              Alle elementen van deze lancering werken samen: de website biedt een centrale hub, de persconferentie genereert 
+              mediadekking, het team building creëert partnerschappen, en de contentstrategie zorgt voor voortdurende betrokkenheid.
             </p>
           </div>
         </div>
@@ -72,7 +72,7 @@ export default function Node1() {
       {/* Detailed Activities */}
       <section className="py-16 md:py-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Detailed Activities</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-12">Gedetailleerde Activiteiten</h2>
 
           <div className="space-y-8">
             {/* Website Launch */}
@@ -82,33 +82,33 @@ export default function Node1() {
                   <Globe className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Website Launch</h3>
-                  <p className="text-zinc-600">fre2028.LA goes live</p>
+                  <h3 className="text-2xl font-bold mb-2">Website Lancering</h3>
+                  <p className="text-zinc-600">fre2028.LA gaat live</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  The website serves as the campaign's digital home base. The domain name <strong>fre2028.LA</strong> was 
-                  specifically chosen to represent Los Angeles, the host city of the 2028 Paralympics.
+                  De website dient als het digitale thuishonk van de campagne. De domeinnaam <strong>fre2028.LA</strong> werd 
+                  specifiek gekozen om Los Angeles te vertegenwoordigen, de gaststad van de Paralympische Spelen 2028.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Initial Website Content:</h4>
+                  <h4 className="font-bold mb-3">Initiele Website Inhoud:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li>My personal story and background</li>
-                    <li>The full communication plan (this document)</li>
-                    <li>Partner showcase section</li>
-                    <li>Portfolio (images, videos, podcasts)</li>
-                    <li>Competition results tracker</li>
-                    <li>Monthly blog/newsletter signup</li>
-                    <li>Link to paraclimbing.be</li>
+                    <li>Mijn persoonlijk verhaal en achtergrond</li>
+                    <li>Het volledige communicatieplan</li>
+                    <li>Partner showcase sectie</li>
+                    <li>Portfolio (foto's, video's, podcasts)</li>
+                    <li>Wedstrijdresultaten tracker</li>
+                    <li>Maandelijkse blog/nieuwsbrief inschrijving</li>
+                    <li>Link naar paraclimbing.be</li>
                   </ul>
                 </div>
 
                 <p>
-                  The website is built to grow with the campaign. As we progress through the nodes, new content, media, 
-                  and features will be added continuously.
+                  De website is gebouwd om mee te groeien met de campagne. Naarmate we door de nodes voortschrijden, zullen voortdurend nieuwe content, media 
+                  en functies worden toegevoegd.
                 </p>
               </div>
             </div>
@@ -120,32 +120,32 @@ export default function Node1() {
                   <Newspaper className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Media Launch</h3>
-                  <p className="text-zinc-600">Press conference for Leuven media</p>
+                  <h3 className="text-2xl font-bold mb-2">Media Lancering</h3>
+                  <p className="text-zinc-600">Persconferentie voor Leuvense media</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  A targeted press conference will be organized specifically for local Leuven news outlets. This is a strategic 
-                  decision to start local before going national.
+                  Er wordt een gerichte persconferentie georganiseerd specifiek voor lokale Leuvense nieuwsmedia. Dit is een strategische 
+                  beslissing om lokaal te beginnen voordat we nationaal gaan.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Key Messages:</h4>
+                  <h4 className="font-bold mb-3">Belangrijkste Boodschappen:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li>First-ever Paralympian from Leuven (if I succeed)</li>
-                    <li>Historic moment: paraclimbing debuts at Paralympics</li>
-                    <li>1000 days until the dream becomes reality</li>
-                    <li>Journey starts in Leuven, leads to Los Angeles</li>
-                    <li>Promoting Paralympic awareness in Belgium</li>
+                    <li>Eerste Paralympiër uit Leuven (indien ik slaag)</li>
+                    <li>Historisch moment: paraklimmen debuteert op de Paralympics</li>
+                    <li>1000 dagen tot de droom werkelijkheid wordt</li>
+                    <li>Reis begint in Leuven, leidt naar Los Angeles</li>
+                    <li>Paralympische bewustwording in België bevorderen</li>
                   </ul>
                 </div>
 
                 <div className="bg-blue-50 p-4 border border-blue-200">
                   <p className="text-sm text-blue-900">
-                    <strong>Target Media:</strong> Leuven local newspapers (Groot-Leuven, Nieuwsblad Leuven), 
-                    local radio stations, city magazine, and online news platforms.
+                    <strong>Doelgroep Media:</strong> Lokale Leuvense kranten (Groot-Leuven, Nieuwsblad Leuven), 
+                    lokale radiostations, stadsmagazine, en online nieuwsplatforms.
                   </p>
                 </div>
               </div>
@@ -159,30 +159,30 @@ export default function Node1() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-2xl font-bold mb-2">Team Building</h3>
-                  <p className="text-zinc-600">Building "Team Fré"</p>
+                  <p className="text-zinc-600">"Team Fré" opbouwen</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  The launch marks the official start of partner recruitment. This includes sponsors, supporters, 
-                  media partners, and collaborators who will help make the LA 2028 journey possible.
+                  De lancering markeert de officiële start van partnerwerving. Dit omvat sponsors, supporters, 
+                  mediapartners en medewerkers die zullen helpen om de reis naar LA 2028 mogelijk te maken.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Partnership Categories:</h4>
+                  <h4 className="font-bold mb-3">Partnerschap Categorieën:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li><strong>Financial sponsors:</strong> Companies providing monetary support</li>
-                    <li><strong>Product sponsors:</strong> Equipment, nutrition, training gear</li>
-                    <li><strong>Media partners:</strong> News outlets, podcasters, content creators</li>
-                    <li><strong>Service partners:</strong> Training facilities, medical support, coaching</li>
-                    <li><strong>Community partners:</strong> Local organizations, climbing gyms, schools</li>
+                    <li><strong>Financiële sponsors:</strong> Bedrijven die financiële steun bieden</li>
+                    <li><strong>Product sponsors:</strong> Uitrusting, voeding, trainingsmateriaal</li>
+                    <li><strong>Mediapartners:</strong> Nieuwsmedia, podcasters, content creators</li>
+                    <li><strong>Service partners:</strong> Trainingsfaciliteiten, medische ondersteuning, coaching</li>
+                    <li><strong>Community partners:</strong> Lokale organisaties, klimzalen, scholen</li>
                   </ul>
                 </div>
 
                 <p>
-                  All partners will be featured prominently on the website and in campaign materials. The partnership 
-                  plan details specific benefits and collaboration opportunities.
+                  Alle partners zullen prominent worden getoond op de website en in campagnemateriaal. Het partnershipplan 
+                  beschrijft specifieke voordelen en samenwerkingsmogelijkheden.
                 </p>
               </div>
             </div>
@@ -194,31 +194,31 @@ export default function Node1() {
                   <Target className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Local Marketing Campaign</h3>
-                  <p className="text-zinc-600">Practice run in Leuven</p>
+                  <h3 className="text-2xl font-bold mb-2">Lokale Marketingcampagne</h3>
+                  <p className="text-zinc-600">Proefrun in Leuven</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  This is a "tiny" but focused marketing campaign designed as a test run for the much larger 
-                  city saturation campaign planned for Node 4.
+                  Dit is een "kleine" maar gerichte marketingcampagne ontworpen als een test voor de veel grotere 
+                  stadsverzadigingscampagne gepland voor Knooppunt 4.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Tactics:</h4>
+                  <h4 className="font-bold mb-3">Tactieken:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li>Small poster campaign at key locations (climbing gym, sports centers, university)</li>
-                    <li>Social media ads targeted at Leuven residents</li>
-                    <li>Collaboration with local sports clubs for cross-promotion</li>
-                    <li>Email campaign to existing contacts and networks</li>
+                    <li>Kleine postercampagne op belangrijke locaties (klimzaal, sportcentra, universiteit)</li>
+                    <li>Social media advertenties gericht op inwoners van Leuven</li>
+                    <li>Samenwerking met lokale sportclubs voor kruispromotie</li>
+                    <li>E-mailcampagne naar bestaande contacten en netwerken</li>
                   </ul>
                 </div>
 
                 <div className="bg-yellow-50 p-4 border border-yellow-200">
                   <p className="text-sm text-yellow-900">
-                    <strong>Learning Objective:</strong> This campaign is designed to teach us what works and what doesn't 
-                    in reaching the local community, so we can optimize the larger campaign at Node 4.
+                    <strong>Leerdoel:</strong> Deze campagne is ontworpen om te leren wat wel en niet werkt 
+                    bij het bereiken van de lokale gemeenschap, zodat we de grotere campagne bij Knooppunt 4 kunnen optimaliseren.
                   </p>
                 </div>
               </div>
@@ -231,39 +231,39 @@ export default function Node1() {
                   <Radio className="w-6 h-6" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Content Strategy Launch</h3>
-                  <p className="text-zinc-600">Regular blog and social media</p>
+                  <h3 className="text-2xl font-bold mb-2">Content Strategie Lancering</h3>
+                  <p className="text-zinc-600">Regelmatige blog en sociale media</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  The content strategy begins with two main pillars: the monthly blog/newsletter and structured 
-                  social media posting.
+                  De contentstrategie begint met twee hoofdpijlers: de maandelijkse blog/nieuwsbrief en gestructureerde 
+                  social media posts.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black mb-4">
-                  <h4 className="font-bold mb-3">Monthly Blog/Newsletter:</h4>
+                  <h4 className="font-bold mb-3">Maandelijkse Blog/Nieuwsbrief:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li>Starting point: ~100 existing subscribers</li>
-                    <li>Theme: "Obstacles, findings, and discoveries on the road to LA 2028"</li>
-                    <li>Format: Personal reflections, training insights, behind-the-scenes stories</li>
-                    <li>Goal: Grow subscriber base organically through quality content</li>
+                    <li>Startpunt: ~100 bestaande abonnees</li>
+                    <li>Thema: "Obstakels, bevindingen en ontdekkingen op de weg naar LA 2028"</li>
+                    <li>Formaat: Persoonlijke reflecties, trainingsinzichten, behind-the-scenes verhalen</li>
+                    <li>Doel: Organisch groeien van abonneebestand door kwaliteitscontent</li>
                   </ul>
                 </div>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Social Media Strategy:</h4>
+                  <h4 className="font-bold mb-3">Social Media Strategie:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li><strong>Instagram:</strong> Primary platform (~5,000 followers to start)</li>
-                    <li><strong>Facebook:</strong> Secondary platform for broader reach</li>
-                    <li><strong>Content mix:</strong> Training videos, competition updates, personal stories, partner features</li>
-                    <li><strong>Posting frequency:</strong> 3-4 times per week on Instagram, 2-3 on Facebook</li>
+                    <li><strong>Instagram:</strong> Primair platform (~5.000 volgers om mee te starten)</li>
+                    <li><strong>Facebook:</strong> Secundair platform voor breder bereik</li>
+                    <li><strong>Content mix:</strong> Trainingsvideo's, wedstrijdupdates, persoonlijke verhalen, partner features</li>
+                    <li><strong>Post frequentie:</strong> 3-4 keer per week op Instagram, 2-3 op Facebook</li>
                   </ul>
                 </div>
 
                 <p className="mt-4">
-                  All content will drive traffic back to fre2028.LA and encourage newsletter signups.
+                  Alle content zal verkeer naar fre2028.LA leiden en nieuwsbrief inschrijvingen aanmoedigen.
                 </p>
               </div>
             </div>
@@ -275,84 +275,39 @@ export default function Node1() {
                   <span className="text-xl">👕</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">Merchandise Development</h3>
-                  <p className="text-zinc-600">Logo and product creation</p>
+                  <h3 className="text-2xl font-bold mb-2">Merchandise Ontwikkeling</h3>
+                  <p className="text-zinc-600">Logo en product creatie</p>
                 </div>
               </div>
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  The merchandise development begins with creating a campaign logo that will become the visual 
-                  identity of the Road to LA 2028 journey.
+                  De merchandise ontwikkeling begint met het creëren van een campagnelogo dat de visuele 
+                  identiteit wordt van de Road to LA 2028 reis.
                 </p>
 
                 <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                  <h4 className="font-bold mb-3">Initial Product Line:</h4>
+                  <h4 className="font-bold mb-3">Initiële Productlijn:</h4>
                   <ul className="space-y-2 list-disc list-inside pl-2">
-                    <li>T-shirts with campaign logo</li>
-                    <li>Hats/caps</li>
-                    <li>Potential: climbing chalk bags with branding</li>
-                    <li>Potential: stickers and small promotional items</li>
+                    <li>T-shirts met campagnelogo</li>
+                    <li>Petten/caps</li>
+                    <li>Mogelijk: klim chalkbags met branding</li>
+                    <li>Mogelijk: stickers en kleine promotie-items</li>
                   </ul>
                 </div>
 
                 <p>
-                  Merchandise serves multiple purposes: creating visual campaign presence, generating some revenue 
-                  to support the campaign, and giving supporters a tangible way to show their support.
+                  Merchandise dient meerdere doelen: visuele campagne aanwezigheid creëren, enige inkomsten genereren 
+                  om de campagne te ondersteunen, en supporters een tastbare manier geven om hun steun te tonen.
                 </p>
 
                 <div className="bg-blue-50 p-4 border border-blue-200">
                   <p className="text-sm text-blue-900">
-                    <strong>Timeline:</strong> Logo design to be completed by mid-November, first merchandise available 
-                    for the campaign launch on November 20.
+                    <strong>Tijdslijn:</strong> Logo ontwerp voltooid tegen midden november, eerste merchandise beschikbaar 
+                    voor de campagnelancering op 20 november.
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Success Metrics */}
-      <section className="py-16 md:py-20 border-t border-zinc-200 bg-white">
-        <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Success Metrics</h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-zinc-50 border border-zinc-200 p-6">
-              <h3 className="font-bold text-lg mb-3">Media Coverage</h3>
-              <ul className="space-y-2 text-zinc-700 text-sm">
-                <li>• At least 3 articles in local Leuven media</li>
-                <li>• Radio interview on local station</li>
-                <li>• Online news coverage</li>
-              </ul>
-            </div>
-
-            <div className="bg-zinc-50 border border-zinc-200 p-6">
-              <h3 className="font-bold text-lg mb-3">Digital Engagement</h3>
-              <ul className="space-y-2 text-zinc-700 text-sm">
-                <li>• 1,000 website visitors in first week</li>
-                <li>• 200 newsletter signups in first month</li>
-                <li>• 500 new Instagram followers</li>
-              </ul>
-            </div>
-
-            <div className="bg-zinc-50 border border-zinc-200 p-6">
-              <h3 className="font-bold text-lg mb-3">Partnership</h3>
-              <ul className="space-y-2 text-zinc-700 text-sm">
-                <li>• Initial conversations with 10+ potential partners</li>
-                <li>• At least 2 partnership agreements signed</li>
-                <li>• First sponsors featured on website</li>
-              </ul>
-            </div>
-
-            <div className="bg-zinc-50 border border-zinc-200 p-6">
-              <h3 className="font-bold text-lg mb-3">Community Awareness</h3>
-              <ul className="space-y-2 text-zinc-700 text-sm">
-                <li>• Measurable increase in local awareness</li>
-                <li>• Engagement from local sports community</li>
-                <li>• First merchandise sales</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -367,13 +322,13 @@ export default function Node1() {
               className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity"
             >
               <ArrowLeft className="w-4 h-4" />
-              Communication Plan
+              Communicatieplan
             </button>
             <button 
-              onClick={() => router.push('/communication-plan/node-2')}
+              onClick={() => router.push('/communication-plan/de-sterkste-vingers-van-Belgie')}
               className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity"
             >
-              Next: Node 2
+              Volgende: Knooppunt 2
               <span className="rotate-180"><ArrowLeft className="w-4 h-4" /></span>
             </button>
           </div>

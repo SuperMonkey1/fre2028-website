@@ -6,6 +6,12 @@ import { Mountain, Calendar, Radio, Video, Newspaper, Globe, TrendingUp, ArrowLe
 export default function CommunicationPlan() {
   const router = useRouter();
 
+  // Calculate days until Paralympics (August 15, 2028)
+  const paralympicsDate = new Date('2028-08-15');
+  const today = new Date();
+  const daysRemaining = Math.ceil((paralympicsDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const formattedDate = paralympicsDate.toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
+
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Head>
@@ -16,13 +22,23 @@ export default function CommunicationPlan() {
       {/* Header */}
       <header className="border-b border-zinc-200 bg-white sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8 py-4">
-          <button 
-            onClick={() => router.push('/')}
-            className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Terug naar Home
-          </button>
+          <div className="flex items-center justify-between">
+            <button 
+              onClick={() => router.push('/')}
+              className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:opacity-60 transition-opacity"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Terug naar Home
+            </button>
+            <div className="text-right">
+              <div className="text-lg font-bold text-black">
+                Nog {daysRemaining} dagen...
+              </div>
+              <div className="text-xs font-thin text-zinc-500">
+                {formattedDate}
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
@@ -31,13 +47,13 @@ export default function CommunicationPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
             <Radio className="w-4 h-4" />
-            Campagnestrategie
+            Communicatie campagne
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            Communicatie<br />Campagne
+            Road to LA 2028
           </h1>
           <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed">
-            Road to LA 2028 - Mijn persoonlijk verhaal als katalysator om Leuvenaars en Vlamingen te betrekken bij de Paralympische Spelen van 2028.
+             Mijn persoonlijk verhaal als katalysator om Leuvenaars en Vlamingen te betrekken bij de Paralympische Spelen van 2028.
           </p>
         </div>
       </section>
@@ -53,17 +69,17 @@ export default function CommunicationPlan() {
           <div className="space-y-6 text-lg text-zinc-700 leading-relaxed">
             <div>
               <h3 className="font-bold text-black mb-2">Wie ik ben:</h3>
-              <p>Mijn naam is Fré Leys. Ik ben een burgerlijk ingenieur en een paraklimmer, lid van het Belgische klimteam sinds 2016 en geboren met een beperking aan mijn rechterbeen waarvoor ik een prothese draag. Momenteel ben ik tweedes op de wereldranglijst in mijn klasse.</p>
+              <p>Mijn naam is Fré Leys. Ik ben een burgerlijk ingenieur en een paraklimmer, lid van het Belgische klimteam sinds 2016 en geboren met een beperking aan mijn rechterbeen waarvoor ik een prothese draag. Momenteel ben ik tweedes op de wereldranglijst in mijn klasse. In 2022 richte ik de <strong>VZW Paraclimbing.be</strong> op met als doel om mensen met een fysieke beperking te helpen bij het ontdekken van de klimsport.</p>
             </div>
 
             <div>
-              <h3 className="font-bold text-black mb-2">Goud:</h3>
-              <p>Klimmen zal in 2028 voor het eerst op het programma staan van de Paralympische Spelen in LA. Mijn ultieme doel is niet alleen om te mogen deelnemen en daarmee de <strong>eerste Leuvense Paralympier</strong> te worden, maar om paralympisch <strong>goud</strong> te winnen. </p>
+              <h3 className="font-bold text-black mb-2">De eerste Leuvense Paralympiër</h3>
+              <p>Klimmen zal in 2028 voor het eerst op het programma staan van de Paralympische Spelen in LA. Mijn ultieme doel is niet alleen om te mogen deelnemen en daarmee de <strong>eerste Leuvense Paralympier</strong> te worden, maar ook om paralympisch <strong>goud</strong> te winnen. </p>
             </div>
 
             <div>
-              <h3 className="font-bold text-black mb-2">Een unieke kans</h3>
-              <p>Mogen deelnemen zal het resultaat zijn van vele jaren toewijding, maar toch zie ik het ook als een privilege. Ik wil deze kans aangrijpen om met mijn persoonlijk verhaal de <strong>Paralympische Spelen</strong> onder de aandacht te brengen en mensen erbij te betrekken. Daarom ben ik deze communicatie campagne - dit verhaal - gestart. Met dit initiatief richt ik mij in de eerste plaats op de Leuvenaar, maar wie weet bereiken we wel heel Vlaanderen.</p>
+              <h3 className="font-bold text-black mb-2">Een gouden opportuniteit</h3>
+              <p>Mogen deelnemen zal het resultaat zijn van vele jaren toewijding, toch wil ik meer bereiken dan enkel persoonlijk sportief succes. Ik wil deze opportuniteit aangrijpen om met mijn persoonlijk verhaal de <strong>Paralympische Spelen</strong> onder de aandacht te brengen en meer mensen bij de <strong>Paralympische beweging</strong> te betrekken. Daarom ben ik deze communicatie campagne gestart. Met dit initiatief richt ik mij in de eerste plaats op de Leuvenaar, maar wie weet bereiken we wel heel Vlaanderen.</p>
             </div>
           </div>
         </div>
@@ -138,13 +154,17 @@ export default function CommunicationPlan() {
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white border border-zinc-200 p-6">
-              <div className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Fase 1</div>
+              <div className="inline-block px-4 py-2 mb-4 bg-black text-white text-xs font-bold uppercase tracking-wider">
+                Fase 1
+              </div>
               <h3 className="text-2xl font-bold mb-2">Dagen 1000 - 501</h3>
               <p className="text-zinc-700">Primaire focus op mijn thuisstad <strong>Leuven</strong>.</p>
             </div>
 
             <div className="bg-white border border-zinc-200 p-6">
-              <div className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Fase 2</div>
+              <div className="inline-block px-4 py-2 mb-4 bg-black text-white text-xs font-bold uppercase tracking-wider">
+                Fase 2
+              </div>
               <h3 className="text-2xl font-bold mb-2">Dagen 500 - 0</h3>
               <p className="text-zinc-700">Uitbreiding van de focus naar <strong>Vlaanderen</strong> en bewustwording op nationaal niveau.</p>
             </div>
@@ -152,194 +172,232 @@ export default function CommunicationPlan() {
         </div>
       </section>
 
-      {/* Phase 1 - Nodes */}
+      {/* Timeline Section */}
       <section className="py-16 md:py-20 border-b border-zinc-100">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="mb-12">
             <div className="inline-block px-4 py-2 mb-4 bg-black text-white text-xs font-bold uppercase tracking-wider">
-              Fase 1
+              Campagne Tijdslijn
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Leuven & Community Focus</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Knooppunten</h2>
+            <p className="text-zinc-600 text-lg">Van 1000 dagen tot de Paralympische Spelen</p>
           </div>
 
-          {/* Node 1 */}
-          <div className="mb-12 bg-gradient-to-r from-red-50 to-white border-l-4 border-red-600 p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Calendar className="w-8 h-8 text-red-600" />
-              <div>
-                <div className="text-sm font-bold uppercase tracking-widest text-red-600">Node 1: Campagne Lancering</div>
-                <h3 className="text-2xl font-bold">1000 Dagen - 20 November 2025</h3>
-              </div>
-            </div>
+          {/* Timeline Container */}
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-zinc-200 md:left-8"></div>
 
-            <p className="text-zinc-700 mb-4 text-lg">
-              Deze node markeert de officiële start, exact 1000 dagen voor de Paralympische Spelen.
-            </p>
-
-            <button 
+            {/* Node 1 */}
+            <div 
               onClick={() => router.push('/communication-plan/node-1')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 text-white font-bold text-sm uppercase tracking-wider hover:bg-red-700 transition-colors mb-6"
+              className="relative pl-8 md:pl-20 pb-12 cursor-pointer hover:opacity-75 transition-opacity group"
             >
-              Bekijk Volledige Details →
-            </button>
-
-            <div className="space-y-4">
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <Globe className="w-5 h-5" />
-                  Website Lancering
-                </h4>
-                <p className="text-zinc-700 text-sm">fre2028.LA gaat live.</p>
-              </div>
-
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <Newspaper className="w-5 h-5" />
-                  Media Lancering
-                </h4>
-                <p className="text-zinc-700 text-sm">Een persconferentie houden specifiek gericht op de nieuwsmedia in Leuven.</p>
-              </div>
-
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5" />
-                  Team Building
-                </h4>
-                <p className="text-zinc-700 text-sm">Officieel beginnen met het opbouwen van mijn team van partners.</p>
-              </div>
-
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <Target className="w-5 h-5" />
-                  Lokale Marketing
-                </h4>
-                <p className="text-zinc-700 text-sm">Een "kleine" marketingcampagne lanceren in Leuven als proefrun voor de grotere campagne later.</p>
-              </div>
-
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2 flex items-center gap-2">
-                  <Radio className="w-5 h-5" />
-                  Content Start
-                </h4>
-                <ul className="text-zinc-700 text-sm space-y-1 list-disc list-inside pl-4">
-                  <li>Lanceren van de maandelijkse blog/nieuwsbrief (bestaand platform met ~100 abonnees)</li>
-                  <li>Beginnen met regelmatige, gestructureerde posts op sociale media (Instagram ~5.000 volgers, Facebook)</li>
+              <div className="absolute left-0 top-0 w-4 h-4 bg-green-600 rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-green-50 to-white border-l-4 border-green-600 p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div className="text-sm font-bold uppercase tracking-widest text-green-600 mb-2 md:mb-0">
+                    Knooppunt 1
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-bold text-zinc-500">
+                      Nog 1000 dagen...
+                    </div>
+                    <div className="text-xs text-zinc-400">
+                      19 november 2025
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-green-600 transition-colors">
+                  Lancering Campagne
+                </h3>
+                <p className="text-lg text-zinc-600 mb-4">
+                  1000 Dagen voor de Paralympische Spelen
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span>Lancering van website Fre2028.LA </span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span>Persconferentie voor initiële mediadekking in Leuven</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-green-600 font-bold">•</span>
+                    <span>Start van de zoektocht naar partners</span>
+                  </li>
                 </ul>
               </div>
-
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2">Merchandise</h4>
-                <p className="text-zinc-700 text-sm">Beginnen met het proces van het creëren van een logo om merchandise te produceren (t-shirts, petten).</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Node 2 */}
-          <div className="mb-12 bg-zinc-50 border-l-4 border-black p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Video className="w-8 h-8" />
-              <div>
-                <div className="text-sm font-bold uppercase tracking-widest text-zinc-500">Node 2: Community Engagement</div>
-                <h3 className="text-2xl font-bold">900 Dagen</h3>
-              </div>
             </div>
 
-            <button 
-              onClick={() => router.push('/communication-plan/node-2')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-zinc-800 transition-colors mb-6"
+            {/* Node 2 */}
+            <div 
+              onClick={() => router.push('/communication-plan/de-sterkste-vingers-van-Belgie')}
+              className="relative pl-8 md:pl-20 pb-12 cursor-pointer hover:opacity-75 transition-opacity group"
             >
-              Bekijk Volledige Details →
-            </button>
-
-            <div className="space-y-4">
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2">YouTube Serie Lancering</h4>
-                <p className="text-zinc-700 mb-3">"<strong>De Gouden Vingers van België</strong>" - 20-afleveringen serie</p>
-                
-                <div className="space-y-2 text-sm text-zinc-600">
-                  <p><strong>Concept:</strong> Ik zal 20 van de meest bekende Belgische klimmers uitnodigen om hun vingerkracht te testen op een gestandaardiseerde opstelling.</p>
-                  <p><strong>Kenmerken:</strong> Er wordt een doorlopend klassement bijgehouden en de winnaar ontvangt de "Gouden Vinger Trofee".</p>
-                  <p><strong>Doel:</strong> Paraklimmen en de Paralympische Spelen promoten rechtstreeks bij de Belgische klimgemeenschap.</p>
-                  <p><strong>Toekomstig Potentieel:</strong> De testopstelling kan later worden gebruikt om Belgische klimzalen te bezoeken, waardoor alle klimmers hun kracht kunnen vergelijken met de deelnemers. Bij succes kan de serie wereldwijd worden uitgebreid.</p>
+              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
+                    Knooppunt 2
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-bold text-zinc-500">
+                      Nog 900 Dagen
+                    </div>
+                    <div className="text-xs text-zinc-400">
+                      27 februari 2026
+                    </div>
+                  </div>
                 </div>
-
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200">
-                  <p className="text-xs text-blue-900">
-                    <strong>Interne Notitie:</strong> Door samen te werken met beroemde klimmers, kan ik een groot deel van de klimgemeenschap gratis bereiken door hun bestaande platforms te benutten.
-                  </p>
-                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-black transition-colors">
+                  YouTube Serie
+                </h3>
+                <p className="text-lg text-zinc-600 mb-4">
+                  De Sterkste Vingers van België
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>12 afleveringen, 12 bekende Belgische topklimmers en avonturiers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>De klimgemeenschap bij mijn verhaal betrekken</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Bereik uitbreiden via bestaande influencers en atleten</span>
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
 
-          {/* Node 3 */}
-          <div className="mb-12 bg-zinc-50 border-l-4 border-black p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Mountain className="w-8 h-8" />
-              <div>
-                <div className="text-sm font-bold uppercase tracking-widest text-zinc-500">Node 3: Event Hosting</div>
-                <h3 className="text-2xl font-bold">800 Dagen</h3>
-              </div>
-            </div>
-
-            <button 
+            {/* Node 3 */}
+            <div 
               onClick={() => router.push('/communication-plan/node-3')}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold text-sm uppercase tracking-wider hover:bg-zinc-800 transition-colors mb-6"
+              className="relative pl-8 md:pl-20 pb-12 cursor-pointer hover:opacity-75 transition-opacity group"
             >
-              Bekijk Volledige Details →
-            </button>
-
-            <div className="space-y-4">
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2">Belgisch Paraklimmen Kampioenschap</h4>
-                <p className="text-zinc-700 mb-3">Een open competitie georganiseerd in samenwerking met mijn klimclub (BVKB van klimzaal "Klimax") en mijn vzw "paraclimbing.be"</p>
-                
-                <div className="space-y-2 text-sm text-zinc-600">
-                  <p><strong>Datum:</strong> Gepland voor 20-21 juni</p>
-                  <p><strong>Strategie:</strong> We verwachten voornamelijk internationale paraklimmers vanwege het kleine aantal Belgische deelnemers. Het evenement is strategisch gepland voor het weekend na een grote internationale paraklimwedstrijd in Oostenrijk, in de hoop dat klimmers "even langskomen" in België op hun weg naar huis.</p>
-                  
-                  <div className="mt-3">
-                    <p className="font-bold text-black mb-2">Tweedaagse Evenement Structuur:</p>
-                    <ul className="list-disc list-inside space-y-1 pl-4">
-                      <li><strong>Dag 1:</strong> Kliminitiatie voor nieuwe Belgische paraklimmers</li>
-                      <li><strong>Dag 2:</strong> Een para-routesetting cursus voor Belgische routezetters, waarbij de nieuwe paraklimmers de routes kunnen testen</li>
-                    </ul>
+              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
+                    Knooppunt 3
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-bold text-zinc-500">
+                      Nog 800 Dagen
+                    </div>
+                    <div className="text-xs text-zinc-400">
+                      20-21 juni 2026
+                    </div>
                   </div>
                 </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-black transition-colors">
+                  Belgisch kampioenschap Paraklimmen
+                </h3>
+                <p className="text-lg text-zinc-600 mb-4">
+                  Georganiseerd door klimclub BVKB en Paraclimbing.be
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Open kampioenschap met internationaal allure</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Kliminitiatie voor nieuwe paraklimmers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Een festival met veel randactiviteiten</span>
+                  </li>
+                </ul>
               </div>
             </div>
-          </div>
 
-          {/* Node 4 */}
-          <div className="mb-12 bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Newspaper className="w-8 h-8" />
-              <div>
-                <div className="text-sm font-bold uppercase tracking-widest text-zinc-500">Node 4: Stadsverzadiging</div>
-                <h3 className="text-2xl font-bold">700 Dagen</h3>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-white p-4 border border-zinc-200">
-                <h4 className="font-bold mb-2">Leuven Stadsverzadigingscampagne</h4>
-                <p className="text-zinc-700 mb-3">Lanceren van een grootschalige, gerichte promotiecampagne in Leuven.</p>
-                
-                <div className="space-y-2 text-sm text-zinc-600">
-                  <p><strong>Tactieken:</strong></p>
-                  <ul className="list-disc list-inside space-y-1 pl-4">
-                    <li>Richten op lokale kranten en tijdschriften</li>
-                    <li>Posters ophangen in lokale winkels</li>
-                    <li>Brochures verspreiden in brievenbussen</li>
-                  </ul>
-                  
-                  <p className="mt-3"><strong>Doel:</strong> De inwoners van Leuven in direct contact brengen met de Paralympische beweging, met mijn verhaal als de "eerste Paralympiër uit Leuven" als centrale verhaallijn.</p>
-                  
-                  <div className="mt-3 p-3 bg-yellow-50 border border-yellow-200">
-                    <p className="font-bold text-yellow-900">Specifiek Doel:</p>
-                    <p className="text-yellow-800">Ervoor zorgen dat zoveel mogelijk inwoners van Leuven <strong>het Paralympische logo kunnen herkennen</strong>, dat momenteel nog zeer onbekend is.</p>
+            {/* Node 4 */}
+            <div className="relative pl-8 md:pl-20 pb-12">
+              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
+                    Knooppunt 4
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-bold text-zinc-500">
+                      Nog 700 Dagen
+                    </div>
+                    <div className="text-xs text-zinc-400">
+                      5 september 2026
+                    </div>
                   </div>
                 </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  Stadsverzadiging
+                </h3>
+                <p className="text-lg text-zinc-600 mb-4">
+                  Leuven Stadsverzadigingscampagne
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Maximaliseren van zichtbaarheid in thuisstad Leuven</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Lokale partnerschappen en sponsoring verstevigen</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Creëren van breed draagvlak voor overgang naar fase 2</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Node 5 */}
+            <div className="relative pl-8 md:pl-20 pb-0">
+              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
+                    Knooppunt 5
+                  </div>
+                  <div className="text-right">
+                    <div className="text-sm font-bold text-zinc-500">
+                      Nog 600 Dagen
+                    </div>
+                    <div className="text-xs text-zinc-400">
+                      15 december 2026
+                    </div>
+                  </div>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                  Standje Leuvense Kerstmarkt
+                </h3>
+                <p className="text-lg text-zinc-600 mb-4">
+                  dit is de Leuvense Live editie van onze Youtube serie.
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>We gaan opzoek naar de sterkte vingers en bicepsen van Leuven.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Terplekke een paar meettoestellen (bv pullup bar) (met online leaderboard)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Interviewen elke avond een bekende en minder bekende sportieve Leuvenaar in het kleinste glazen huis van Vlaanderen.</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="font-bold">•</span>
+                    <span>Reclame maken voor andere initiatieven in de paralympische wereld en verkopen van Merch (iedereen een petje van Fre2028.LA)</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -347,65 +405,58 @@ export default function CommunicationPlan() {
       </section>
 
       {/* Phase 2 */}
-      <section className="py-16 md:py-20 bg-black text-white">
+      <section className="py-16 md:py-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="mb-12">
-            <div className="inline-block px-4 py-2 mb-4 bg-white text-black text-xs font-bold uppercase tracking-wider">
+            <div className="inline-block px-4 py-2 mb-4 bg-white text-black border-2 border-black text-xs font-bold uppercase tracking-wider">
               Fase 2
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Vlaanderen & Nationale Focus</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">Vlaanderen & Nationale Focus</h2>
+            <p className="text-zinc-600 text-lg">500 Dagen en verder - Nationale Media Expansie</p>
           </div>
 
-          <div className="bg-white/10 border border-white/20 p-8">
-            <div className="flex items-center gap-3 mb-4">
-              <Radio className="w-8 h-8" />
-              <div>
-                <div className="text-sm font-bold uppercase tracking-widest text-zinc-400">Node 5 & Verder</div>
-                <h3 className="text-2xl font-bold">600 Dagen - Nationale Media Expansie</h3>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-zinc-300 mb-4">
-                <strong className="text-white">Status:</strong> Deze plannen zijn nog niet afgerond maar vertegenwoordigen de richting voor Fase 2.
-              </p>
-            </div>
+          <div className="bg-white border-2 border-black p-6 md:p-8">
+            <p className="text-zinc-700 mb-4">
+              <strong className="text-black">Status:</strong> Deze fase is nog in ideation.
+            </p>
 
             <div className="space-y-4">
-              <h4 className="font-bold text-lg text-white">Ideeën in Ontwikkeling:</h4>
+              <h3 className="font-bold text-xl text-black mb-4">Ideeën in Ontwikkeling:</h3>
               
-              <div className="space-y-3 text-zinc-300">
-                <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold">•</span>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-4 border-black">
+                  <span className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">•</span>
                   <div>
-                    <p className="font-bold text-white">Podcast:</p>
-                    <p className="text-sm">Lanceren van een podcast over prestaties en wat een winnaar een winnaar maakt.</p>
+                    <p className="font-bold text-black">Podcast</p>
+                    <p className="text-sm text-zinc-600">Lanceren van een podcast over prestaties en wat een winnaar een winnaar maakt.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold">•</span>
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-4 border-black">
+                  <span className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">•</span>
                   <div>
-                    <p className="font-bold text-white">Interview Serie:</p>
-                    <p className="text-sm">Een serie (video of podcast) hosten waarin andere Paralympiërs worden geïnterviewd.</p>
+                    <p className="font-bold text-black">Docu-serie op nationale televisie</p>
+                    <p className="text-sm text-zinc-600">Een concept ontwikkelen voor een serie die mijn reis en die van andere Belgische atleten op weg naar LA 2028 volgt.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold">•</span>
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-4 border-black">
+                  <span className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">•</span>
                   <div>
-                    <p className="font-bold text-white">Nationale Televisie:</p>
-                    <p className="text-sm">Actief werken om mijn verhaal op de nationale TV te krijgen.</p>
+                    <p className="font-bold text-black">Kerstmarkt Expansie</p>
+                    <p className="text-sm text-zinc-600">De Leuvense Kerstmarkt formule herhalen maar groter en beter - uitbreiden naar andere Vlaamse steden en meer interactieve elementen.</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold">•</span>
+                
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-4 border-black">
+                  <span className="flex-shrink-0 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold mt-1">•</span>
                   <div>
-                    <p className="font-bold text-white">Docu-serie:</p>
-                    <p className="text-sm">Een concept ontwikkelen voor een serie die mijn reis en die van andere Belgische atleten op weg naar LA 2028 volgt.</p>
+                    <p className="font-bold text-black">De Paralympische spelen Live op groot scherm </p>
+                    <p className="text-sm text-zinc-600">De paralympische spelen live op groot scherm op de Oude Markt in Leuven</p>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>

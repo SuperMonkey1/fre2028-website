@@ -359,19 +359,18 @@ export default function PartnersPage() {
             Neem contact met me op en ontdek de mogelijkheden.
           </p>
           <div className="flex flex-wrap gap-6 justify-center">
-            <Button 
-              onClick={() => router.push('/#contact')}
+            <Button
+              onClick={() => router.push('/become-partner')}
               variant="white"
+            >
+              Become a partner
+            </Button>
+            <Button
+              onClick={() => router.push('/#contact')}
+              variant="outline"
             >
               Contacteer mij
             </Button>
-            <a 
-              href="/Frederik-Leys-Partnership-Dossier.pdf" 
-              download
-              className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 border border-white bg-transparent hover:opacity-60"
-            >
-              Download sponsordossier
-            </a>
           </div>
         </div>
       </section>
