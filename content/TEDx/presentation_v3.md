@@ -1,0 +1,57 @@
+
+I am Fré. I am an engineer, inventor and an entrepreneur, but I am also a member of the Belgian climbing team and one of the best climbers with a leg prosthetic in the world. In 2028 paraclimbing becomes paralympic and then I want to become the first Paralympian from Leuven and bring that gold medal home. 
+For most of my childhood and early teenage years, well-meaning adults, especially the ones who didn't know me very well, would sometimes not allow me to participate in certain activities.— not because I couldn't do them, but because they assumed I couldn't. They were trying to protect me. [story schaatsen]
+But they were wrong
+My reaction to this was to fight back and prove to them I could do anything. So driven by a need to prove them wrong, I threw myself into obsessive practice. I kept playing football until I was one of the best in my school, I kept cycling not until I was good, but until I didn’t know any other kid in the neighbourhood that was better at it. The same was true for swimming, where I competed against abled body kids. I simply couldn’t bear the thought that other people would think that I couldn’t do something just because of my leg. Showing off, by being very good at things, was my way of convincing others not to exclude me from activities.
+I call that period of my life My Grind.
+Because of the grind, I feel I have reached a point where the term 'disabled' no longer practically applies to me. What are considered hard physical challenges for most are well within my comfort zone. I’ve walked 100km in a single day. I’ve cycled the legendary cols of the Tour de France—the Ventoux, the Tourmalet, the Croix de Fer. I’ve summited 6,000-meter peaks in the Himalayas and survived weeks on a remote island during a television program called Survivor. 
+My grind reshaped what my body can do. But it also reshaped what my mind can take. To get as good as others (while being disadvantaged) I had to push myself very hard and in doing so I developed a framework. A set of 4 principles that I still use today. These 4 principles helped me through a PhD in robotics, they helped me in starting up a business and they are helping now driving me toward gold in LA. 
+The good news is, you don't need a prosthetic leg to use these principles, these principles work, even for people that have two normal legs. Especially for those with a dream they haven't dared to chase yet.
+
+
+PRINCIPLE 1 — You are not amazing, but you don’t need to be.
+
+The first principle is about believing in yourself. Not because you are amazing, but because you don’t need to be. Amazing things are usually achieved by ordinary people. That’s because they can be broken down into many small steps, each of which, on its own, is easy to take.
+Many of you might have a dream. Maybe it's starting a business. Maybe you want to advance your career. Maybe you want to run your first marathon and some of you might want to learn how to play guitar and become the best guitar player in the world. These things are definitely challenging. If you have never played guitar and you have to play a guitar concerto tomorrow evening, you are probably going to suck. Here's the shift I want you to make: don’t be afraid of big dreams. If your dream is actually possible, see it as the combination of many small steps that anyone, including you, can take. 
+One of my most challenging projects was the development of the Kulibrie. A drone that looks like a hummingbird and flies, not by using propellers as most drones use, but by flapping its tiny little wings. It was the result of my PhD research and it took me 6 years to develop. I had to invent or learn everything from scratch. The flapping mechanism, the tiny electronics, the control software, everything. I had no prior knowledge of any of those, but that didn’t scare me. I broke the whole process down into tiny weekly challenges — and six years later, those small steps compounded to something no one had ever built before.
+PRINCIPLE 2 — Go for it 
+The second principle is about making the right choice.
+People often tell me about their dream and then when I ask them why they haven’t pursued it yet, they usually say something like, “yeah but what if I fail?". Well I have tried so many things that have failed, but I have never regretted trying them. Let me give an example of something that didn’t work out for me.
+From the start of my PhD I planned to develop the Kulibrie as a product, not just as a research project, because my dream was to start a company specialised in flapping wing technology and try to sell my drones as toys or gadgets. I don’t remember why, but for some reason that sounded like a good idea to me.
+I knew it was going to be hard to sell a million robotic hummingbirds. On the one hand it is a complex hardware product. It’s almost like mass manufacturing a watch and on the other hand it would be a consumer product, so large investments in marketing were required and distribution channels needed to be set up. I knew chances of success would be small. 
+Every expert I talked to told me don't start. The odds are terrible. You'll fail, you’ll look naive.
+But I tried anyway. I would have regretted it for the rest of my life if I didn’t and more importantly, I asked myself the right question. Not "what if this fails?" — but "what is the actual worst case that could happen and can I overcome it?" So I planned the project in such a way that even in the worst case scenario …  And then I started the company, found partners and for two years we gave all we had. 
+We never sold a single robotic hummingbird. 
+By most definitions, that's a failure. And yet — standing here today, I can tell you that starting that company was one of the best decisions I've ever made. Because the things I learned and the people that became friends during that adventure have helped me in every challenge since then. The whole endeavor leveled me up.
+To summarise, make the right choice. Trying and not reaching your goal is never a true loss. Not starting — that's the only real failure. Because if you don’t start, you won’t learn anything, you won’t grow, you will only regret it for the rest of your life. 
+
+PRINCIPLE 3 — THE FINAL BOSS
+The third principle is about motivation
+I’ve won World Cup gold twice. I can tell you exactly what that feels like. It feels incredible... for about five minutes. I’m serious. You’re on the podium, the crowd is roaring, they are all watching you, someone hangs a medal around your neck and then they start the anthem of your favourite country, in my case that’s Belgium. And then after a minute or so the music stops. You walk off the stage into the backstage and that’s it. Whether or not you won the gold medal or you lost because your foot slipped off a climbing hold. You are the same person, the medal didn’t change a thing and The reason is simple: An end-goal has no intrinsic value.
+Whether it’s a gold medal, a degree, a job title, or a revenue target—they are just markers and if such a marker is your only motivation, you’re chasing the wrong thing. I believe you should chase something else. something that nobody can take away and something that gamers call XP or Experience points. It are things like the skills you’ve learned, the knowledge you gained, the relationships you’ve built and the resilience you forged every time you tried hard and failed, but didn’t give up.
+For me that means: Every brutal training session? XP. Every competition where I didn’t win? XP. The friends I made at competitions  XP. The resilience and self-confidence forged every time I finally managed a certain climbing move after trying for a long time. That is XP.
+The beauty of XP is that it doesn't disappear when the podium ceremony ends, it stays with you for the rest of your life. Even more, XP prepares you for bigger future challenges, enables new opportunities. Sometimes even opportunities you couldn’t foresee.
+For example, I have been climbing for over 10 years now, but climbing was only confirmed to become a Paralympic sport last year—and for me, Los Angeles 2028 is the Final Boss. It’s the ultimate challenge in my sport. But here’s the thing: you don’t just walk up to your Final Boss and hope for the best. You need the skills. You need the knowledge. You need the experience points. If I hadn’t been collecting those XP throughout a decade, I wouldn’t be standing here, ready for the challenge.
+So: be motivated by the XP you gain, not an imaginary end-goal. If you focus on the XP, you can never truly lose and on top of that the XP will prepare you for even larger challenges that one day might come across your way. 
+
+PRINCIPLE 4 — FUN disables Gravity
+The fourth and final principle is about energy
+Motivation gives you the energy to be disciplined — where discipline is the ability to push through the parts of a process. The ones you don’t like. For me that’s eating healthy, staying away from candy and burgers. But here's the problem: discipline costs energy. You can endure your way through something hard for a while — but it's hard to keep going if you have to rely on discipline alone. If you have to rely on discipline alone, the process will eventually take all your energy and run you out.
+The solution to this is passion. Or in another word, having fun.
+In French they say — "Talent c'est dans l'envie" — talent is in the desire. If one talks about talent, people usually think of physical talent, especially in sports.like being tall for basketball,  but another type of talent is to find joy in the process. That’s why some people get really good at certain things. They enjoy every part of the process and so they don’t need to waste unnecessary energy in being disciplined. The energy they save hereby, they can spend extra on becoming exceptionally good. Having fun during the process is like climbing with gravity disabled. You can just keep going.
+But how can you find joy in a process? Well to be honest I haven't really found a good answer to that yet. I do believe it’s easier to find joy in a process after you’ve tried a bit and got some expertise. A bird watcher without experience, doesn’t know which bird is a rare bird. So he can also not enjoy seeing one. So give yourself some time to find the fun. 
+But on the other hand it might be that you are dreaming about something for a while. You finally dare to take the first step, you told everybody that you want to become the greatest  guitarist in history but than after a while, you discover you actually don’t like to practise playing the guitar. At that point you have to be honest to yourself and just quit. That’s ok. You tried and there no reason to wonder about what if…
+It's okay to put down one dream and pick up another. Finding the thing that genuinely fuels you isn't giving up.
+
+PART 3 — THE CLOSE
+So to conclude
+My dream is to become the first paralympian of Leuven in 2028 and to bring the first paraclimbing gold medal from LA to Leuven! 
+I planned it down in many steps
+I will never ask myself what if i tried?
+I know that even if i only win silver, i will gained a massive amount of XP
+And I know that I have to be aware about gravity. 
+I am sure many of you have a certain dream, it doesn’t matter what it is. Something you've been calling a dream.
+Tonight — give it a new name.
+Call it a project 
+Write down the first step. Just one. And then before tomorrow evening just do it.
+Thank you

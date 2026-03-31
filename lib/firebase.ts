@@ -20,7 +20,7 @@ const storage = getStorage(app);
 
 // Initialize Analytics (client-side only)
 let analytics: Analytics | null = null;
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && firebaseConfig.projectId) {
   analytics = getAnalytics(app);
 }
 

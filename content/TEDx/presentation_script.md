@@ -2,7 +2,7 @@
 
 ### By Frederik Leys — fre2028.la
 
-**Target duration:** ~14–15 minutes
+**Target duration:** ~13 minutes
 **Language:** English
 
 ---
@@ -23,13 +23,17 @@
 
 I was born missing part of my leg.
 
-I've worn a prosthesis my whole life. And for most of my childhood and teenage years, well-meaning adults would quietly steer me away from things — sports, activities, situations — not because I couldn't do them, but because they assumed I couldn't.
+I've worn a prosthesis my whole life. And for most of my childhood and teenage years, well-meaning adults, especially the ones who didn't know me very well, would quietly steer me away from things like certain sports and activities — not because I couldn't do them, but because they assumed I couldn't. They weren't trying to exclude me; they were trying to protect me.
 
-That got old fast.
+**But they were wrong**
+
+I had to spend years proving that, obsessively. I call that period of my life—from age four until about eighteen—My Grind. My grind didn't just protect me; it made me stronger, it formed me.
 
 `[beat]`
 
-I have a PhD in mechanical engineering. I built a robotic hummingbird. I survived Expeditie Robinson. I have six World Cup medals — two of them gold. And I'm standing here today because in 2028, I plan to win **Paralympic gold** in Los Angeles.
+I am not "disabled" in the way some of you might think. I’ve walked the 100km Dodentocht in a single day. I’ve cycled the legendary cols of the Tour de France—the Ventoux, the Tourmalet, the Croix de Fer. I’ve summited 6,000-meter peaks in the Himalayas and survived weeks on Expeditie Robinson.
+
+Today, I am a member of the Belgian Climbing Team with six World Cup medals—two of them gold. And I’m standing here because, in 2028, I plan to become the first Paralympian of Leuven and win Paralympic gold in Los Angeles.
 
 `[PAUSE]`
 
@@ -37,17 +41,17 @@ Now — before you start feeling inspired in that slightly uncomfortable way whe
 
 I am not here to tell you that I overcame adversity.
 
-I'm not going to cry. I'm not going to give you a moment where the music swells and you leave feeling quietly grateful for your body parts.
+I'm not going to give you a moment where the music swells and you leave feeling quietly grateful for your body parts.
 
-I know that's the format. Disabled person on stage, mild tragedy, triumph, applause, everyone goes home feeling like a better person without actually having done anything. It's very efficient. I respect it.
+I know that's the format. Disabled person on stage, mild tragedy, triumph, applause, everyone goes home feeling like a better person without actually having done anything. That's stupid, I really don't need that kind of emphaty
 
-But that's not why we're here.
+I’m here to help you level up *your* life.
 
 `[beat]`
 
-I'm here to give you a **framework**. A set of principles that I actually live by — that got me from a working-class neighbourhood in Antwerp, through a robotics PhD, onto the world stage as a competitive climber — and that are now driving me toward a gold medal at the 2028 Paralympics.
+I'm here to talk about a **framework**. A set of principles that I learned during my grind and that i still live by. Principles that helped me through a PhD in robotic, starting a business and that are now driving me toward LA 2028.
 
-These principles don't require a disability. They don't require a wild backstory. They work for anyone who has something they want to do — and hasn't quite started yet.
+You don't need a prosthetic leg or a dramatic life story to use these principles; they are usefull for anyone with a dream they haven't dared to chase yet.
 
 So: are you ready? Good. Let's go.
 
@@ -61,9 +65,7 @@ So: are you ready? Good. Let's go.
 
 `[VISUAL: Word on screen — "DREAM" → crossed out → "PROJECT"]`
 
-Let me ask you something: what's your dream?
-
-You probably have one. Maybe it's starting a business. Writing a book. Learning to play guitar. Running a marathon. Travelling somewhere for a whole year.
+Many of you might have a dream. Maybe it's starting a business. Writing a book. Learning to play guitar. Running a marathon. Travelling somewhere for a whole year.
 
 Great. Now here's the problem.
 
@@ -111,93 +113,59 @@ Trying and learning is never a loss. Never starting? That's the only real failur
 
 ---
 
-### PRINCIPLE 3 — BREAK IT DOWN *(≈ 1.5 min)*
-
-`[VISUAL: A climbing wall — huge, foreboding, lit from below. Then: zoom into just one single hold.]`
-
-Right now, my goal is to climb **8b**. If you're not a climber, just know: that's a level that puts me in the running for Belgium's top 10 — including all the able-bodied climbers. I'm currently at 7c. That gap is enormous.
-
-If someone had sat me down in 2016 and said "great, now you just need to close that gap by 2028" I would have made a very polite excuse and left the room.
-
-If I stare at 8b, I freeze.
-
-So I don't stare at 8b.
-
-I stare at the next move. The next training session. The next millimetre.
-
-Here's the truth about big goals: they're not meant to be attacked all at once. They're meant to be **sliced**. Into phases, into weeks, into days, into single actions you can actually take — right now, today.
-
-Every step — no matter how small — leads to the same finish line. The mountain doesn't care whether you sprint or you plod. It just cares that you kept moving.
-
-So quit staring at the summit. Find your next step. Just that one. And take it.
-
----
-
-### PRINCIPLE 4 — JOURNEY > TROPHY *(≈ 1.5 min)*
+### PRINCIPLE 3 — THE FINAL BOSS *(≈ 2 min)*
 
 `[VISUAL: Photo of Fré on the podium → then: photo of Fré mid-climb, mid-effort, fully alive]`
 
-I've won World Cup gold twice. I'll tell you what that feels like.
+I’ve won World Cup gold twice. I can tell you exactly what that feels like.
 
-It feels amazing. For about five minutes.
+It feels incredible... for about five minutes.
 
-I'm being completely serious. The medal is cool. The ceremony is cool. Someone plays your national anthem, which is a very moving experience until you realise you don't quite remember all the words — hypothetically. And then it's over, and you start thinking about the next competition.
+I’m serious. You’re on the stage, the crowd is roaring, they all watch you, someone hangs a medaill around your neck and your ego is hitting a high note. You’re standing there humming the anthem because—let’s be honest—you’ve forgotten half the lyrics. But then, the music stops.
 
-The **real** prize — the one that actually stays with you — isn't the medal. It's the person you had to become to earn it.
+You walk off that stage, you go backstage, and... that’s it. The medal ceremony hasn’t changed who you are. It hasn’t solved your problems. The "vibe" is over.
 
-The early mornings. The failed attempts. The sessions where you fell twelve times in a row. The moment you figured out that one move. The friendships built in climbing gyms around the world.
+The reason is simple: **An end-goal has no intrinsic value.**
 
-That is the prize. That's what compounds. That's what you can't lose.
+Whether it’s a gold medal, a job title, a revenue target, or a degree—it’s just a marker. If that marker is your only motivation, you’re chasing a hollow object. So I believe there is a better motivation an underlying goal that stays with you for the rest of your life and something gamers call XP or Experience points. It’s the skill, the resilience, the friendships and the knowledge that stays with you long after the trophy is on a shelf or the final boss is beaten.
 
-The trophy is a five-minute vibe. The journey is your whole life levelling up.
+In other wordds, the reason you "do the work" isn't to fill a trophy cabinet; it’s to **increase your stats.** The real value isn't the gold; it’s the **person you had to become** to be capable of winning it.
 
-So if you're only focused on the finish line — if you're grinding through something you hate, just waiting to "get there" — I promise you: you're missing 99% of the value.
+Every brutal training session? **XP.** Every competition where you fell short? **XP.** The network of engineers, coaches, and sponsors you’ve built? That’s **XP.** The self-confidence forged one step at the time. That is **XP.**
 
-The growth is the point. Not the gold.
+The beauty of XP is that it’s  **cumulative** . It stacks. It doesn’t disappear when the ceremony ends.
 
----
+Climbing was only confirmed for the Paralympics last year—and for me, **Los Angeles 2028 is the Final Boss.** It’s the ultimate challenge I’ve been building toward. But here’s the thing: you don’t just walk up to a Final Boss and hope for the best. You need the skills. You need the knowledge. You need a decade of leveling up.
 
-### PRINCIPLE 5 — THE VIBE CHECK *(≈ 1.5 min)*
+If I hadn’t been collecting that XP through the "meaningless" years, I wouldn’t be standing here ready to strike now. I’d be under-leveled and overwhelmed.
 
-`[VISUAL: Text on screen — "If it's not fun, you're doing it wrong."]`
+That’s what gets you through the hard stretches. You aren't just chasing a finish line; you're building a version of yourself that can handle harder things with ease.
 
-I want you to picture something: five, six, seven hours of hard physical training per week. On top of a full-time engineering job. On top of managing sponsorships, media, a non-profit, a website — **fre2028.la** — basically running a micro-brand.
-
-On the outside, this sounds exhausting. And occasionally my body agrees, loudly.
-
-People ask me: "How do you keep it up?"
-
-And the honest answer is: **because I love it**.
-
-Not every moment. Not every training session. But the overall experience? The lifestyle? The community? The challenge? I genuinely love it. It's *fun*.
-
-And that matters more than people realise — because fun is not a bonus feature. Fun is the **engine**. It's what keeps you going when things get hard. And things will get hard. Guaranteed.
-
-If you're not finding any joy in the process — if there's zero fun in the doing — you either need to find a different *how*, or reconsider the *what*. Because misery is not a sustainable strategy.
-
-Hard work doesn't have to be miserable. Find the joy — or redesign until you do.
+**So: be motivated by the XP you gain, not an imaginary end-goal.** that's the mindset. If you focus on the XP, you can never truly lose and one day you might become the final boss.
 
 ---
 
-### PRINCIPLE 6 — COLLECT THE XP *(≈ 1.5 min)*
+### PRINCIPLE 4 — FUN IS THE ENGIN *(≈ 2.5 min)*
 
-`[VISUAL: A video game "LEVEL UP" screen — then: a photo of Fré at a recent competition]`
+`[VISUAL: Text on screen — "Motivation. Discipline. Passion."]`
 
-For the gamers in the room — and really, for everyone — you know what XP is: **Experience Points**. The thing that makes your character stronger, regardless of whether you won the battle.
+Motivation is real. It's useful. What motivation mostly gives you is **discipline** — the ability to push through the parts of the process that aren't naturally energising. The early mornings. The boring reps. The parts that feel like work.
 
-Here's what nobody tells you about "projects that don't go perfectly":
+And discipline is definitely important. But here's the problem: discipline costs energy. You can endure your way through something hard for a while — but it's hard to maintain. Discipline alone will eventually run you out.
 
-You still get the XP.
+The antidote to discipline? **passion**. Or, to use another word for it: **fun**.
 
-When my company Hummingdrones didn't become a commercial success — I got XP. I got the knowledge of how to build and run a startup. I got a business partner who later became my employer. I got a masterclass in real-world engineering I couldn't have paid for.
+There's a French saying — "Talent c'est dans l'envie" — talent is in the desire. And I think that's true. But not in the way most people frame it. What we call talent isn't something that arrives when you want it badly enough — it's what happens when you already naturally enjoy the process. That's *why* those people get good. Not because they forced themselves through it. Because they didn't have to. If you genuinely enjoy something, you don't even need discipline. There's no energy wasted on resistance.
 
-Also, I got a very good story. Which, at dinner parties, is genuinely underrated.
+The Japanese have a concept called **ikigai** — it's the intersection of what you love, what you're good at, what the world needs, and what you can be paid for. The passion part — the *what you love* — is essential. Without it, you're just grinding.
 
-Every climb I've fallen off — XP. Every competition where I didn't medal — XP. Every experiment, every adjustment, every setback has made me smarter, more adaptive, harder to beat.
+Let me give you a personal example. Training? For me, that's passion. I genuinely look forward to going to the climbing gym. I've never once dragged myself there against my will — I show up early, I stay late. Training doesn't cost me discipline. It *gives* me energy.
 
-Here's the thing about XP: it's cumulative. It stacks. The person I am training for 2028 is infinitely better equipped than the person who walked into his first competition in 2016. Not just because I've trained harder — but because every single experience, good or bad, went into the character build.
+Eating healthy? Completely different story. I haven't cracked that one yet. I know it matters. I know it's part of the process. But I haven't found a way to make it *fun* yet — so it lives in the discipline column. I'm still working on it.
 
-You are always levelling up. Even when it doesn't feel like it.
+And that's okay. You don't have to love every part of your project. But you need to be honest about which parts energise you and which parts drain you — and keep pushing to shift that balance.
+
+Because fun is not a bonus feature, it is the **engine**. It's what turns the grind into *a way of life*. If there's genuinely zero joy in the process, find a different *how* — or reconsider the *what*. Misery is not a strategy.
 
 ---
 
@@ -213,7 +181,7 @@ Because I'm living proof that these principles work. And I want you to see that 
 
 Everything I've just talked about — the framework, the mindset — it's not theory. It's the engine behind a very specific, very real project: **getting to the podium at the 2028 Paralympic Games in Los Angeles**.
 
-I track it. I document it. I share it. Every step, every result, every lesson — it's all at **fre2028.la**.
+I am tracking  it. I document it. I share it. Every step, every result, every lesson — it's all at **fre2028.la**.
 
 `[PAUSE]`
 
@@ -223,7 +191,7 @@ None of that was in the plan. There was no plan. There were just projects.
 
 None of that happened because I "dreamed big".
 
-It happened because I kept **converting dreams into projects** — upgrading the label, breaking it down, enjoying the ride, collecting the XP, and never, ever confusing "not starting" with safety.
+It happened because I kept **converting dreams into projects** — upgrading the label, chasing the XP over the trophy, finding the fun, and never, ever confusing "not starting" with safety.
 
 `[PAUSE]`
 
@@ -260,12 +228,10 @@ See you on the wall.
 | Opening / Introduction         | No words → reveal + frame          | 3 min             |
 | Principle 1: Upgrade the Label | Dream → Project (KULibrie example) | 2 min             |
 | Principle 2: The Only Real "L" | Experiment framing, not failure     | 1.5 min           |
-| Principle 3: Break It Down     | 8b goal, next step only             | 1.5 min           |
-| Principle 4: Journey > Trophy  | Gold medal = 5 minutes              | 1.5 min           |
-| Principle 5: The Vibe Check    | Fun as fuel, not bonus              | 1.5 min           |
-| Principle 6: Collect the XP    | Hummingdrones example               | 1.5 min           |
+| Principle 3: The Real Prize    | XP, journey, compounding experience | 2 min             |
+| Principle 4: The Vibe Check    | Discipline vs. passion as engine    | 2.5 min           |
 | Close                          | Call to action + fre2028.la         | 2 min             |
-| **TOTAL**                |                                     | **~14 min** |
+| **TOTAL**                |                                     | **~13 min** |
 
 ---
 
@@ -274,10 +240,9 @@ See you on the wall.
 - **Slide 1:** Black screen → single photo of Fré competing, mid-move
 - **Slide 2:** The word "DREAM" struck through, replaced by "PROJECT"
 - **Slide 3:** The KULibrie (robotic hummingbird photo)
-- **Slide 4:** Giant climbing wall → zoom to single hold
-- **Slide 5:** Podium photo side by side with a mid-effort training photo
-- **Slide 6:** "If it's not fun, you're doing it wrong." — white text, black background
-- **Slide 7:** A retro video game "LEVEL UP" graphic
-- **Slide 8:** fre2028.la logo / website screenshot close
+- **Slide 4:** Podium photo side by side with a mid-effort training photo
+- **Slide 5:** A retro video game "LEVEL UP" graphic → photo of Fré at a competition
+- **Slide 6:** \"Motivation. Discipline. Passion.\" — white text, black background
+- **Slide 7:** fre2028.la logo / website screenshot close
 
 ---
