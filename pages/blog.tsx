@@ -3,7 +3,9 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { Mountain, Calendar, ArrowRight, BookOpen, ArrowLeft, X, Mail } from 'lucide-react';
+import { GetStaticProps } from 'next';
 import { BlogListItem } from '../types/blog';
+import { blogService } from '../services/blogService';
 import { newsletterService } from '../services/newsletterService';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -12,11 +14,15 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export default function BlogPage() {
+interface BlogPageProps {
+  initialPosts?: BlogListItem[];
+}
+
+export default function BlogPage({ initialPosts = [] }: BlogPageProps) {
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [posts, setPosts] = useState<BlogListItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [posts, setPosts] = useState<BlogListItem[]>(initialPosts);
+  const [isLoading, setIsLoading] = useState(initialPosts.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -32,15 +38,12 @@ export default function BlogPage() {
   }, []);
 
   useEffect(() => {
+    if (initialPosts.length > 0) return;
     const loadPosts = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch('/api/blog/posts');
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog posts');
-        }
-        const fetchedPosts = await response.json();
+        const fetchedPosts = await blogService.fetchBlogPostsListing();
         setPosts(fetchedPosts);
       } catch (err) {
         console.error('Error loading blog posts:', err);
@@ -51,7 +54,7 @@ export default function BlogPage() {
     };
 
     loadPosts();
-  }, []);
+  }, [initialPosts.length]);
 
   const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'outline' | 'white' }>(({ className, variant = 'primary', ...props }, ref) => {
     return (
@@ -341,3 +344,22 @@ export default function BlogPage() {
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  try {
+    const initialPosts = await blogService.fetchBlogPostsListing();
+    return {
+      props: {
+        initialPosts,
+      },
+    };
+  } catch (error) {
+    console.error('Error pre-fetching blog posts:', error);
+    return {
+      props: {
+        initialPosts: [],
+      },
+    };
+  }
+};
+

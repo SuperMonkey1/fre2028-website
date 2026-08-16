@@ -373,8 +373,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    // Enable fallback to generate pages on-demand for new posts
-    fallback: true,
+    fallback: false,
   };
 };
 
@@ -392,7 +391,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
     },
-    // Revalidate every hour (3600 seconds)
-    revalidate: 3600,
   };
 };

@@ -7,6 +7,12 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
+    "auth:linkedin": "node tools/linkedin-auth.mjs",
+    "post:linkedin": "node tools/publish-linkedin.mjs",
+    "auth:instagram": "node tools/instagram-auth.mjs",
+    "post:instagram": "node tools/publish-instagram.mjs",
+    "post:facebook": "node tools/publish-facebook.mjs",
+    "crop:image": "python tools/crop-image.py",
     "lint": "next lint"
   },
   "dependencies": {

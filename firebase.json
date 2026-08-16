@@ -1,15 +1,52 @@
 {
   "hosting": {
-    "source": ".",
+    "public": "out",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "public/images/web/2025_innsbruck_na_f.webp"
+      "**/node_modules/**"
     ],
-    "frameworksBackend": {
-      "region": "europe-west1"
-    }
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "headers": [
+      {
+        "source": "/:path*",
+        "headers": [
+          {
+            "key": "X-DNS-Prefetch-Control",
+            "value": "on"
+          },
+          {
+            "key": "X-Frame-Options",
+            "value": "SAMEORIGIN"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          },
+          {
+            "key": "Referrer-Policy",
+            "value": "origin-when-cross-origin"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/newsletter/**",
+        "function": {
+          "functionId": "newsletter",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/api/contact/**",
+        "function": {
+          "functionId": "contact",
+          "region": "us-central1"
+        }
+      }
+    ]
   },
   "functions": [
     {
@@ -32,3 +69,4 @@
     "rules": "storage.rules"
   }
 }
+

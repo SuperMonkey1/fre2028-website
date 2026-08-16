@@ -1,17 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
-  i18n: {
-    locales: ['nl'],
-    defaultLocale: 'nl',
-  },
-  // Add trailing slashes for better SEO
   trailingSlash: false,
-  // Enable compression
   compress: true,
-  // Optimize images
   images: {
-    unoptimized: true, // Disable optimization for Firebase hosting compatibility
+    unoptimized: true, // Disable optimization for static export and Firebase hosting compatibility
     remotePatterns: [
       {
         protocol: 'https',
@@ -61,34 +55,8 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  // Generate ETags for better caching
   generateEtags: true,
-  // Headers for security and SEO
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on'
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'origin-when-cross-origin'
-          },
-        ],
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig
+

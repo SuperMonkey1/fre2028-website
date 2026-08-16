@@ -35,7 +35,7 @@ const slides = [
             DREAM<br />BIG.
           </h1>
           
-          <p className="text-xl md:text-2xl lg:text-3xl text-zinc-300 max-w-2xl leading-relaxed font-light mt-20">
+          <p className="absolute bottom-[25vh] text-xl md:text-2xl lg:text-3xl text-zinc-300 max-w-2xl leading-relaxed font-light">
             Becoming the first Paralympian from Leuven
           </p>
         </div>
