@@ -110,8 +110,8 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
         </div>
 
         {/* 25 Financial Partners Grid */}
-        <div className="p-3 sm:p-5 md:p-6 flex-1 overflow-y-auto md:overflow-hidden bg-white flex items-center">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-2.5 md:gap-3 w-full">
+        <div className="p-2 sm:p-3 md:p-4 flex-1 overflow-y-auto md:overflow-hidden bg-white flex items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1 sm:gap-1.5 md:gap-1.5 w-full">
             {slots.map(({ slotNumber, isFilled, partner }) => {
               if (isFilled && partner) {
                 return (
