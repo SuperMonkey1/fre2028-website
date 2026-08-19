@@ -92,11 +92,8 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
         <div className="px-5 py-3 sm:px-8 sm:py-4 border-b border-zinc-200 bg-zinc-50 flex items-center justify-between flex-shrink-0">
           <div>
             <h2 id="partners-modal-title" className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
-              Dank aan mijn Partners & Pioniers
+              Dank aan mijn Partners
             </h2>
-            <p className="text-xs sm:text-sm text-zinc-600 font-medium">
-              Mijn 25 Founding Partners op weg naar Los Angeles 2028
-            </p>
           </div>
 
           {/* Close Button (X) */}
