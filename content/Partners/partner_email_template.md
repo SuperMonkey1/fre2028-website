@@ -10,4 +10,4 @@ Zou je mij een paar momenten kunnen doorgeven waarop het jou zou passen om even 
 
 Met vriendelijke groet,
 Fré Leys
-fre@fre2028.la | https://www.fre2028.la
+frederik.leys@gmail.com | https://www.fre2028.la

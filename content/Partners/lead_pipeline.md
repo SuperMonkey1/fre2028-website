@@ -9,7 +9,7 @@ Dit document houdt de stand van zaken bij voor alle sponsorcontacten, outreach e
 | Metric | Waarde |
 | :--- | :--- |
 | **Totale Bevestigde Sponsoring** | **€ 2.500** |
-| **Doel Leuven 8 (Jaar 1)** | € 8.000 (€ 1.000 / partner / jaar) |
+| **Doel: 25 Leuven Partners** | € 25.000 - € 30.000 (€ 100/mnd = € 1.200 / partner / jaar) |
 | **Aantal Bevestigde Partners** | 1 (Cronos) |
 | **Aantal Actieve Gesprekken** | 0 |
 | **Aantal Gecontacteerd (wacht op antwoord)** | 0 |

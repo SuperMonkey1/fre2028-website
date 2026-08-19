@@ -74,127 +74,71 @@ export default function PartnershipPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <TrendingUp className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">1. De Financiële Partners</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">1. De Leuven 25 Support Circle</h2>
           </div>
 
-          <p className="text-lg text-zinc-700 leading-relaxed mb-12">
-            Deze groep bestaat uit twee niveaus van financiële sponsors: een lokale basis van ondersteuning (Leuven Circle) en een groep van grote partners op nationaal niveau.
+          <p className="text-lg text-zinc-700 leading-relaxed mb-8">
+            Om als professioneel atleet 100% te kunnen focussen op goud in LA 2028, bouw ik aan een hecht netwerk van <strong>25 geëngageerde Leuvense partners</strong> aan <strong>€100 per maand (€1.200 per jaar)</strong>. Dit levert het noodzakelijke jaarlijkse werkingsbudget van net geen €25.000 - €30.000 om voltijds te kunnen trainen, rusten en de campagne te leiden.
           </p>
 
-          {/* Leuven Circle */}
-          <div className="bg-white border border-zinc-200 p-8 mb-8">
-            <h3 className="text-2xl font-bold mb-6">De Leuven Circle</h3>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doel</div>
-                <p className="text-zinc-700">Een stabiele financiële basis creëren om alle jaarlijkse klimgerelateerde kosten te dekken. Deze bedragen jaarlijks ongeveer 8000 euro.</p>
-              </div>
-              <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doelwit</div>
-                <p className="text-zinc-700">Een kern groep van <strong>8 partnerbedrijven</strong>.</p>
-              </div>
-            </div>
-
-            <div className="space-y-4 text-zinc-700">
-              <div>
-                <h4 className="font-bold mb-2">Profiel:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Leuven-gebaseerde bedrijven</li>
-                  <li>Focus op de technologie sector om mijn eigen achtergrond als ingenieur te benutten</li>
-                </ul>
+          {/* Context & Waarom dit nodig is */}
+          <div className="bg-white border border-zinc-200 p-8 mb-8 space-y-6">
+            <h3 className="text-2xl font-bold">Waarom deze steun noodzakelijk is</h3>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="border-l-4 border-amber-500 pl-4 py-1 bg-amber-50/50">
+                <h4 className="font-bold text-sm text-zinc-900 mb-1">Amper overheidsmiddelen</h4>
+                <p className="text-sm text-zinc-700">
+                  Zelfs wedstrijdkosten worden niet volledig gedekt. Zo moet ik voor mijn internationale wedstrijden in 2026 circa <strong>€3.500 uit eigen middelen</strong> betalen. In omringende landen worden paraklimmers voltijds professioneel omkaderd met aanzienlijke budgetten.
+                </p>
               </div>
 
-              <div>
-                <h4 className="font-bold mb-2">Outreach:</h4>
-                <p>Een mix van warme outreach (bestaand netwerk) en cold emailing.</p>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Tijdslijn:</h4>
-                <p>Alle 8 partners veiligstellen binnen de eerste 6 maanden van de campagne.</p>
-              </div>
-
-              <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                <h4 className="font-bold mb-2">De Vraag (Financieel):</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Een minimum van <strong>€1.000 per jaar</strong> per partner</li>
-                  <li>Jaarlijkse hernieuwing</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">De Teruggave (Op maat):</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Officiële partner status met promotie op de fre2028.LA website en sociale media</li>
-                  <li>In-company talks (bijv. over prestaties, veerkracht, een ingenieursbenadering van topsport)</li>
-                  <li>Andere</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Voorwaarden:</h4>
-                <p>Partnerschappen zullen gestructureerd worden voor jaarlijkse verlenging. Dit bouwt verantwoordelijkheid in, waardoor ik het succes van de campagne elk jaar kan bewijzen. Partners kunnen op die manier ook meegroeien met de campagne</p>
+              <div className="border-l-4 border-black pl-4 py-1 bg-zinc-50">
+                <h4 className="font-bold text-sm text-zinc-900 mb-1">Voltijds topsporttraject</h4>
+                <p className="text-sm text-zinc-700">
+                  Aanvankelijk wilde ik enkel klimkosten dekken, maar een 100% voorbereiding is onmogelijk combineerbaar met een reguliere job. Naast fysieke training en herstel is dit communicatietraject alleen al bijna een halftijdse baan.
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Prime Partners */}
-          <div className="bg-white border border-zinc-200 p-8">
-            <h3 className="text-2xl font-bold mb-6">De Prime Partners (Nationaal Niveau)</h3>
+          {/* 25 Leuven Partners Details */}
+          <div className="bg-white border-2 border-black p-8 mb-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-6">
+              <h3 className="text-2xl font-bold">Het Partnerpakket</h3>
+              <span className="inline-block px-3 py-1 bg-black text-white text-xs font-bold uppercase tracking-wider">
+                €100 / maand • €1.200 / jaar
+              </span>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doel</div>
-                <p className="text-zinc-700">Grote financiering veiligstellen die me toelaat om <strong>voltijds te focussen op prestaties</strong> in het laatste, kritieke jaar voor de Paralympische Spelen</p>
+                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doelwit</div>
+                <p className="text-zinc-700 font-medium">25 Leuvense ondernemingen & leiders</p>
               </div>
               <div>
-                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doelwit</div>
-                <p className="text-zinc-700">Ongeveer <strong>4 partners</strong>.</p>
+                <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Aanpak</div>
+                <p className="text-zinc-700">3 maanden gerichte media- & netwerkpush in Leuven</p>
               </div>
             </div>
 
             <div className="space-y-4 text-zinc-700">
-              <div>
-                <h4 className="font-bold mb-2">Profiel:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Grote nationale (Vlaamse) bedrijven</li>
-                  <li>Sterke B2C (Business-to-Consumer) focus met een grote klantbasis</li>
-                  <li>Voorbeelden: Banken, supermarktketens, restaurantketens</li>
+              <div className="bg-zinc-50 p-5 border border-zinc-200">
+                <h4 className="font-bold text-sm uppercase tracking-wider text-zinc-900 mb-3">Concrete Return voor Partners:</h4>
+                <ul className="list-disc list-inside space-y-2 text-sm">
+                  <li><strong>Zichtbaarheid:</strong> Alle 25 sponsors worden vermeld op de officiële <strong>campagneposter</strong>, de <strong>website</strong> en het <strong>wedstrijd/campagne T-shirt</strong>.</li>
+                  <li><strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk (over veerkracht, innovatie en ingenieursaanpak in topsport).</li>
+                  <li><strong>Kerstmarkt 2027:</strong> Partneractivatie en zichtbaarheid op de Leuvense Kerstmarkt.</li>
+                  <li><strong>Grote Poster 2028:</strong> Huis-aan-huis verspreiding in elk huis in Leuven en op alle scholen (in samenwerking met Stad Leuven).</li>
+                  <li><strong>Maatschappelijke impact:</strong> Structurele promotie voor paraklimmen via <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a> en aandacht voor de Paralympische Spelen in Leuven.</li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-bold mb-2">Outreach:</h4>
-                <p>Dit zal een langetermijn strategische inspanning zijn.</p>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Tijdslijn:</h4>
-                <p>Alle 4 partners veiligstellen tegen het <strong>midden van 2027</strong>. Dit geeft een ~1.5-jaar runway om deze high-level relaties op te bouwen.</p>
-              </div>
-
-              <div className="bg-zinc-50 p-4 border-l-4 border-black">
-                <h4 className="font-bold mb-2">De Vraag:</h4>
-                <p>Financiële steun <strong>In overleg</strong>.</p>
-                <p>Promotie Fre2028.LA naar <strong>personeel</strong> en <strong>klanten</strong>.</p>
-
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">De Teruggave:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li><strong>In overleg</strong></li>
-                  <li>High-level nationale zichtbaarheid en associatie met het Belgische Paralympische verhaal</li>
-                  <li>Inspirerende talks voor hun nationale werknemersbasis</li>
-                  <li>Grote merk alignment mogelijkheden</li>
-                  <li>Andere</li>
-                </ul>
-              </div>
-
-              <div className="bg-red-50 border border-red-200 p-4">
-                <h4 className="font-bold mb-2 text-red-900">Uitdaging:</h4>
-                <p className="text-red-800">Dit wordt erkend als het meest uitdagende deel van het financiële plan en zal een toegewijde, professionele aanpak vereisen.</p>
+                <h4 className="font-bold mb-2">Waarom uitsluitend Leuven?</h4>
+                <p className="text-sm">
+                  Enerzijds praktisch voor events en samenwerking, anderzijds omdat ik mijn zichtbaarheid en inzet rond de Paralympische Spelen bewust wil focussen op mijn thuisstad Leuven.
+                </p>
               </div>
             </div>
           </div>
@@ -206,53 +150,34 @@ export default function PartnershipPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Users className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">2. Strategische Partners</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">2. Strategische Partners (Leuven)</h2>
           </div>
 
           <div className="bg-zinc-50 border border-zinc-200 p-8">
             <div className="mb-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro Bono Diensten</p>
-              <h3 className="text-xl font-bold mb-4">Leuven-Gebaseerde Professionele Diensten</h3>
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro Bono Expertise & Media</p>
+              <h3 className="text-xl font-bold mb-4">Lokale Partners in Communicatie & Diensten</h3>
             </div>
 
             <div className="space-y-4 text-zinc-700">
               <div>
                 <h4 className="font-bold mb-2">Doel:</h4>
-                <p>Professionele diensten en expertise verkrijgen om de campagne effectief te runnen zonder directe financiële kosten, terwijl tegelijkertijd mijn Leuven netwerk wordt versterkt.</p>
+                <p>Professionele expertise inzetten voor de 3-maanden push, mediacampagnes, PR en content creation zonder cashflowdruk op het sportieve budget.</p>
               </div>
 
               <div>
-                <h4 className="font-bold mb-2">Doelwit:</h4>
-                <p>Leuven-gebaseerde bedrijven en geschoolde professionals.</p>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Profiel:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Marktonderzoek / analyse bureau</li>
-                  <li>Advertentie / PR agentschap</li>
-                  <li>Professionele content creators (videograaf, fotograaf)</li>
-                  <li>Juridische of administratieve ondersteuning</li>
+                <h4 className="font-bold mb-2">Doelwit & Profiel:</h4>
+                <ul className="list-disc list-inside space-y-1 pl-4 text-sm">
+                  <li>PR & Communicatiebureaus uit Leuven</li>
+                  <li>Content creators (videografie, fotografie, storytelling)</li>
+                  <li>Media- en distributiepartners</li>
+                  <li>Juridische en administratieve ondersteuning</li>
                 </ul>
               </div>
 
               <div className="bg-white p-4 border-l-4 border-black">
-                <h4 className="font-bold mb-2">De Vraag:</h4>
-                <p>Pro bono diensten en expertise (geen financiële bijdrage).</p>
-              </div>
-
-              <div>
                 <h4 className="font-bold mb-2">De Teruggave:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Officiële partner status en volledige zichtbaarheid op de website en in campagne materialen</li>
-                  <li>Een unieke en tastbare manier om een lokale atleet te ondersteunen</li>
-                  <li>Praktische voordelen (bijv. gebruik van een non-profit structuur voor diensten)</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Redenering:</h4>
-                <p>Deze partners lokaal houden is praktisch gemakkelijker en versterkt het "Eerste Paralympiër uit Leuven" verhaal door een sterke lokale ondersteuningsweb op te bouwen.</p>
+                <p className="text-sm">Volledige erkenning als Strategisch Partner op de website, in persberichten, events en bij alle gezamenlijke campagnes.</p>
               </div>
             </div>
           </div>
@@ -264,34 +189,29 @@ export default function PartnershipPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Award className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">3. Het Prestatie Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">3. Het Performance Team</h2>
           </div>
 
           <div className="bg-white border border-zinc-200 p-8">
             <div className="mb-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Expert Ondersteuning</p>
-              <h3 className="text-xl font-bold mb-4">Atletische, Fysieke & Mentale Voorbereiding</h3>
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Expert Topsportkader</p>
+              <h3 className="text-xl font-bold mb-4">Atletische, Fysieke & Mentale Begeleiding</h3>
             </div>
 
             <div className="space-y-4 text-zinc-700">
               <div>
                 <h4 className="font-bold mb-2">Doel:</h4>
-                <p>Dit is het niet-financiële, high-performance team verantwoordelijk voor mijn atletische, fysieke en mentale voorbereiding.</p>
-              </div>
-
-              <div>
-                <h4 className="font-bold mb-2">Profiel:</h4>
-                <p>Dit is mijn kern atletische ondersteuningsstructuur, die al in ontwikkeling is.</p>
+                <p>De wetenschappelijke en sportieve structuur die ervoor zorgt dat Fré in topvorm aan de start verschijnt in Los Angeles 2028.</p>
               </div>
 
               <div>
                 <h4 className="font-bold mb-2">Team Leden:</h4>
-                <ul className="list-disc list-inside space-y-1 pl-4">
-                  <li>Trainers & Coaches</li>
-                  <li>Voedingsdeskundige / Nutritionist</li>
-                  <li>Kine (Fysiotherapeut)</li>
-                  <li>Klim Federatie</li>
-                  <li>G-Sport Vlaanderen</li>
+                <ul className="list-disc list-inside space-y-1 pl-4 text-sm">
+                  <li>Hoofdcoach & Klimtrainers</li>
+                  <li>Kinesitherapeut & Revalidatiespecialist</li>
+                  <li>Sportpsycholoog & Mentale Coach</li>
+                  <li>Voedingsdeskundige</li>
+                  <li>Klim- en Bergsportfederatie / G-Sport Vlaanderen</li>
                 </ul>
               </div>
             </div>
@@ -302,47 +222,48 @@ export default function PartnershipPlan() {
       {/* Summary Table */}
       <section className="py-16 md:py-20">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Samenvatting: Financiële Partnerschap Niveaus</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Samenvatting Partnerschap Structuur</h2>
 
           <div className="overflow-x-auto">
             <table className="w-full border-collapse border border-zinc-300">
               <thead>
                 <tr className="bg-black text-white">
-                  <th className="border border-zinc-300 p-4 text-left font-bold">Kenmerk</th>
-                  <th className="border border-zinc-300 p-4 text-left font-bold">De Leuven Circle</th>
-                  <th className="border border-zinc-300 p-4 text-left font-bold">De Prime Partners</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">Pijler</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">1. Financiële Partners</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">2. Strategische Partners</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">3. Performance Team</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
                 <tr>
                   <td className="border border-zinc-300 p-4 font-bold">Doel</td>
-                  <td className="border border-zinc-300 p-4">Lopende kosten dekken, campagne financieren</td>
-                  <td className="border border-zinc-300 p-4">100% prestatie focus (en communicatie) mogelijk maken in laatste jaar</td>
+                  <td className="border border-zinc-300 p-4">Voltijds professioneel topsporttraject & reiskosten dekken</td>
+                  <td className="border border-zinc-300 p-4">Media, PR, video & mediapush pro-bono</td>
+                  <td className="border border-zinc-300 p-4">Fysieke, technische & mentale topbegeleiding</td>
                 </tr>
                 <tr className="bg-zinc-50">
-                  <td className="border border-zinc-300 p-4 font-bold">Geografie</td>
+                  <td className="border border-zinc-300 p-4 font-bold">Focus</td>
                   <td className="border border-zinc-300 p-4">Leuven</td>
-                  <td className="border border-zinc-300 p-4">Vlaanderen / Nationaal</td>
+                  <td className="border border-zinc-300 p-4">Leuven</td>
+                  <td className="border border-zinc-300 p-4">Nationaal / Internationaal</td>
                 </tr>
                 <tr>
-                  <td className="border border-zinc-300 p-4 font-bold"># Partners</td>
-                  <td className="border border-zinc-300 p-4">8</td>
-                  <td className="border border-zinc-300 p-4">~4</td>
+                  <td className="border border-zinc-300 p-4 font-bold">Aantal</td>
+                  <td className="border border-zinc-300 p-4">25 partners</td>
+                  <td className="border border-zinc-300 p-4">3 - 5 partners</td>
+                  <td className="border border-zinc-300 p-4">Kernteam van experts</td>
                 </tr>
                 <tr className="bg-zinc-50">
-                  <td className="border border-zinc-300 p-4 font-bold">Vraag (per partner)</td>
-                  <td className="border border-zinc-300 p-4">€1.000 &lt;</td>
-                  <td className="border border-zinc-300 p-4">~€10.000 (eenmalig of laatste jaar)</td>
+                  <td className="border border-zinc-300 p-4 font-bold">Bijdrage</td>
+                  <td className="border border-zinc-300 p-4">€100 / maand (€1.200 / jaar)</td>
+                  <td className="border border-zinc-300 p-4">Pro bono diensten & expertise</td>
+                  <td className="border border-zinc-300 p-4">Expertise & coaching</td>
                 </tr>
                 <tr>
-                  <td className="border border-zinc-300 p-4 font-bold">Doelwit Profiel</td>
-                  <td className="border border-zinc-300 p-4">lokale KMO's</td>
-                  <td className="border border-zinc-300 p-4">Banken, Supermarkten, grote B2C ketens</td>
-                </tr>
-                <tr className="bg-zinc-50">
-                  <td className="border border-zinc-300 p-4 font-bold">Tijdslijn</td>
-                  <td className="border border-zinc-300 p-4">Veiligstellen binnen 6 maanden</td>
-                  <td className="border border-zinc-300 p-4">Veiligstellen tegen midden 2027</td>
+                  <td className="border border-zinc-300 p-4 font-bold">Return</td>
+                  <td className="border border-zinc-300 p-4">Poster, website, T-shirt, jaarevent, Kerstmarkt 2027, huis-aan-huis poster 2028</td>
+                  <td className="border border-zinc-300 p-4">Erkenning, netwerk & media-associatie</td>
+                  <td className="border border-zinc-300 p-4">Paralympisch goud & topsportsucces</td>
                 </tr>
               </tbody>
             </table>

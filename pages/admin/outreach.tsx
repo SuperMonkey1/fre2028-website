@@ -470,7 +470,8 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
   const toContactCount = leads.filter((l) => l.status === 'TE_CONTACTEREN').length;
   
   const totalConfirmedAmount = 2500; // Cronos
-  const targetYear1 = 8000; // 8 partners x €1000
+  const targetPartnerCount = 25;
+  const targetYear1 = 30000; // 25 partners x €1200 / jaar (€25.000 - €30.000)
   const progressPercent = Math.min(100, Math.round((totalConfirmedAmount / targetYear1) * 100));
 
   // Filtered leads
@@ -585,8 +586,8 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
         </div>
       </header>
 
-      {/* Hero / Motivational Header */}
-      <div className="bg-white border-b border-zinc-200 pt-8 pb-10 shadow-sm">
+      {/* Main Content */}
+      <main className="py-10">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
@@ -597,7 +598,7 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
                 Sponsor Outreach Dashboard
               </h1>
               <p className="text-zinc-600 text-sm md:text-base mt-1.5 max-w-2xl">
-                Volg de stand van zaken van de <span className="text-zinc-950 font-bold">Leuven 8</span> campagne, bekijk kant-en-klare e-mail drafts van <span className="text-amber-700 font-bold">Jelle</span> en sluit deals.
+                Volg de stand van zaken van de <span className="text-zinc-950 font-bold">25 Leuvense Partners</span> campagne (€100/mnd), bekijk kant-en-klare e-mail drafts van <span className="text-amber-700 font-bold">Jelle</span> en sluit deals.
               </p>
             </div>
 
@@ -609,7 +610,7 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
               <div>
                 <p className="text-xs uppercase tracking-wider text-amber-900 font-extrabold">Eerste Mijlpaal Behaald! 🔥</p>
                 <p className="text-xs text-amber-950 mt-0.5 leading-snug">
-                  Cronos is binnen (€2.500). Nog <span className="font-bold underline decoration-amber-500">7 partners</span> voor de Leuven 8!
+                  Cronos is binnen (€2.500). Nog <span className="font-bold underline decoration-amber-500">{targetPartnerCount - confirmedCount} partners</span> te gaan voor de 25!
                 </p>
               </div>
             </div>
@@ -626,19 +627,19 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
               <div className="text-2xl md:text-3xl font-extrabold text-emerald-700">
                 € {totalConfirmedAmount.toLocaleString('nl-BE')}
               </div>
-              <p className="text-xs text-zinc-500 mt-1 font-medium">van doel € 8.000 (Jaar 1)</p>
+              <p className="text-xs text-zinc-500 mt-1 font-medium">van doel € 30.000 / jaar</p>
             </div>
 
             {/* Bevestigde Partners */}
             <div className="bg-zinc-50 border border-zinc-200/90 p-5 rounded-xl">
               <div className="flex items-center justify-between text-zinc-500 text-xs font-bold uppercase tracking-wider mb-2">
-                <span>Leuven 8 Partners</span>
+                <span>25 Leuven Partners</span>
                 <Users className="w-4 h-4 text-amber-600" />
               </div>
               <div className="text-2xl md:text-3xl font-extrabold text-zinc-950">
-                {confirmedCount} <span className="text-zinc-400 text-lg font-normal">/ 8</span>
+                {confirmedCount} <span className="text-zinc-400 text-lg font-normal">/ {targetPartnerCount}</span>
               </div>
-              <p className="text-xs text-zinc-500 mt-1 font-medium">12.5% van Leuven 8 bezet</p>
+              <p className="text-xs text-zinc-500 mt-1 font-medium">{Math.round((confirmedCount / targetPartnerCount) * 100)}% van de 25 bezet</p>
             </div>
 
             {/* In Gesprek & Contact */}
@@ -662,7 +663,7 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
               <div className="text-2xl md:text-3xl font-extrabold text-purple-700">
                 {toContactCount}
               </div>
-              <p className="text-xs text-zinc-500 mt-1 font-medium">13 drafts direct verzendklaar</p>
+              <p className="text-xs text-zinc-500 mt-1 font-medium">Drafts direct verzendklaar</p>
             </div>
           </div>
 
@@ -670,7 +671,7 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
           <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-5">
             <div className="flex items-center justify-between text-xs font-bold mb-2">
               <span className="text-zinc-700 uppercase tracking-wider flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> Voortgang Leuven 8 Budget (Jaar 1)
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-600" /> Voortgang 25 Leuven Partners Budget (Jaar 1)
               </span>
               <span className="text-emerald-700 font-extrabold text-sm">{progressPercent}% Behaald</span>
             </div>
@@ -685,16 +686,16 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
             <div className="flex justify-between text-[11px] text-zinc-500 font-mono mt-2.5">
               <span>€ 0</span>
               <span className="text-emerald-700 font-bold">€ 2.500 (Nu - Cronos)</span>
-              <span>€ 4.000 (Mijlpaal 2)</span>
-              <span className="text-zinc-900 font-bold">€ 8.000 (Target Jaar 1)</span>
-              <span>€ 40.000 (LA 2028 Totaal)</span>
+              <span>€ 10.000 (Mijlpaal 2)</span>
+              <span>€ 20.000 (Mijlpaal 3)</span>
+              <span className="text-zinc-900 font-bold">€ 30.000 (25 Partners Vol)</span>
             </div>
           </div>
         </div>
-      </div>
+      </main>
 
       {/* Main Content: Pipeline & Leads */}
-      <main className="max-w-7xl mx-auto px-4 md:px-8 pt-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pt-8">
         
         {/* Filters & Search Toolbar */}
         <div className="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center mb-6 pb-6 border-b border-zinc-200">
@@ -847,7 +848,7 @@ export default function OutreachAdminPage({ emailDrafts, initialLeads }: Outreac
             </table>
           </div>
         </div>
-      </main>
+      </div>
 
       {/* Email Viewer & Copy Modal */}
       {activeEmailModal && activeLeadForModal && (

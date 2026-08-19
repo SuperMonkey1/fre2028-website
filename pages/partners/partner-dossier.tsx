@@ -18,8 +18,8 @@ export default function PartnerDossierPage() {
             <Mountain className="w-6 h-6" />
             <div>FRÉ2028.LA</div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-2">Partnerschapsdossier — Leuven Circle</h1>
-          <p className="text-zinc-300 max-w-2xl">Een kort overzicht voor Leuvense bedrijven over het partnerprogramma rond de voorbereiding naar de Paralympische Spelen Los Angeles 2028.</p>
+          <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-2">Partnerschapsdossier — De Leuven 25 Support Circle</h1>
+          <p className="text-zinc-300 max-w-2xl">Een overzicht voor Leuvense bedrijven over het partnerprogramma (€100/maand) van de Leuven 25 Support Circle rond de voorbereiding naar de Paralympische Spelen Los Angeles 2028.</p>
         </div>
       </header>
 
@@ -29,17 +29,18 @@ export default function PartnerDossierPage() {
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold mb-3">Waarom partner worden?</h2>
               <p className="text-lg text-zinc-700 leading-relaxed mb-6">
-                Als partner van Team Fré ondersteun je niet alleen een topsporter uit Leuven, maar bouw je aan zichtbaarheid in de regio en creëer je concrete activaties voor je medewerkers en klanten.
+                Als partner van Team Fré ondersteun je niet alleen de eerste Leuvense paraklimmer op weg naar Paralympisch goud, maar bouw je mee aan maximale zichtbaarheid in Leuven en creëer je concrete activaties voor je medewerkers en klanten.
               </p>
 
-              <h3 className="text-xl font-bold mt-4 mb-2">De Leuven Circle</h3>
-              <p className="text-zinc-700 mb-4">Een groep van 8 lokale partners, gericht op het ondersteunen van de dagelijkse kost, communicatie en community-activaties. Jaarbijdrage vanaf €1.000 per partner.</p>
+              <h3 className="text-xl font-bold mt-4 mb-2">De Leuven 25 Support Circle (€100 / maand)</h3>
+              <p className="text-zinc-700 mb-4">Een groep van 25 Leuvense ondernemingen die met €100/maand (€1.200/jaar) een professioneel topsporttraject mogelijk maken. Reiskosten (bv. ~€3.500 eigen opleg in 2026 door gebrek aan overheidssubsidies) en fulltime voorbereiding worden zo gefinancierd.</p>
 
               <h3 className="text-xl font-bold mt-4 mb-2">Wat krijg je terug?</h3>
               <ul className="list-disc pl-5 text-zinc-700 space-y-2 mb-6">
-                <li>Zichtbaarheid op fre2028.LA en social media</li>
-                <li>In-company events en teambuildings (klimmen, talks)</li>
-                <li>Persoonlijke updates en exclusieve toegang tot events</li>
+                <li><strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en wedstrijd/campagne T-shirt</li>
+                <li><strong>Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk</li>
+                <li><strong>Lokale impact:</strong> Aanwezigheid op Kerstmarkt 2027 en Poster 2028 huis-aan-huis in Leuven en elke school</li>
+                <li><strong>Maatschappelijke betrokkenheid:</strong> Steun voor paraclimbing.be en de Paralympische beweging</li>
               </ul>
 
               <h3 className="text-xl font-bold mt-4 mb-2">Hoe meer info?</h3>
@@ -49,7 +50,7 @@ export default function PartnerDossierPage() {
                 <a className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded font-bold hover:opacity-90" href="/Frederik-Leys-Partnership-Dossier.pdf" download>
                   <Award className="w-4 h-4" /> Download PDF
                 </a>
-                <a className="inline-flex items-center gap-3 border border-black px-6 py-3 rounded font-bold hover:bg-black hover:text-white transition-colors" href="mailto:fre@fre2028.la">
+                <a className="inline-flex items-center gap-3 border border-black px-6 py-3 rounded font-bold hover:bg-black hover:text-white transition-colors" href="mailto:frederik.leys@gmail.com">
                   <Mail className="w-4 h-4" /> Contacteer Fré
                 </a>
               </div>

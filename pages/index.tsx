@@ -467,7 +467,7 @@ export default function ParaclimberSite() {
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
             <button 
-              onClick={() => scrollToSection('sponsors')} 
+              onClick={() => router.push('/become-partner')} 
               className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-10 px-6 text-xs ml-4 bg-red-600 hover:bg-red-700 text-white"
             >
               Word partner
@@ -494,7 +494,7 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
-             <Button onClick={() => scrollToSection('sponsors')} className="w-full">Word partner</Button>
+             <Button onClick={() => { setIsMobileMenuOpen(false); router.push('/become-partner'); }} className="w-full">Word partner</Button>
           </div>
         </div>
       </nav>
@@ -550,7 +550,7 @@ export default function ParaclimberSite() {
                 className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-white transition-all hover:scale-105 shadow-sm"
               >
                 <ShieldCheck className="w-4 h-4 text-white" />
-                Sponsors
+                Partners
               </button>
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
@@ -1569,7 +1569,7 @@ export default function ParaclimberSite() {
         onClose={handleClosePartnersModal}
         onSelectBecomePartner={() => {
           handleClosePartnersModal();
-          scrollToSection('sponsors');
+          router.push('/become-partner');
         }}
       />
     </div>

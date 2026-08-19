@@ -129,17 +129,16 @@ export default function BecomePartner() {
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  <strong>Doelstellingen:</strong> Middelen veiligstellen voor topprestaties en een team opbouwen om de Paralympische Spelen te promoten in Leuven en Vlaanderen.
+                  <strong>Doel:</strong> 25 Leuvense partners verzamelen in de <em>Leuven 25 Support Circle</em> (€100/mnd of €1.200/jaar) om voltijds als professioneel atleet te kunnen leven en trainen voor goud in LA 2028.
                 </p>
                 <p>
-                  <strong>Financiële Partners:</strong> Leuven Circle (8 lokale partners voor €8.000/jaar basis) en een viertal Nationale Lead Partners voor volledige focus.
+                  <strong>Focus Leuven:</strong> 100% lokale focus in Leuven om maximale maatschappelijke zichtbaarheid en betrokkenheid voor de Paralympische Spelen te creëren.
                 </p>
                 <p>
-                  <strong>Communicatie Partners:</strong> 4 strategische partners die pro-bono communicatie-expertise en diensten bieden.
-
+                  <strong>Strategische Partners:</strong> Lokale experts die pro-bono communicatie-, media- en PR-expertise leveren voor de 3-maanden mediapush.
                 </p>
                 <p>
-                  <strong>Performance Team:</strong> Mijn sportief kader.
+                  <strong>Performance Team:</strong> Mijn sportieve omkadering (coaches, kine, sportpsycholoog).
                 </p>
               </div>
 
@@ -164,55 +163,53 @@ export default function BecomePartner() {
           </h2>
 
           <div className="space-y-8">
-            <div className="bg-white border border-zinc-200 p-8">
-              <h3 className="text-2xl font-bold mb-4">Leuven Founding Circle</h3>
-              <p className="text-zinc-700 mb-4">
-                Sluit je aan bij 8 lokale partners die de basis vormen voor Fré2028.LA. Jaarlijkse bijdrage van €1.000 dekt kern klimkosten.
+            <div className="bg-white border-2 border-black p-8 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+                <h3 className="text-2xl font-bold">De Leuven 25 Support Circle</h3>
+                <span className="inline-block px-3 py-1 bg-black text-white text-xs font-bold uppercase tracking-wider">
+                  €100 / maand • €1.200 / jaar
+                </span>
+              </div>
+              <p className="text-zinc-700 mb-6">
+                Sluit je aan bij de Leuven 25 Support Circle — het erecollectief van 25 Leuvense ondernemingen die het fundament leggen voor Fré2028.LA. Omdat overheidssubsidies voor paraklimmen uiterst schaars zijn (bv. ~€3.500 eigen opleg in 2026 voor wedstrijdreizen), maakt deze bijdrage van €100/maand een voltijds professioneel topsporttraject mogelijk.
               </p>
-              <ul className="space-y-2 text-zinc-600">
-                <li>• Erkenning als founding member</li>
-                <li>• Uitgelicht op partners pagina en website</li>
-                <li>• Lokale gemeenschapsimpact</li>
-                <li>• Jaarlijkse partnerschapsvergadering</li>
-              </ul>
+              
+              <div className="bg-zinc-50 p-5 border border-zinc-200 rounded-sm mb-4">
+                <h4 className="font-bold text-sm uppercase tracking-wider text-zinc-900 mb-3">
+                  Concrete Return voor jouw bedrijf:
+                </h4>
+                <ul className="space-y-2 text-zinc-700 text-sm">
+                  <li>• <strong>Prominente zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en wedstrijd/campagne T-shirt.</li>
+                  <li>• <strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partner-event met kliminitiatie, filmvertoning en keynote/talk over veerkracht & topprestaties.</li>
+                  <li>• <strong>Kerstmarkt 2027:</strong> Zichtbaarheid bij acties en aanwezigheid op de Leuvense Kerstmarkt.</li>
+                  <li>• <strong>Grote Poster 2028:</strong> Logo op de officiële poster die huis-aan-huis gebust wordt in elk huis in Leuven en op elke school.</li>
+                  <li>• <strong>Maatschappelijke impact:</strong> Directe betrokkenheid bij de promotie van paraklimmen (<a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a>) en de Paralympische Spelen in Leuven.</li>
+                </ul>
+              </div>
             </div>
 
             <div className="bg-white border border-zinc-200 p-8">
-              <h3 className="text-2xl font-bold mb-4">Nationale Lead Partners</h3>
+              <h3 className="text-2xl font-bold mb-4">Strategische Partners (Leuven)</h3>
               <p className="text-zinc-700 mb-4">
-                3 strategische partners die volledige focus op prestaties en nationale zichtbaarheid via de Paralympics mogelijk maken.
+                Lokale mediabureaus, PR-specialisten, content creators en logistieke partners die pro-bono hun expertise inzetten tijdens de 3-maanden mediapush om het Paralympische verhaal breed uit te dragen.
               </p>
               <ul className="space-y-2 text-zinc-600">
-                <li>• Maximale impact positionering</li>
-                <li>• Nationale media exposure</li>
-                <li>• Exclusieve partnerschapsvoordelen</li>
-                <li>• Directe betrokkenheid bij campagne</li>
-              </ul>
-            </div>
-
-            <div className="bg-white border border-zinc-200 p-8">
-              <h3 className="text-2xl font-bold mb-4">Strategische Communicatie Partners</h3>
-              <p className="text-zinc-700 mb-4">
-                4 partners die pro-bono expertise bieden om de Paralympische boodschap in Vlaanderen te versterken.
-              </p>
-              <ul className="space-y-2 text-zinc-600">
-                <li>• Toon expertise in communicatie</li>
-                <li>• Draag bij aan Paralympisch bewustzijn</li>
-                <li>• Netwerk met andere strategische partners</li>
-                <li>• Langdurige merkassociatie</li>
+                <li>• Toon leiderschap en maatschappelijke betrokkenheid in Leuven</li>
+                <li>• Versterk de zichtbaarheid van paraklimmen en inclusieve topsport</li>
+                <li>• Netwerk met de 25 Leuvense partnerondernemingen</li>
+                <li>• Structurele merkassociatie met een uniek topsportverhaal</li>
               </ul>
             </div>
 
             <div className="bg-white border border-zinc-200 p-8">
               <h3 className="text-2xl font-bold mb-4">Performance Team Partners</h3>
               <p className="text-zinc-700 mb-4">
-                Ondersteun het team dat Fré de beste adaptieve klimmer ter wereld maakt: coaches, fysiotherapeuten, sportpsychologen.
+                Ondersteun het sportieve team dat Fré de beste adaptieve klimmer ter wereld maakt: coaches, fysiotherapeuten, sportpsychologen en voedingsdeskundigen.
               </p>
               <ul className="space-y-2 text-zinc-600">
-                <li>• Directe bijdrage aan Paralympisch succes</li>
-                <li>• Associatie met elite sportprestaties</li>
-                <li>• Erkenning in performance team</li>
-                <li>• Impact op Paralympische geschiedenis</li>
+                <li>• Directe bijdrage aan Paralympisch eremetaal in Los Angeles 2028</li>
+                <li>• Associatie met wetenschappelijke en grensverleggende topsportprestaties</li>
+                <li>• Erkenning als lid van het officiële Performance Team</li>
               </ul>
             </div>
           </div>

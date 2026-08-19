@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { X, ArrowRight, Sparkles, Download, Plus } from 'lucide-react';
 import { Partner } from '../types/partner';
 import { partnerService } from '../services/partnerService';
@@ -10,8 +11,6 @@ interface PartnersWelcomeModalProps {
   onClose: () => void;
   onSelectBecomePartner?: () => void;
 }
-
-const TOTAL_SLOTS = 25;
 
 // Default founding partner in case Firestore hasn't returned yet or is empty
 const DEFAULT_FOUNDING_PARTNERS: Partial<Partner>[] = [
@@ -30,6 +29,7 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
   onClose,
   onSelectBecomePartner,
 }) => {
+  const router = useRouter();
   const [partners, setPartners] = useState<Partner[]>([]);
 
   useEffect(() => {
@@ -69,10 +69,27 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Build the 25-slot array
+  // Dynamic slot calculation:
+  // - < 10 sponsors: show 10 slots
+  // - 10 - 14 sponsors: show 15 slots
+  // - 15 - 19 sponsors: show 20 slots
+  // - 20 - 24 sponsors: show 25 slots
+  // - 25+ sponsors: expands in increments of 5
   const displayPartners = partners.length > 0 ? partners : (DEFAULT_FOUNDING_PARTNERS as Partner[]);
+  const totalSlots = displayPartners.length < 10
+    ? 10
+    : (Math.floor(displayPartners.length / 5) + 1) * 5;
 
-  const slots = Array.from({ length: TOTAL_SLOTS }).map((_, index) => {
+  const handlePartnerClick = (partner: Partial<Partner>) => {
+    onClose();
+    if (partner?.id) {
+      router.push(`/partners#${partner.id}`);
+    } else {
+      router.push('/partners');
+    }
+  };
+
+  const slots = Array.from({ length: totalSlots }).map((_, index) => {
     const partner = displayPartners[index];
     return {
       slotNumber: index + 1,
@@ -95,9 +112,14 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
       >
         {/* Compact Header */}
         <div className="px-5 py-3 sm:px-8 sm:py-4 border-b border-zinc-200 bg-zinc-50 flex items-center justify-between flex-shrink-0">
-          <h2 id="partners-modal-title" className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
-            Dank aan mijn Partners
-          </h2>
+          <div>
+            <h2 id="partners-modal-title" className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
+              Dank aan mijn Partners
+            </h2>
+            <p className="text-xs sm:text-sm text-zinc-500 font-medium mt-0.5">
+              De Leuven 25 Support Circle • Road to LA 2028
+            </p>
+          </div>
 
           {/* Close Button (X) */}
           <button 
@@ -109,15 +131,23 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
           </button>
         </div>
 
-        {/* 25 Financial Partners Grid */}
-        <div className="p-2 sm:p-3 md:p-4 flex-1 overflow-y-auto md:overflow-hidden bg-white flex items-center">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1 sm:gap-1.5 md:gap-1.5 w-full">
+        {/* Dynamic Financial Partners Grid */}
+        <div className="p-2 sm:p-4 md:p-5 flex-1 overflow-y-auto bg-white flex items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1.5 sm:gap-2 md:gap-2.5 w-full">
             {slots.map(({ slotNumber, isFilled, partner }) => {
               if (isFilled && partner) {
                 return (
                   <div
                     key={`slot-${slotNumber}`}
-                    className="relative group bg-white border border-zinc-200 hover:border-black p-2 sm:p-3 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-all h-[95px] sm:h-[110px] md:h-[118px]"
+                    onClick={() => handlePartnerClick(partner)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        handlePartnerClick(partner);
+                      }
+                    }}
+                    className="relative group bg-white border border-zinc-200 hover:border-black p-2 sm:p-3 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-all cursor-pointer h-[100px] sm:h-[115px] md:h-[124px]"
                   >
                     {/* Prominent Logo */}
                     <div className="relative w-full flex-1 my-auto flex items-center justify-center p-1">
@@ -158,7 +188,7 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
                       window.location.href = '/become-partner';
                     }
                   }}
-                  className="group relative border-2 border-dashed border-zinc-200 hover:border-black bg-zinc-50/40 hover:bg-zinc-100 p-2 sm:p-2.5 flex flex-col justify-between items-center text-center cursor-pointer transition-all duration-200 h-[95px] sm:h-[110px] md:h-[118px]"
+                  className="group relative border-2 border-dashed border-zinc-200 hover:border-black bg-zinc-50/40 hover:bg-zinc-100 p-2 sm:p-2.5 flex flex-col justify-between items-center text-center cursor-pointer transition-all duration-200 h-[100px] sm:h-[115px] md:h-[124px]"
                 >
                   <div className="w-full" />
 

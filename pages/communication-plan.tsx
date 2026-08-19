@@ -231,16 +231,17 @@ export default function CommunicationPlan() {
               </div>
             </div>
 
-            {/* Node 2 */}
+            {/* Node 2 - In Development */}
             <div 
               onClick={() => router.push('/communication-plan/de-sterkste-vingers-van-Belgie')}
               className="relative pl-8 md:pl-20 pb-12 cursor-pointer hover:opacity-75 transition-opacity group"
             >
-              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
-              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+              <div className="absolute left-0 top-0 w-4 h-4 bg-amber-500 rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-amber-50/70 to-white border-l-4 border-amber-500 p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
-                    Knooppunt 2
+                  <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-amber-600 mb-2 md:mb-0">
+                    <span>Knooppunt 2</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-semibold lowercase">in ontwikkeling</span>
                   </div>
                   <div className="text-right">
                     <div className="text-sm font-bold text-zinc-500">
@@ -251,7 +252,7 @@ export default function CommunicationPlan() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-black transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-amber-600 transition-colors">
                   YouTube Serie
                 </h3>
                 <p className="text-lg text-zinc-600 mb-4">
@@ -259,31 +260,32 @@ export default function CommunicationPlan() {
                 </p>
                 <ul className="space-y-2 text-sm text-zinc-600">
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-amber-600 font-bold">•</span>
                     <span>12 afleveringen, 12 bekende Belgische topklimmers en avonturiers</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-amber-600 font-bold">•</span>
                     <span>De klimgemeenschap bij mijn verhaal betrekken</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-amber-600 font-bold">•</span>
                     <span>Bereik uitbreiden via bestaande influencers en atleten</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {/* Node 3 */}
+            {/* Node 3 - Done */}
             <div 
               onClick={() => router.push('/communication-plan/node-3')}
               className="relative pl-8 md:pl-20 pb-12 cursor-pointer hover:opacity-75 transition-opacity group"
             >
-              <div className="absolute left-0 top-0 w-4 h-4 bg-black rounded-full border-4 border-white md:left-6"></div>
-              <div className="bg-gradient-to-r from-zinc-50 to-white border-l-4 border-black p-6 md:p-8">
+              <div className="absolute left-0 top-0 w-4 h-4 bg-green-600 rounded-full border-4 border-white md:left-6"></div>
+              <div className="bg-gradient-to-r from-green-50 to-white border-l-4 border-green-600 p-6 md:p-8">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <div className="text-sm font-bold uppercase tracking-widest text-zinc-600 mb-2 md:mb-0">
-                    Knooppunt 3
+                  <div className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-green-600 mb-2 md:mb-0">
+                    <span>Knooppunt 3</span>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-800 border border-green-300 font-semibold lowercase">voltooid</span>
                   </div>
                   <div className="text-right">
                     <div className="text-sm font-bold text-zinc-500">
@@ -294,7 +296,7 @@ export default function CommunicationPlan() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-black transition-colors">
+                <h3 className="text-2xl md:text-3xl font-bold mb-2 group-hover:text-green-600 transition-colors">
                   Belgisch kampioenschap Paraklimmen
                 </h3>
                 <p className="text-lg text-zinc-600 mb-4">
@@ -302,15 +304,15 @@ export default function CommunicationPlan() {
                 </p>
                 <ul className="space-y-2 text-sm text-zinc-600">
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-green-600 font-bold">•</span>
                     <span>Open kampioenschap met internationaal allure</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-green-600 font-bold">•</span>
                     <span>Kliminitiatie voor nieuwe paraklimmers</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="font-bold">•</span>
+                    <span className="text-green-600 font-bold">•</span>
                     <span>Een festival met veel randactiviteiten</span>
                   </li>
                 </ul>

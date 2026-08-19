@@ -13,6 +13,7 @@
     "post:instagram": "node tools/publish-instagram.mjs",
     "post:facebook": "node tools/publish-facebook.mjs",
     "crop:image": "python tools/crop-image.py",
+    "generate:pdf": "node tools/generate-partner-pdf.mjs",
     "lint": "next lint"
   },
   "dependencies": {
