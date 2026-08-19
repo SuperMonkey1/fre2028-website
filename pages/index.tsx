@@ -21,7 +21,8 @@ import {
   Medal,
   Calendar,
   Newspaper,
-  ExternalLink
+  ExternalLink,
+  ShieldCheck
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -31,6 +32,7 @@ import { partnerService } from '../services/partnerService';
 import { Partner } from '../types/partner';
 import { useRouter } from 'next/router';
 import resultsData from '../public/data/results.json';
+import { PartnersWelcomeModal } from '../components/PartnersWelcomeModal';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -157,9 +159,33 @@ export default function ParaclimberSite() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const portfolioRef = useRef<HTMLDivElement>(null);
 
-  // Partners state
+  // Partners & 25 Founding Partners Welcome Modal state
   const [partners, setPartners] = useState<Partner[]>([]);
   const [isLoadingPartners, setIsLoadingPartners] = useState(true);
+  const [isPartnersModalOpen, setIsPartnersModalOpen] = useState(false);
+
+  // Auto-open 25 Partners Welcome Modal once per session on initial landing
+  useEffect(() => {
+    try {
+      const hasSeen = sessionStorage.getItem('fre2028_seen_partners_modal_v1');
+      if (!hasSeen) {
+        const timer = setTimeout(() => {
+          setIsPartnersModalOpen(true);
+        }, 500);
+        return () => clearTimeout(timer);
+      }
+    } catch (e) {
+      // Fallback for restricted storage
+      setIsPartnersModalOpen(true);
+    }
+  }, []);
+
+  const handleClosePartnersModal = () => {
+    try {
+      sessionStorage.setItem('fre2028_seen_partners_modal_v1', 'true');
+    } catch (e) {}
+    setIsPartnersModalOpen(false);
+  };
 
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -449,6 +475,9 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('about')} className="hover:opacity-60 transition-opacity">Mijn verhaal</button>
             <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Paraclimbing.be</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
+            <button onClick={() => setIsPartnersModalOpen(true)} className="hover:opacity-60 transition-opacity flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Founding 25
+            </button>
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
             <button 
@@ -477,6 +506,9 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('about')} className="text-left hover:opacity-60">Mijn verhaal</button>
              <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Paraclimbing.be</button>
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
+             <button onClick={() => { setIsMobileMenuOpen(false); setIsPartnersModalOpen(true); }} className="text-left text-emerald-600 font-bold flex items-center gap-1.5">
+               <ShieldCheck className="w-4 h-4" /> Founding 25 Partners
+             </button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
              <Button onClick={() => scrollToSection('sponsors')} className="w-full">Word partner</Button>
@@ -526,8 +558,17 @@ export default function ParaclimberSite() {
         
         <div className="relative z-30 max-w-7xl mx-auto w-full pt-20">
           <div className="max-w-4xl">
-            <div className="inline-block px-4 py-2 mb-8 border border-white/30 text-xs font-bold uppercase tracking-[0.2em] text-zinc-300">
-              Road to Los Angeles 2028
+            <div className="flex flex-wrap items-center gap-3 mb-8">
+              <div className="inline-block px-4 py-2 border border-white/30 text-xs font-bold uppercase tracking-[0.2em] text-zinc-300">
+                Road to Los Angeles 2028
+              </div>
+              <button 
+                onClick={() => setIsPartnersModalOpen(true)}
+                className="inline-flex items-center gap-2 px-4 py-2 border border-emerald-400/40 bg-emerald-950/60 hover:bg-emerald-900/80 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-emerald-300 transition-all hover:scale-105 shadow-sm"
+              >
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                Founding 25 Partners
+              </button>
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
               DROOM<br />GROOTS.
@@ -1538,6 +1579,16 @@ export default function ParaclimberSite() {
           </div>
         </div>
       )}
+
+      {/* 25 Founding Financial Partners Modal */}
+      <PartnersWelcomeModal 
+        isOpen={isPartnersModalOpen} 
+        onClose={handleClosePartnersModal}
+        onSelectBecomePartner={() => {
+          handleClosePartnersModal();
+          scrollToSection('sponsors');
+        }}
+      />
     </div>
   )
 }
