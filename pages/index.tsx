@@ -464,9 +464,6 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('about')} className="hover:opacity-60 transition-opacity">Mijn verhaal</button>
             <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Paraclimbing.be</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
-            <button onClick={() => setIsPartnersModalOpen(true)} className="hover:opacity-60 transition-opacity">
-              Sponsors
-            </button>
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
             <button 
@@ -495,9 +492,6 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('about')} className="text-left hover:opacity-60">Mijn verhaal</button>
              <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Paraclimbing.be</button>
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
-             <button onClick={() => { setIsMobileMenuOpen(false); setIsPartnersModalOpen(true); }} className="text-left hover:opacity-60">
-               Sponsors
-             </button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
              <Button onClick={() => scrollToSection('sponsors')} className="w-full">Word partner</Button>
