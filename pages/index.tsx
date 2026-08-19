@@ -464,8 +464,8 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('about')} className="hover:opacity-60 transition-opacity">Mijn verhaal</button>
             <button onClick={() => scrollToSection('nonprofit')} className="hover:opacity-60 transition-opacity">Paraclimbing.be</button>
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
-            <button onClick={() => setIsPartnersModalOpen(true)} className="hover:opacity-60 transition-opacity flex items-center gap-1">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" /> Founding 25
+            <button onClick={() => setIsPartnersModalOpen(true)} className="hover:opacity-60 transition-opacity">
+              Sponsors
             </button>
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
@@ -495,8 +495,8 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('about')} className="text-left hover:opacity-60">Mijn verhaal</button>
              <button onClick={() => scrollToSection('nonprofit')} className="text-left hover:opacity-60">Paraclimbing.be</button>
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
-             <button onClick={() => { setIsMobileMenuOpen(false); setIsPartnersModalOpen(true); }} className="text-left text-emerald-600 font-bold flex items-center gap-1.5">
-               <ShieldCheck className="w-4 h-4" /> Founding 25 Partners
+             <button onClick={() => { setIsMobileMenuOpen(false); setIsPartnersModalOpen(true); }} className="text-left hover:opacity-60">
+               Sponsors
              </button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
@@ -553,10 +553,10 @@ export default function ParaclimberSite() {
               </div>
               <button 
                 onClick={() => setIsPartnersModalOpen(true)}
-                className="inline-flex items-center gap-2 px-4 py-2 border border-emerald-400/40 bg-emerald-950/60 hover:bg-emerald-900/80 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-emerald-300 transition-all hover:scale-105 shadow-sm"
+                className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-white transition-all hover:scale-105 shadow-sm"
               >
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                Founding 25 Partners
+                <ShieldCheck className="w-4 h-4 text-white" />
+                Sponsors
               </button>
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
