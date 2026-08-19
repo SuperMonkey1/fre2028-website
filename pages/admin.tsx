@@ -2,7 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Mountain, Plus, Edit, Trash2, X, Upload, ExternalLink, TrendingUp } from 'lucide-react';
+import { 
+  Mountain, 
+  Plus, 
+  Edit, 
+  Trash2, 
+  X, 
+  Upload, 
+  ExternalLink, 
+  TrendingUp,
+  CreditCard,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  Sparkles,
+  ChevronDown,
+  ChevronUp,
+  ShieldCheck
+} from 'lucide-react';
 import { Partner } from '../types/partner';
 import { partnerService } from '../services/partnerService';
 import { storage } from '../lib/firebase';
@@ -15,6 +32,15 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPartner, setEditingPartner] = useState<Partner | null>(null);
+
+  // Stripe Test State
+  const [isStripeLoading, setIsStripeLoading] = useState(false);
+  const [stripeError, setStripeError] = useState('');
+  const [showStripeConfig, setShowStripeConfig] = useState(false);
+  const [testCompany, setTestCompany] = useState('Fre2028 Test Partner');
+  const [testEmail, setTestEmail] = useState('admin@fre2028.la');
+  const [testVat, setTestVat] = useState('BE 0123.456.789');
+
   const [formData, setFormData] = useState<Partial<Partner>>({
     name: '',
     category: 'Financiële Partner',
@@ -48,6 +74,15 @@ export default function AdminPage() {
       loadPartners();
     }
   }, [router]);
+
+  useEffect(() => {
+    if (router.query.stripe_status === 'success') {
+      const sessionId = router.query.session_id ? ` (Sessie ID: ${router.query.session_id})` : '';
+      setSuccess(`Stripe testbetaling van €1,00 per maand is succesvol geautoriseerd!${sessionId}`);
+    } else if (router.query.stripe_status === 'cancelled') {
+      setError('Stripe betaalsessie is geannuleerd.');
+    }
+  }, [router.query]);
 
   const loadPartners = async () => {
     try {
@@ -215,6 +250,51 @@ export default function AdminPage() {
     setError('');
   };
 
+  const handleStripeTest = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setIsStripeLoading(true);
+    setStripeError('');
+    try {
+      const payload = {
+        plan: 'test_1euro',
+        companyName: testCompany || 'Fre2028 Test Partner',
+        contactName: 'Admin Tester',
+        email: testEmail || 'admin@fre2028.la',
+        vatNumber: testVat || '',
+        address: 'Leuven, België',
+        notes: 'Stripe 1 euro/maand integratietest via Admin Dashboard',
+        originUrl: window.location.origin,
+        returnUrl: `${window.location.origin}/admin`,
+      };
+
+      let response = await fetch('/api/payments/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok && response.status === 404) {
+        response = await fetch('https://us-central1-fre-2028-website.cloudfunctions.net/payments/create-checkout-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+      }
+
+      const data = await response.json();
+      if (!response.ok || !data.url) {
+        throw new Error(data.error || 'Er is een fout opgetreden bij het aanmaken van de Stripe checkout sessie.');
+      }
+
+      // Redirect directly to Stripe Checkout
+      window.location.href = data.url;
+    } catch (err: any) {
+      console.error('Stripe test error:', err);
+      setStripeError(err.message || 'Kon betaalsessie niet starten.');
+      setIsStripeLoading(false);
+    }
+  };
+
   const handleLogout = () => {
     sessionStorage.removeItem('admin_authenticated');
     router.push('/');
@@ -227,7 +307,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-zinc-50">
       <Head>
-        <title>Admin Panel - Partner Management</title>
+        <title>Admin Panel - Partner Management & Stripe Test</title>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
@@ -276,6 +356,133 @@ export default function AdminPage() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+        {/* Messages */}
+        {success && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+              <span className="font-medium text-sm">{success}</span>
+            </div>
+            <button onClick={() => setSuccess('')} className="text-green-600 hover:text-green-800">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+        {error && !isModalOpen && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 flex items-start justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+              <span className="font-medium text-sm">{error}</span>
+            </div>
+            <button onClick={() => setError('')} className="text-red-600 hover:text-red-800">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* ==================== STRIPE TEST PAYMENT WIDGET ==================== */}
+        <div className="mb-10 bg-white border border-zinc-200 rounded-xl shadow-sm p-6 sm:p-8 relative overflow-hidden">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div className="space-y-2 max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider bg-violet-100 text-violet-800 rounded-full">
+                  <CreditCard className="w-3.5 h-3.5 text-violet-600" />
+                  Stripe Test Checkout
+                </span>
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  € 1,00 / maand abonnement
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900">
+                Stripe Betaling Testen (€ 1,00 / maand)
+              </h3>
+              <p className="text-sm text-zinc-600 leading-relaxed">
+                Test de volledige Stripe recurring subscription checkout flow met een maandelijks bedrag van <strong>€ 1,00 / maand</strong>. Hiermee verifieer je of creditcards, SEPA domiciliëring, checkout links en webhook bevestigingen live functioneren.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setShowStripeConfig(!showStripeConfig)}
+                className="px-4 py-3 border border-zinc-300 text-zinc-700 hover:bg-zinc-50 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-2"
+              >
+                <span>Opties</span>
+                {showStripeConfig ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => handleStripeTest()}
+                disabled={isStripeLoading}
+                className="px-6 py-3.5 bg-violet-600 hover:bg-violet-700 text-white font-bold text-sm tracking-wide rounded-lg transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2.5"
+              >
+                {isStripeLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Checkout laden...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4 text-violet-200" />
+                    <span>Start € 1,00 / maand Checkout</span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          {stripeError && (
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              <span>{stripeError}</span>
+            </div>
+          )}
+
+          {/* Collapsible custom metadata parameters */}
+          {showStripeConfig && (
+            <div className="mt-6 pt-6 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-3 gap-4 bg-zinc-50/70 p-4 rounded-lg">
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">
+                  Test Bedrijfsnaam
+                </label>
+                <input
+                  type="text"
+                  value={testCompany}
+                  onChange={(e) => setTestCompany(e.target.value)}
+                  className="w-full px-3 py-2 bg-white border border-zinc-300 rounded text-sm focus:outline-none focus:border-violet-600"
+                  placeholder="Bedrijfsnaam"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">
+                  Test E-mailadres
+                </label>
+                <input
+                  type="email"
+                  value={testEmail}
+                  onChange={(e) => setTestEmail(e.target.value)}
+                  className="w-full px-3 py-2 bg-white border border-zinc-300 rounded text-sm focus:outline-none focus:border-violet-600"
+                  placeholder="naam@bedrijf.be"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">
+                  BTW-nummer (optioneel)
+                </label>
+                <input
+                  type="text"
+                  value={testVat}
+                  onChange={(e) => setTestVat(e.target.value)}
+                  className="w-full px-3 py-2 bg-white border border-zinc-300 rounded text-sm focus:outline-none focus:border-violet-600"
+                  placeholder="BE 0123.456.789"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-3xl font-bold tracking-tight">Partners</h2>
           <button
@@ -286,18 +493,6 @@ export default function AdminPage() {
             Add Partner
           </button>
         </div>
-
-        {/* Messages */}
-        {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-800">
-            {success}
-          </div>
-        )}
-        {error && !isModalOpen && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800">
-            {error}
-          </div>
-        )}
 
         {/* Partners List */}
         {isLoading ? (

@@ -45,6 +45,13 @@
           "functionId": "contact",
           "region": "us-central1"
         }
+      },
+      {
+        "source": "/api/payments/**",
+        "function": {
+          "functionId": "payments",
+          "region": "us-central1"
+        }
       }
     ]
   },

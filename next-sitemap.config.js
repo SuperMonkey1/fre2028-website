@@ -3,12 +3,13 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://www.fre2028.la',
   generateRobotsTxt: true, // (optional) Generate robots.txt
   generateIndexSitemap: false, // Don't generate index sitemap for small sites
-  exclude: ['/admin'], // Exclude admin page from sitemap
+  exclude: ['/admin', '/admin/*', '/payments'], // Exclude secret and admin pages
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
+        disallow: ['/admin', '/admin/*', '/payments'],
       },
     ],
     additionalSitemaps: [

@@ -17,6 +17,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^9.13.0",
     "@tailwindcss/typography": "^0.5.19",
     "clsx": "^2.0.0",
     "firebase": "^10.7.1",
@@ -26,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rss-parser": "^3.13.0",
+    "stripe": "^22.5.0",
     "tailwind-merge": "^2.0.0"
   },
   "devDependencies": {

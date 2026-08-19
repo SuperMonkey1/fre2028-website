@@ -1,6 +1,9 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /payments
 
 # Host
 Host: https://www.fre2028.la
