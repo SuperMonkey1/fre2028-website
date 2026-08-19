@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Mountain, Plus, Edit, Trash2, X, Upload, ExternalLink } from 'lucide-react';
+import Link from 'next/link';
+import { Mountain, Plus, Edit, Trash2, X, Upload, ExternalLink, TrendingUp } from 'lucide-react';
 import { Partner } from '../types/partner';
 import { partnerService } from '../services/partnerService';
 import { storage } from '../lib/firebase';
@@ -232,10 +233,28 @@ export default function AdminPage() {
 
       {/* Header */}
       <header className="bg-white border-b border-zinc-200 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Mountain className="w-6 h-6" />
-            <h1 className="text-xl font-bold tracking-tight">Admin Panel</h1>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <Mountain className="w-6 h-6" />
+              <h1 className="text-lg font-bold tracking-tight">Admin Panel</h1>
+            </div>
+            <div className="h-4 w-[1px] bg-zinc-200 hidden sm:block" />
+            <nav className="flex items-center gap-1 sm:gap-2">
+              <Link 
+                href="/admin/outreach"
+                className="px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
+              >
+                <TrendingUp className="w-3.5 h-3.5 text-amber-500" />
+                Sponsor Outreach & CRM
+              </Link>
+              <Link 
+                href="/admin"
+                className="px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider bg-black text-white"
+              >
+                Website Partners
+              </Link>
+            </nav>
           </div>
           <div className="flex items-center gap-4">
             <button
@@ -253,6 +272,7 @@ export default function AdminPage() {
           </div>
         </div>
       </header>
+
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">

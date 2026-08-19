@@ -84,6 +84,7 @@ export const AdminPasswordModal: React.FC<AdminPasswordModalProps> = ({ isOpen, 
               onChange={(e) => setPassword(e.target.value)}
               className="w-full py-3 px-4 bg-zinc-50 border border-zinc-200 focus:border-black focus:outline-none transition-colors text-lg"
               placeholder="Enter admin password"
+              autoComplete="current-password"
               disabled={isValidating}
               autoFocus
             />
