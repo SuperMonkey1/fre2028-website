@@ -164,26 +164,15 @@ export default function ParaclimberSite() {
   const [isLoadingPartners, setIsLoadingPartners] = useState(true);
   const [isPartnersModalOpen, setIsPartnersModalOpen] = useState(false);
 
-  // Auto-open 25 Partners Welcome Modal once per session on initial landing
+  // Auto-open 25 Partners Welcome Modal on landing / refresh
   useEffect(() => {
-    try {
-      const hasSeen = sessionStorage.getItem('fre2028_seen_partners_modal_v1');
-      if (!hasSeen) {
-        const timer = setTimeout(() => {
-          setIsPartnersModalOpen(true);
-        }, 500);
-        return () => clearTimeout(timer);
-      }
-    } catch (e) {
-      // Fallback for restricted storage
+    const timer = setTimeout(() => {
       setIsPartnersModalOpen(true);
-    }
+    }, 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleClosePartnersModal = () => {
-    try {
-      sessionStorage.setItem('fre2028_seen_partners_modal_v1', 'true');
-    } catch (e) {}
     setIsPartnersModalOpen(false);
   };
 
