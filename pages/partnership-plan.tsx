@@ -126,7 +126,7 @@ export default function PartnershipPlan() {
               <div className="bg-zinc-50 p-5 border border-zinc-200">
                 <h4 className="font-bold text-sm uppercase tracking-wider text-zinc-900 mb-3">Concrete Return voor Partners:</h4>
                 <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li><strong>Zichtbaarheid:</strong> Alle 25 sponsors worden vermeld op de officiële <strong>campagneposter</strong>, de <strong>website</strong> en het <strong>wedstrijd/campagne T-shirt</strong>.</li>
+                  <li><strong>Zichtbaarheid:</strong> Alle 25 sponsors worden vermeld op de officiële <strong>campagneposter</strong>, de <strong>website</strong> en de <strong>trainingskledij / campagne T-shirt</strong>.</li>
                   <li><strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk (over veerkracht, innovatie en ingenieursaanpak in topsport).</li>
                   <li><strong>Kerstmarkt 2027:</strong> Partneractivatie en zichtbaarheid op de Leuvense Kerstmarkt.</li>
                   <li><strong>Grote Poster 2028:</strong> Huis-aan-huis verspreiding in elk huis in Leuven en op alle scholen (in samenwerking met Stad Leuven).</li>

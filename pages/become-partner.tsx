@@ -179,7 +179,7 @@ export default function BecomePartner() {
                   Concrete Return voor jouw bedrijf:
                 </h4>
                 <ul className="space-y-2 text-zinc-700 text-sm">
-                  <li>• <strong>Prominente zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en wedstrijd/campagne T-shirt.</li>
+                  <li>• <strong>Prominente zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt.</li>
                   <li>• <strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partner-event met kliminitiatie, filmvertoning en keynote/talk over veerkracht & topprestaties.</li>
                   <li>• <strong>Kerstmarkt 2027:</strong> Zichtbaarheid bij acties en aanwezigheid op de Leuvense Kerstmarkt.</li>
                   <li>• <strong>Grote Poster 2028:</strong> Logo op de officiële poster die huis-aan-huis gebust wordt in elk huis in Leuven en op elke school.</li>

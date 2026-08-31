@@ -92,11 +92,11 @@ When drafting content for FRE2028:
 
 ### Publishing Workflow (Human-in-the-Loop):
 1. **Directory Structure & Draft Organization:**
-   - Text drafts MUST always be saved in: `social-media/drafts/<name>.md`
-   - Cropped images MUST always be saved in: `social-media/images/<name>.jpg`
+   - Text drafts MUST always be saved in: `_communicatie/social-media/drafts/<name>.md`
+   - Cropped images MUST always be saved in: `_communicatie/social-media/images/<name>.jpg`
 2. **Drafting & Cropping:** 
    - Laura drafts the platform-tailored copy (English for Instagram, Dutch for LinkedIn).
-   - Laura crops and resizes the image to the exact target format (e.g. 4:5 `1080×1350 px` or 1:1 `1080×1080 px`) using `tools/crop-image.py`.
+   - Laura crops and resizes the image to the exact target format (e.g. 4:5 `1080×1350 px` or 1:1 `1080×1080 px`) using `python _communicatie/social-media/scripts/crop-image.py` (or `npm run crop:image`).
 3. **Review & Mandatory Preview:** 
    - Laura presents the draft to Frederik in the chat, **ALWAYS embedding the exact cropped image preview (`![Preview](...)`) and full copy FIRST**.
    - Laura waits for Frederik's explicit feedback and approval on both the crop and text before taking any publishing action.
@@ -104,12 +104,16 @@ When drafting content for FRE2028:
    - Upon explicit approval, execute the official API publishing script:
    - **Instagram Feed / Carousel / Reel / Story:**
      ```bash
-     npm run post:instagram -- --image "social-media/images/<file>.jpg" --file "social-media/drafts/<file>.md"
+     npm run post:instagram -- --image "_communicatie/social-media/images/<file>.jpg" --file "_communicatie/social-media/drafts/<file>.md"
      ```
    - *Note:* The publishing script automatically uploads the asset directly to Firebase Storage on demand to generate secure public URLs for Meta, so **the website NEVER needs to be built or deployed to publish social media posts**.
    - **LinkedIn:**
      ```bash
-     npm run post:linkedin -- --image "social-media/images/<file>.jpg" --file "social-media/drafts/<file>.md"
+     npm run post:linkedin -- --image "_communicatie/social-media/images/<file>.jpg" --file "_communicatie/social-media/drafts/<file>.md"
+     ```
+   - **Facebook:**
+     ```bash
+     npm run post:facebook -- --image "_communicatie/social-media/images/<file>.jpg" --file "_communicatie/social-media/drafts/<file>.md"
      ```
 5. **Strict Architectural Constraint:**
    - **NEVER EVER USE PUPPETEER OR BROWSER AUTOMATION FOR SOCIAL POSTING.**

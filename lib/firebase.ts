@@ -18,10 +18,17 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// Initialize Analytics (client-side only)
+// Initialize Analytics (client-side only when supported)
 let analytics: Analytics | null = null;
-if (typeof window !== 'undefined' && firebaseConfig.projectId) {
-  analytics = getAnalytics(app);
+if (typeof window !== 'undefined' && firebaseConfig.measurementId) {
+  try {
+    const { isSupported } = require('firebase/analytics');
+    isSupported().then((supported: boolean) => {
+      if (supported) {
+        analytics = getAnalytics(app);
+      }
+    }).catch(() => {});
+  } catch (e) {}
 }
 
 export { app, db, storage, analytics };

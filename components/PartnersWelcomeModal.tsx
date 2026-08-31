@@ -69,16 +69,9 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Dynamic slot calculation:
-  // - < 10 sponsors: show 10 slots
-  // - 10 - 14 sponsors: show 15 slots
-  // - 15 - 19 sponsors: show 20 slots
-  // - 20 - 24 sponsors: show 25 slots
-  // - 25+ sponsors: expands in increments of 5
+  // Show 6 cards for now
   const displayPartners = partners.length > 0 ? partners : (DEFAULT_FOUNDING_PARTNERS as Partner[]);
-  const totalSlots = displayPartners.length < 10
-    ? 10
-    : (Math.floor(displayPartners.length / 5) + 1) * 5;
+  const totalSlots = 6;
 
   const handlePartnerClick = (partner: Partial<Partner>) => {
     onClose();
@@ -100,18 +93,18 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 backdrop-blur-md animate-fadeIn"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="partners-modal-title"
     >
       <div 
-        className="bg-white text-black w-full max-w-6xl max-h-[96vh] flex flex-col justify-between shadow-2xl border border-zinc-200 overflow-hidden relative"
+        className="bg-white text-black w-full max-w-5xl max-h-[94vh] flex flex-col justify-between shadow-2xl border border-zinc-200 overflow-hidden relative rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Compact Header */}
-        <div className="px-5 py-3 sm:px-8 sm:py-4 border-b border-zinc-200 bg-zinc-50 flex items-center justify-between flex-shrink-0">
+        <div className="px-5 py-4 sm:px-8 sm:py-5 border-b border-zinc-200 bg-zinc-50 flex items-center justify-between flex-shrink-0">
           <div>
             <h2 id="partners-modal-title" className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
               Dank aan mijn Partners
@@ -125,15 +118,15 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
           <button 
             onClick={onClose}
             aria-label="Sluit dialoog"
-            className="p-2 text-zinc-400 hover:text-black hover:bg-zinc-200/70 transition-all"
+            className="p-2 text-zinc-400 hover:text-black hover:bg-zinc-200/70 transition-all rounded-full"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Dynamic Financial Partners Grid */}
-        <div className="p-2 sm:p-4 md:p-5 flex-1 overflow-y-auto bg-white flex items-center">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1.5 sm:gap-2 md:gap-2.5 w-full">
+        {/* 6 Partners Grid with larger cards */}
+        <div className="p-4 sm:p-6 md:p-8 flex-1 overflow-y-auto bg-white flex items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 w-full">
             {slots.map(({ slotNumber, isFilled, partner }) => {
               if (isFilled && partner) {
                 return (
@@ -147,10 +140,10 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
                         handlePartnerClick(partner);
                       }
                     }}
-                    className="relative group bg-white border border-zinc-200 hover:border-black p-2 sm:p-3 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-all cursor-pointer h-[100px] sm:h-[115px] md:h-[124px]"
+                    className="relative group bg-white border-2 border-zinc-200 hover:border-black p-5 sm:p-6 md:p-7 flex flex-col justify-between items-center text-center shadow-xs hover:shadow-lg transition-all duration-200 cursor-pointer min-h-[160px] sm:min-h-[190px] md:min-h-[210px] rounded-md"
                   >
                     {/* Prominent Logo */}
-                    <div className="relative w-full flex-1 my-auto flex items-center justify-center p-1">
+                    <div className="relative w-full flex-1 min-h-[85px] sm:min-h-[105px] md:min-h-[120px] flex items-center justify-center p-2">
                       {partner.logoUrl ? (
                         <Image
                           src={partner.logoUrl}
@@ -160,15 +153,15 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
                           className="object-contain transition-transform duration-200 group-hover:scale-105"
                         />
                       ) : (
-                        <span className="font-black text-sm sm:text-base text-zinc-900 tracking-tight">
+                        <span className="font-black text-lg sm:text-xl md:text-2xl text-zinc-900 tracking-tight">
                           {partner.name}
                         </span>
                       )}
                     </div>
 
                     {/* Partner Name Label */}
-                    <div className="w-full text-center mt-1">
-                      <p className="text-[11px] font-bold text-zinc-900 truncate leading-tight">
+                    <div className="w-full text-center mt-2">
+                      <p className="text-xs sm:text-sm font-bold text-zinc-900 truncate leading-tight">
                         {partner.name}
                       </p>
                     </div>
@@ -188,20 +181,25 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
                       window.location.href = '/become-partner';
                     }
                   }}
-                  className="group relative border-2 border-dashed border-zinc-200 hover:border-black bg-zinc-50/40 hover:bg-zinc-100 p-2 sm:p-2.5 flex flex-col justify-between items-center text-center cursor-pointer transition-all duration-200 h-[100px] sm:h-[115px] md:h-[124px]"
+                  className="group relative border-2 border-dashed border-zinc-200 hover:border-black bg-zinc-50/50 hover:bg-zinc-100/80 p-5 sm:p-6 md:p-7 flex flex-col justify-between items-center text-center cursor-pointer transition-all duration-200 min-h-[160px] sm:min-h-[190px] md:min-h-[210px] rounded-md"
                 >
-                  <div className="w-full" />
-
-                  <div className="flex flex-col items-center justify-center my-auto">
-                    <div className="w-7 h-7 rounded-full border border-zinc-300 group-hover:border-black group-hover:bg-black group-hover:text-white flex items-center justify-center text-zinc-400 transition-all mb-1">
-                      <Plus className="w-4 h-4" />
+                  <div className="flex flex-col items-center justify-center my-auto py-2">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full border-2 border-zinc-300 group-hover:border-black group-hover:bg-black group-hover:text-white flex items-center justify-center text-zinc-400 transition-all mb-2.5 shadow-xs">
+                      <Plus className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[11px] font-bold text-zinc-500 group-hover:text-black transition-colors leading-tight">
+                    <span className="text-sm sm:text-base font-bold text-zinc-700 group-hover:text-black transition-colors leading-tight">
                       Jouw Logo Hier
+                    </span>
+                    <span className="text-[11px] sm:text-xs text-zinc-400 group-hover:text-zinc-600 mt-1">
+                      Word Founding Partner
                     </span>
                   </div>
 
-                  <div className="w-full" />
+                  <div className="w-full text-center">
+                    <span className="text-[10px] sm:text-xs font-semibold text-zinc-400 group-hover:text-black uppercase tracking-wider transition-colors inline-flex items-center gap-1">
+                      Sluit je aan <ArrowRight className="w-2.5 h-2.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </span>
+                  </div>
                 </div>
               );
             })}
@@ -209,16 +207,16 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
         </div>
 
         {/* Footer Actions */}
-        <div className="px-5 py-3 sm:px-8 sm:py-3.5 border-t border-zinc-200 bg-zinc-50 flex flex-col sm:flex-row items-center justify-between gap-3 flex-shrink-0">
-          <div className="text-xs text-zinc-600 text-center sm:text-left font-medium">
+        <div className="px-5 py-3.5 sm:px-8 sm:py-4 border-t border-zinc-200 bg-zinc-50 flex flex-col md:flex-row items-center justify-between gap-4 flex-shrink-0">
+          <div className="text-xs text-zinc-600 text-center md:text-left font-medium flex-1">
             Dank aan alle partners die mijn droom naar LA 2028 mogelijk maken!
           </div>
 
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-2.5 w-full sm:w-auto">
+          <div className="flex flex-wrap sm:flex-nowrap items-center justify-center md:justify-end gap-2.5 flex-shrink-0">
             <Link
               href="/become-partner"
               onClick={onClose}
-              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-zinc-900 text-white hover:bg-black transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 px-4 py-2 text-xs font-bold uppercase tracking-wider bg-zinc-900 text-white hover:bg-black transition-colors rounded-sm whitespace-nowrap"
             >
               <Sparkles className="w-3.5 h-3.5" /> Word Partner
             </Link>
@@ -227,14 +225,14 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
               href="/Frederik-Leys-Partnership-Dossier.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-bold uppercase tracking-wider border border-zinc-300 bg-white text-zinc-800 hover:bg-zinc-100 transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 text-xs font-bold uppercase tracking-wider border border-zinc-300 bg-white text-zinc-800 hover:bg-zinc-100 transition-colors rounded-sm whitespace-nowrap"
             >
               <Download className="w-3.5 h-3.5" /> Dossier PDF
             </Link>
 
             <button
               onClick={onClose}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2 text-xs font-bold uppercase tracking-wider bg-black text-white hover:bg-zinc-800 transition-colors shadow-sm rounded-sm whitespace-nowrap"
             >
               Verder naar Homepage <ArrowRight className="w-3.5 h-3.5" />
             </button>

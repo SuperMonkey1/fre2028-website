@@ -21,6 +21,21 @@ export default function Document() {
         {/* <meta name="google-site-verification" content="YOUR_GOOGLE_CODE" /> */}
         {/* <meta name="msvalidate.01" content="YOUR_BING_CODE" /> */}
         
+        {/* Google Analytics 4 (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BLZXHXVC42" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BLZXHXVC42', {
+                send_page_view: true
+              });
+            `,
+          }}
+        />
+
         {/* Fonts (if using Google Fonts or similar) */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />

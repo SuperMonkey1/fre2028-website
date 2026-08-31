@@ -356,7 +356,7 @@ async function generatePdf() {
           Wat krijgt jouw bedrijf concreet terug?
         </h4>
         <ul class="benefit-list">
-          <li><strong>Zichtbaarheid op alle dragers:</strong> Jouw bedrijfslogo op de officiële campagneposter, de website (fre2028.la) en het officiële wedstrijd/campagne T-shirt.</li>
+          <li><strong>Zichtbaarheid op alle dragers:</strong> Jouw bedrijfslogo op de officiële campagneposter, de website (fre2028.la) en de officiële trainingskledij en campagne T-shirt.</li>
           <li><strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partnerevent inclusief kliminitiatie, filmvertoning en keynote/inspiratietalk door Fré over veerkracht, innovatie en topsport.</li>
           <li><strong>Grote Poster 2028:</strong> Jouw logo op de campagneposter die huis-aan-huis gebust wordt in elk huis in Leuven en op elke Leuvense school.</li>
           <li><strong>Leuvense Kerstmarkt 2027:</strong> Zichtbaarheid en activatiemogelijkheden op de Kerstmarkt in Leuven.</li>

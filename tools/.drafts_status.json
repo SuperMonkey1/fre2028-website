@@ -1,0 +1,282 @@
+{
+  "hans-clijsters": {
+    "leadId": "hans-clijsters",
+    "name": "Hans Clijsters",
+    "company": "Democo Group / Solidaris Brabant",
+    "email": "frederik.leys@gmail.com",
+    "draftId": "r2576208345318813018",
+    "subject": "Partnerschap Road to LA 2028 — Leuven 25 Support Circle & Democo Group / Solidaris Brabant",
+    "trackingUrl": "https://fre2028.la/?utm_source=hans-clijsters&utm_medium=email&utm_campaign=leuven25_support_circle",
+    "status": "DRAFT_CREATED"
+  },
+  "heidi-rakels": {
+    "leadId": "heidi-rakels",
+    "name": "Heidi Rakels",
+    "company": "Guardsquare / XYZT.AI",
+    "email": "heidi.rakels@guardsquare.com",
+    "draftId": "r-704437055343658101",
+    "subject": "Partnerschap Road to LA 2028 — Leuven 25 Support Circle & Guardsquare / XYZT.AI",
+    "trackingUrl": "https://fre2028.la/?utm_source=heidi-rakels&utm_medium=email&utm_campaign=leuven25_support_circle",
+    "status": "DRAFT_CREATED"
+  },
+  "francoise-chombar": {
+    "leadId": "francoise-chombar",
+    "name": "Françoise Chombar",
+    "company": "Melexis / STEM Platform",
+    "email": "fch@melexis.com",
+    "draftId": "r-9120291086011051892",
+    "subject": "STEM, technologische veerkracht & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=francoise-chombar&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "roland-duchatelet": {
+    "leadId": "roland-duchatelet",
+    "name": "Roland Duchâtelet",
+    "company": "Xtrion / Vivant",
+    "email": "roland.duchatelet@xtrion.be",
+    "draftId": "r1952811045828261863",
+    "subject": "Data-gedreven topsport op weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=roland-duchatelet&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "roderick-duchatelet": {
+    "leadId": "roderick-duchatelet",
+    "name": "Roderick Duchâtelet",
+    "company": "Sportinvesteerder",
+    "email": "roderick.duchatelet@gmail.com",
+    "draftId": "r1283153918341152274",
+    "subject": "Paralympische klimambitie LA 2028 — Partnerschap",
+    "trackingUrl": "https://fre2028.la/?utm_source=roderick-duchatelet&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "rudi-de-winter": {
+    "leadId": "rudi-de-winter",
+    "name": "Rudi De Winter",
+    "company": "X-Fab",
+    "email": "rudi.dewinter@xfab.com",
+    "draftId": "r-6294872685395642324",
+    "subject": "Precisie-engineering & Paralympisch goud LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=rudi-de-winter&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "urbain-vandeurzen": {
+    "leadId": "urbain-vandeurzen",
+    "name": "Urbain Vandeurzen",
+    "company": "LMS / Smile Invest / VMF Invest",
+    "email": "urbain.vandeurzen@smile-invest.com",
+    "draftId": "r6646546140112047780",
+    "subject": "KU Leuven ingenieurswetenschappen op weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=urbain-vandeurzen&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "wilfried-vancraen": {
+    "leadId": "wilfried-vancraen",
+    "name": "Wilfried Vancraen",
+    "company": "Materialise",
+    "email": "wilfried.vancraen@materialise.be",
+    "draftId": "r-3183212422465321100",
+    "subject": "3D-engineering, adaptieve sport & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=wilfried-vancraen&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "kuleuven-alumni": {
+    "leadId": "kuleuven-alumni",
+    "name": "Inge Wullaert / Redactie GeniaaL",
+    "company": "KU Leuven Alumni & Alumnirelaties",
+    "email": "alumni@kuleuven.be",
+    "draftId": "r7727860241669662324",
+    "subject": "Alumnus-atleet op weg naar LA 2028 — GeniaaL / Alumni",
+    "trackingUrl": "https://fre2028.la/?utm_source=kuleuven-alumni&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "luc-van-den-hove": {
+    "leadId": "luc-van-den-hove",
+    "name": "Luc Van den hove",
+    "company": "imec",
+    "email": "luc.vandenhove@imec.be",
+    "draftId": "r942093737220160641",
+    "subject": "Leuvense spitstechnologie op de Paralympische Spelen LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=luc-van-den-hove&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "koenraad-debackere": {
+    "leadId": "koenraad-debackere",
+    "name": "Koenraad Debackere",
+    "company": "KU Leuven R&D (LRD)",
+    "email": "koenraad.debackere@kuleuven.be",
+    "draftId": "r-3343536294549982056",
+    "subject": "Valorisatie, spitstechnologie & Paralympisch goud — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=koenraad-debackere&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "paul-van-dun": {
+    "leadId": "paul-van-dun",
+    "name": "Paul Van Dun",
+    "company": "KU Leuven R&D (LRD)",
+    "email": "paul.vandun@kuleuven.be",
+    "draftId": "r-4704868118149008627",
+    "subject": "KU Leuven spin-off netwerk & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=paul-van-dun&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "martin-de-prycker": {
+    "leadId": "martin-de-prycker",
+    "name": "Martin De Prycker",
+    "company": "Qbic Fund / EVS",
+    "email": "martin.deprycker@qbic.be",
+    "draftId": "r-6946142155879834943",
+    "subject": "Tech & Paralympische topsport LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=martin-de-prycker&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "comate": {
+    "leadId": "comate",
+    "name": "Sander Van den dries & Wouter Foulon",
+    "company": "Comate Engineering & Design",
+    "email": "sander@comate.be",
+    "draftId": "r-7567268259021672171",
+    "subject": "Hardware engineering & de weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=comate&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "amnovis-replasia": {
+    "leadId": "amnovis-replasia",
+    "name": "Jonas Van Vaerenbergh & Peter Mercelis",
+    "company": "Amnovis / Replasia (ex-LayerWise)",
+    "email": "peter.mercelis@amnovis.com",
+    "draftId": "r-2902283617414155847",
+    "subject": "Additive manufacturing, biomechanica & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=amnovis-replasia&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "xenomatix": {
+    "leadId": "xenomatix",
+    "name": "Filip Geuens",
+    "company": "XenomatiX",
+    "email": "filip.geuens@xenomatix.com",
+    "draftId": "r2376567672702128920",
+    "subject": "Leuvense precisie-engineering op weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=xenomatix&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "guardsquare-eric": {
+    "leadId": "guardsquare-eric",
+    "name": "Eric Lafortune",
+    "company": "Guardsquare",
+    "email": "eric.lafortune@guardsquare.com",
+    "draftId": "r1415697688594582187",
+    "subject": "Niche-engineering & Paralympische droom LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=guardsquare-eric&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "pharrowtech": {
+    "leadId": "pharrowtech",
+    "name": "Wim Van Thillo",
+    "company": "Pharrowtech",
+    "email": "wim.vanthillo@pharrowtech.com",
+    "draftId": "r3894187236223062505",
+    "subject": "Leuvense deep-tech innovatie & de weg naar Paralympisch goud — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=pharrowtech&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "piet-colruyt": {
+    "leadId": "piet-colruyt",
+    "name": "Piet Colruyt",
+    "company": "Impact House / Impact Capital",
+    "email": "piet@impactcapital.be",
+    "draftId": "r5815482199076191798",
+    "subject": "Inclusie, maatschappelijke impact & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=piet-colruyt&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "marc-coucke": {
+    "leadId": "marc-coucke",
+    "name": "Marc Coucke",
+    "company": "Alychlo / Comate Ventures",
+    "email": "marc.coucke@alychlo.com",
+    "draftId": "r-2627706156478811061",
+    "subject": "Topsportpassie, veerkracht & Belgisch goud in LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=marc-coucke&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "michel-akkermans": {
+    "leadId": "michel-akkermans",
+    "name": "Michel Akkermans",
+    "company": "Pamica / imec",
+    "email": "michel.akkermans@pamica.be",
+    "draftId": "r213390693615880796",
+    "subject": "Van KU Leuven ingenieur naar Paralympisch goud — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=michel-akkermans&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "jurgen-ingels": {
+    "leadId": "jurgen-ingels",
+    "name": "Jurgen Ingels",
+    "company": "SmartFin / SuperNova",
+    "email": "jurgen@smartfinvc.com",
+    "draftId": "r-7053415200905913176",
+    "subject": "Topsport, veerkracht & het podium van LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=jurgen-ingels&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "stijn-bijnens": {
+    "leadId": "stijn-bijnens",
+    "name": "Stijn Bijnens",
+    "company": "Cegeka / Proximus",
+    "email": "stijn.bijnens@cegeka.com",
+    "draftId": "r-2120270809868589253",
+    "subject": "Data-gedreven veerkracht & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=stijn-bijnens&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "jan-paesen": {
+    "leadId": "jan-paesen",
+    "name": "Jan Paesen",
+    "company": "Leuven MindGate",
+    "email": "jan.paesen@leuvenmindgate.be",
+    "draftId": "r5352244958071753542",
+    "subject": "Leuvense ambassadeur op het wereldpodium: Health, High-Tech & LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=jan-paesen&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "danielle-vanwesenbeeck": {
+    "leadId": "danielle-vanwesenbeeck",
+    "name": "Daniëlle Vanwesenbeeck",
+    "company": "Voka Vlaams-Brabant / Mastermail",
+    "email": "danielle@mastermail.be",
+    "draftId": "r4187753967014450871",
+    "subject": "Ondernemersveerkracht, regionale trots & de weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=danielle-vanwesenbeeck&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "charles-beauduin": {
+    "leadId": "charles-beauduin",
+    "name": "Charles Beauduin",
+    "company": "Barco / Vandewiele",
+    "email": "charles.beauduin@vandewiele.com",
+    "draftId": "r5051626379766203664",
+    "subject": "Wereldwijde technologische excellentie & de weg naar LA 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=charles-beauduin&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "wim-van-hecke": {
+    "leadId": "wim-van-hecke",
+    "name": "Wim Van Hecke",
+    "company": "Icometrix",
+    "email": "wim.vanhecke@icometrix.com",
+    "draftId": "r-4626559764524763013",
+    "subject": "Gezondheidstechnologie, data & de weg naar de Paralympische Spelen 2028 — Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=wim-van-hecke&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  },
+  "hummingdrones-nv-7735": {
+    "leadId": "hummingdrones-nv-7735",
+    "name": "Fré Leys",
+    "company": "Hummingdrones NV",
+    "email": "info@hummingdrones.com",
+    "draftId": "r-3819706798040595370",
+    "subject": "Partnerschap Road to LA 2028 — Hummingdrones NV & Fré Leys",
+    "trackingUrl": "https://fre2028.la/?utm_source=hummingdrones-nv-7735&utm_medium=email&utm_campaign=partner_werving_2028",
+    "status": "DRAFT_CREATED"
+  }
+}

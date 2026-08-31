@@ -323,9 +323,9 @@ export default function AdminPage() {
             <nav className="flex items-center gap-1 sm:gap-2">
               <Link 
                 href="/admin/outreach"
-                className="px-3 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
+                className="px-3.5 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
               >
-                <TrendingUp className="w-3.5 h-3.5 text-amber-500" />
+                <TrendingUp className="w-3.5 h-3.5 text-zinc-500" />
                 Sponsor Outreach & CRM
               </Link>
               <Link 
@@ -358,9 +358,9 @@ export default function AdminPage() {
       <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
         {/* Messages */}
         {success && (
-          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 flex items-start justify-between gap-3">
+          <div className="mb-6 p-4 bg-zinc-100 border border-zinc-200 text-zinc-800 flex items-start justify-between gap-3">
             <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-5 h-5 text-green-600 flex-shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-zinc-700 flex-shrink-0" />
               <span className="font-medium text-sm">{success}</span>
             </div>
             <button onClick={() => setSuccess('')} className="text-green-600 hover:text-green-800">
@@ -369,9 +369,9 @@ export default function AdminPage() {
           </div>
         )}
         {error && !isModalOpen && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 flex items-start justify-between gap-3">
+          <div className="mb-6 p-4 bg-zinc-100 border border-zinc-200 text-zinc-800 flex items-start justify-between gap-3">
             <div className="flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 text-zinc-700 flex-shrink-0" />
               <span className="font-medium text-sm">{error}</span>
             </div>
             <button onClick={() => setError('')} className="text-red-600 hover:text-red-800">
@@ -385,12 +385,12 @@ export default function AdminPage() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2 max-w-2xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider bg-violet-100 text-violet-800 rounded-full">
-                  <CreditCard className="w-3.5 h-3.5 text-violet-600" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider bg-zinc-100 text-zinc-800 rounded-full border border-zinc-200">
+                  <CreditCard className="w-3.5 h-3.5 text-zinc-700" />
                   Stripe Test Checkout
                 </span>
-                <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                  <ShieldCheck className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center gap-1 text-xs font-semibold text-zinc-800 bg-zinc-100 px-2.5 py-0.5 rounded-full border border-zinc-200">
+                  <ShieldCheck className="w-3.5 h-3.5 text-zinc-700" />
                   € 1,00 / maand abonnement
                 </span>
               </div>
@@ -420,12 +420,12 @@ export default function AdminPage() {
               >
                 {isStripeLoading ? (
                   <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin text-white" />
                     <span>Checkout laden...</span>
                   </>
                 ) : (
                   <>
-                    <Sparkles className="w-4 h-4 text-violet-200" />
+                    <Sparkles className="w-4 h-4 text-white" />
                     <span>Start € 1,00 / maand Checkout</span>
                   </>
                 )}
@@ -434,8 +434,8 @@ export default function AdminPage() {
           </div>
 
           {stripeError && (
-            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+            <div className="mt-4 p-3 bg-zinc-100 border border-zinc-200 rounded-lg text-zinc-800 text-sm flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 text-zinc-700 flex-shrink-0" />
               <span>{stripeError}</span>
             </div>
           )}

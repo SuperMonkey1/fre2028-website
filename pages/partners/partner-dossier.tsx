@@ -37,7 +37,7 @@ export default function PartnerDossierPage() {
 
               <h3 className="text-xl font-bold mt-4 mb-2">Wat krijg je terug?</h3>
               <ul className="list-disc pl-5 text-zinc-700 space-y-2 mb-6">
-                <li><strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en wedstrijd/campagne T-shirt</li>
+                <li><strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt</li>
                 <li><strong>Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk</li>
                 <li><strong>Lokale impact:</strong> Aanwezigheid op Kerstmarkt 2027 en Poster 2028 huis-aan-huis in Leuven en elke school</li>
                 <li><strong>Maatschappelijke betrokkenheid:</strong> Steun voor paraclimbing.be en de Paralympische beweging</li>

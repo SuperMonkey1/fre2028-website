@@ -336,7 +336,7 @@ export default function PartnersPage() {
                   </p>
                   <div className="bg-zinc-900/90 border border-zinc-800 p-4 rounded-sm text-sm text-zinc-300 space-y-1.5">
                     <p className="font-bold text-white uppercase text-xs tracking-wider mb-1">Wat krijgen partners terug?</p>
-                    <p>• <strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en wedstrijd/campagne T-shirt.</p>
+                    <p>• <strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt.</p>
                     <p>• <strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partner-event met kliminitiatie, filmvertoning en keynote talk.</p>
                     <p>• <strong>Leuvense Aanwezigheid:</strong> Zichtbaarheid op Kerstmarkt 2027 en de grote Poster-campagne 2028 (huis-aan-huis in Leuven en elke school).</p>
                   </div>
