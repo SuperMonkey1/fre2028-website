@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { Mountain, Target, Users, Briefcase, Award, TrendingUp, ArrowLeft } from 'lucide-react';
+import { Mountain, Target, Users, Briefcase, Award, TrendingUp, ArrowLeft, Cpu, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function PartnershipPlan() {
   const router = useRouter();
@@ -9,8 +9,8 @@ export default function PartnershipPlan() {
   return (
     <div className="min-h-screen bg-white text-black font-sans">
       <Head>
-        <title>Partnerschap Plan - Fré Leys Road to LA 2028</title>
-        <meta name="description" content="Volledig partnerschap en sponsorplan voor Fré Leys' reis naar de LA 2028 Paralympische Spelen" />
+        <title>Partnerschap Plan — Engineering my way to the Paralympics in 2028 | Fré Leys</title>
+        <meta name="description" content="Het partnerschap- en innovatieplan van Dr. Ir. Frederik Leys: hoe Leuvense spitstechnologie, engineering en 25 innovatieve bedrijven de weg effenen naar goud in LA 2028." />
       </Head>
 
       {/* Header */}
@@ -29,16 +29,55 @@ export default function PartnershipPlan() {
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-100">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
-            <Briefcase className="w-4 h-4" />
-            Strategisch Plan
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
+              <Briefcase className="w-4 h-4" />
+              Strategisch Partnerschapsplan
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-extrabold uppercase tracking-wider rounded-sm">
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              Project Subtitle
+            </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            Partnerschap Plan
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-4">
+            "Engineering my way to the Paralympics in 2028"
           </h1>
-          <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed">
-            LA 2028 Team & Sponsorschap Strategie
+          <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed max-w-3xl">
+            Hoe Dr. Ir. Frederik Leys Leuvense engineering, innovatie en topsport bundelt om als eerste Leuvense Paralympiër ooit goud te veroveren in Los Angeles.
           </p>
+        </div>
+      </section>
+
+      {/* The Engineer-Athlete & Leuven Innovation */}
+      <section className="py-16 md:py-20 border-b border-zinc-100 bg-white">
+        <div className="max-w-4xl mx-auto px-4 md:px-8">
+          <div className="flex items-center gap-3 mb-8">
+            <Cpu className="w-8 h-8 text-black" />
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Het Ecosysteem & De Engineer-Athlete</h2>
+          </div>
+
+          <div className="bg-zinc-50 border-2 border-black p-8 md:p-10 mb-8 space-y-6">
+            <div className="space-y-4 text-lg text-zinc-700 leading-relaxed">
+              <p>
+                <strong>Dr. Ir. Frederik Leys</strong> behaalde een doctoraat in de Werktuigkunde (KU Leuven) met de ontwikkeling van een robotkolibrie (KULibrie). Als burgerlijk ingenieur, maker en onderzoeker benadert Fré topsport niet louter als fysiologische uitdaging, maar als een <strong>complex mechatronisch en data-gedreven optimalisatievraagstuk</strong>.
+              </p>
+              <p>
+                Het ontwerpen van een technologisch ge-engineerde atleet vraagt om feedbackloops, sensor-data, custom trainingstools, biomechanische precisie en geavanceerde materiaalkunde. Fré's paralympische lichaam en sportuitrusting fungeren hierbij als een <strong>levend R&D-testbed</strong>.
+              </p>
+            </div>
+
+            <div className="border-t border-zinc-200 pt-6">
+              <h3 className="text-xl font-bold mb-3 text-black">Waarom Leuven uniek is</h3>
+              <p className="text-zinc-700 text-sm leading-relaxed mb-4">
+                Leuven staat wereldwijd bekend als <em>European Capital of Innovation</em>. Gevoed door KU Leuven, Imec, UZ Leuven en honderden baanbrekende spin-offs in het Arenberg Science Park en Haasrode Research Park, bezit Leuven een ongeëvenaarde concentratie aan deep tech, health tech en mechatronica.
+              </p>
+              <div className="p-4 bg-white border border-zinc-200 rounded-sm">
+                <p className="text-sm font-semibold text-zinc-900 italic">
+                  "Mijn doel is om 25 innovatieve Leuvense bedrijven samen te brengen rond dit project. Samen bewijzen we dat Leuvense spitstechnologie en engineering letterlijk goud kunnen winnen op de Paralympische Spelen van Los Angeles 2028."
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -52,19 +91,25 @@ export default function PartnershipPlan() {
 
           <div className="space-y-6">
             <div className="border-l-4 border-black pl-6 py-2">
-              <h3 className="font-bold text-xl mb-2">1. Presteren</h3>
+              <h3 className="font-bold text-xl mb-2">1. Presteren via Engineering & Innovatie</h3>
               <p className="text-zinc-700 leading-relaxed">
-                De nodige financiële, professionele en prestatiegerichte ondersteuning veiligstellen om succesvol te trainen voor en te kwalificeren voor de LA 2028 Paralympische Spelen.
+                De nodige financiële, technische en sportwetenschappelijke ondersteuning veiligstellen om voltijds te kunnen trainen, prototypen, innoveren en goud te veroveren in LA 2028.
               </p>
             </div>
 
             <div className="border-l-4 border-black pl-6 py-2">
-              <h3 className="font-bold text-xl mb-2">2. Sociaal engagement</h3>
+              <h3 className="font-bold text-xl mb-2">2. Het Leuvense Innovatiecollectief (25 Bedrijven)</h3>
               <p className="text-zinc-700 leading-relaxed">
-                Een toegewijde team opbouwen (van partners, sponsors en professionals) om actief de <strong>Paralympische Spelen van 2028</strong> te promoten in <strong>Leuven en Vlaanderen</strong>.
+                Een hecht consortium van <strong>25 innovatieve Leuvense bedrijven</strong> opbouwen dat Fré's traject omarmt als uithangbord van lokaal technologisch leiderschap.
               </p>
             </div>
 
+            <div className="border-l-4 border-black pl-6 py-2">
+              <h3 className="font-bold text-xl mb-2">3. Maatschappelijk Engagement & Legacy</h3>
+              <p className="text-zinc-700 leading-relaxed">
+                De allereerste Paralympiër van Leuven worden en het momentum benutten om de <strong>Paralympische beweging en G-sport</strong> in Leuven en Vlaanderen structureel op de kaart te zetten via <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-bold text-black">Paraclimbing.be</a>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -78,7 +123,7 @@ export default function PartnershipPlan() {
           </div>
 
           <p className="text-lg text-zinc-700 leading-relaxed mb-8">
-            Om als professioneel atleet 100% te kunnen focussen op goud in LA 2028, bouw ik aan een hecht netwerk van <strong>25 geëngageerde Leuvense partners</strong> aan <strong>€100 per maand (€1.200 per jaar)</strong>. Dit levert het noodzakelijke jaarlijkse werkingsbudget van net geen €25.000 - €30.000 om voltijds te kunnen trainen, rusten en de campagne te leiden.
+            Om als professioneel atleet 100% te focussen op goud in LA 2028, bouw ik aan een hecht netwerk van <strong>25 innovatieve Leuvense partnerbedrijven</strong> aan <strong>€100 per maand (€1.200 per jaar)</strong>. Dit levert het noodzakelijke jaarlijkse werkingsbudget van net geen €25.000 - €30.000 om voltijds te kunnen trainen, testen, herstellen en de campagne te leiden.
           </p>
 
           {/* Context & Waarom dit nodig is */}
@@ -87,16 +132,16 @@ export default function PartnershipPlan() {
             
             <div className="grid md:grid-cols-2 gap-6">
               <div className="border-l-4 border-amber-500 pl-4 py-1 bg-amber-50/50">
-                <h4 className="font-bold text-sm text-zinc-900 mb-1">Amper overheidsmiddelen</h4>
+                <h4 className="font-bold text-sm text-zinc-900 mb-1">Minimale overheidsmiddelen</h4>
                 <p className="text-sm text-zinc-700">
-                  Zelfs wedstrijdkosten worden niet volledig gedekt. Zo moet ik voor mijn internationale wedstrijden in 2026 circa <strong>€3.500 uit eigen middelen</strong> betalen. In omringende landen worden paraklimmers voltijds professioneel omkaderd met aanzienlijke budgetten.
+                  Zelfs wedstrijdkosten worden in België amper gedekt. Zo moet ik voor mijn internationale wedstrijden in 2026 circa <strong>€3.500 uit eigen zak</strong> betalen. In het buitenland worden directe concurrenten voltijds gefinancierd door overheid en olympische comités.
                 </p>
               </div>
 
               <div className="border-l-4 border-black pl-4 py-1 bg-zinc-50">
-                <h4 className="font-bold text-sm text-zinc-900 mb-1">Voltijds topsporttraject</h4>
+                <h4 className="font-bold text-sm text-zinc-900 mb-1">Voltijds traject & R&D</h4>
                 <p className="text-sm text-zinc-700">
-                  Aanvankelijk wilde ik enkel klimkosten dekken, maar een 100% voorbereiding is onmogelijk combineerbaar met een reguliere job. Naast fysieke training en herstel is dit communicatietraject alleen al bijna een halftijdse baan.
+                  Een 100% voorbereiding naar paralympisch goud vraagt voltijdse toewijding: dagelijkse krachttraining, klimtrainingen, sensor-analyse, biomechanische data-evaluatie, reizen en campagnebeheer.
                 </p>
               </div>
             </div>
@@ -114,11 +159,11 @@ export default function PartnershipPlan() {
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
                 <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Doelwit</div>
-                <p className="text-zinc-700 font-medium">25 Leuvense ondernemingen & leiders</p>
+                <p className="text-zinc-700 font-medium">25 Innovatieve Leuvense Engineering & Tech Bedrijven</p>
               </div>
               <div>
                 <div className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Aanpak</div>
-                <p className="text-zinc-700">3 maanden gerichte media- & netwerkpush in Leuven</p>
+                <p className="text-zinc-700">3 maanden gerichte media-, tech- & netwerkpush in Leuven</p>
               </div>
             </div>
 
@@ -126,18 +171,18 @@ export default function PartnershipPlan() {
               <div className="bg-zinc-50 p-5 border border-zinc-200">
                 <h4 className="font-bold text-sm uppercase tracking-wider text-zinc-900 mb-3">Concrete Return voor Partners:</h4>
                 <ul className="list-disc list-inside space-y-2 text-sm">
-                  <li><strong>Zichtbaarheid:</strong> Alle 25 sponsors worden vermeld op de officiële <strong>campagneposter</strong>, de <strong>website</strong> en de <strong>trainingskledij / campagne T-shirt</strong>.</li>
-                  <li><strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk (over veerkracht, innovatie en ingenieursaanpak in topsport).</li>
+                  <li><strong>Zichtbaarheid op alle dragers:</strong> Logo op de officiële <strong>campagneposter</strong>, de <strong>website (fre2028.la)</strong> en de <strong>trainingskledij / campagne T-shirt</strong>.</li>
+                  <li><strong>Exclusief Jaarevent:</strong> 1x per jaar partnerevent met kliminitiatie, filmvertoning en inspirerende keynote over veerkracht, innovatie en de 'engineer-athlete' aanpak.</li>
                   <li><strong>Kerstmarkt 2027:</strong> Partneractivatie en zichtbaarheid op de Leuvense Kerstmarkt.</li>
                   <li><strong>Grote Poster 2028:</strong> Huis-aan-huis verspreiding in elk huis in Leuven en op alle scholen (in samenwerking met Stad Leuven).</li>
-                  <li><strong>Maatschappelijke impact:</strong> Structurele promotie voor paraklimmen via <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a> en aandacht voor de Paralympische Spelen in Leuven.</li>
+                  <li><strong>R&D-Synergie & Maatschappelijke Impact:</strong> Zichtbare link met spitstechnologie, inclusie en paraklimmen via <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a>.</li>
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-bold mb-2">Waarom uitsluitend Leuven?</h4>
+                <h4 className="font-bold mb-2">Waarom uitsluitend Leuvense Innovatie?</h4>
                 <p className="text-sm">
-                  Enerzijds praktisch voor events en samenwerking, anderzijds omdat ik mijn zichtbaarheid en inzet rond de Paralympische Spelen bewust wil focussen op mijn thuisstad Leuven.
+                  Omdat Leuven een wereldklasse ecosysteem is van ingenieurs en vernieuwers. Door dit verhaal hier te concentreren, verbinden we lokale trots, technologische superioriteit en maatschappelijke impact op het allerhoogste wereldpodium.
                 </p>
               </div>
             </div>
@@ -150,27 +195,27 @@ export default function PartnershipPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Users className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">2. Strategische Partners (Leuven)</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">2. Strategische & Media Partners (Leuven)</h2>
           </div>
 
           <div className="bg-zinc-50 border border-zinc-200 p-8">
             <div className="mb-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro Bono Expertise & Media</p>
-              <h3 className="text-xl font-bold mb-4">Lokale Partners in Communicatie & Diensten</h3>
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro Bono Expertise & Tech Integratie</p>
+              <h3 className="text-xl font-bold mb-4">Lokale Partners in Communicatie, Media & Technologie</h3>
             </div>
 
             <div className="space-y-4 text-zinc-700">
               <div>
                 <h4 className="font-bold mb-2">Doel:</h4>
-                <p>Professionele expertise inzetten voor de 3-maanden push, mediacampagnes, PR en content creation zonder cashflowdruk op het sportieve budget.</p>
+                <p>Professionele expertise inzetten voor de 3-maanden push, mediacampagnes, PR, video storytelling en eventuele technische prototyping zonder cashflowdruk op het sportieve budget.</p>
               </div>
 
               <div>
                 <h4 className="font-bold mb-2">Doelwit & Profiel:</h4>
                 <ul className="list-disc list-inside space-y-1 pl-4 text-sm">
-                  <li>PR & Communicatiebureaus uit Leuven</li>
+                  <li>PR & Communicatiebureaus uit de regio Leuven</li>
                   <li>Content creators (videografie, fotografie, storytelling)</li>
-                  <li>Media- en distributiepartners</li>
+                  <li>Technologie- en hardwarepartners (sensoren, prototyping, data)</li>
                   <li>Juridische en administratieve ondersteuning</li>
                 </ul>
               </div>
@@ -189,19 +234,19 @@ export default function PartnershipPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Award className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">3. Het Performance Team</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">3. Het Performance & Data Team</h2>
           </div>
 
           <div className="bg-white border border-zinc-200 p-8">
             <div className="mb-6">
-              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Expert Topsportkader</p>
-              <h3 className="text-xl font-bold mb-4">Atletische, Fysieke & Mentale Begeleiding</h3>
+              <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-2">Sportwetenschappelijk & Biomechanisch Kader</p>
+              <h3 className="text-xl font-bold mb-4">Atletische, Fysieke & Data-gedreven Begeleiding</h3>
             </div>
 
             <div className="space-y-4 text-zinc-700">
               <div>
                 <h4 className="font-bold mb-2">Doel:</h4>
-                <p>De wetenschappelijke en sportieve structuur die ervoor zorgt dat Fré in topvorm aan de start verschijnt in Los Angeles 2028.</p>
+                <p>De wetenschappelijke, medische en sportieve omkadering die ervoor zorgt dat Fré in absolute topvorm en met geoptimaliseerde biomechanica aan de start verschijnt in Los Angeles 2028.</p>
               </div>
 
               <div>
@@ -209,6 +254,7 @@ export default function PartnershipPlan() {
                 <ul className="list-disc list-inside space-y-1 pl-4 text-sm">
                   <li>Hoofdcoach & Klimtrainers</li>
                   <li>Kinesitherapeut & Revalidatiespecialist</li>
+                  <li>Biomechanici & Data-analisten</li>
                   <li>Sportpsycholoog & Mentale Coach</li>
                   <li>Voedingsdeskundige</li>
                   <li>Klim- en Bergsportfederatie / G-Sport Vlaanderen</li>
@@ -229,39 +275,45 @@ export default function PartnershipPlan() {
               <thead>
                 <tr className="bg-black text-white">
                   <th className="border border-zinc-300 p-4 text-left font-bold">Pijler</th>
-                  <th className="border border-zinc-300 p-4 text-left font-bold">1. Financiële Partners</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">1. Financiële & Innovatie Partners</th>
                   <th className="border border-zinc-300 p-4 text-left font-bold">2. Strategische Partners</th>
-                  <th className="border border-zinc-300 p-4 text-left font-bold">3. Performance Team</th>
+                  <th className="border border-zinc-300 p-4 text-left font-bold">3. Performance & Data Team</th>
                 </tr>
               </thead>
               <tbody className="text-sm">
                 <tr>
-                  <td className="border border-zinc-300 p-4 font-bold">Doel</td>
-                  <td className="border border-zinc-300 p-4">Voltijds professioneel topsporttraject & reiskosten dekken</td>
-                  <td className="border border-zinc-300 p-4">Media, PR, video & mediapush pro-bono</td>
-                  <td className="border border-zinc-300 p-4">Fysieke, technische & mentale topbegeleiding</td>
+                  <td className="border border-zinc-300 p-4 font-bold">Concept</td>
+                  <td className="border border-zinc-300 p-4 font-semibold">"Engineering my way to the Paralympics in 2028"</td>
+                  <td className="border border-zinc-300 p-4">Media, PR & Pro Bono Tech Expertise</td>
+                  <td className="border border-zinc-300 p-4">Fysieke, biomechanische & mentale coaching</td>
                 </tr>
                 <tr className="bg-zinc-50">
+                  <td className="border border-zinc-300 p-4 font-bold">Doel</td>
+                  <td className="border border-zinc-300 p-4">Voltijds topsporttraject, R&D-optimalisatie & reiskosten dekken</td>
+                  <td className="border border-zinc-300 p-4">Media- en technologieversterking</td>
+                  <td className="border border-zinc-300 p-4">Paralympisch goud en atletische perfectie</td>
+                </tr>
+                <tr>
                   <td className="border border-zinc-300 p-4 font-bold">Focus</td>
-                  <td className="border border-zinc-300 p-4">Leuven</td>
+                  <td className="border border-zinc-300 p-4">Leuven Innovatie Ecosysteem</td>
                   <td className="border border-zinc-300 p-4">Leuven</td>
                   <td className="border border-zinc-300 p-4">Nationaal / Internationaal</td>
                 </tr>
-                <tr>
+                <tr className="bg-zinc-50">
                   <td className="border border-zinc-300 p-4 font-bold">Aantal</td>
-                  <td className="border border-zinc-300 p-4">25 partners</td>
+                  <td className="border border-zinc-300 p-4">25 Innovatieve Bedrijven</td>
                   <td className="border border-zinc-300 p-4">3 - 5 partners</td>
                   <td className="border border-zinc-300 p-4">Kernteam van experts</td>
                 </tr>
-                <tr className="bg-zinc-50">
+                <tr>
                   <td className="border border-zinc-300 p-4 font-bold">Bijdrage</td>
                   <td className="border border-zinc-300 p-4">€100 / maand (€1.200 / jaar)</td>
                   <td className="border border-zinc-300 p-4">Pro bono diensten & expertise</td>
                   <td className="border border-zinc-300 p-4">Expertise & coaching</td>
                 </tr>
-                <tr>
+                <tr className="bg-zinc-50">
                   <td className="border border-zinc-300 p-4 font-bold">Return</td>
-                  <td className="border border-zinc-300 p-4">Poster, website, T-shirt, jaarevent, Kerstmarkt 2027, huis-aan-huis poster 2028</td>
+                  <td className="border border-zinc-300 p-4">Poster, website, T-shirt, jaarevent, Kerstmarkt 2027, huis-aan-huis poster 2028, R&D synergie</td>
                   <td className="border border-zinc-300 p-4">Erkenning, netwerk & media-associatie</td>
                   <td className="border border-zinc-300 p-4">Paralympisch goud & topsportsucces</td>
                 </tr>
@@ -278,9 +330,10 @@ export default function PartnershipPlan() {
             <Mountain className="w-6 h-6" />
             <span>Fré2028.LA</span>
           </div>
-          <p className="text-sm text-zinc-600">Partnerschap Plan - Weg naar LA 2028 Paralympics</p>
+          <p className="text-sm text-zinc-600">"Engineering my way to the Paralympics in 2028" — Weg naar LA 2028 Paralympics</p>
         </div>
       </footer>
     </div>
   );
 }
+

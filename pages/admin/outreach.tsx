@@ -930,6 +930,11 @@ export default function OutreachAdminPage({ emailDrafts = {}, initialLeads = INI
     });
   }, [leads, selectedStatus, searchQuery]);
 
+  const handleReauthGmail = () => {
+    setIsReauthing(true);
+    window.location.href = '/api/admin/gmail/authorize';
+  };
+
   // Sync Gmail Threads handler
   const handleSyncGmail = async (silent: boolean = false, customLeadsList?: Lead[]) => {
     setIsSyncing(true);
@@ -1266,7 +1271,7 @@ fre2028.la`;
 
               {/* Sync Gmail Button */}
               <button
-                onClick={handleSyncGmail}
+                onClick={() => handleSyncGmail()}
                 disabled={isSyncing || isReauthing}
                 title="Synchroniseer verzonden mails en inkomende antwoorden via Gmail"
                 className="inline-flex items-center gap-1.5 px-3 py-2 bg-white border border-zinc-300 hover:bg-zinc-100 text-zinc-900 text-xs font-bold rounded-lg transition-colors shadow-sm disabled:opacity-50"

@@ -103,13 +103,13 @@ const STORY_CHAPTERS = [
   },
   {
     id: 'future',
-    year: '2025-2028',
-    title: 'De Toekomst',
-    subtitle: 'De Weg naar Goud',
+    year: '2026-2028',
+    title: 'De Toekomst: "Engineering my way to the Paralympics in 2028"',
+    subtitle: 'De Weg naar Goud via Innovatie',
     content: [
-      'Vandaag combineer ik mijn topsportcarrière met mijn werk als zelfstandig ingenieur bij iVOX, een Leuvens marktonderzoeksbureau. Het is een boeiende job met fijne collega\'s die de perfecte balans biedt. Het werk brengt een belangrijk ritme in mijn leven en geeft me tegelijkertijd de flexibiliteit en tijd om voluit op mijn sport te focussen.',
-      'Die stabiele basis is cruciaal, want de komende jaren staat alles in het teken van één doel: paralympisch goud. Om te winnen in 2028, schat ik dat ik een niveau van 8b zal moeten klimmen – een niveau waarmee ik mogelijks in de top 10 van het Belgisch kampioenschap voor valide klimmers zou staan.',
-      'Dit doel is allesverslindend, maar ik doe het met passie. Ik zie het als een enorm privilege om voor België te mogen uitkomen en hoop dat ik anderen met een of twee benen kan inspireren om ook te starten met klimmen, of welke sport dan ook.'
+      'Als burgerlijk ingenieur (doctoraat in de Werktuigkunde aan de KU Leuven) en gepassioneerd maker benader ik de weg naar de Paralympische Spelen in Los Angeles 2028 als een mechatronisch en data-gedreven innovatieproject.',
+      'Samen met de innovatieve bedrijven en onderzoekers uit het Leuvense ecosysteem gebruik ik mijn lichaam, custom trainingsapparatuur en sportuitrusting als een levend R&D-testbed. Door sensor-data, biomechanica en geavanceerde materiaalkunde te integreren, optimaliseer ik elke beweging en krachtoverbrenging.',
+      'Om te winnen in 2028, schat ik dat ik een niveau van 8b zal moeten klimmen – een niveau waarmee ik in de top 10 van het Belgisch kampioenschap voor valide klimmers zou staan. Dit doel is ambitieus, maar de symbiose tussen Leuvense spitstechnologie, veerkracht en topsport maakt deze droom tastbaar.'
     ]
   }
 ];

@@ -45,15 +45,20 @@ export default function CommunicationPlan() {
       {/* Hero Section */}
       <section className="py-16 md:py-24 bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-100">
         <div className="max-w-4xl mx-auto px-4 md:px-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
-            <Radio className="w-4 h-4" />
-            Communicatie campagne
+          <div className="flex flex-wrap items-center gap-3 mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 border border-zinc-300 text-xs font-bold uppercase tracking-[0.2em] text-zinc-600">
+              <Radio className="w-4 h-4" />
+              Communicatiecampagne
+            </div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-100 border border-amber-300 text-amber-900 text-xs font-extrabold uppercase tracking-wider rounded-sm">
+              "Engineering my way to the Paralympics in 2028"
+            </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
             Road to LA 2028
           </h1>
           <p className="text-xl md:text-2xl text-zinc-600 leading-relaxed">
-             Mijn persoonlijk verhaal als katalysator om Leuvenaars en Vlamingen te betrekken bij de Paralympische Spelen van 2028.
+             Mijn reis als burgerlijk ingenieur en paraklimmer om Leuvense innovatie, mechatronica en topsport te verenigen op weg naar de Paralympische Spelen van 2028.
           </p>
         </div>
       </section>
@@ -63,23 +68,23 @@ export default function CommunicationPlan() {
         <div className="max-w-4xl mx-auto px-4 md:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Target className="w-8 h-8" />
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">De Visie</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">De Visie: The Engineer-Athlete</h2>
           </div>
           
           <div className="space-y-6 text-lg text-zinc-700 leading-relaxed">
             <div>
               <h3 className="font-bold text-black mb-2">Wie ik ben:</h3>
-              <p>Mijn naam is Fré Leys. Ik ben een burgerlijk ingenieur en een paraklimmer, lid van het Belgische klimteam sinds 2016 en geboren met een beperking aan mijn rechterbeen waarvoor ik een prothese draag. Momenteel ben ik tweedes op de wereldranglijst in mijn klasse. In 2022 richte ik de <strong>VZW Paraclimbing.be</strong> op met als doel om mensen met een fysieke beperking te helpen bij het ontdekken van de klimsport.</p>
+              <p>Mijn naam is Dr. Ir. Frederik Leys. Ik ben een burgerlijk ingenieur (doctoraat in de Werktuigkunde aan de KU Leuven) en paraklimmer, lid van het Belgische klimteam sinds 2016 en geboren met een beperking aan mijn rechterbeen waarvoor ik een prothese draag. Momenteel ben ik tweede op de wereldranglijst in mijn klasse met 2x Wereldbeker Goud. In 2022 richtte ik de <strong>VZW Paraclimbing.be</strong> op om mensen met een fysieke beperking te inspireren en te begeleiden in de klimsport.</p>
             </div>
 
             <div>
-              <h3 className="font-bold text-black mb-2">De eerste Leuvense Paralympiër</h3>
-              <p>Klimmen zal in 2028 voor het eerst op het programma staan van de Paralympische Spelen in LA. Mijn ultieme doel is niet alleen om te mogen deelnemen en daarmee de <strong>eerste Leuvense Paralympier</strong> te worden, maar ook om paralympisch <strong>goud</strong> te winnen. </p>
+              <h3 className="font-bold text-black mb-2">"Engineering my way to the Paralympics in 2028"</h3>
+              <p>Klimmen debuteert in 2028 voor het eerst in de geschiedenis op de Paralympische Spelen in Los Angeles. Als maker en ingenieur benader ik topsport als een optimalisatie- en innovatievraagstuk: custom trainingsapparatuur, sensoren, biomechanische data en spitstechnologie uit het innovatieve Leuvense ecosysteem fungeren als mijn R&D-testbed richting goud.</p>
             </div>
 
             <div>
-              <h3 className="font-bold text-black mb-2">Een gouden opportuniteit</h3>
-              <p>Mogen deelnemen zal het resultaat zijn van vele jaren toewijding, toch wil ik meer bereiken dan enkel persoonlijk sportief succes. Ik wil deze opportuniteit aangrijpen om met mijn persoonlijk verhaal de <strong>Paralympische Spelen</strong> onder de aandacht te brengen en meer mensen bij de <strong>Paralympische beweging</strong> te betrekken. Daarom ben ik deze communicatie campagne gestart. Met dit initiatief richt ik mij in de eerste plaats op de Leuvenaar, maar wie weet bereiken we wel heel Vlaanderen.</p>
+              <h3 className="font-bold text-black mb-2">De eerste Leuvense Paralympiër & een gouden hefboom</h3>
+              <p>Mijn ultieme doel is om de <strong>allereerste Paralympiër van Leuven</strong> te worden en goud te winnen voor België. Maar bovenal wil ik deze opportuniteit aangrijpen om het Leuvense innovatieve bedrijfsleven en het brede publiek te verbinden met de <strong>Paralympische beweging</strong> en inclusieve topsport.</p>
             </div>
           </div>
         </div>

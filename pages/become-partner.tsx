@@ -68,14 +68,17 @@ export default function BecomePartner() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <div className="inline-block px-4 py-2 mb-8 border border-zinc-200 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
-            Partnerschap Kans
+          <div className="inline-block px-4 py-2 mb-4 border border-zinc-200 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+            Partnerschap & Innovatie
+          </div>
+          <div className="text-xs font-extrabold uppercase tracking-widest text-amber-700 bg-amber-100 border border-amber-300 px-3 py-1 inline-block rounded-sm mb-6">
+            "Engineering my way to the Paralympics in 2028"
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
             Word Partner
           </h1>
           <p className="text-xl text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-            Sluit je aan bij Team Fré2028.LA en help geschiedenis te schrijven. Ondersteun Fré Leys' reis om België's eerste Paralympische klimmer te worden en promoot de Paralympische Spelen in Vlaanderen.
+            Sluit je aan bij Team Fré2028.LA. Samen met 25 innovatieve Leuvense bedrijven bundelen we spitstechnologie, mechatronica en topsport om België's eerste Paralympische klimmer naar goud te loodsen.
           </p>
         </div>
       </section>
@@ -84,7 +87,7 @@ export default function BecomePartner() {
       <section className="py-20 bg-white border-b border-zinc-100">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-12 text-center">
-            Executive summary
+            Executive Summary
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12">
@@ -97,16 +100,16 @@ export default function BecomePartner() {
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  <strong>Doel:</strong> Fré's persoonlijk verhaal om Leuvenaars en Vlamingen te betrekken bij de Paralympische Spelen 2028.
+                  <strong>Doel:</strong> Fré's unieke "Engineer-Athlete" verhaal inzetten om Leuvenaars en Vlamingen te inspireren en te verbinden met de Paralympische Spelen 2028.
                 </p>
                 <p>
-                  <strong>Strategie:</strong> Twee-fasen campagne van 1000 dagen tot lancering, beginnend lokaal in Leuven en uitbreidend naar Vlaanderen.
+                  <strong>Strategie:</strong> Twee-fasen campagne van 1000 dagen tot de openingsceremonie in LA, startend met een krachtige lokale push in Leuven en doorgroeiend naar nationaal niveau.
                 </p>
                 <p>
-                  <strong>Platform:</strong> Centraal knooppunt op FRE2028.LA met persoonlijk verhaal, blog, resultaten en partner showcase.
+                  <strong>Platform:</strong> Centraal knooppunt op FRE2028.LA met blog over R&D, trainingsbevindingen, resultaten en partner showcase.
                 </p>
                 <p>
-                  <strong>Impact:</strong> Bewustzijn en betrokkenheid opbouwen bij de Paralympische beweging door strategische media-initiatieven.
+                  <strong>Impact:</strong> Structurele zichtbaarheid voor innovatieve partners en promotie van inclusieve topsport.
                 </p>
               </div>
 
@@ -129,16 +132,16 @@ export default function BecomePartner() {
 
               <div className="space-y-4 text-zinc-700">
                 <p>
-                  <strong>Doel:</strong> 25 Leuvense partners verzamelen in de <em>Leuven 25 Support Circle</em> (€100/mnd of €1.200/jaar) om voltijds als professioneel atleet te kunnen leven en trainen voor goud in LA 2028.
+                  <strong>Doel:</strong> 25 innovatieve Leuvense bedrijven verenigen in de <em>Leuven 25 Support Circle</em> (€100/mnd of €1.200/jaar) om als voltijds atleet & onderzoeker toe te werken naar goud in LA 2028.
                 </p>
                 <p>
-                  <strong>Focus Leuven:</strong> 100% lokale focus in Leuven om maximale maatschappelijke zichtbaarheid en betrokkenheid voor de Paralympische Spelen te creëren.
+                  <strong>R&D Testbed & Innovatie:</strong> Leuven is de European Capital of Innovation. Fré's training, lichaam en uitrusting functioneren als testbed voor lokale spitstechnologie.
                 </p>
                 <p>
-                  <strong>Strategische Partners:</strong> Lokale experts die pro-bono communicatie-, media- en PR-expertise leveren voor de 3-maanden mediapush.
+                  <strong>Strategische Partners:</strong> Lokale bureaus en experts die pro-bono communicatie-, media- en technische expertise inzetten.
                 </p>
                 <p>
-                  <strong>Performance Team:</strong> Mijn sportieve omkadering (coaches, kine, sportpsycholoog).
+                  <strong>Performance Team:</strong> Wetenschappelijke begeleiding (coaches, kine, biomechanici, sportpsycholoog).
                 </p>
               </div>
 
@@ -171,7 +174,7 @@ export default function BecomePartner() {
                 </span>
               </div>
               <p className="text-zinc-700 mb-6">
-                Sluit je aan bij de Leuven 25 Support Circle — het erecollectief van 25 Leuvense ondernemingen die het fundament leggen voor Fré2028.LA. Omdat overheidssubsidies voor paraklimmen uiterst schaars zijn (bv. ~€3.500 eigen opleg in 2026 voor wedstrijdreizen), maakt deze bijdrage van €100/maand een voltijds professioneel topsporttraject mogelijk.
+                Sluit je aan bij de Leuven 25 Support Circle — het erecollectief van 25 innovatieve Leuvense engineering- en techbedrijven. Omdat overheidssubsidies voor paraklimmen uiterst schaars zijn (bv. circa €3.500 eigen opleg in 2026 voor wedstrijdreizen), maakt deze bijdrage van €100/maand een voltijds professioneel topsporttraject en technologische optimalisatie mogelijk.
               </p>
               
               <div className="bg-zinc-50 p-5 border border-zinc-200 rounded-sm mb-4">
@@ -180,10 +183,10 @@ export default function BecomePartner() {
                 </h4>
                 <ul className="space-y-2 text-zinc-700 text-sm">
                   <li>• <strong>Prominente zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt.</li>
-                  <li>• <strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partner-event met kliminitiatie, filmvertoning en keynote/talk over veerkracht & topprestaties.</li>
+                  <li>• <strong>Exclusief Jaarevent:</strong> 1x per jaar partnerevent met kliminitiatie, filmvertoning en keynote over veerkracht, innovatie en de 'engineer-athlete' mentaliteit.</li>
                   <li>• <strong>Kerstmarkt 2027:</strong> Zichtbaarheid bij acties en aanwezigheid op de Leuvense Kerstmarkt.</li>
                   <li>• <strong>Grote Poster 2028:</strong> Logo op de officiële poster die huis-aan-huis gebust wordt in elk huis in Leuven en op elke school.</li>
-                  <li>• <strong>Maatschappelijke impact:</strong> Directe betrokkenheid bij de promotie van paraklimmen (<a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a>) en de Paralympische Spelen in Leuven.</li>
+                  <li>• <strong>Maatschappelijke & R&D Impact:</strong> Directe betrokkenheid bij innovatie, inclusie en paraklimmen (<a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="underline font-semibold">paraclimbing.be</a>).</li>
                 </ul>
               </div>
             </div>
@@ -191,24 +194,24 @@ export default function BecomePartner() {
             <div className="bg-white border border-zinc-200 p-8">
               <h3 className="text-2xl font-bold mb-4">Strategische Partners (Leuven)</h3>
               <p className="text-zinc-700 mb-4">
-                Lokale mediabureaus, PR-specialisten, content creators en logistieke partners die pro-bono hun expertise inzetten tijdens de 3-maanden mediapush om het Paralympische verhaal breed uit te dragen.
+                Lokale mediabureaus, PR-specialisten, videografen en prototyping-partners die pro-bono hun expertise inzetten om het Paralympische innovatieverhaal breed uit te dragen.
               </p>
               <ul className="space-y-2 text-zinc-600">
-                <li>• Toon leiderschap en maatschappelijke betrokkenheid in Leuven</li>
-                <li>• Versterk de zichtbaarheid van paraklimmen en inclusieve topsport</li>
+                <li>• Toon technologisch leiderschap en maatschappelijke betrokkenheid in Leuven</li>
+                <li>• Versterk de zichtbaarheid van paraklimmen en innovatieve topsport</li>
                 <li>• Netwerk met de 25 Leuvense partnerondernemingen</li>
-                <li>• Structurele merkassociatie met een uniek topsportverhaal</li>
+                <li>• Structurele merkassociatie met een uniek "Engineer-Athlete" topsporttraject</li>
               </ul>
             </div>
 
             <div className="bg-white border border-zinc-200 p-8">
-              <h3 className="text-2xl font-bold mb-4">Performance Team Partners</h3>
+              <h3 className="text-2xl font-bold mb-4">Performance & Data Team Partners</h3>
               <p className="text-zinc-700 mb-4">
-                Ondersteun het sportieve team dat Fré de beste adaptieve klimmer ter wereld maakt: coaches, fysiotherapeuten, sportpsychologen en voedingsdeskundigen.
+                Ondersteun het sportwetenschappelijke team dat Fré de beste paraklimmer ter wereld maakt: coaches, fysiotherapeuten, biomechanici en sportpsychologen.
               </p>
               <ul className="space-y-2 text-zinc-600">
-                <li>• Directe bijdrage aan Paralympisch eremetaal in Los Angeles 2028</li>
-                <li>• Associatie met wetenschappelijke en grensverleggende topsportprestaties</li>
+                <li>• Directe bijdrage aan Paralympisch goud in Los Angeles 2028</li>
+                <li>• Associatie met grensverleggende data-analyse en sportbiomechanica</li>
                 <li>• Erkenning als lid van het officiële Performance Team</li>
               </ul>
             </div>

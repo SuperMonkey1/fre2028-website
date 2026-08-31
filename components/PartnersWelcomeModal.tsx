@@ -110,7 +110,7 @@ export const PartnersWelcomeModal: React.FC<PartnersWelcomeModalProps> = ({
               Dank aan mijn Partners
             </h2>
             <p className="text-xs sm:text-sm text-zinc-500 font-medium mt-0.5">
-              De Leuven 25 Support Circle • Road to LA 2028
+              Deze Leuvense innovatieve bedrijven steunen mij op weg naar LA
             </p>
           </div>
 

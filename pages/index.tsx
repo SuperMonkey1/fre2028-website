@@ -545,6 +545,9 @@ export default function ParaclimberSite() {
               <div className="inline-block px-4 py-2 border border-white/30 text-xs font-bold uppercase tracking-[0.2em] text-zinc-300">
                 Road to Los Angeles 2028
               </div>
+              <div className="inline-block px-3 py-2 bg-amber-400/90 text-black text-xs font-black uppercase tracking-wider rounded-xs">
+                The Engineer-Athlete
+              </div>
               <button 
                 onClick={() => setIsPartnersModalOpen(true)}
                 className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-white transition-all hover:scale-105 shadow-sm"
@@ -553,11 +556,14 @@ export default function ParaclimberSite() {
                 Partners
               </button>
             </div>
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8">
+            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-6">
               DROOM<br />GROOTS.
             </h1>
-            <p className="text-xl text-zinc-400 max-w-lg leading-relaxed mb-12">
-              Word ik in 2028 de eerste Leuvense Paralympiër?
+            <p className="text-xl md:text-2xl text-zinc-200 font-semibold max-w-2xl leading-relaxed mb-4">
+              "Engineering my way to the Paralympics in 2028"
+            </p>
+            <p className="text-base md:text-lg text-zinc-300 max-w-2xl leading-relaxed mb-12">
+              Als burgerlijk ingenieur (PhD KU Leuven) en tweevoudig Wereldbekerwinnaar geloof ik rotsvast dat wetenschappelijke en technologische innovatie voor mij het verschil gaan maken om als <strong>eerste Leuvense Paralympiër ooit</strong> goud te pakken in 2028. Door zelf nieuw trainingsmateriaal, data-analyses en trainingsmethoden te ontwerpen, zet ik theorie om in winst — gesteund door innovatieve Leuvense bedrijven.
             </p>
             <div className="flex flex-wrap gap-6">
               <button onClick={() => setIsNewsletterOpen(true)} className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 min-w-[160px] bg-red-600 hover:bg-red-700 text-white">
@@ -581,8 +587,8 @@ export default function ParaclimberSite() {
             <div className="text-3xl font-bold">#6</div>
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Home Town</div>
-            <div className="text-3xl font-bold">Leuven</div>
+            <div className="text-[10px] uppercase tracking-widest text-zinc-500 mb-2">Leuvense Primeur</div>
+            <div className="text-3xl font-bold">1e Paralympiër</div>
           </div>
         </div>
       </section>
@@ -605,25 +611,33 @@ export default function ParaclimberSite() {
               </div>
             </div>
             <div className="lg:col-span-7">
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-12">
+              <div className="inline-block px-3 py-1 mb-4 border border-zinc-300 text-xs font-bold uppercase tracking-widest text-zinc-500">
+                The Engineer-Athlete
+              </div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-8">
                 Welkom!
               </h2>
-              <div className="space-y-8 text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-2xl">
+              <div className="space-y-6 text-lg lg:text-xl leading-relaxed text-zinc-600 max-w-2xl">
                 <p>
-                  Welkom op mijn website. Hier deel ik mijn reis naar de Paralympische spelen van 2028 in Los Angeles. Ontdek mijn verhaal, volg mijn trainingen en steun me op weg naar mijn Paralympische droom.
+                  Als burgerlijk ingenieur met een passie voor innovatie, wetenschap en techniek benader ik mijn weg naar de Paralympische Spelen van LA 2028 — waar ik de <strong>allereerste Paralympiër van Leuven ooit</strong> kan worden — als <strong>één groot wetenschappelijk experiment</strong>.
                 </p>
                 <p>
-                  <strong className="text-black">Als mogelijks eerste Paralympiër van Leuven,</strong> wil ik jullie meenemen in mijn avontuur vol uitdagingen, overwinningen en de onwrikbare vastberadenheid om geschiedenis te schrijven.
+                  Samen met mijn uitrusting fungeert mijn lichaam als een <strong>levend R&D-lab</strong>: door grensverleggende, vaak zelfgemaakte technologie te combineren met topsport maak ik het verschil op weg naar het allerhoogste niveau.
                 </p>
               </div>
 
-              <div className="mt-12">
+              <div className="mt-12 flex flex-wrap gap-4">
                 <Button 
                   onClick={() => window.location.href = '/story'} 
                   variant="outline" 
-                  className="mb-16"
                 >
                   Lees mijn persoonlijk verhaal <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+                <Button 
+                  onClick={() => window.location.href = '/partnership-plan'} 
+                  variant="primary" 
+                >
+                  Partnerschap & Innovatieplan <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </div>
             </div>
@@ -1017,21 +1031,20 @@ export default function ParaclimberSite() {
             <div>
               <div className="inline-flex items-center gap-2 font-bold uppercase tracking-widest mb-4 text-xs text-zinc-500">
                 <Grid3X3 className="w-4 h-4" />
-                Partners
+                De Leuven 25 Support Circle
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter">
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
                 TEAM 2028.
               </h2>
+              <p className="text-zinc-600 max-w-xl text-base md:text-lg">
+                25 Innovatieve Leuvense Engineering & Tech Bedrijven bundelen de krachten op weg naar goud in Los Angeles.
+              </p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
-              {/* <a 
-                href="/Frederik-Leys-Partnership-Dossier.pdf" 
-                download
-                className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-12 px-8 border border-current bg-transparent hover:opacity-60 shrink-0"
-              >
-                Download sponsordossier
-              </a> */}
-              <Button onClick={() => scrollToSection('contact')} className="shrink-0">
+              <Button onClick={() => router.push('/become-partner')} variant="primary" className="shrink-0">
+                Word Partner
+              </Button>
+              <Button onClick={() => scrollToSection('contact')} variant="outline" className="shrink-0">
                 Contacteer mij
               </Button>
             </div>
@@ -1044,12 +1057,15 @@ export default function ParaclimberSite() {
             </div>
           ) : (
             <>
-              {/* Financiële Partners Section */}
+              {/* De Leuven 25 Support Circle Section */}
               {partners.filter(p => p.category === 'Financiële Partner').length > 0 && (
                 <div className="mb-20">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-8 text-center">
-                    Financiële Partners
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tighter mb-2 text-center">
+                    De Leuven 25 Support Circle
                   </h3>
+                  <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-zinc-500 text-center mb-8">
+                    Innovatieve Leuvense Bedrijven
+                  </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
                     {partners
                       .filter(p => p.category === 'Financiële Partner')

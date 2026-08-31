@@ -4,6 +4,8 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/*
 Disallow: /payments
+Disallow: /comp-analysis
+Disallow: /comp-analysis/*
 
 # Host
 Host: https://www.fre2028.la

@@ -49,8 +49,7 @@ export const getStaticProps: GetStaticProps<CompAnalysisPageProps> = async () =>
   return {
     props: {
       competitions: JSON.parse(JSON.stringify(competitions))
-    },
-    revalidate: 60
+    }
   };
 };
 

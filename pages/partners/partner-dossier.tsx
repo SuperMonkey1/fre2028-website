@@ -14,12 +14,17 @@ export default function PartnerDossierPage() {
 
       <header className="pt-12 pb-8 bg-black text-white">
         <div className="max-w-5xl mx-auto px-4">
-          <div className="flex items-center gap-3 font-bold text-lg tracking-widest uppercase">
+          <div className="flex items-center gap-3 font-bold text-lg tracking-widest uppercase mb-4">
             <Mountain className="w-6 h-6" />
             <div>FRÉ2028.LA</div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mt-6 mb-2">Partnerschapsdossier — De Leuven 25 Support Circle</h1>
-          <p className="text-zinc-300 max-w-2xl">Een overzicht voor Leuvense bedrijven over het partnerprogramma (€100/maand) van de Leuven 25 Support Circle rond de voorbereiding naar de Paralympische Spelen Los Angeles 2028.</p>
+          <div className="inline-block bg-amber-400 text-black text-xs font-black uppercase tracking-wider px-3 py-1 mb-3 rounded-xs">
+            "Engineering my way to the Paralympics in 2028"
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3">Partnerschapsdossier — De Leuven 25 Support Circle</h1>
+          <p className="text-zinc-300 max-w-3xl text-lg leading-relaxed">
+            Hoe Dr. Ir. Frederik Leys Leuvense engineering, spitstechnologie en een consortium van 25 innovatieve bedrijven bundelt op weg naar goud in Los Angeles 2028.
+          </p>
         </div>
       </header>
 
@@ -27,24 +32,26 @@ export default function PartnerDossierPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="grid lg:grid-cols-3 gap-12 items-start">
             <div className="lg:col-span-2">
-              <h2 className="text-2xl font-bold mb-3">Waarom partner worden?</h2>
+              <h2 className="text-2xl font-bold mb-3">De "Engineer-Athlete" & Leuven Innovatie</h2>
               <p className="text-lg text-zinc-700 leading-relaxed mb-6">
-                Als partner van Team Fré ondersteun je niet alleen de eerste Leuvense paraklimmer op weg naar Paralympisch goud, maar bouw je mee aan maximale zichtbaarheid in Leuven en creëer je concrete activaties voor je medewerkers en klanten.
+                Leuven is de European Capital of Innovation. Als burgerlijk ingenieur (PhD KU Leuven) en 2x Wereldbeker goudwinnaar benadert Fré topsport als een mechatronisch optimalisatievraagstuk: sensor-data, custom trainingstools, biomechanica en materiaalkunde. Fré's paralympische traject fungeert als een levend R&D-testbed voor Leuvense technologie.
               </p>
 
               <h3 className="text-xl font-bold mt-4 mb-2">De Leuven 25 Support Circle (€100 / maand)</h3>
-              <p className="text-zinc-700 mb-4">Een groep van 25 Leuvense ondernemingen die met €100/maand (€1.200/jaar) een professioneel topsporttraject mogelijk maken. Reiskosten (bv. ~€3.500 eigen opleg in 2026 door gebrek aan overheidssubsidies) en fulltime voorbereiding worden zo gefinancierd.</p>
+              <p className="text-zinc-700 mb-4">
+                Een exclusief collectief van 25 innovatieve Leuvense ondernemingen die met €100/maand (€1.200/jaar) een professioneel topsporttraject en technologische innovatie mogelijk maken. Reiskosten (bv. circa €3.500 eigen opleg in 2026 door gebrek aan overheidssubsidies) en fulltime voorbereiding worden zo gedekt.
+              </p>
 
-              <h3 className="text-xl font-bold mt-4 mb-2">Wat krijg je terug?</h3>
+              <h3 className="text-xl font-bold mt-4 mb-2">Wat krijgt jouw bedrijf terug?</h3>
               <ul className="list-disc pl-5 text-zinc-700 space-y-2 mb-6">
-                <li><strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt</li>
-                <li><strong>Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk</li>
+                <li><strong>Zichtbaarheid:</strong> Logo op de officiële campagneposter, website en trainingskledij / campagne T-shirt</li>
+                <li><strong>Jaarevent:</strong> 1x per jaar exclusief partnerevent met kliminitiatie, filmvertoning en keynote talk over innovatie, veerkracht en topsport</li>
                 <li><strong>Lokale impact:</strong> Aanwezigheid op Kerstmarkt 2027 en Poster 2028 huis-aan-huis in Leuven en elke school</li>
-                <li><strong>Maatschappelijke betrokkenheid:</strong> Steun voor paraclimbing.be en de Paralympische beweging</li>
+                <li><strong>R&D & Maatschappelijke betrokkenheid:</strong> Directe verbinding met spitstechnologie en steun voor paraclimbing.be en de Paralympische beweging</li>
               </ul>
 
               <h3 className="text-xl font-bold mt-4 mb-2">Hoe meer info?</h3>
-              <p className="text-zinc-700 mb-8">Download het volledige dossier of contacteer mij voor een korte kennismaking.</p>
+              <p className="text-zinc-700 mb-8">Download het volledige dossier (PDF) of contacteer mij voor een inspirerende kennismaking.</p>
 
               <div className="flex gap-4">
                 <a className="inline-flex items-center gap-3 bg-black text-white px-6 py-3 rounded font-bold hover:opacity-90" href="/Frederik-Leys-Partnership-Dossier.pdf" download>

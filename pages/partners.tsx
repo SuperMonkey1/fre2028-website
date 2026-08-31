@@ -296,15 +296,18 @@ export default function PartnersPage() {
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-          <div className="inline-block px-4 py-2 mb-8 border border-zinc-200 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+          <div className="inline-block px-4 py-2 mb-4 border border-zinc-200 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
             Team Fré2028.LA
+          </div>
+          <div className="text-xs font-extrabold uppercase tracking-widest text-amber-700 bg-amber-100 border border-amber-300 px-3 py-1 inline-block rounded-sm mb-6">
+            "Engineering my way to the Paralympics in 2028"
           </div>
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8">
             Mijn Partners
           </h1>
           <p className="text-xl text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-            Deze fantastische partners maken mijn reis naar de Paralympische Spelen mogelijk. 
-            Samen bouwen we aan een droom en zetten we paraklimmen op de kaart.
+            Deze innovatieve partners maken mijn reis naar de Paralympische Spelen mogelijk. 
+            Samen bouwen we aan een unieke symbiose tussen Leuvense engineering, spitstechnologie en paralympisch goud.
           </p>
         </div>
       </section>
@@ -315,14 +318,14 @@ export default function PartnersPage() {
           {/* Strategy Overview */}
           <div className="bg-black text-white p-12 md:p-16">
             <div className="inline-block px-3 py-1 mb-4 border border-zinc-700 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400">
-              Partnerschap Strategie • Focus Leuven
+              Partnerschap & Innovatiestrategie • Focus Leuven
             </div>
             <h3 className="text-3xl md:text-5xl font-bold tracking-tighter mb-8">
               De Leuven 25 Support Circle
             </h3>
             <div className="prose prose-lg prose-invert max-w-none">
               <p className="text-zinc-300 leading-relaxed mb-6">
-                Om in 2028 voor goud te strijden en paraklimmen & de Paralympische Spelen in Leuven en Vlaanderen op de kaart te zetten, is een 100% professionele voorbereiding nodig. Trainen, rust, reizen en deze campagne runnen is een voltijdse job. Omdat overheidssubsidies voor paraklimmen uiterst beperkt zijn — zo moet ik in 2026 alleen al circa €3.500 aan wedstrijdkosten zelf dragen — breng ik 25 toonaangevende Leuvense partners samen in één krachtige steungroep.
+                Leuven is de <em>European Capital of Innovation</em>. Als burgerlijk ingenieur (PhD KU Leuven) en 2x Wereldbeker goudwinnaar benader ik mijn paralympische voorbereiding als een levend R&D-testbed voor technologie en biomechanica. Om in 2028 voor goud te strijden en paraklimmen in Leuven en Vlaanderen structureel op de kaart te zetten, breng ik <strong>25 toonaangevende Leuvense technologie- en engineeringbedrijven</strong> samen in één krachtig erecollectief.
               </p>
               
               <div className="space-y-8 mt-8">
@@ -332,27 +335,28 @@ export default function PartnersPage() {
                     <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-0.5 bg-zinc-800 border border-zinc-700 text-zinc-300">€1.200 / jaar</span>
                   </div>
                   <p className="text-zinc-300 mb-3">
-                    Een exclusief erecollectief van 25 geëngageerde Leuvense bedrijven die met €100/maand (€1.200/jaar) het fundament leggen om voltijds als professioneel atleet te leven en trainen. Een bewuste focus op Leuven, waar we zichtbaarheid, innovatie en maatschappelijke impact maximaal bundelen.
+                    Een exclusief collectief van 25 innovatieve Leuvense bedrijven die met €100/maand (€1.200/jaar) het fundament leggen om voltijds als professioneel atleet & onderzoeker te trainen, testen en innoveren.
                   </p>
                   <div className="bg-zinc-900/90 border border-zinc-800 p-4 rounded-sm text-sm text-zinc-300 space-y-1.5">
                     <p className="font-bold text-white uppercase text-xs tracking-wider mb-1">Wat krijgen partners terug?</p>
                     <p>• <strong>Zichtbaarheid:</strong> Logo op de officiële campagne-poster, website en trainingskledij / campagne T-shirt.</p>
-                    <p>• <strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partner-event met kliminitiatie, filmvertoning en keynote talk.</p>
+                    <p>• <strong>Exclusief Jaarevent:</strong> 1x per jaar partnerevent met kliminitiatie, filmvertoning en keynote over veerkracht, innovatie & de 'engineer-athlete' aanpak.</p>
                     <p>• <strong>Leuvense Aanwezigheid:</strong> Zichtbaarheid op Kerstmarkt 2027 en de grote Poster-campagne 2028 (huis-aan-huis in Leuven en elke school).</p>
+                    <p>• <strong>R&D-Synergie & Inclusie:</strong> Verbinding met spitstechnologie en structurele steun voor <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="text-white underline font-semibold">paraclimbing.be</a>.</p>
                   </div>
                 </div>
 
                 <div className="border-l-4 border-white pl-6">
                   <h4 className="text-xl font-bold mb-2">Strategische Partners in Leuven</h4>
                   <p className="text-zinc-300">
-                    Lokale experts en bureaus in media, PR, content creation en logistiek die pro-bono hun schouders zetten onder de 3-maanden mediapush en het verspreiden van het Paralympische verhaal en <a href="https://paraclimbing.be" target="_blank" rel="noopener noreferrer" className="text-white underline font-semibold">paraclimbing.be</a>.
+                    Lokale experts en bureaus in media, PR, content creation, videografie en technologie die pro-bono hun schouders zetten onder de 3-maanden mediapush en het verspreiden van het Paralympische innovatieverhaal.
                   </p>
                 </div>
 
                 <div className="border-l-4 border-white pl-6">
-                  <h4 className="text-xl font-bold mb-2">Performance Team</h4>
+                  <h4 className="text-xl font-bold mb-2">Performance & Data Team</h4>
                   <p className="text-zinc-300">
-                    Het sportieve topkader dat van mij de beste paraklimmer ter wereld maakt: coaches, trainers, kinesitherapeut, sportpsycholoog en voedingsdeskundige.
+                    Het sportwetenschappelijke topkader dat van Fré de beste paraklimmer ter wereld maakt: coaches, trainers, kinesitherapeut, biomechanici, data-analisten en sportpsycholoog.
                   </p>
                 </div>
               </div>

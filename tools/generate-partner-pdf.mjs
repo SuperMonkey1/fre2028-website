@@ -18,7 +18,7 @@ function getImageBase64(relPath) {
 }
 
 async function generatePdf() {
-  console.log('Generating Partner Dossier PDF...');
+  console.log('Generating Partner Dossier PDF with "Engineering my way to the Paralympics in 2028"...');
 
   const heroImage = getImageBase64('images/innsbruck_victory_4x5.jpg') || getImageBase64('images/web/me_winning_innsbruck_web.webp');
   const actionImage = getImageBase64('images/web/20240625_innsbruck_Nicholas_web.webp');
@@ -29,7 +29,7 @@ async function generatePdf() {
 <html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Partnerschapsdossier FRÉ2028 — De Leuven 25 Support Circle</title>
+  <title>Partnerschapsdossier FRÉ2028 — Engineering my way to the Paralympics in 2028</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -56,7 +56,7 @@ async function generatePdf() {
       width: 210mm;
       min-height: 297mm;
       height: 297mm;
-      padding: 16mm 18mm;
+      padding: 15mm 18mm;
       position: relative;
       page-break-after: always;
       display: flex;
@@ -76,12 +76,12 @@ async function generatePdf() {
       justify-content: space-between;
       align-items: center;
       border-bottom: 2px solid #000000;
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      padding-bottom: 7px;
+      margin-bottom: 12px;
     }
 
     .logo-badge {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -92,7 +92,7 @@ async function generatePdf() {
     }
 
     .header-tag {
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.12em;
@@ -108,65 +108,78 @@ async function generatePdf() {
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid #e4e4e7;
-      padding-top: 8px;
-      font-size: 8.5px;
+      padding-top: 7px;
+      font-size: 8px;
       color: #71717a;
       font-weight: 500;
     }
 
     /* Typography */
     h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.03em;
       color: #09090b;
+      margin-bottom: 3px;
+    }
+
+    .subtitle-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #d97706;
+      background: #fef3c7;
+      padding: 2px 8px;
+      border-radius: 3px;
       margin-bottom: 6px;
     }
 
     h2 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: #09090b;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     h3 {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #09090b;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     p {
-      font-size: 10px;
-      line-height: 1.5;
+      font-size: 9.5px;
+      line-height: 1.45;
       color: #3f3f46;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .lead-text {
-      font-size: 11.5px;
-      line-height: 1.45;
+      font-size: 11px;
+      line-height: 1.4;
       color: #27272a;
       font-weight: 500;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     /* Hero / Cover Layout */
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 16px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
       align-items: stretch;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .hero-image-wrap {
       border-radius: 6px;
       overflow: hidden;
-      height: 210px;
+      height: 200px;
       background: #f4f4f5;
       border: 1px solid #e4e4e7;
     }
@@ -183,29 +196,29 @@ async function generatePdf() {
       background: #fafafa;
       border: 1.5px solid #000000;
       border-radius: 6px;
-      padding: 12px 14px;
-      margin-bottom: 12px;
+      padding: 11px 13px;
+      margin-bottom: 10px;
     }
 
     .card-grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .card-grid-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 9px;
+      margin-bottom: 10px;
     }
 
     .info-card {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 6px;
-      padding: 10px 12px;
+      padding: 9px 11px;
     }
 
     .pillar-card {
@@ -213,14 +226,14 @@ async function generatePdf() {
       border: 1px solid #e4e4e7;
       border-left: 3px solid #000000;
       border-radius: 4px;
-      padding: 10px 12px;
+      padding: 9px 11px;
     }
 
     .badge-price {
       display: inline-block;
       background: #000000;
       color: #ffffff;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 800;
       padding: 3px 8px;
       border-radius: 3px;
@@ -230,15 +243,15 @@ async function generatePdf() {
 
     .benefit-list {
       list-style: none;
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .benefit-list li {
-      font-size: 9.5px;
-      line-height: 1.4;
+      font-size: 9px;
+      line-height: 1.35;
       color: #27272a;
-      margin-bottom: 5px;
-      padding-left: 14px;
+      margin-bottom: 4px;
+      padding-left: 13px;
       position: relative;
     }
 
@@ -248,28 +261,28 @@ async function generatePdf() {
       left: 0;
       color: #000000;
       font-weight: 900;
-      font-size: 10px;
+      font-size: 9.5px;
     }
 
     .accent-box {
       background: #fffbeb;
       border-left: 3px solid #f59e0b;
-      padding: 8px 12px;
+      padding: 7px 10px;
       border-radius: 0 4px 4px 0;
-      margin-bottom: 10px;
+      margin-top: 6px;
     }
 
     .accent-box p {
-      font-size: 9px;
+      font-size: 8.5px;
       color: #92400e;
       margin-bottom: 0;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .contact-box {
       background: #09090b;
       color: #ffffff;
-      padding: 14px 18px;
+      padding: 12px 16px;
       border-radius: 6px;
       display: flex;
       justify-content: space-between;
@@ -278,22 +291,22 @@ async function generatePdf() {
 
     .contact-box h3 {
       color: #ffffff;
-      font-size: 13px;
+      font-size: 12px;
       margin-bottom: 2px;
     }
 
     .contact-box p {
       color: #a1a1aa;
-      font-size: 9px;
+      font-size: 8.5px;
       margin-bottom: 0;
     }
 
     .contact-info {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
       color: #ffffff;
       text-align: right;
-      line-height: 1.4;
+      line-height: 1.35;
     }
   </style>
 </head>
@@ -307,9 +320,10 @@ async function generatePdf() {
         <div class="header-tag">Partnerschapsdossier 2026–2028</div>
       </div>
 
+      <div class="subtitle-badge">"Engineering my way to the Paralympics in 2028"</div>
       <h1>Word Partner van Fré Leys</h1>
       <p class="lead-text">
-        Sluit je aan bij <strong>Team Fré2028.LA</strong> en schrijf mee topsportgeschiedenis: de allereerste Leuvense Paralympiër op weg naar goud in Los Angeles 2028.
+        Sluit je aan bij <strong>Team Fré2028.LA</strong>: Dr. Ir. Frederik Leys combineert Leuvense spitstechnologie, biomechanica en topsport om als <strong>allereerste Leuvense Paralympiër</strong> ooit goud te veroveren in Los Angeles 2028.
       </p>
 
       <div class="hero-grid">
@@ -318,21 +332,24 @@ async function generatePdf() {
         </div>
         <div style="display: flex; flex-direction: column; justify-content: space-between;">
           <div class="info-card">
-            <h3>De "Engineer-Athlete"</h3>
-            <p style="margin-bottom: 4px;">
-              <strong>Dr. Ir. Frederik Leys</strong> behaalde een doctoraat in de Ingenieurswetenschappen (KU Leuven) en is actief als zelfstandig ingenieur naast zijn topsportcarrière in het Belgisch Paraklimteam.
+            <h3>De "Engineer-Athlete" & Leuven Innovatie</h3>
+            <p style="margin-bottom: 3px;">
+              <strong>Dr. Ir. Frederik Leys</strong> behaalde een doctoraat in de Werktuigkunde (KU Leuven) en is actief als zelfstandig ingenieur naast zijn topsportcarrière in het Belgisch Paraklimteam.
             </p>
-            <p style="margin-bottom: 0; line-height: 1.4;">
+            <p style="margin-bottom: 3px; line-height: 1.35; font-size: 8.5px;">
+              Als ingenieur, onderzoeker en maker combineert Fré topsport met engineering: zelf innovatief trainingsmateriaal maken, data meten en bewegingen tot in het kleinste detail analyseren.
+            </p>
+            <p style="margin-bottom: 0; line-height: 1.3; font-size: 8.5px;">
               • <strong>2x Wereldbeker Goud</strong> (Los Angeles & Salt Lake City)<br>
-              • <strong>6x Internationaal Podium</strong><br>
-              • <strong>Oprichter & voorzitter van VZW Paraclimbing.be</strong>, een organisatie die zich actief inzet om paraklimmen toegankelijk te maken en breed te promoten.
+              • <strong>6x Internationaal Podium</strong> & top-2 wereldranking<br>
+              • <strong>Voorzitter VZW Paraclimbing.be</strong>
             </p>
           </div>
 
           <div class="accent-box">
-            <strong style="font-size: 9.5px; color: #78350f;">Waarom deze steun noodzakelijk is:</strong>
+            <strong style="font-size: 9px; color: #78350f;">Waarom deze steun noodzakelijk is:</strong>
             <p>
-              In België zijn subsidies voor paraklimmen minimaal — zo moet Fré in 2026 circa <strong>€3.500 aan wedstrijdreizen uit eigen zak betalen</strong>, terwijl atleten in buurlanden voltijds gefinancierd worden.
+              In België zijn subsidies voor paraklimmen minimaal — zo betaalt Fré in 2026 circa <strong>€3.500 aan wedstrijdreizen uit eigen zak</strong>, terwijl concurrenten in het buitenland voltijds gefinancierd worden.
             </p>
           </div>
         </div>
@@ -340,33 +357,33 @@ async function generatePdf() {
 
       <h2>De Leuven 25 Support Circle</h2>
       <div class="highlight-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
           <div>
-            <h3 style="font-size: 14px; margin-bottom: 0;">Exclusief Erecollectief van 25 Leuvense Bedrijven</h3>
-            <span style="font-size: 9.5px; color: #52525b; font-weight: 500;">Directe financiering voor een voltijds professioneel topsporttraject</span>
+            <h3 style="font-size: 13px; margin-bottom: 0;">25 Innovatieve Leuvense Bedrijven op weg naar Goud</h3>
+            <span style="font-size: 9px; color: #52525b; font-weight: 500;">Directe financiering & testbed voor een voltijds topsporttraject</span>
           </div>
           <div class="badge-price">€100 / maand • €1.200 / jaar</div>
         </div>
 
-        <p style="font-size: 9.5px; margin-bottom: 6px;">
-          Om te kunnen concurreren voor paralympisch goud, is een 100% professionele focus vereist. Het intensieve trainingsregime, medische opvolging en campagnebeheer zijn onmogelijk combineerbaar met een reguliere voltijdse job. Met 25 Leuvense partners creëren we een stabiele werkingsbasis (~€25.000 - €30.000/jaar).
+        <p style="font-size: 9px; margin-bottom: 5px;">
+          Leuven is de <em>European Capital of Innovation</em>. Fré's paralympische voorbereiding, lichaam en uitrusting functioneren als een uniek <strong>R&D-testbed voor technologie en engineering</strong>. Met 25 innovatieve partners bouwen we een stabiel werkingsbudget (~€25.000 - €30.000/jaar) om voltijds te kunnen trainen, innoveren en excelleren.
         </p>
 
-        <h4 style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: #09090b; margin-top: 6px;">
+        <h4 style="font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.05em; color: #09090b; margin-top: 5px;">
           Wat krijgt jouw bedrijf concreet terug?
         </h4>
         <ul class="benefit-list">
-          <li><strong>Zichtbaarheid op alle dragers:</strong> Jouw bedrijfslogo op de officiële campagneposter, de website (fre2028.la) en de officiële trainingskledij en campagne T-shirt.</li>
-          <li><strong>Exclusief Jaarevent:</strong> 1x per jaar exclusief partnerevent inclusief kliminitiatie, filmvertoning en keynote/inspiratietalk door Fré over veerkracht, innovatie en topsport.</li>
-          <li><strong>Grote Poster 2028:</strong> Jouw logo op de campagneposter die huis-aan-huis gebust wordt in elk huis in Leuven en op elke Leuvense school.</li>
+          <li><strong>Zichtbaarheid op alle dragers:</strong> Jouw bedrijfslogo op de officiële campagneposter, website (fre2028.la), trainingskledij en campagne T-shirt.</li>
+          <li><strong>Exclusief Jaarevent:</strong> 1x per jaar partnerevent inclusief kliminitiatie, filmvertoning en inspirerende keynote over veerkracht, innovatie & de 'engineer-athlete' mentaliteit.</li>
+          <li><strong>Grote Poster 2028:</strong> Logo op de campagneposter die huis-aan-huis gebust wordt in elk huis in Leuven en op elke Leuvense school.</li>
           <li><strong>Leuvense Kerstmarkt 2027:</strong> Zichtbaarheid en activatiemogelijkheden op de Kerstmarkt in Leuven.</li>
-          <li><strong>Maatschappelijke Impact:</strong> Structurele bijdrage aan de promotie van paraklimmen (paraclimbing.be) en de Paralympische Spelen in Leuven.</li>
+          <li><strong>Maatschappelijke & R&D Impact:</strong> Structurele bijdrage aan innovatie, inclusie en paraklimmen (paraclimbing.be) in Leuven.</li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bar">
-      <span>FRÉ2028.LA — Partnerschapsdossier</span>
+      <span>FRÉ2028.LA — "Engineering my way to the Paralympics in 2028"</span>
       <span>Pagina 1 van 2</span>
       <span>frederik.leys@gmail.com • www.fre2028.la</span>
     </div>
@@ -381,67 +398,67 @@ async function generatePdf() {
       </div>
 
       <h2>Onze 3 Partnerschaps Pijlers</h2>
-      <p style="margin-bottom: 12px;">
-        Een doordachte samenwerking waarin sportieve prestaties, lokale Leuvense trots en professionele communicatie elkaar versterken.
+      <p style="margin-bottom: 10px;">
+        Een doordachte samenwerking waarin sportieve topprestaties, Leuvense engineering en maatschappelijke impact samenkomen.
       </p>
 
       <div class="card-grid-3">
         <div class="pillar-card">
-          <div style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 1</div>
-          <h3 style="font-size: 11.5px;">Financiële Partners</h3>
-          <p style="font-size: 9px; margin-bottom: 6px;"><strong>De Leuven 25 Support Circle</strong></p>
-          <p style="font-size: 8.5px; color: #52525b; margin-bottom: 0;">
-            25 partners aan €100/mnd voor het levensonderhoud, training, materiaal en niet-gesubsidieerde buitenlandse wedstrijdkosten.
+          <div style="font-size: 8px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 1</div>
+          <h3 style="font-size: 11px;">Financiële & Tech Partners</h3>
+          <p style="font-size: 8.5px; margin-bottom: 4px;"><strong>De Leuven 25 Support Circle</strong></p>
+          <p style="font-size: 8px; color: #52525b; margin-bottom: 0;">
+            25 innovatieve partners aan €100/mnd voor levensonderhoud, training, R&D-optimalisatie en wedstrijdreizen.
           </p>
         </div>
 
         <div class="pillar-card">
-          <div style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 2</div>
-          <h3 style="font-size: 11.5px;">Strategische Partners</h3>
-          <p style="font-size: 9px; margin-bottom: 6px;"><strong>Pro Bono Expertise (Leuven)</strong></p>
-          <p style="font-size: 8.5px; color: #52525b; margin-bottom: 0;">
-            PR- en mediabureaus, content creators, videografen en logistieke partners voor de 3-maanden mediapush in Leuven.
+          <div style="font-size: 8px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 2</div>
+          <h3 style="font-size: 11px;">Strategische & Media Partners</h3>
+          <p style="font-size: 8.5px; margin-bottom: 4px;"><strong>Pro Bono Expertise & Tech</strong></p>
+          <p style="font-size: 8px; color: #52525b; margin-bottom: 0;">
+            PR- en mediabureaus, videografen, prototyping- en dataspecialisten voor de 3-maanden mediapush in Leuven.
           </p>
         </div>
 
         <div class="pillar-card">
-          <div style="font-size: 8.5px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 3</div>
-          <h3 style="font-size: 11.5px;">Performance Team</h3>
-          <p style="font-size: 9px; margin-bottom: 6px;"><strong>Sportwetenschappelijk Kader</strong></p>
-          <p style="font-size: 8.5px; color: #52525b; margin-bottom: 0;">
-            Klimcoaches, kinesitherapeut, sportpsycholoog, voedingsdeskundige enfederatie voor goud in LA 2028.
+          <div style="font-size: 8px; font-weight: 800; text-transform: uppercase; color: #71717a; margin-bottom: 2px;">Pijler 3</div>
+          <h3 style="font-size: 11px;">Performance & Data Team</h3>
+          <p style="font-size: 8.5px; margin-bottom: 4px;"><strong>Sportwetenschappelijk Kader</strong></p>
+          <p style="font-size: 8px; color: #52525b; margin-bottom: 0;">
+            Klimcoaches, kinesitherapeut, biomechanici, sportpsycholoog en federatie voor goud in LA 2028.
           </p>
         </div>
       </div>
 
-      <div class="hero-grid" style="margin-top: 10px; margin-bottom: 12px;">
+      <div class="hero-grid" style="margin-top: 8px; margin-bottom: 10px;">
         <div style="display: flex; flex-direction: column; justify-content: space-between;">
           <div class="info-card">
-            <h3>Waarom investeren als Leuvens Bedrijf?</h3>
+            <h3>Waarom investeren als Leuvens Technologiebedrijf?</h3>
             <ul class="benefit-list">
-              <li><strong>Authentiek Leuvens Verhaal:</strong> Eerste Leuvense Paralympiër ooit in een historisch debuut (paraklimmen debuteert in LA 2028).</li>
-              <li><strong>Inspiratie voor jouw medewerkers:</strong> Een krachtig rolmodel over veerkracht, innovatie en het overwinnen van fysieke grenzen.</li>
-              <li><strong>Tangible CSR & D&I:</strong> Concreet engagement in diversiteit, inclusie en G-sport in samenwerking met Paraclimbing.be.</li>
+              <li><strong>Pionier in Paralympic Engineering:</strong> Topsport gedreven door mechatronica, data-analyse en Leuvense spitstechnologie.</li>
+              <li><strong>Inspiratie voor jouw teams:</strong> Een krachtig rolmodel over veerkracht, creatief ontwerpen en fysieke grenzen verleggen.</li>
+              <li><strong>Tastbare CSR & Lokale Trots:</strong> Eerste Leuvense Paralympiër ooit in een historisch debuut (LA 2028) met steun voor Paraclimbing.be.</li>
             </ul>
           </div>
         </div>
-        <div class="hero-image-wrap" style="height: 145px;">
+        <div class="hero-image-wrap" style="height: 140px;">
           <img src="${actionImage}" alt="Fré Leys in actie">
         </div>
       </div>
 
       <h2>Campagne Fasering & 3-Maanden Push</h2>
-      <div class="info-card" style="margin-bottom: 16px;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div class="info-card" style="margin-bottom: 12px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
           <div>
-            <strong style="font-size: 9.5px; color: #000;">Fase 1: Focus Leuven (Dag 1000 - 501)</strong>
-            <p style="font-size: 8.5px; margin-bottom: 0; color: #52525b;">
-              Intensieve 3-maanden mediapush, lancering van de website, persberichten, werving van de 25 partners en uitbouw van de lokale community.
+            <strong style="font-size: 9px; color: #000;">Fase 1: Focus Leuven (Dag 1000 - 501)</strong>
+            <p style="font-size: 8px; margin-bottom: 0; color: #52525b;">
+              Intensieve 3-maanden mediapush, lancering platform, werving van de 25 innovatieve partners en uitbouw van de lokale community.
             </p>
           </div>
           <div>
-            <strong style="font-size: 9.5px; color: #000;">Fase 2: Vlaanderen & LA (Dag 500 - 0)</strong>
-            <p style="font-size: 8.5px; margin-bottom: 0; color: #52525b;">
+            <strong style="font-size: 9px; color: #000;">Fase 2: Vlaanderen & LA (Dag 500 - 0)</strong>
+            <p style="font-size: 8px; margin-bottom: 0; color: #52525b;">
               Nationale media-aandacht, huis-aan-huis posters in Leuven, schoolacties en kwalificatiepiek richting de Spelen van Los Angeles 2028.
             </p>
           </div>
@@ -454,7 +471,7 @@ async function generatePdf() {
           <p>Neem direct contact op voor een kennismaking of bevestiging van jouw partnerschap.</p>
         </div>
         <div class="contact-info">
-          <div>Fré Leys</div>
+          <div>Dr. Ir. Fré Leys</div>
           <div style="color: #fbbf24;">frederik.leys@gmail.com</div>
           <div style="font-weight: 400; color: #a1a1aa;">www.fre2028.la</div>
         </div>
@@ -462,7 +479,7 @@ async function generatePdf() {
     </div>
 
     <div class="footer-bar">
-      <span>FRÉ2028.LA — Partnerschapsdossier</span>
+      <span>FRÉ2028.LA — "Engineering my way to the Paralympics in 2028"</span>
       <span>Pagina 2 van 2</span>
       <span>frederik.leys@gmail.com • www.fre2028.la</span>
     </div>

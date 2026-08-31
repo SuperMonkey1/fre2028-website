@@ -1,17 +1,19 @@
 # Fré Leys: Road to LA 2028 Communication Campaign
+## Project Subtitle: *"Engineering my way to the Paralympics in 2028"*
 
-## 1. The Vision
+## 1. The Vision & The Engineer-Athlete Narrative
 
-* **Who I Am:** My name is Fré Leys. I am a paraclimber, member of the Beglian climbing team since 2026 and born with a non-functional right leg, and I also hold a PhD in Engineering.
-* **The Dream:** My primary goal is win paralympic gold  at the **LA 2028 Paralympics**. This is a historic event, as it will be the first time paraclimbing is included in the games.
-* **The Local Connection:** If successful, I would become the **first-ever Paralympian** from my hometown of Leuven, Belgium.
+* **Who I Am:** My name is Dr. Ir. Frederik Leys. I am a paraclimber, member of the Belgian national paraclimbing team since 2016 (born with a non-functional right leg and wearing an advanced prosthesis), and I hold a PhD in Mechanical Engineering from KU Leuven.
+* **The Engineer-Athlete Concept:** As an engineer, maker, and tinkerer, I approach the Paralympics through a lens of scientific curiosity, sports engineering, and continuous optimization—prototyping custom training rigs, analyzing sensor and biomechanical data, and testing innovative materials.
+* **The Dream:** My primary goal is to win Paralympic Gold at the **LA 2028 Paralympics** in Los Angeles, where paraclimbing makes its historic Paralympic debut.
+* **The Leuven Innovation Connection:** If successful, I would become the **first-ever Paralympian** from Leuven. Leuven is Europe's Capital of Innovation—a globally renowned hub for Deep Tech, Health Tech, and Advanced Engineering. My campaign connects this vibrant high-tech ecosystem directly to the global Paralympic stage.
 
 ---
 
 ## 2. Core Objectives
 
-1.  **Primary (Performance) Goal:** To qualify for and compete in the LA 2028 Paralympic Games and to win a gold medal for Belgium.
-2.  **Secondary (Personal) Goal:** To use my personal story and struggle as a platform to **promote paraclimbing and the wider Paralympic movement in Belgium**.
+1.  **Primary (Performance) Goal:** To engineer my way to qualification, peak performance, and a Gold medal for Belgium at the LA 2028 Paralympic Games.
+2.  **Secondary (Advocacy & Innovation) Goal:** To use my journey as a platform to **promote paraclimbing, the Paralympic movement, and Leuven's engineering excellence** throughout Belgium and internationally via [paraclimbing.be](https://paraclimbing.be).
 
 
 ---
