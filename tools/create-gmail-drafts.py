@@ -31,8 +31,12 @@ except ImportError:
     print("Run: pip install google-api-python-client google-auth-oauthlib google-auth")
     sys.exit(1)
 
-# Scopes needed for drafting emails
-SCOPES = ['https://www.googleapis.com/auth/gmail.compose']
+# Scopes needed for drafting, threading and reading emails
+SCOPES = [
+    'https://www.googleapis.com/auth/gmail.compose',
+    'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/gmail.modify'
+]
 
 # Workspace Paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -442,20 +446,33 @@ def get_gmail_service(credentials_path="credentials.json", token_path="token.jso
     token_file = BASE_DIR / token_path
 
     if token_file.exists():
-        creds = Credentials.from_authorized_user_file(str(token_file), SCOPES)
+        try:
+            token_data = json.loads(token_file.read_text(encoding="utf-8"))
+            granted_scopes = set(token_data.get("scopes", []))
+            if not set(SCOPES).issubset(granted_scopes):
+                creds = None
+            else:
+                creds = Credentials.from_authorized_user_file(str(token_file), SCOPES)
+        except Exception:
+            creds = None
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-            token_file.write_text(creds.to_json(), encoding="utf-8")
-        elif cred_file.exists():
-            flow = InstalledAppFlow.from_client_secrets_file(str(cred_file), SCOPES)
-            creds = flow.run_local_server(port=0)
-            token_file.write_text(creds.to_json(), encoding="utf-8")
-        else:
-            raise FileNotFoundError(
-                f"❌ Credentials file niet gevonden op {cred_file}. Plaats 'credentials.json' of 'token.json' in de project root."
-            )
+            try:
+                creds.refresh(Request())
+                token_file.write_text(creds.to_json(), encoding="utf-8")
+            except Exception:
+                creds = None
+        
+        if not creds or not creds.valid:
+            if cred_file.exists():
+                flow = InstalledAppFlow.from_client_secrets_file(str(cred_file), SCOPES)
+                creds = flow.run_local_server(port=0)
+                token_file.write_text(creds.to_json(), encoding="utf-8")
+            else:
+                raise FileNotFoundError(
+                    f"❌ Credentials file niet gevonden op {cred_file}. Plaats 'credentials.json' of 'token.json' in de project root."
+                )
 
     return build('gmail', 'v1', credentials=creds)
 

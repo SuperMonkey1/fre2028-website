@@ -3,6 +3,8 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /admin/*
+Disallow: /leads
+Disallow: /leads/*
 Disallow: /payments
 Disallow: /comp-analysis
 Disallow: /comp-analysis/*

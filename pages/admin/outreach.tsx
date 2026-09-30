@@ -1204,6 +1204,13 @@ fre2028.la`;
                 Sponsor Outreach & CRM
               </Link>
               <Link 
+                href="/leads"
+                className="px-3.5 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                Leads Tracker (CSV)
+              </Link>
+              <Link 
                 href="/admin"
                 className="px-3.5 py-1.5 rounded-md text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors"
               >
