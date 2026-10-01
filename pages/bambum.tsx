@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -45,6 +45,14 @@ import {
 } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+
+import {
+  trackSloperKingView,
+  trackSloperKingVideo,
+  trackSloperKingSelect,
+  trackSloperKingCheckout,
+  trackSloperKingPurchase
+} from '@/lib/analytics';
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -171,8 +179,23 @@ export default function BambumPage() {
     },
   ];
 
+  // Track pageview on load
+  useEffect(() => {
+    trackSloperKingView();
+  }, []);
+
+  // Track Stripe purchase return
+  useEffect(() => {
+    if (router.isReady && (status === 'success' || status === 'demo_success')) {
+      const sessionId = (router.query.session_id as string) || `order_${Date.now()}`;
+      const returnedType = (router.query.type as string) || itemType;
+      const paidAmount = Number(router.query.amount) || (returnedType === 'pair' ? 44.95 + 3.99 : 24.95 + 3.99);
+      trackSloperKingPurchase(sessionId, returnedType, paidAmount, shippingZone);
+    }
+  }, [router.isReady, status]);
+
   // Pricing calculation
-  const basePrice = itemType === 'pair' ? 39.00 : 21.00;
+  const basePrice = itemType === 'pair' ? 44.95 : 24.95;
   let discountAmount = 0;
   if (couponApplied === 'FOUNDER25' || couponApplied === 'LAUNCH25') {
     discountAmount = basePrice * 0.25;
@@ -203,6 +226,7 @@ export default function BambumPage() {
   const handleCheckout = async () => {
     setIsLoadingCheckout(true);
     setCheckoutError(null);
+    trackSloperKingCheckout(itemType, quantity, grandTotal, shippingZone);
     try {
       const res = await fetch('/api/bambum/checkout', {
         method: 'POST',
@@ -258,6 +282,7 @@ export default function BambumPage() {
   };
 
   const scrollToVideo = () => {
+    trackSloperKingVideo('video_btn_click');
     if (videoSectionRef.current) {
       videoSectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
@@ -319,7 +344,7 @@ export default function BambumPage() {
               className="inline-flex items-center gap-2 bg-slate-950 text-white hover:bg-amber-500 hover:text-slate-950 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs md:text-sm font-extrabold tracking-wide transition-all shadow-md active:scale-95 whitespace-nowrap"
             >
               <Package className="w-3.5 h-3.5" />
-              <span>Order Now — From €21</span>
+              <span>Order Now — From €24.95</span>
             </button>
           </div>
         </div>
@@ -400,10 +425,10 @@ export default function BambumPage() {
                   <div className="flex justify-between items-start border-b border-slate-100 pb-3">
                     <div>
                       <h3 className="font-extrabold text-lg text-slate-950">Sloper King™</h3>
-                      <p className="text-xs text-slate-500">Single piece (€21) or Pair with pouch (€39)</p>
+                      <p className="text-xs text-slate-500">Single piece (€24.95) or Pair with pouch (€44.95)</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-black text-slate-950">From €21</div>
+                      <div className="text-2xl font-black text-slate-950">From €24.95</div>
                       <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">In stock</span>
                     </div>
                   </div>
@@ -411,11 +436,11 @@ export default function BambumPage() {
                   <ul className="text-xs space-y-2 text-slate-700">
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span><strong>Single Unit (€21):</strong> 1x Sloper King + 800kg cord + Guide</span>
+                      <span><strong>Single Unit (€24.95):</strong> 1x Sloper King + 800kg cord + Guide</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span><strong>Complete Pair (€39):</strong> 2x units + 2x cords + Cotton Pouch + Guide</span>
+                      <span><strong>Complete Pair (€44.95):</strong> 2x units + 2x cords + Cotton Pouch + Guide</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
@@ -1386,7 +1411,7 @@ export default function BambumPage() {
                       <div>
                         <div className="flex items-baseline justify-between gap-2">
                           <h3 className="font-black text-xl text-slate-950">Complete Training Pair</h3>
-                          <div className="text-2xl font-black text-slate-950">€39.00</div>
+                          <div className="text-2xl font-black text-slate-950">€44.95</div>
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
                           Full pair for dual-hand hangs, pull-up bar holds &amp; bilateral pump training.
@@ -1472,7 +1497,7 @@ export default function BambumPage() {
                       <div>
                         <div className="flex items-baseline justify-between gap-2">
                           <h3 className="font-black text-xl text-slate-950">Single Unit (1 Piece)</h3>
-                          <div className="text-2xl font-black text-slate-950">€21.00</div>
+                          <div className="text-2xl font-black text-slate-950">€24.95</div>
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
                           Ideal for unilateral cable pulls, loading pin lifts &amp; portable crag warmups.

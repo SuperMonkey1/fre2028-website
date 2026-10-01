@@ -1,0 +1,34 @@
+Parameter / Kostentype;Eenheid;Scenario 1 (10 / 10);Scenario 2 (20 / 20);Scenario 3 (30 / 30)
+=== VERKOOPVOLUMES (PER MAAND) ===;;;;
+Verkochte Single Units (1x);stuks/mnd;10;20;30
+Verkochte Complete Pairs (2x);stuks/mnd;10;20;30
+Totaal Aantal Bestellingen (Orders);orders/mnd;20;40;60
+;;;;
+=== PRIJZEN & UNIT ECONOMICS ===;;;;
+Verkoopprijs Single Unit;EUR;21.00;21.00;21.00
+Verkoopprijs Complete Pair;EUR;39.00;39.00;39.00
+COGS Single Unit (Prod + Verpakking);EUR;3.50;3.50;3.30
+COGS Complete Pair (Prod + Verpakking);EUR;5.50;5.50;5.20
+Stripe Transactiekost Single;EUR;0.57;0.57;0.57
+Stripe Transactiekost Pair;EUR;0.84;0.84;0.84
+Netto Verzendsubsidie per order;EUR;1.00;1.00;0.90
+;;;;
+=== 1. INKOMSTEN (BRUTO OMZET) ===;;;;
+Omzet Single Units;EUR;210.00;420.00;630.00
+Omzet Complete Pairs;EUR;390.00;780.00;1170.00
+TOTALE BRUTO INKOMSTEN / MND;EUR;600.00;1200.00;1800.00
+TOTALE BRUTO INKOMSTEN / JAAR;EUR;7200.00;14400.00;21600.00
+;;;;
+=== 2. KOSTEN OVERZICHT (PER TYPE) ===;;;;
+Productiekosten (COGS);EUR;90.00;180.00;255.00
+Stripe Betalingskosten;EUR;14.10;28.20;42.30
+Verzendsubsidie & Logistiek;EUR;20.00;40.00;54.00
+Social Media Marketing (Meta Ads / Boosts);EUR;100.00;250.00;450.00
+Vaste Kosten (SaaS / Hosting / Tooling);EUR;40.00;45.00;50.00
+TOTALE KOSTEN / MND;EUR;264.10;543.20;851.30
+TOTALE KOSTEN / JAAR;EUR;3169.20;6518.40;10215.60
+;;;;
+=== 3. WINSTGEVENDHEID (NETTO RESULTAAT) ===;;;;
+NETTO WINST PER MAAND;EUR;335.90;656.80;948.70
+NETTO WINST PER JAAR;EUR;4030.80;7881.60;11384.40
+NETTO WINSTMARGE (%);%;56.0%;54.7%;52.7%

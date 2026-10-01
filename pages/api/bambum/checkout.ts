@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } = req.body;
 
     // Determine unit price and shipping cost
-    let basePricePerUnit = itemType === 'single' ? 2100 : 3900; // in eurocents (€21 or €39)
+    let basePricePerUnit = itemType === 'single' ? 2495 : 4495; // in eurocents (€24.95 or €44.95)
     let productName = itemType === 'single' ? 'Sloper King™ (Single Unit)' : 'Sloper King™ (Set of 2 - Pair)';
     let productDescription = itemType === 'single'
       ? '1x Sloper King™ unit with Petzl 800kg cord & 220-grit contact strip'
