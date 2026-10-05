@@ -66,6 +66,5 @@ const nextConfig = {
   },
   generateEtags: true,
 }
-
 module.exports = nextConfig
 

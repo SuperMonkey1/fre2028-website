@@ -31,6 +31,13 @@
         ]
       }
     ],
+    "redirects": [
+      {
+        "regex": "^/FingerPrint$",
+        "destination": "/fingerprint",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "/api/newsletter/**",

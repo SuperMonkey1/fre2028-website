@@ -473,20 +473,22 @@ YouTube provides thumbnail/title testing tools and recommends evaluating CTR in 
 
 ---
 
-# S. DESCRIPTION / METADATA
+# S. DESCRIPTION / SEO & METADATA ARCHITECTURE
 
-* [ ] 322. Does the description clearly explain the video?
-* [ ] 323. Is the first part useful before “show more”?
-* [ ] 324. Is the main website link correct?
-* [ ] 325. Is the relevant project page linked?
-* [ ] 326. Are important resources linked?
-* [ ] 327. Are credits correct?
-* [ ] 328. Are sponsorship disclosures present where required?
-* [ ] 329. Are chapters added when genuinely useful?
-* [ ] 330. Are tags used only where useful rather than treated as a magical growth mechanism?
-* [ ] 331. Is the description written for humans first?
+### The Description Architecture (The "Open-Source / Authority" Multiplier)
 
-YouTube says tags are primarily useful for common spelling mistakes and are **not essential for discovery**; title, thumbnail and description matter more to communicating the video's value.
+* [ ] 322. **Above-the-fold CTA:** Are the essential links (Preorder / Shop / CAD / Discord / Specs) in the first 3 lines before the "Show More" fold?
+* [ ] 323. **The Anti-Scam Shield & Trust:** Are batch delivery dates, production location (e.g. Leuven, Belgium), materials, and open licenses (e.g. CERN-OHL / CC BY-NC) stated clearly?
+* [ ] 324. **Open Hardware / Maker Alternative:** Is there an open STL / CAD / specs link for makers so the video is perceived as authentic engineering rather than a pure sales pitch?
+* [ ] 325. **Co-Citation SEO (Semantic Clustering):** Are established authorities, institutions, and relevant niche pioneers explicitly credited and linked (e.g. Lattice Training, Hooper's Beta, Dave MacLeod, Eva López, Yves Gravelle, IFSC)?
+* [ ] 326. **Timestamp Chapters ("Key Moments"):** Are descriptive, keyword-rich chapters included starting at 0:00 to trigger Google Search and YouTube video Key Moments?
+* [ ] 327. **Research & Paper Citations:** Are biomechanics studies, friction formulas, or training papers cited to cement scientific authority?
+* [ ] 328. **Cross-Promotion / Bridge:** Does the description tease or link to the companion/next video (e.g. custom finger-length hangboard)?
+* [ ] 329. **Meticulous Attribution:** Are archival clips, guest climbers, gyms, and testing labs ethically credited with original links?
+* [ ] 330. **Non-Salesy Value Narrative:** Does 80–90% of the video provide pure educational, biomechanical, and problem-solving value, leaving the commercial ask strictly for the final 60–90 seconds?
+* [ ] 331. Is the description written naturally for humans first while feeding the YouTube recommendation algorithm the exact semantic map it needs?
+
+YouTube indexes description text heavily to map videos into semantic clusters and recommend them in the "Up Next / Suggested" sidebar next to established niche creators. Tags are **not essential for discovery**; title, thumbnail and high-trust structured descriptions drive ranking and click-through.
 
 ---
 

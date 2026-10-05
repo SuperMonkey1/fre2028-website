@@ -1,0 +1,3627 @@
+{
+  "source": "PoliSense Data Platform",
+  "exportTimestamp": "2026-10-02T21:31:53.057Z",
+  "filters": {
+    "period": "all",
+    "platform": "all",
+    "party": "all",
+    "kieskring": "all",
+    "topic": "all",
+    "searchQuery": ""
+  },
+  "totalRecords": 201,
+  "data": [
+    {
+      "id": "tiktok-7691756256599477536",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-10-01T17:42:25.000Z",
+      "text": "Building hands with the Thumb War 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 9,
+      "comments": 0,
+      "shares": 0,
+      "views": 232,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@goldengripshop/video/7691756256599477536"
+    },
+    {
+      "id": "instagram-Dd9WTCpCJOw",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-10-01T16:33:38.000Z",
+      "text": "Well done everyone! We LOVED reading all the “psyched and supportive” partner entries, the tags & comments and also the DMs from everyone around the world 🌍 \n\nOur 3 categories of winners are:\n\n@rts_ateloiv \n@betas_da_cris \n@gigibirkett & @tino.pack (your comment was 🫶)\n\nWinners, hit us up in our DMs and we’ll exchange emails so we can get the prizes too you! 💪💪💪\n\nAnyone else who missed out - see our second slide 😊\n\n#climbing #sportclimbing #bouldering #trainingforclimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 28,
+      "comments": 7,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd9WTCpCJOw"
+    },
+    {
+      "id": "tiktok-7691629100586274080",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-10-01T09:29:18.000Z",
+      "text": "I think this is the funniest thing we’ve ever done 🤣\n\n#climbing #fun",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 96,
+      "comments": 1,
+      "shares": 7,
+      "views": 1552,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@yyvertical/video/7691629100586274080"
+    },
+    {
+      "id": "facebook-122227424456368144",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-10-01T09:12:54.000Z",
+      "text": "Challenge approved by the best physios and coaches!!\n\n#climbing #fun #game",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 1,
+      "shares": 0,
+      "views": 4557,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2921073231624648"
+    },
+    {
+      "id": "tiktok-7691469011871223073",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-09-30T23:08:00.000Z",
+      "text": "You can use these handles even in a regular gym, just like he does",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 17,
+      "comments": 0,
+      "shares": 1,
+      "views": 843,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@goldengripshop/video/7691469011871223073"
+    },
+    {
+      "id": "instagram-Dd6vuwZsKaj",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-30T16:20:42.000Z",
+      "text": "10% Code: flashpin10 FULL VIDOE ON YOUTUBE @goldengripshop \n#armwrestling #armwrestlingworkout #toproll #armwrestlingtraining",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 938,
+      "comments": 20,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd6vuwZsKaj"
+    },
+    {
+      "id": "instagram-Dd6cdOkxRym",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-30T13:31:23.000Z",
+      "text": "Absolutely LOVE training on the Ultimate Armwrestling Station from @goldengripshop #armwrestling #worldchampion #letsgo #phil413",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 174,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd6cdOkxRym"
+    },
+    {
+      "id": "facebook-1639239124882257",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-30T02:54:15.000Z",
+      "text": "Another very tidy home bouldering wall completed.✔️.                                 Our clients a super excited by the results of their custom wall built to suit their requirements and also frothing to start setting their own problems!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 2,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/awesomewoodys/posts/pfbid031KRjdkZ23aUZfdxSWH3Y1v2Sr1b6HuRwTepERFkd9UyrhdZ9kYPZ8FZt4kSLNa9Yl"
+    },
+    {
+      "id": "instagram-Dd5TtEiGhCo",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-30T02:54:01.000Z",
+      "text": "Another very tidy home bouldering wall completed.✔️. Our clients a super excited by the results of their custom wall built to suit their requirements and also frothing to start setting their own problems!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 55,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd5TtEiGhCo"
+    },
+    {
+      "id": "facebook-1093094117017863",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-29T16:45:07.000Z",
+      "text": "Having the muscular hands is a big flex \n\nTrain your hands with the Thumb War 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 106,
+      "comments": 1,
+      "shares": 3,
+      "views": 5798,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2082736669021441"
+    },
+    {
+      "id": "instagram-Dd4Nk_XKSgS",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-29T16:44:49.000Z",
+      "text": "Having muscular hands is a big flex \n\nTrain your hands with the Thumb War 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 115,
+      "comments": 6,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd4Nk_XKSgS"
+    },
+    {
+      "id": "facebook-1638065584999611",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-29T00:32:02.000Z",
+      "text": "Am I the only one or is there something wrong with me? 😵‍💫.     I’m doing some rehab work for an Achilles injury but “need”to turn it into finger strength training 😆.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/awesomewoodys/posts/pfbid0ipdxvAaaC6mfFp2CRHb6K6mCbvwezRdqKbMW5vaf4Ci5kCCwJ1kMP5tXXcMM4xjKl"
+    },
+    {
+      "id": "instagram-Dd2emR0mWQv",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-29T00:31:29.000Z",
+      "text": "Am I the only one or is there something wrong with me? 😵‍💫. I’m doing some rehab work for an Achilles injury but “need”to turn it into finger strength training 😆.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 36,
+      "comments": 15,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd2emR0mWQv"
+    },
+    {
+      "id": "facebook-1757214516406063",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-28T17:01:28.000Z",
+      "text": "He's got the strongest fingers we've ever tested (yes, even stronger than Bosi, Megos, and Ghisolfi). \n\nWe spent a day with @matthew_mendess to find out how - up on our channel now 🏃💨 https://youtu.be/8dvIfLNRDDk\n\n#LatticeTraining #FingerStrength #GripStrength #Hangboard",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 118,
+      "comments": 9,
+      "shares": 1,
+      "views": 28857,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1405066728466906"
+    },
+    {
+      "id": "instagram-Dd1q8obii2z",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-28T17:00:52.000Z",
+      "text": "He's got the strongest fingers we've ever tested (yes, even stronger than Bosi, Megos, and Ghisolfi). We spent a day with @matthew_mendess to find out how - up on our channel now 🏃💨⁣\n⁣\n#LatticeTraining #FingerStrength #GripStrength #Hangboard",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1911,
+      "comments": 31,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd1q8obii2z"
+    },
+    {
+      "id": "instagram-Dd1lSVypGtn",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-28T16:11:48.000Z",
+      "text": "@goldengripshop + PASCU11 for 10% OFF \nYou can use these handles even in a regular gym, just like I do\n\n-\n\n-\n\n-\n#reels #viral #fitness #gym #workout",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1829,
+      "comments": 43,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd1lSVypGtn"
+    },
+    {
+      "id": "facebook-122227080722368144",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-28T15:00:29.000Z",
+      "text": "Vous serez encore plus amoureux de l’escalade que vous ne l’êtes déjà 😎\n\n#climbing #documentary",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 159,
+      "comments": 4,
+      "shares": 6,
+      "views": 37295,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1002089089564920"
+    },
+    {
+      "id": "instagram-Dd1dOEQxyfU",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-28T15:00:06.000Z",
+      "text": "Vous serez encore plus amoureux de l’escalade que vous ne l’êtes déjà 😎\n\n#climbing #documentary",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 693,
+      "comments": 28,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd1dOEQxyfU"
+    },
+    {
+      "id": "tiktok-7690567027949325600",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-09-28T12:47:56.000Z",
+      "text": "Tell me you’re a climber without telling me you’re a climber 🫣\n\n#climbing #fun",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 75,
+      "comments": 1,
+      "shares": 7,
+      "views": 1501,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@yyvertical/video/7690567027949325600"
+    },
+    {
+      "id": "instagram-Dd0fKWBDem4",
+      "authorName": "Crushclub",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-28T05:57:56.000Z",
+      "text": "Where to find us: Ghent, Belgium.\nOur tools are on the shelves at @max_climbing, Zeeschipstraat 38i. Come test them in store or order online.\n#CrushClubClimbing #ClimbingTraining #GripStrength #bouldering",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 76,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd0fKWBDem4"
+    },
+    {
+      "id": "instagram-Dd0CPv1o12U",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-28T01:45:16.000Z",
+      "text": "Most climbing training programs assume the climber can always get to the same wall or training space super regularly. \n\nBut how does a climber maintain strength and keep conditioning alive when their location and time keep changing?\n\nBecause life isn’t always simple, our portable equipment has created a different outcome for tens-of-thousands of climbers since 2008. \n\nSo you are psyched for climbing, but perhaps you are a shift worker, travel for work, rent an apartment or home where you cannot install equipment, are on an extended climbing trip, have family responsibilities or want to train in private and the list goes on …\n\nWe can help..",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 14,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dd0CPv1o12U"
+    },
+    {
+      "id": "facebook-1091249347202340",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-27T18:53:38.000Z",
+      "text": "Here's your reminder to train your forearms 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 587,
+      "comments": 3,
+      "shares": 18,
+      "views": 37813,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/3004505723216431"
+    },
+    {
+      "id": "instagram-DdzBH6oz4yM",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-27T18:53:30.000Z",
+      "text": "Here's your reminder to train your forearms 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 475,
+      "comments": 9,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdzBH6oz4yM"
+    },
+    {
+      "id": "facebook-122226951200368144",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-27T13:16:28.000Z",
+      "text": "How much can a climber do on the Cindy workout ? \n\n#climbing #training #cindy",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 522,
+      "comments": 1,
+      "shares": 15,
+      "views": 111735,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2672930373122721"
+    },
+    {
+      "id": "instagram-DdysQIFo0OZ",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-27T13:16:13.000Z",
+      "text": "How much can a climber do on the Cindy workout ? \n\n#climbing #training #cindy",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5196,
+      "comments": 23,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdysQIFo0OZ"
+    },
+    {
+      "id": "facebook-1090265757300699",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-26T19:04:24.000Z",
+      "text": "New fitness goal unlocked 🔓 \n\nWhich level Mega Gripper can you close? 👇",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 47,
+      "comments": 1,
+      "shares": 0,
+      "views": 4065,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2884141138638403"
+    },
+    {
+      "id": "instagram-Ddwaj9iB3qG",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-26T16:00:05.000Z",
+      "text": "How does a 9a redpointer, World Champ Ice Climber and pro climber train? 👀\n\nHere’s a little peak at one of our athletes @angelika_rainer in her current autumn & winter training block…\n\nBoard climbing - an absolute staple of almost every high level climber we work with. Movement patterns to fit climbing projects, hand-to-toe tension weaknesses to be addressed & AnCap work for conversion into route climbing later on…\n\nS&C - an emphasis on upper body raw pulling strength and posterior chain tension and strength. Most climbers will develop some of this on the wall, but top end strength will generally be developed off-wall. \n\nAerobic endurance - 4x4s on a less steep system board are incredibly convenient and hit that midway slot between “aero” and “anaerobic” endurance. Depending on the length of route project, this will be moderated up or down in total training focus. \n\nAngelika’s goals for this coming year are twofold. In the short term this autumn she has a couple of 8c’s she’s checking out and then going into the full winter period it’s prep for another 9a! We’re psyched to be supporting another athlete out there living their climbing dreams 🙌💪\n\n#climbingtraining #latticetraining #trainingforclimbing #strengthtraining",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 403,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Ddwaj9iB3qG"
+    },
+    {
+      "id": "facebook-1716283967167676",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-26T08:40:31.000Z",
+      "text": "I don’t always have time for a proper workout.\nSo I stopped waiting for one.\n\nThree days a week, I pick a window of up to three hours while I’m working.\n\nDepending on the workflow, every few minutes I stop for one short, high-intensity set — then I get straight back to work.\n\nIt might be weighted pull-ups.\nPush-ups.\nL-sits.\nOr whatever fits that day.\n\nNo dedicated hour. No complete workout session.\n\nJust a few hard sets spread throughout the day.\n\nFor me, it’s a simple way to keep training even when work takes up most of my time.\n\nA few minutes are easier to find than an hour.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 17,
+      "comments": 1,
+      "shares": 0,
+      "views": 2417,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2542397329611060"
+    },
+    {
+      "id": "instagram-DdvoBovICK_",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-26T08:40:12.000Z",
+      "text": "I don’t always have time for a proper workout.\nSo I stopped waiting for one.\n\nThree days a week, I pick a window of up to three hours while I’m working.\n\nDepending on the workflow, every few minutes I stop for one short, high-intensity set — then I get straight back to work.\n\nIt might be weighted pull-ups.\nPush-ups.\nL-sits.\nOr whatever fits that day.\n\nNo dedicated hour. No complete workout session.\n\nJust a few hard sets spread throughout the day.\n\nFor me, it’s a simple way to keep training even when work takes up most of my time.\n\nA few minutes are easier to find than an hour.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 91,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdvoBovICK_"
+    },
+    {
+      "id": "instagram-DdtgSM0sxV3",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-25T12:54:49.000Z",
+      "text": "Ptite routine de fille qui fait de l’escalade 👄🎀 \n\n@yyvertical_official pour la routine du matin 🦦",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 926,
+      "comments": 17,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdtgSM0sxV3"
+    },
+    {
+      "id": "facebook-122226693362368144",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-25T11:02:31.000Z",
+      "text": "If you want to become a climbing legend, you’re going to have to put in the work 👀\n\n#climbing #tips #training",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 14,
+      "comments": 0,
+      "shares": 0,
+      "views": 6485,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1126017486768994"
+    },
+    {
+      "id": "instagram-DdsQw3gIyLd",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-25T01:18:11.000Z",
+      "text": "We just completed this sweet custom wall build for a great client.  Mats and Holds to go in next to complete the picture.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 202,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdsQw3gIyLd"
+    },
+    {
+      "id": "facebook-1088183717508903",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-24T17:13:56.000Z",
+      "text": "With a 60mm thick rotating handle, the Power Roller is a great way to train your grip strength. \n\nAnd a great way to get humbled 😉",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 123,
+      "comments": 2,
+      "shares": 0,
+      "views": 10166,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1415120530761359"
+    },
+    {
+      "id": "facebook-1632955012177335",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-24T08:57:51.000Z",
+      "text": "Another neat home bouldering wall using our modular wall system.  This one is for a special client on the Sunshine Coast.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 12,
+      "comments": 0,
+      "shares": 0,
+      "views": 1076,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1109781318655476"
+    },
+    {
+      "id": "instagram-DdqgBP9RWCk",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-24T08:57:34.000Z",
+      "text": "Another neat home bouldering wall using our modular wall system.  This one is for a special client on the Sunshine Coast.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 91,
+      "comments": 3,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdqgBP9RWCk"
+    },
+    {
+      "id": "facebook-1752085056919009",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-24T06:00:18.000Z",
+      "text": "It’s Sendtember and it’s GIVEAWAY time! 💪🤩\n\nMany of you around the world are ready for some focused performance and training again, so we thought we’d drop you a little treat by offering 4 people the chance to have a FULL YEAR of training with us on our LatticePlans! \n\n3 ways to win 🥇💪🏆 \n\n1. Tag and share\n\nTag a friend in the comments and share this post to your story. 1 point for each tag, 5 points for a story share. This one’s a numbers game!\n\n2. Nominate your partner\n\nTell us about your favourite climbing or training partner (make sure you tag them so we can also let them know they’ve won) and why you and them should win a free year of training! Two plans, one for each of you. \n\n3. Training is unaffordable?\n\nIf paying for training isn’t an option for you right now, send us a DM explaining your situation. We’ll pick one person at random.\n\nWinners will be picked 1st Oct and announced in our stories + you’ll get a DM from us. \n\n⚠️ Please be careful of scammer accounts mimicking us - when we contact you, we’ll simply ask for an email that we can send your prize too and there will never be a clickable link \n\n#climbingtraining #trainingforclimbing #bouldering #sportclimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 8,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/latticetraining/posts/pfbid02PMjSqCdC3Veu2BSfNyk4BVz1NgHsJvfqJd1bUoHurR5o3Lp3GSxcyoVejrwA28Xvl"
+    },
+    {
+      "id": "instagram-DdqMOA7iSt8",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-24T06:00:02.000Z",
+      "text": "It’s Sendtember and it’s GIVEAWAY time! 💪🤩\n\nMany of you around the world are ready for some focused performance and training again, so we thought we’d drop you a little treat by offering 4 people the chance to have a FULL YEAR of training with us on our LatticePlans! \n\n3 ways to win 🥇💪🏆 \n\n1. Tag and share\n\nTag a friend in the comments and share this post to your story. 1 point for each tag, 5 points for a story share. This one’s a numbers game!\n\n2. Nominate your partner\n\nTell us about your favourite climbing or training partner (make sure you tag them so we can also let them know they’ve won) and why you and them should win a free year of training! Two plans, one for each of you. \n\n3. Training is unaffordable?\n\nIf paying for training isn’t an option for you right now, send us a DM explaining your situation. We’ll pick one person at random.\n\nWinners will be picked 1st Oct and announced in our stories + you’ll get a DM from us. \n\n⚠️ Please be careful of scammer accounts mimicking us - when we contact you, we’ll simply ask for an email that we can send your prize too and there will never be a clickable link \n\n#climbingtraining #trainingforclimbing #bouldering #sportclimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 197,
+      "comments": 208,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdqMOA7iSt8"
+    },
+    {
+      "id": "instagram-DdpUmcSgLPG",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-23T21:54:26.000Z",
+      "text": "The shoulder pain has resolved, you’re feeling much better, and you think you’re ready to get back to sport… but @tindequipment shows the truth! 16% less force production in the dominant shoulder means we’re not done yet. \n\n@tindequipment helps us objectively measure your progress to ensure we’re getting you back to doing what you love, more resilient than you were before coming in to see us! 💪🧗‍♂️🏋️🏌️🤾🏊\n\n#shoulderrehab #tindeq",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 39,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdpUmcSgLPG"
+    },
+    {
+      "id": "facebook-1630805115725658",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-22T03:26:10.000Z",
+      "text": "From hang boards to home bouldering.  If you need the strength, we have it waiting for you.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 52,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1612690857257240"
+    },
+    {
+      "id": "facebook-1523125273190465",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-21T17:58:31.000Z",
+      "text": "Unbreakable Mini Tech footholds.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 24,
+      "comments": 1,
+      "shares": 0,
+      "views": 3812,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2321058358697265"
+    },
+    {
+      "id": "instagram-DdjvYtfiEri",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-21T17:58:14.000Z",
+      "text": "Unbreakable Mini Tech footholds.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 180,
+      "comments": 4,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdjvYtfiEri"
+    },
+    {
+      "id": "facebook-1749356023858579",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-21T17:02:09.000Z",
+      "text": "One thing stopping V3-V5 climbers from progressing 👆\n\nWatch our new video on 6 Intermediate Climber Mistakes ▶️ https://youtu.be/D9LSmEg_BcQ\n\n#LatticeTraining #ClimbingTraining #IntermediateClimber",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 74,
+      "comments": 1,
+      "shares": 0,
+      "views": 12093,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1240734851575193"
+    },
+    {
+      "id": "instagram-DdjpY8xDKjK",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-21T17:01:14.000Z",
+      "text": "One thing stopping V3-V5 climbers from progressing 👆⁣\n⁣\n#LatticeTraining #ClimbingTraining #IntermediateClimber",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1233,
+      "comments": 13,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdjpY8xDKjK"
+    },
+    {
+      "id": "facebook-122226192206368144",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-21T15:00:18.000Z",
+      "text": "@simonlorenzi shares the world record with @will_bosi for the most 9A/V17 boulders climbed.\n\nCould he climb them all? 👀\n\n#climbing #bouldering #performance",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 1062,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1912218640184730"
+    },
+    {
+      "id": "instagram-DdjbrYItRe_",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-21T15:00:04.000Z",
+      "text": "@simonlorenzi shares the world record with @will_bosi for the most 9A/V17 boulders climbed.\n\nCould he climb them all? 👀\n\n#climbing #bouldering #performance",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 782,
+      "comments": 3,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdjbrYItRe_"
+    },
+    {
+      "id": "instagram-Ddi7AwXoCsX",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-21T10:16:31.000Z",
+      "text": "Tell me you’re a climber without telling me you’re a climber 🫣\n\n#climbing #fun",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 10304,
+      "comments": 57,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Ddi7AwXoCsX"
+    },
+    {
+      "id": "facebook-1083730891287519",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-19T16:02:27.000Z",
+      "text": "Here's your reminder to train your forearms 👊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 133,
+      "comments": 0,
+      "shares": 4,
+      "views": 9763,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1600951068001470"
+    },
+    {
+      "id": "instagram-DddY7CENBF8",
+      "authorName": "Crushclub",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-19T07:50:26.000Z",
+      "text": "Need more! Contact strength training 🔥 at @madrockhq . Tools by @lesfreresmawemofficiel and @crushclubclimbing #climbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 32,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DddY7CENBF8"
+    },
+    {
+      "id": "facebook-1627033426102827",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-17T22:59:30.000Z",
+      "text": "In 30 years you will remember that special send or that mind blowing trip. \nMoney can buy you the latest model of shoes , the best rope, the plush crash mat, the sweet quick-draws.                                                      It can’t buy the sends. \nSpend your money on the things it can buy, but spend your time on the things it cannot.                                Happy Climbing Ross",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 1,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/awesomewoodys/posts/pfbid0dSBriLHN8LJ4dpNCnRRWDhJepqsPssJoP8vvi5gHMnofzhUrQH6V6wWDrzqkWYvvl"
+    },
+    {
+      "id": "tiktok-7686413407448255777",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-09-17T08:09:51.000Z",
+      "text": "Ça va être incroyable, hâte de vous retrouver sur place 🫶🏻\n\n#climbing #event #competition",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 252,
+      "comments": 1,
+      "shares": 8,
+      "views": 2712,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@yyvertical/video/7686413407448255777"
+    },
+    {
+      "id": "instagram-DdT1AprBNUb",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-15T14:00:08.000Z",
+      "text": "I put together a new YouTube playlist covering the finger testing protocols I use with climbers.\n\nThe videos cover:\n\n1. Peak force\n2. Rate of force development\n3. Anaerobic power\n4. Anaerobic capacity\n5. Critical force\n6. Single finger testing\n7. Finger injury testing\n\nThe goal is to make these testing methods easier to understand, reproduce, and actually use for assessing physiologic adaptation, and return from injury.\n\nAll of the testing videos are now available on my YouTube channel. Be sure to like and subscribe 🤘\n\n@tindequipment\n\n#fingerstrength #climbingstrength #climbingperformance #climbingrehab #c4hp",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 238,
+      "comments": 12,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdT1AprBNUb"
+    },
+    {
+      "id": "instagram-DdRusrlFirE",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-14T18:00:16.000Z",
+      "text": "Nate Draughn above a sea of Metolius foam, transitioning into the techy slab on Polaris(V10) in Little Cottonwood Canyon, Utah.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 219,
+      "comments": 3,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdRusrlFirE"
+    },
+    {
+      "id": "facebook-1742380354556146",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-14T17:02:27.000Z",
+      "text": "Your hips control your momentum 💃\n\n#LatticeTraining #ClimbingTips #Dynos #ClimbingTechnique",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 20,
+      "comments": 0,
+      "shares": 0,
+      "views": 3485,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/28190182387305408"
+    },
+    {
+      "id": "instagram-DdRYLbuM5n3",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-14T14:46:13.000Z",
+      "text": "Good training sessions with the @tindequipment progressor 200 \nMakes training easy, convenient and measurable.\n I will be using mine a lot on future trips living in my car, where some light training on rainy days are going to be easy now.\n.\n.\n.\nPicture by mr @leogenot_sf \n\n#tindeqprogressor #tindeq #ad",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 59,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdRYLbuM5n3"
+    },
+    {
+      "id": "facebook-1740536018073913",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-12T18:15:57.000Z",
+      "text": "Anyone remember these?! \n\nBack in the day (don’t we sound old 😅) we used to post quite a few breakdowns, examples and analysis of what sessions we use when training energy systems in our athletes… \n\nThis stuff is the backbone of HOW we build training sessions, no matter what your discipline (boulder, sport, trad) and each set of rules can used to create the right stimulus on most tools/training options out there (routes, circuits, boulders, fingerboards etc).\n\nShall we bring them back? 👀👀\n\nWe’re thinking that these were great if you had them open on a laptop but maybe we refresh everything into per-energy-system category and they fit on a phone screen and then you guys can work through them a bit easier?\n\nIf you’re keen and you want a copy of this table right now, just DM us and we’ll send you file 😊\n\nObvs if you want it all done for you, all the sessions are on our training app and we’ve taken out all the hard work for you 😉\n\n#climbing #climbingtraining #trainingforclimbing",
+      "topics": [
+        "Mobiliteit & Openbaar Vervoer"
+      ],
+      "likes": 13,
+      "comments": 0,
+      "shares": 1,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/latticetraining/posts/pfbid034WyVarD1WFuvWZtqLRC52XEiMtUBeFac4m7iheNUKNK2pXsoq8Hbjwys6Naq35KFl"
+    },
+    {
+      "id": "tiktok-7684306555835092256",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-09-11T15:54:05.000Z",
+      "text": "Le meilleur grimpeur exté au monde a répondu à nos questions 🥹\n\n#escalade #climbing #interview",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 163,
+      "comments": 1,
+      "shares": 0,
+      "views": 2937,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@yyvertical/video/7684306555835092256"
+    },
+    {
+      "id": "facebook-1510574637778862",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-09-08T17:12:12.000Z",
+      "text": "Metolius athlete and climbing coach Galina Parfenov Galina | Climbing Coach shows some of the basic training techniques using Campus Rings. Click on the product link for the full video on our website’s Campus Rung page. \n\nWant to take your training further? Learn more from Galina here:\nhttps://parfenovtraining.com/online-training/",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 660,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1700355971067830"
+    },
+    {
+      "id": "instagram-DdCMO_ryWA1",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-08T17:11:48.000Z",
+      "text": "Metolius athlete and climbing coach Galina Parfenov @parfenovtraining shows some of the basic training techniques using Campus Rings. Click on the product link for the full video on our website’s Campus Rung page. \n\nWant to take your training further? Learn more from Galina here:\nhttps://parfenovtraining.com/online-training/",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 84,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdCMO_ryWA1"
+    },
+    {
+      "id": "linkedin-7503068545501822977",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-09-08T12:35:41.520Z",
+      "text": "🔥 𝗡𝗼𝘂𝘃𝗲𝗮𝘂 𝗽𝗮𝗿𝘁𝗲𝗻𝗮𝗿𝗶𝗮𝘁 : 𝗦𝗶𝗺𝗼𝗻 𝗟𝗼𝗿𝗲𝗻𝘇𝗶 𝗿𝗲𝗷𝗼𝗶𝗻𝘁 𝗹𝗮 𝘁𝗲𝗮𝗺 YY VERTICAL\n\n5 blocs cotés 9a. \nUne des figures majeures du bloc outdoor. \nEt en parallèle, coach et entraîneur chez Bushido Climbing.\n\nSimon ne cherchait pas juste un nouveau sponsor. \nIl voulait une marque qui pense comme lui : l'entraînement et la progression avant tout.\n\n\"C'était vraiment cool de visiter l'usine, de rencontrer les personnes derrière les produits, et de voir comment tout est fabriqué. On a même commencé à travailler sur quelques prototypes, à suivre ! 👀\" - Simon Lorenzi.\n\nPhotos par Nicolas Girod\nMerci à Théo DUFRESNE pour les échanges qui ont rendu ça possible.\n\n\n\n#Escalade #Bloc #Bouldering #YYVertical #ClimbingCommunity #simonlorenzi",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://www.linkedin.com/posts/marine-thevenet-72b8b960_escalade-bloc-bouldering-activity-7503014458458345473-ikxk"
+    },
+    {
+      "id": "instagram-DdBe8vdOpVj",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-08T10:36:07.000Z",
+      "text": "Fun summer day out with homies and @tindequipment \n\nFor a progressive safe finger warm up, a tindeq is the best and most measurable way.\n\nThis is how I roughly warm up my fingers so i can have peace of mind, knowing that im not gonna pop a pulley on the first boulder i try. \nA good warm up is also often based on how you feel on the day, sometimes it might require a few more sets or some other variations, but today this enough to feel good and ready.\n\nDespite horrible conditions, we had a lot of fun repeating some good lines and trying hard on some other stuff. Had fun trying “stjärnkulten” for a quick 30 min, friction felt non existent but excited to go back in autumn on it🤘🏻\n\nBig up @tindequipment for supporting my warm ups and training!#noplacetoofar #scarpaclimb  #climbingworldwide #ad #bouldering_pictures_of_instagram",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 122,
+      "comments": 5,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DdBe8vdOpVj"
+    },
+    {
+      "id": "tiktok-7682771013741923616",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2026-09-07T12:35:24.000Z",
+      "text": "We’re incredibly excited to officially welcome one of the world’s best boulderers to the YY Vertical team.\n\nAfter his competitive career with the Belgian national team, Simon made bouldering history by completing five 9A/V17 boulders in just five years.\n\nAlso a climbing coach, Simon was a natural choice for us to collaborate with. Together, we’ll be working on the next generation of training essentials, designed to help climbers push their progression even further.\n\nCan’t wait to show you what’s coming next 👀",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 22,
+      "comments": 0,
+      "shares": 0,
+      "views": 1019,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@yyvertical/video/7682771013741923616"
+    },
+    {
+      "id": "instagram-Dc2e9eIEQ2k",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-04T04:03:15.000Z",
+      "text": "It’s been a big week putting this Actuator Wall together for a special client.  Satisfying to have a quick session on the 10x10 Kilter Full Ride at the end of it all.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 252,
+      "comments": 15,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dc2e9eIEQ2k"
+    },
+    {
+      "id": "instagram-DczeV-4zenj",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-09-03T00:07:06.000Z",
+      "text": "We’re always looking for better ways to measure progress—not just how you feel, but what your body can actually do.\nThat’s where the Tindeq Progressor device comes in! 📊 @tindequipment \n\nThe Tindeq Progressor allows us to objectively measure strength and force, giving us valuable data that can help:\n\n📈 Track strength improvements over time \n↔️ Identify differences between sides\n🥅 Establish measurable goals\n💪 Guide exercise progression\n🥼 Help support a safe return to activity and sport\n.\nInstead of guessing whether you’re getting stronger, we can measure it. 💯\n#Rehab #SportsRehab #InjuryRecovery #EvidenceBasedPT #strongereveryday",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 64,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DczeV-4zenj"
+    },
+    {
+      "id": "instagram-DcrK88BBdBj",
+      "authorName": "Crushclub",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-08-30T18:41:11.000Z",
+      "text": "@leovilha_ VS @lesfreresmawemofficiel 🤙🏻 that’s a challenge ! An incredible moment. A little challenge with this Brazilian climber using just the thumb and pinky on the Battle Challenge.\n\nThe Mawem brothers took the win, but with a little bit of cheating because Léo can’t really bend his pinky finger. He can resist with it, but actually closing the gripper is seriously hard for him.\n\nBut no excuses. We give it everything we’ve got.#climbing #paraclimbing #parasport #brasil",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1544,
+      "comments": 16,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DcrK88BBdBj"
+    },
+    {
+      "id": "instagram-DcgfqNjFiJh",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-08-26T15:06:04.000Z",
+      "text": "The Sunset Wall on the North side of the Cirque of the Moon has remained unclimbed since the first routes in this zone were put up in the late 70’s. Over the past 2 years, I have attempted the East face via 3 different routes across 4 separate attempts.\n\nThis year, we returned to the Cirque of the Moon for the past 2 weeks with the main goal of finishing this route and exploring other faces. On Sunday Aug 16th Brad and I summited the Sunset Wall — after fixing initial pitches and spending one night on the wall. Initially we had planned to pull ropes and complete it in one continuous push but after cleaning and straightening the line out we ran out of time. \n\nIn addition to this, @photoswithdell and I established a new route on the previously unclimbed Sunset Buttress (“Buffalo Crude” was thought to be on this face, but is actually on Sumac Point) which surmounts in a sick 30m tight hands to hands dihedral! Adele and @lampshade4hat established a new 6p ~5.9 line up the right side of Sumac Point (not pictured), and Adele and I established a new 4p ~5.8 route on the right side of lower Sumac Point, chasing a major dihedral system (not pictured). All information can be found on Mountain Project!\n\nPsyched to have the support of @metoliusclimbing to accomplish these goals and big thanks to @allensdiamond4ranch for getting all our stuff as close as possible!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 204,
+      "comments": 9,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DcgfqNjFiJh"
+    },
+    {
+      "id": "instagram-Dcbe0DHli4Z",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-08-24T16:22:28.000Z",
+      "text": "Rebecca Vincent @beccacvincent sending her project at World Wall (North Bend, WA) on Sunday -- Pornstar, 5.13d, and a 2nd female ascent. Audrey Sniezek @audreysniezek sent it in 2011. Photo: Ryan Daudistel @rdaudistel",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 221,
+      "comments": 7,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/Dcbe0DHli4Z"
+    },
+    {
+      "id": "facebook-1490797443089915",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-08-17T14:55:41.000Z",
+      "text": "Metolius athlete and coach Galina Parfenov put together a video walking through how she trains with the Climbers Edge Board, covering posture, grip types, how to add weight progressively, and how to structure rest and recovery between hangs. Worth watching whether you’re new to hangboard training or looking to improve strength and technique in your current sessions - see the full-length video on the Climber’s Edge Board webpage or on our YouTube channel.\n\nGalina also runs individualized online training programs through Parfenov Training. Pick up the Metolius Light Rail, and you’ll get a 20% off discount code for her programs in your post-purchase email. #trainingforclimbing #metoliustraining",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 603,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1772263527103271"
+    },
+    {
+      "id": "facebook-1671811994948207",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-08-12T13:36:55.000Z",
+      "text": "Das sind die Parlamentarier und Parlamentarierinnen, die im April 2024 für diesen Quatsch gestimmt haben, den wir jetzt ausbaden dürfen. Schreibt diese an und fragt nach, wie die Verordnung für kleine Onlineshops funktionieren soll. \n\nÖsterreich – dafür gestimmt\n\n* Othmar Karas – ÖVP\n* Lukas Mandl – ÖVP\n* Angelika Winzig – ÖVP\n* Evelyn Regner – SPÖ\n* Andreas Schieder – SPÖ\n* Günther Sidl – SPÖ\n* Thomas Waitz – Grüne\n* Monika Vana – Grüne\n* Sarah Wiener – Grüne\n* Claudia Gamon – NEOS\n\nDeutschland – dafür gestimmt\n\n* Michael Gahler – CDU\n* Peter Liese – CDU\n* David McAllister – CDU\n* Dennis Radtke – CDU\n* Andreas Schwab – CDU\n* Rainer Wieland – CDU\n* Axel Voss – CDU\n* Manfred Weber – CSU\n* Markus Ferber – CSU\n* Marlene Mortler – CSU\n* Katarina Barley – SPD\n* Gabriele Bischoff – SPD\n* Udo Bullmann – SPD\n* Delara Burkhardt – SPD\n* Jens Geier – SPD\n* Gaby Bischoff etc.\nUnd noch ca. 60 weitere\n\nDie Primärquelle ist die namentliche Abstimmung „A9-0319/2023 – Frédérique Ries – Provisional agreement – Am 532“;",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 6,
+      "comments": 0,
+      "shares": 0,
+      "views": 880,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1970263463931320"
+    },
+    {
+      "id": "facebook-1484459213723738",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-08-10T16:10:47.000Z",
+      "text": "Beth reviews our line of brushes.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 10,
+      "comments": 1,
+      "shares": 0,
+      "views": 834,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1763439591460525"
+    },
+    {
+      "id": "instagram-DbZ-wu2oS_m",
+      "authorName": "Crushclub",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-07-30T05:52:43.000Z",
+      "text": "Arco 2026 — that’s a wrap.\nSix days at the World Climbing Youth Championship, and the booth never emptied. So many climbers stopping by, testing the Battles, asking questions. The energy was real.\nThanks to everyone who came through, shared and tagged us. See you next time.\n#CrushClubClimbing #Arco2026 #WorldClimbingYouthChampionship",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 42,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DbZ-wu2oS_m"
+    },
+    {
+      "id": "facebook-1471948381641488",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-07-27T16:43:49.000Z",
+      "text": "Here is a teaser trailer of Galina Parfenov’s Galina | Climbing Coach climbing warm-up routine - see the full-length video on the Light Rail webpage.\nMetolius athlete and coach Galina Parfenov has been competing and coaching professionally for 20 years, climbing to 8b and working with hundreds of athletes across the country.\n \nGalina also runs individualized online training programs through Parfenov Training. Pick up the Metolius Light Rail, and you’ll get a 20% off discount code for her programs in your post-purchase email. #trainingforclimbing #warmupforclimbing #metoliustraining",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 1,
+      "shares": 0,
+      "views": 1013,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1705121554092968"
+    },
+    {
+      "id": "facebook-1654662356663171",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-07-25T20:44:24.000Z",
+      "text": "FAILURE HAS LEVELS.\n\n20 mm edge. Added weight. And pull.\n\nOnce I hit my limit, I drop some weight and keep going.\n\nLimit again. Drop the rest.\n\nThen it’s just bodyweight, tired fingers and whatever pulling strength is left.\n\nBasically a drop set — but on a 20 mm edge.\n\nFor climbing, strength isn’t only about how hard you can pull when you’re fresh. It’s also about how much you can still produce when your fingers and pulling muscles are already tired.\n\nTraining close to failure can be a useful tool for that. But going all the way to failure every time isn’t necessary — and probably isn’t a great idea either.\n\nThis is not how I train every session.\n\nSometimes I just like to see how many levels “I’m done” actually has.\n\nTurns out: more than one.#climbingtraining #pullup",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 76,
+      "comments": 0,
+      "shares": 0,
+      "views": 7456,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/2225821788261629"
+    },
+    {
+      "id": "instagram-DbOstm6IDkT",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-07-25T20:43:57.000Z",
+      "text": "FAILURE HAS LEVELS.\n\n20 mm edge. Added weight. And pull.\n\nOnce I hit my limit, I drop some weight and keep going.\n\nLimit again. Drop the rest.\n\nThen it’s just bodyweight, tired fingers and whatever pulling strength is left.\n\nBasically a drop set — but on a 20 mm edge.\n\nFor climbing, strength isn’t only about how hard you can pull when you’re fresh. It’s also about how much you can still produce when your fingers and pulling muscles are already tired.\n\nTraining close to failure can be a useful tool for that. But going all the way to failure every time isn’t necessary — and probably isn’t a great idea either.\n\nThis is not how I train every session.\n\nSometimes I just like to see how many levels “I’m done” actually has.\n\nTurns out: more than one.#climbingtraining #pullup",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 274,
+      "comments": 6,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DbOstm6IDkT"
+    },
+    {
+      "id": "x-2080697149122355526",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-07-24T16:50:32.000Z",
+      "text": "NEW! A modernized version of the most copied crag pack in history, the original 1991 Crag Station! https://t.co/eyUAMbvFZc https://t.co/OTISRik1VF",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 531,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2080697149122355526"
+    },
+    {
+      "id": "linkedin-7485710614846156800",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-07-22T15:01:28.357Z",
+      "text": "YY Vertical recrute ! 😃 \n\nOn cherche notre futur(e) Communication Manager.\n\nSi tu es grimpeur ou grimpeuse dans l’âme, que tu connais l’industrie outdoor de l’intérieur, et que tu sais faire parler une marque, ce poste est pour toi !\n\nL'annonce complète se trouve ici :\nhttps://lnkd.in/gJvpYRxW",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 49,
+      "comments": 4,
+      "shares": 9,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/yyvertical_yy-vertical-recrute-on-cherche-notre-activity-7485710614846156800-1Skv"
+    },
+    {
+      "id": "instagram-DbBBfu5DXCS",
+      "authorName": "Crushclub",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-07-20T13:14:39.000Z",
+      "text": "CrushClub climbing it’s not just a games. It’s a community ❤️ \n#climbing #klettern #community #escalade",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 30,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DbBBfu5DXCS"
+    },
+    {
+      "id": "x-2075657452901839338",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-07-10T19:04:35.000Z",
+      "text": "The Hardtop helmet is the perfect blend of weight, price, and durability. https://t.co/8gYhbcxVx5 https://t.co/A9oWT0Aj3h",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 468,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2075657452901839338"
+    },
+    {
+      "id": "instagram-DaU44ozjks6",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-07-03T09:52:49.000Z",
+      "text": "THE SERIES IS SETTLED 🏆\n\nThree rounds, three gyms, one question: who's got the strongest crew? We took each gym's top 5 per gender — ranked on average strength-to-bodyweight — and sent them head to head.\n\n👑 MEN — RHINO take it (78.9% team avg), edging out Bleau. Arsenaal round out the three.\n👑 WOMEN — BLEAU on top (57.9% team avg), ahead of Arsenaal and Rhino.\n\nNo gym swept both. Split crowns — exactly how a good series should end.\n\nAnd now the part you've been waiting for: the diagnostic tool is LIVE. Same tests, same rankings — find out exactly where you stand against everyone who competed.\n\n👉 diagnostic.maxclimbing.com\n\nRespect to all 120+ climbers who showed up across the series. This was just round one. \n\nthx for the help @cruxkinegent & @climbingcoachfrancis \n\n#maxclimbing #climbingtraining #fingerstrength #gripstrength #boulderbelgium #climbingcommunity",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 42,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DaU44ozjks6"
+    },
+    {
+      "id": "instagram-DaSU9NcjqMT",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-07-02T10:00:23.000Z",
+      "text": "That's a wrap on ROUND 3 · BLEAU 🔥\n\nHuge respect to everyone who put their fingers, grip and pulling power on the line for the last round of the series. Here's your top 3 per category — men & women — all ranked by strength-to-bodyweight.\n\nBig performances across the board on this one. 💪\n\n👉 Tomorrow we drop the big one: the OVERALL standings across all three rounds combined (Arsenaal + Rhino + Bleau). You won't want to miss where everyone lands.\n\nAnd soon you'll be able to test yourself → diagnostic.maxclimbing.com\n\nSpecial thanks to @climbingcoachfrancis for helping me during the comp!\n\n#maxclimbing #climbingtraining #fingerstrength #gripstrength #boulderbelgium #climbingcommunity",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 65,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DaSU9NcjqMT"
+    },
+    {
+      "id": "instagram-DaA2hCRCDY7",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-06-25T15:07:19.000Z",
+      "text": "Round 2: Rhino (The Scorch Trials) 🦏🔥\nThe heat was real.\nRhino showed up anyway.\n\nBig thanks to everyone who joined and gave it everything.\n\nThanks @cruxkinegent for the support!\n\nNext up: @klimzaalbleau , next Wednesday.\nLet’s see if they can answer. 👀\n\n#maxclimbing #strengthcompetition #climbingtraining #bouldering #climbinggym #rhino #bleau #climbingstrength",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 32,
+      "comments": 5,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DaA2hCRCDY7"
+    },
+    {
+      "id": "instagram-DZvGj2FDvsO",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-06-18T17:41:11.000Z",
+      "text": "Round 1 is in the books. 💪\nFirst stop: @klimzaal.arsenaal\nClimbers put their fingers, grip and pulling power to the test on the Max Climbing diagnostic — real numbers, measured the same way for everyone. Swipe through for the top 3 per category, men and women.\nScores are strength-to-weight, so it's not about who's biggest — it's about who pulls hardest for their size. Respect to everyone who stepped up and gave it max effort.\n📍 Round 2 — @rhinobouldergym — next Wednesday\n\n📍 Round 3 — @klimzaalbleau — the week after\nThree gyms, one ranking. The gym-vs-gym battle starts now. Which gym takes the crown? 👀\nKeeping climbers healthy on the day: @cruxkinegent — climbing physio\n\n#climbing #climbingtraining #fingerstrength #boulderinggent #maxclimbing #klimmen #gent",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 38,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DZvGj2FDvsO"
+    },
+    {
+      "id": "instagram-DZqCTejlLiA",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-06-16T18:27:56.000Z",
+      "text": "Version v.4.5.0 of the Lattice app is here! 🚀 What's new? 👇⁣\n⁣\n🧠 1. A Smarter, Goal-Driven Plan⁣\nWe've added a question to the plan generation quiz with smart branching questions. Choose your plan objective:⁣\n➡️ Build Strength & Fitness (Long-term gains)⁣\n➡️ Feel Good Climbing (Stay fresh and perform right now)⁣\n➡️ Peak for an Event/Project (Targeting a specific goal within a timeframe)⁣\n⁣\n🔎 2. Training Focus⁣\nYou can now choose a specific training focus⁣\n➡️ Forearm fitness⁣\n➡️ Finger strength⁣\n➡️ Balanced (combo of the two)⁣\n(We're only just getting started with focus… more are coming!)⁣\n⁣\n📈 3. Ramp Weeks⁣\nWhen your plan ends, you'll now have the option to skip the initial ramp week and dive straight into your new training. All first plans do still include a ramp week to help you ease in and reduce the risk of injury.⁣\n⁣\n⏱️ 4. Edit Sets in Timer ⁣\nYou asked, we delivered! You can now add or delete sets directly from the timer screen mid-workout. Anything you change carries straight through to your workout log. (Up next: editing reps and total time!)⁣\n⁣\n💬 5. Chat Improvements (For Climbing Training Plan PLUS users)⁣\nDay-to-day communication just got smoother. We’ve fixed the unread message bug, added a 'New messages' divider, and made sure the screen stays awake while you're recording voice messages to your coach.⁣\n⁣\nPlus, we've resolved a bunch of other small bugs. Thanks to everyone has reported an issue or made a suggestion!⁣\n⁣\n👇 Ready to level up your training?⁣\nHead to our link in bio 🔗 ⁣\nStart a LatticePlan NOW - starts with a 7-day FREE trial!⁣\n⁣\n#LatticeTraining #ClimbingTraining #LatticeApp #RockClimbing #TrainingForClimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 57,
+      "comments": 2,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DZqCTejlLiA"
+    },
+    {
+      "id": "facebook-1606835264779214",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-06-05T18:48:54.000Z",
+      "text": "The next batch is now available and will be shipped within the next two weeks.\n\nOnce this batch is gone, production moves on to the next round.\n\nIf you’ve been thinking about getting one, now is a good time.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 19,
+      "comments": 3,
+      "shares": 0,
+      "views": 7022,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/1026887063200655"
+    },
+    {
+      "id": "instagram-DZNv4JRIGrW",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-06-05T18:48:44.000Z",
+      "text": "The next batch is now available and will be shipped within the next two weeks.\n\nOnce this batch is gone, production moves on to the next round.\n\nIf you’ve been thinking about getting one, now is a good time.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 123,
+      "comments": 8,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DZNv4JRIGrW"
+    },
+    {
+      "id": "facebook-1601340738662000",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2026-05-31T10:12:22.000Z",
+      "text": "On April 12th, I was featured by Aden Wang.\n\nWhat happened next was something I never expected.\n\nSince then, the orders just haven’t stopped coming in. No matter how much I produce, it always feels like I’m falling behind. While I’m working through one batch, new orders and inquiries keep piling up.\n\nI’ve now worked 8 weekends in a row.\n\nMy average sleep since April has been around 5 hours per night.\n\nAnd please don’t get me wrong: I’m incredibly grateful for this. Every small business owner dreams of having more demand than they can handle.\n\nBut I’m also starting to realize that this pace isn’t sustainable.\n\nWhat bothers me most is that I barely have any time left for development projects and new ideas—the part of my work that I enjoy the most.\n\nSo I’d genuinely like to hear your opinion.\n\nIf you were in my position, what would you do?\n\nA) Raise prices\n\nB) Increase lead times\n\nC) Release products only in limited batches\n\nD) Hire help\n\nE) Something else\n\nAnd if you’re a customer: which option would feel the fairest to you?\n\nI read every comment.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 425,
+      "comments": 187,
+      "shares": 1,
+      "views": 111648,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/reel/985970397743966"
+    },
+    {
+      "id": "instagram-DY_8wvRIeLg",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-05-31T10:12:14.000Z",
+      "text": "On April 12th, I was featured by Aden Wang.\n\nWhat happened next was something I never expected.\n\nSince then, the orders just haven’t stopped coming in. No matter how much I produce, it always feels like I’m falling behind. While I’m working through one batch, new orders and inquiries keep piling up.\n\nI’ve now worked 8 weekends in a row.\n\nMy average sleep since April has been around 5 hours per night.\n\nAnd please don’t get me wrong: I’m incredibly grateful for this. Every small business owner dreams of having more demand than they can handle.\n\nBut I’m also starting to realize that this pace isn’t sustainable.\n\nWhat bothers me most is that I barely have any time left for development projects and new ideas—the part of my work that I enjoy the most.\n\nSo I’d genuinely like to hear your opinion.\n\nIf you were in my position, what would you do?\n\nA) Raise prices\n\nB) Increase lead times\n\nC) Release products only in limited batches\n\nD) Hire help\n\nE) Something else\n\nAnd if you’re a customer: which option would feel the fairest to you?\n\nI read every comment.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 669,
+      "comments": 237,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DY_8wvRIeLg"
+    },
+    {
+      "id": "instagram-DYgXZXbIgtX",
+      "authorName": "Antworks",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-05-19T03:53:10.000Z",
+      "text": "Subtle announcement that I restocked the shop.\n\nAfter weeks of being sold out, I’m finally packing orders again.\n\nThe shop has been restocked since yesterday — thank you so much for your patience, your support, and all the kind messages in the meantime.\n\nAs always, everything is made step by step and continuously restocked.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 186,
+      "comments": 5,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DYgXZXbIgtX"
+    },
+    {
+      "id": "instagram-DYW5JOIqzJw",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-05-15T11:43:03.000Z",
+      "text": "The journey of the Forearm Finisher in a nutshell 💪\n\nIt took a few tries and some time to figure it all out but eventually we couldn't be more happy with how the finished product turned out.\n\nSince the release in 2025 it has been reviewed and approved by legends in the game 🙌",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 340149,
+      "comments": 748,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DYW5JOIqzJw"
+    },
+    {
+      "id": "instagram-DX98oExiSg1",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-05-05T19:00:20.000Z",
+      "text": "Lattice App Update v4.3.0 is here! 🚀⁣\n⁣\nWe’ve just dropped some major upgrades to make your LatticePlan more flexible, personalised, and… most importantly… doable! ⁣\n⁣\nHere’s the breakdown of what’s landing in your pocket:⁣\n⁣\n1️⃣ Training Preferences: Train the way you want!⁣\nDuring the plan generation quiz, tell us how you prefer to train:⁣\n• Finger strength (hangboard vs lifting edge)⁣\n• Strength & power (board climbing vs bouldering)⁣\n• Power endurance (bouldering vs routes)⁣\n• Endurance (bouldering vs routes)⁣\nOur algorithms will now bias your plan toward your favorite methods!⁣\n⁣\n2️⃣ Equipment Selection: No kit? No problem. 🛠️⁣\nStop skipping workouts because you don't have the right equipment. You can now specify exactly what equipment you have at home and at your gym. And the app will only prescribe workouts you can actually complete.⁣\n⁣\n3️⃣ Switch Workout: Swapping sessions is now easy!⁣\nLife happens. Gym too crowded? Traveling? Just bored of the same exercise?⁣\nHit the hamburger menu to see a ranked list of alternative sessions that match your current goals and equipment. Choose to swap just one session or update all future instances of that workout.⁣\n⁣\nReady to level up? We've rolled out the update across the App Store and Play Store, so check your app is up-to-date and build a training plan that actually fits your life. 🎉⁣\n🔗 Link in bio (starts with a 7-day free trial)⁣\n⁣\n#ClimbingTraining #TrainingForClimbing #Bouldering #StrengthTraining #RockClimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 94,
+      "comments": 11,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DX98oExiSg1"
+    },
+    {
+      "id": "x-2047700236362301706",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-04-24T15:32:35.000Z",
+      "text": "Galina Parfenov @parfenovtraining cragging down in El Salto, Mexico Photo: Gustavo Sebastian Gerstner @metropolitarzan https://t.co/aykPsT6bK6 https://t.co/5yIZ4VwDh0",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 551,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2047700236362301706"
+    },
+    {
+      "id": "x-2045166874229711222",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-04-17T15:45:54.000Z",
+      "text": "Our Gym Rope is the perfect blend of weight, durability and price for indoor use. Knitted core helps the rope keep its round shape and avoid flattening. 40m is only $169.95 #indoorclimbing #climbinggym https://t.co/rhMOa13yj9 https://t.co/gNCM6BCfQT",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 6,
+      "comments": 0,
+      "shares": 1,
+      "views": 622,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2045166874229711222"
+    },
+    {
+      "id": "x-2040107671429562514",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-04-03T16:42:26.000Z",
+      "text": "Rebecca Vincent @beccacvincent on Twin Cracks in Bishop. Photo: Gabe De La Rosa. https://t.co/qh80yHCWGm",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 10,
+      "comments": 0,
+      "shares": 0,
+      "views": 414,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2040107671429562514"
+    },
+    {
+      "id": "linkedin-7444696247615160320",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-03-31T10:45:01.199Z",
+      "text": "Does your athlete partnership actually work? Or does it just look good?\n\nIn climbing, this oversight is obvious.\n\nYou see the posts. The announcements. The discount codes.\nBut behind the scenes, many of those partnerships are short term, transactional, and quickly forgotten 🫤\n\nThe result? ➡️ Visibility without credibility.\n\nOver the years we have taken a different approach. Our athlete programme is built around genuine real long term relationships, where performance and athlete support come first. \n\nWhy? Well firstly, because we want to support passionate climbers. Secondly, in a niche sport like climbing, credibility is not something you can buy, it is something people recognise over time 📈\n\nTeresa Coimbra has been managing this approach as our Athlete and Partnership Manager. In this week's B2B newsletter we are sharing  more on this insightful approach straight from Teresa. Click the link to subscribe: https://lnkd.in/eEbBZZkf\n\nAnd if you are working with athletes, ask yourself:\nAre you building content, or credibility? 🤔",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 1,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/lattice-training-ltd_b2b-hub-activity-7444696247615160320-01Vv"
+    },
+    {
+      "id": "instagram-DWBzi92CN2g",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-03-18T16:30:00.000Z",
+      "text": "La VerticalBase sera de nouveau en stock dans quelques jours, alors c’est l’occasion de vous raconter toutes les étapes par lesquelles nous sommes passés pour enfin donner vie à ce projet !\n\nInscrit toi à la Newsletter pour être informé du restock de la VBase avant tout le monde !! (Lien en story) \n\n🖥️🎥 @tu_freines \n\n#escalade #entraînement #ingenieur",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 31146,
+      "comments": 136,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DWBzi92CN2g"
+    },
+    {
+      "id": "instagram-DVjLzmjjcgo",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-03-06T16:30:00.000Z",
+      "text": "On précise que c’est des ingénieurs sur le coup, donc on évite de faire ça à la maison, c’est pas l’idée du siècle à part si on veut finir en chipolata !\n\n🖥️🎥 @tu_freines \n\n#escalade #ingénieur #produit",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 27969,
+      "comments": 101,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DVjLzmjjcgo"
+    },
+    {
+      "id": "linkedin-7434564505835040769",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-03-03T11:45:05.720Z",
+      "text": "What does it actually take to prepare for a big wall… if you have never touched a rope before?\n\nLondon boulderer Rotimi is taking on a HUGE challenge with Red Bull. Preparing for a big wall ascent in Nigeria, despite never having climbed one before!\n\nBefore the training started, the priority was simple: understand exactly where he is right now.\n\nWorking alongside Lattice and the team at the Red Bull Athlete Performance Center, Rotimi underwent a full performance profile, combining medical screening, physiotherapy assessment, and detailed testing of strength, power, speed and endurance.\n\nThe data was clear:\n• Strong. Powerful. Explosive.\n• Endurance is the limiting factor.\n\nThis is what collaboration in high performance looks like, specialists working together to turn ambitious projects into structured, evidence-based plans.\n\nWe’re proud to support athletes, brands and partners across the industry when the goal really matters.\n\nThis is just the starting point for Rotimi and we can't wait to see his journey!\n\nWatch the full video on our YouTube channel now: https://lnkd.in/eW5JQDzU",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/lattice-training-ltd_what-does-it-actually-take-to-prepare-for-activity-7434564505835040769-tgGp"
+    },
+    {
+      "id": "linkedin-7430215861954834433",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-02-19T11:45:08.225Z",
+      "text": "Can you answer these 5 questions about your customers? \n\nMost climbing gyms and retailers think they know their customers, but when was the last time you asked the tough questions?\n\nWe’ve put together 5 questions every climbing business should answer to understand their customers better, increase retention, and thrive in 2026.\n\nSign up to our B2B newsletter and get these 5 questions, and real advice on marketing implementation 👉 https://lnkd.in/eKHr6vgN",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/lattice-training-ltd_can-you-answer-these-5-questions-about-your-activity-7430215861954834433-B382"
+    },
+    {
+      "id": "x-2022392784536358937",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-02-13T19:29:48.000Z",
+      "text": "Molly Ohm plugging in some Master Cams at Cochise Stronghold. #metoliusmastercams #tradisrad #tradclimbing \n\nhttps://t.co/Q0AsskWjts https://t.co/nEJks9lrus",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 2,
+      "comments": 1,
+      "shares": 0,
+      "views": 471,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2022392784536358937"
+    },
+    {
+      "id": "linkedin-7425179383830654977",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2026-02-05T14:11:58.267Z",
+      "text": "Brand partnerships in climbing: why “not competing” is actually a growth strategy.\n\nClimbing is a small industry and that’s exactly why partnerships matter more than performance marketing ever will.\n\nIn the first edition of our new B2B newsletter, Shai Ben-Dror from Rúngne breaks down why our partnership worked, not as a one-off campaign, but as a credibility multiplier.\n\nA few key ideas from the case study:\n\n- Trust transfers faster than ads ever can\n- Community credibility compounds over time\n- The strongest brands grow together, even when they’re not “non-competing”\n\nThis is a real-world look at how collaboration in climbing builds long-term brand value — beyond clicks, codes, and short-term ROI.\n\n📩 Want the full case study? \n 👉 Sign up to the Lattice Training B2B newsletter to read it in full on Tuesday 10th Feb: https://lnkd.in/eKHr6vgN  \n\nIf you work in climbing, sport, or community-led brands — this one’s for you.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 16,
+      "comments": 1,
+      "shares": 2,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/lattice-training-ltd_brand-partnerships-in-climbing-why-not-activity-7425179383830654977-65rH"
+    },
+    {
+      "id": "x-2011478668216848608",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2026-01-14T16:41:00.000Z",
+      "text": "We have a new website! We’re excited to share that our new 2026 website is live! We hope it makes shopping for Metolius Gear easier, faster, and more enjoyable for our valued customers. https://t.co/mIkqvqYqx4 https://t.co/oZ5F4RzzxN",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 17,
+      "comments": 2,
+      "shares": 3,
+      "views": 893,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2011478668216848608"
+    },
+    {
+      "id": "instagram-DTXHok4kVrt",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2026-01-11T07:12:13.000Z",
+      "text": "Adjustable from 15 to 45 degrees.  Designed for apartment and home living.  World wide shipping to your door.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 382,
+      "comments": 15,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DTXHok4kVrt"
+    },
+    {
+      "id": "x-2006433341642506311",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-12-31T18:32:41.000Z",
+      "text": "Metolius wants to thank everyone for their support over the years, and we wish you all a Happy New Year.\nKawika Mau and Luke Prinster @lukeprinster on the roundtable traverse at sunset. Pitch 26 of the Freerider.\nPhoto credit - Felipe Tapia Nordenflycht @felipesh https://t.co/IuL3TT8UwE",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 1,
+      "shares": 0,
+      "views": 544,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2006433341642506311"
+    },
+    {
+      "id": "x-2001008618070757772",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-12-16T19:16:46.000Z",
+      "text": "Black Friday might be over, but we still have some killer deals on climbing holds, training equipment, ropes, cams, nuts, packs, and rope bags. Save up to 40% off our discontinued products, while supplies last! https://t.co/ESMG7zPd7D https://t.co/YAtqno0Eih",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 506,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/2001008618070757772"
+    },
+    {
+      "id": "x-1998822657928970421",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-12-10T18:30:32.000Z",
+      "text": "Climbers Edge Board is a completely redesigned, modernized version of our popular Wood Grips training board. It looks great in any room in the house.\nhttps://t.co/xuc33xM6oX https://t.co/SnLvxeaa6r",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 476,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1998822657928970421"
+    },
+    {
+      "id": "linkedin-7402029709594628096",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2025-12-03T17:03:25.829Z",
+      "text": "🚨 We're Hiring: Senior UX/UI Designer 🚨\n\nJoin us at Lattice and help shape the future of climbing training. As our new Senior UX/UI Designer, you’ll have the creative freedom to push boundaries, experiment with bold ideas, and build a truly futuristic experience for climbers worldwide. \n\nYou will be working alongside a passionate team committed to making Lattice the best training platform in any sport. If you want to create, innovate, and leave a lasting mark on the world of performance training, this is your moment.\n\nStart Date: January 2026 (some flexibility)\n📍 Sheffield, UK (hybrid working) \n💰 £35-45k (depending on experience) (pro rata)\n⏲️ 30-37.5 per week (negotiable) \n+ \n☑️ Flexible working hours\n☑️ Hybrid working model\n☑️ 36 days holiday (incl. 4 fixed bank holidays) (pro rata) \n☑️ Free training plan support\n☑️ Regular team socials\n☑️ Equipment discounts\n\nWhat We’re Looking For: \n➡️ Minimum 3 years of professional UX/UI design experience in a fast paced environment \n➡️ Fluency in Figma & modern app design principles\n➡️ A strong portfolio showcasing UX/UI design work & problem solving skills\n➡️ Strong communication & collaboration skills. Able to work independently & as part of a team\n➡️ A genuine interest in sport, training, or ideally climbing\n➡️ Must be able to regularly travel to the Sheffield area (hybrid role)\n\nWhat you’ll be working on:\nLattice has spent the last 4 years providing climbers around the globe with coach-led training plans through our mobile app. This December, we’re launching a new public membership model, marking the start of our next chapter. Our ambition: to become the world’s most trusted and widely used climbing training platform. \n\nWhat You’ll Be Doing:\n▶️ Take ownership of the end-to-end design process, and shape an exceptional user experience in the Lattice app as a key member of the development team.\n▶️ Collaborate closely with the CEO, helping define design direction that impacts the entire company.\n▶️ Engage directly with climbers and customers to gather insights and turn real feedback into meaningful product improvements.\n▶️ Create user flows, wireframes, prototypes, and polished UI designs that balance usability with visual excellence.\n▶️ Stay up to date with the latest UX/UI trends, interaction patterns, and platform guidelines (iOS & Android).\n▶️ Contribute to web-to-app projects ensuring a consistent, polished aesthetic across all Lattice platforms.\n▶️ Provide design mentorship to other team members, helping them grow in their roles.\n\nTo Apply:\nEmail your CV and a cover letter detailing your interest, relevant experience, and any additional skills to jobs@latticetraining.com by December 27th, 2025. \n\nWe may start interviews before this date, and if a suitable candidate is found we may close the role early, so please send us your application asap if you are interested! \n\nFurther info here: https://lnkd.in/dvCuQwsR",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://www.linkedin.com/posts/lattice-training-ltd_were-hiring-senior-uxui-designer-activity-7402003313669369857-3ONP"
+    },
+    {
+      "id": "facebook-1278341854334873",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-11-29T17:12:19.000Z",
+      "text": "3 Finger Pockets back in stock!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/beastmaker.co.uk/posts/pfbid02yNHX3neWFimVhAYFPA6HTYSUrtLXuSrVjo94Q95idXqv2ZRicQPrWhLCvD63z5Jel"
+    },
+    {
+      "id": "instagram-DRpfeHHjOp4",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-11-29T17:12:15.000Z",
+      "text": "3 Finger Pockets back in stock! Also 15% off everything at www.beastmaker.co.uk",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 92,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DRpfeHHjOp4"
+    },
+    {
+      "id": "tiktok-7577569543212518674",
+      "authorName": "Awesome Woodys",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-11-28T00:40:01.000Z",
+      "text": "Black Friday sale on now!  \nWebsite link in bio 🧗\n#fingerstrength\n#bouldering\n#sportclimbing\n#pinchblock\n#campusrungs",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 130,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@awesome.woodys/video/7577569543212518674"
+    },
+    {
+      "id": "facebook-1276651411170584",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-11-27T10:49:13.000Z",
+      "text": "",
+      "topics": [],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/beastmaker.co.uk/posts/pfbid0GG1bh8XugeRgktuTn5zfauCFYW3fCk4voS21QgdG37sCEq1TNBYEcSiyir9mgjq7l"
+    },
+    {
+      "id": "instagram-DRjqCmlDNAk",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-11-27T10:49:10.000Z",
+      "text": "",
+      "topics": [],
+      "likes": 24,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DRjqCmlDNAk"
+    },
+    {
+      "id": "instagram-DRUwzJAjA3I",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-11-21T15:59:37.000Z",
+      "text": "Proper jugs back in stock! \nKeep your eyes peeled for more holds 👀",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 109,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DRUwzJAjA3I"
+    },
+    {
+      "id": "x-1988727778733420672",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-11-12T21:57:05.000Z",
+      "text": "Route: Holding Out for a Hero, 5.12- C1, 9p (First Ascent)\nLocation: Cirque of the Moon, Wind River Range, Wyoming\nName of Climber: Stefanos Apostle (@stefanosapostle)\nName of Photographer: Neil Longfellow (@atavisticarts) https://t.co/TkBVwLCGwT",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 32,
+      "comments": 2,
+      "shares": 5,
+      "views": 3145,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1988727778733420672"
+    },
+    {
+      "id": "x-1983954270526566749",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-10-30T17:48:52.000Z",
+      "text": "Jonathan Siegrist @jonathansiegrist on the Ranch Crack back in 2016. Foto: Brooke Sandahl #tbt #tradisrad https://t.co/L7qlwJLtJH",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 10,
+      "comments": 0,
+      "shares": 3,
+      "views": 542,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1983954270526566749"
+    },
+    {
+      "id": "instagram-DQMwkmADIo0",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-10-24T16:52:19.000Z",
+      "text": "Beechmakers are now in stock on our website and coming to shops soon. They make use of sustainable European Beech (continuous cover forestry) We've been using it on many of our holds for years and have grown to love it. So you've now got the option for fingerboards too. We've also got a whilst stocks last run of this years shiny stickers... mmm shiny... going out with any web orders from Monday. #beastmaker #shinystickers",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 142,
+      "comments": 1,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DQMwkmADIo0"
+    },
+    {
+      "id": "linkedin-7381580000455507969",
+      "authorName": "yy vertical",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "linkedin",
+      "publishedAt": "2025-10-08T06:43:35.233Z",
+      "text": "Hé non ! La poutre d'escalade, ce n’est pas que pour les pros 😉\nC’est un outil hyper utile pour progresser, à tous les niveaux.\n\nEn collab avec la team AU VIEUX CAMPEUR, Ben & Olie de YY Vertical ont passé en revue tout ce qu’il faut savoir pour bien comprendre cet outil :\n- Des exercices concrets pour progresser\n- Des conseils pour s’entraîner sans se blesser\n- Les innovations YY Vertical pour installer une poutre… sans percer son mur\n\nUn vrai concentré d’astuces pour continuer à grimper, même à la maison 🧗‍♂️\n🎥 La vidéo complète est ici : https://lnkd.in/gGVe5d7F\n\nUn grand merci Au Vieux Campeur (Damien Van Kote ! Maël SERRE) pour l’accueil et le tournage.\nToujours un plaisir de partager cette passion avec des partenaires aussi engagés !🧡",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 37,
+      "comments": 5,
+      "shares": 1,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.linkedin.com/posts/yyvertical_yy-vertical-x-au-vieux-campeur-entra%C3%AEnement-activity-7381580000455507969-0WuF"
+    },
+    {
+      "id": "x-1973438248686067747",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-10-01T17:21:57.000Z",
+      "text": "Life on the road as a Metolius sales rep, Eddie enjoying some chossy Alberta limestone with spectacular views of the Rockies. #vanlife #metoliusemployee https://t.co/nDFamxXNpt",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 8,
+      "comments": 0,
+      "shares": 1,
+      "views": 642,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1973438248686067747"
+    },
+    {
+      "id": "tiktok-7556254030482181409",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-10-01T14:05:12.000Z",
+      "text": "Lucky we changed a few things over time 😅\n\n#armwrestling #prototype Popeye's Pronator",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 30300,
+      "comments": 180,
+      "shares": 1291,
+      "views": 2700000,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@goldengripshop/video/7556254030482181409"
+    },
+    {
+      "id": "instagram-DPOwgK0Cu7c",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-09-30T15:00:09.000Z",
+      "text": "Luckily we improved a few things over time 😅\n\nThe last version of the Popeye's Pronator has: \n\n• Knurled handle\n• Stainless steel chain\n• Metal chain guiders\n• Bigger diameter so even the largest hand fits\n\nWhich one is your favorite?",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 80414,
+      "comments": 364,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DPOwgK0Cu7c"
+    },
+    {
+      "id": "facebook-1384408867021731",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-09-26T14:28:09.000Z",
+      "text": "Zaterdag 26/09 is de winkel uitzonderlijk gesloten. Je vindt ons in de klimzaal Walden met de Max Games",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/maxclimbingcompany/posts/pfbid02t1akyCRh3T3WuAtw7jtNvjHqFnsoV7UtLKxyhfiEK4ZznbhLPGJBAhRVs2EVARwZl"
+    },
+    {
+      "id": "x-1970898938162274630",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-09-24T17:11:39.000Z",
+      "text": "Our newest classic Competition shape chalk bag in four logo print colors.\n\nFull-length pile lining\nBrush holder\nIncludes belt w/side-release buckle\nColors: grey, green, teal, brown\n\nhttps://t.co/aRZru8uOhI https://t.co/SjaUAwdiyJ",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 1,
+      "shares": 1,
+      "views": 432,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1970898938162274630"
+    },
+    {
+      "id": "x-1968389001058074769",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-09-17T18:58:03.000Z",
+      "text": "Luke Prinster in Yosemite https://t.co/H6tAneiNZK",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 40,
+      "comments": 2,
+      "shares": 7,
+      "views": 1526,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1968389001058074769"
+    },
+    {
+      "id": "instagram-DOdop9_DE0q",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "instagram",
+      "publishedAt": "2025-09-11T13:07:27.000Z",
+      "text": "It's been a fun process setting up these bespoke 45˚ and 30˚training boards for @brushworksclimbing in Glasgow. Alongside an adjustable @kiltergrips board. The lights are a collaboration with the forthcoming stokt LED kits that sync perfectly with their problem storing app. back in 2009 Ned and I set up one our first commercial training boards in @glasgow_climbing_centre Whilst the two boards look very different they stick to the same basic principle. If you pull hard on steep wooden boards, that's the absolute best power training possible for rock climbing. The board doth maketh the beast. pics by @ollyisaclimber",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 899,
+      "comments": 10,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://www.instagram.com/p/DOdop9_DE0q"
+    },
+    {
+      "id": "x-1963278829528777014",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-09-03T16:32:03.000Z",
+      "text": "Vance Stanfield @vancesteezfield   working “Too Buff For Muff Sit” v13 in Alaska. Photo Henrik Keskula @permafrostpictures.photography #bouldering https://t.co/dQnESkiYnF",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 18,
+      "comments": 4,
+      "shares": 2,
+      "views": 1160,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1963278829528777014"
+    },
+    {
+      "id": "x-1958208015108382784",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-08-20T16:42:27.000Z",
+      "text": "Did you know Metolius was the first company in the USA to start making training boards? If you want to see our full line of training products like boards, campus rungs, and rock rings. #trainingforclimbing #hangboardtraining #climbingtraining https://t.co/fqgyokj1uc https://t.co/8UsusIdurv",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 16,
+      "comments": 1,
+      "shares": 4,
+      "views": 700,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1958208015108382784"
+    },
+    {
+      "id": "x-1955673708112269504",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-08-13T16:52:01.000Z",
+      "text": "Davin Bagdonas scouting for new boulders in Far Away, pristine and wild places. You should check out his profile. @davinbagdonas https://t.co/7ecBcrdTxj",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 33,
+      "comments": 1,
+      "shares": 2,
+      "views": 1441,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1955673708112269504"
+    },
+    {
+      "id": "x-1953143147120476462",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-08-06T17:16:28.000Z",
+      "text": "Luke Prinster barefoot ascent of the Yosemite classic, Bachar Cracker. #yosemite #bouldering #metoliusbouldering @LukePrinster https://t.co/BN6cQYJaM1",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 15,
+      "comments": 1,
+      "shares": 4,
+      "views": 815,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1953143147120476462"
+    },
+    {
+      "id": "x-1950597072635490815",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-30T16:39:17.000Z",
+      "text": "https://t.co/LBZDbvkQd6",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 337,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1950597072635490815"
+    },
+    {
+      "id": "x-1950596769492210059",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-30T16:38:04.000Z",
+      "text": "The Nano Rings are portable, take-anywhere training blocks can be used as pairs for suspension training or individually for ground pulls, weight hangs, or an ultralight, ultra-compact travel and warming up at the crag option. https://t.co/8bhJiXAAfP",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 1,
+      "shares": 0,
+      "views": 678,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1950596769492210059"
+    },
+    {
+      "id": "tiktok-7532578657584401686",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-07-29T18:52:21.000Z",
+      "text": "Which version do you prefer?? \n\n#forearms #armworkout #armwrestling #armwrestler",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 31200,
+      "comments": 261,
+      "shares": 1765,
+      "views": 1400000,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@goldengripshop/video/7532578657584401686"
+    },
+    {
+      "id": "x-1948051242602938830",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-23T16:03:03.000Z",
+      "text": "A couple locals sending some classic Central Oregon lines. #metoliusemployee #bouldering https://t.co/vWBfe9r2wh https://t.co/4Sff715Se2",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 11,
+      "comments": 0,
+      "shares": 1,
+      "views": 516,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1948051242602938830"
+    },
+    {
+      "id": "x-1945504452838137942",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-16T15:23:01.000Z",
+      "text": "Jonathan Siegrist @jonathansiegristsending ‘Hard Twisted’ 15a, Wolf Point, WY. Photo: Nate Liles @or0graph1c https://t.co/LpoTqPh75z",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 14,
+      "comments": 1,
+      "shares": 3,
+      "views": 645,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1945504452838137942"
+    },
+    {
+      "id": "tiktok-7526910373358767382",
+      "authorName": "Golden Grip",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-07-14T12:16:32.000Z",
+      "text": "The journey of the Forearm Finisher in 30 seconds 💪\n\n#armwrestling #grip #forearms",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 29400,
+      "comments": 256,
+      "shares": 1860,
+      "views": 1000000,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@goldengripshop/video/7526910373358767382"
+    },
+    {
+      "id": "x-1942997155431797172",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-09T17:19:55.000Z",
+      "text": "Vance Stanfield @vancesteezfield sending at the Youth National Comp. https://t.co/TKDfG0cU72",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 440,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1942997155431797172"
+    },
+    {
+      "id": "x-1941172131464990909",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-07-04T16:27:56.000Z",
+      "text": "The Nano Ring is a portable, take-anywhere training block that can be used as pairs for suspension training or individually for ground pulls, weight hangs, or an ultralight, ultra-compact travel and warming up at the crag option. https://t.co/LBZDbvkQd6 https://t.co/2dvAjtzqQV",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 0,
+      "shares": 0,
+      "views": 417,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1941172131464990909"
+    },
+    {
+      "id": "tiktok-7522113010354146592",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-07-01T14:00:33.000Z",
+      "text": "Climb with intention, improve faster ⚡️\nBouldering with no plan is fun, but adding a little structure with Intentional Sessions can help you learn more every time you step on the wall. \nWant to build strength or train specifics for a project? \n➡️ Max Effort Session 💥\nClimb problems that are at your limit where linking moves is a win. Expect a high failure rate and low chance of a full send, making sure you rest between attempts. Do this when you’re feeling fresh and strong, and stop the session when quality starts to drop (ie. you’re no longer working max strength)\nWant to build session fitness, or expand your movement skillset?\n➡️ Mileage Session 🏃\nClimb A LOT of problems with a high success rate. Choose problems that are challenging but can be done within a few attempts. Make sure to climb a variety of styles and wall angles. \nWant to improve on a specific technique, or target a certain weakness? \n➡️ Skill Session 🎯\nFind climbs that use your chosen skill– heel hooks, body tension, slopers, etc. Try to incorporate the skill where you can, even if it feels silly! Vary the intensity and climb on a range of terrain. You can use this as a warm-up or the focus of a whole session.\n💡 Mix it up each session! Focus on capacity early on in your training cycle, then more intensity closer to your peak.\nTake your training into your own hands! Learn all about exercise selection and intentional climbing sessions in ‘A Climber’s Guide to Training’ 👇\nhttps://latticetraining.com/product/a-climbers-guide-to-training-course/\n#LatticeTraining #ClimbingTraining #WeTrainClimbers",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3988,
+      "comments": 1,
+      "shares": 2991,
+      "views": 7469,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@lattice_training/video/7522113010354146592"
+    },
+    {
+      "id": "x-1938979335844819209",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-06-28T15:14:32.000Z",
+      "text": "Lander, Wyoming’s International Climber Festival is July 10-13, 2025. https://t.co/bC8WKziMXY\nOur Sales Rep, Eddie Whittemore is doing a couple of gear clinics at the fest. Check out the schedule here. https://t.co/rRyvNiQDzR https://t.co/M6ueuVkWlw",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 8,
+      "comments": 0,
+      "shares": 1,
+      "views": 494,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1938979335844819209"
+    },
+    {
+      "id": "facebook-1299497105512908",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-06-27T10:13:57.000Z",
+      "text": "MAX GAMES + Official Shop Opening , This Saturday, 28/06\nhttps://www.maxclimbing.com/nl/pages/welcome-to-max-climbing-store-in-ghent\n\nJoin the fun! Let's go\n\n#Gent\n#StadGent\n#gentevents\n#max_climbing\n#KlimmenGent\n#yyvertical\n#ocun\n#chalkrebels\n#goudengrip\n#rustamclimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 0,
+      "shares": 1,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/maxclimbingcompany/posts/pfbid02UHRep9NWpQijcnGnyDSpjp4uGUZX3n3sW7zDDWQXVgrSoViVQi85v9mbEKjczqzhl"
+    },
+    {
+      "id": "x-1937913020128366666",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-06-25T16:37:23.000Z",
+      "text": "GOOD NEWS - Senate Committee on the Budget stated that the proposal to sell up to 3 million acres of public land in the West does not follow Senate budget rules.⁠\nBAD NEWS - Senator Mike Lee of Utah promised to try  again and has already introduced a revised version of the plan https://t.co/l48ZK5YnmE",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 1,
+      "shares": 1,
+      "views": 420,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1937913020128366666"
+    },
+    {
+      "id": "tiktok-7519164266746842400",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-06-23T15:17:59.000Z",
+      "text": "My 7 Day Experiment to Better Grip Endurance 📈\nCan creatine improve climbing performance- specifically finger strength? In our newest Youtube video, we put it to the test.\nForget strength training and weightlifting, we're going hyper-specific. We’re looking at the effect of creatine on finger strength and capacity in climbing.\nWith data from researcher Ed Smith (@ed_gibsonsmith) and a week-long self-experiment, we explore how creatine affects recovery, fatigue resistance, and performance under short rest intervals. Plus, we break down the science, look at the results, and ask: who might actually benefit from supplementing?\nWatch the full video on Youtube.com/LatticeTraining\n#LatticeTraining #ClimbingTraining #WeTrainClimbers #Creatine",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 110,
+      "comments": 0,
+      "shares": 1,
+      "views": 2937,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@lattice_training/video/7519164266746842400"
+    },
+    {
+      "id": "x-1933588350763688052",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-06-13T18:12:41.000Z",
+      "text": "We just wanted to give you, our valued customers, a heads-up. On July 1st, we will be increasing our prices on select items to absorb the cost of the 2025 tariffs. \n\nThanks for your support,\nMetolius Climbing https://t.co/x7996r61Sv",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 1,
+      "shares": 0,
+      "views": 488,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1933588350763688052"
+    },
+    {
+      "id": "x-1927783455099597160",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-28T17:46:06.000Z",
+      "text": "@richcmanley at the North and South Six Shooter Towers, near Indian Creek Utah. https://t.co/VWskzGYGHP",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 488,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1927783455099597160"
+    },
+    {
+      "id": "x-1925653927292273029",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-22T20:44:07.000Z",
+      "text": "Get a free Crash Pad Carry Bag with your purchase of a Session crash pad. https://t.co/rUHRWxaGVl https://t.co/xpBwkPvFLm",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 417,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1925653927292273029"
+    },
+    {
+      "id": "x-1924887354843791366",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-20T17:58:02.000Z",
+      "text": "Great deal on Metolius Ultralight Asymmetric Curve Nut, full set is 20% off, only $135.96. https://t.co/32DbUMlfhT https://t.co/oROw0xJmoK",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 5,
+      "comments": 0,
+      "shares": 0,
+      "views": 343,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1924887354843791366"
+    },
+    {
+      "id": "x-1922719955897778500",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-14T18:25:34.000Z",
+      "text": "Molly Ohm climbing the splitter offwidth, Scard Face, 5.10, at Scarface Wall in Indian Creek, Utah. FA Devin Fin, photo by Devin Fin. @molly.ohm @devinfin https://t.co/lT8XtErbZG",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 18,
+      "comments": 0,
+      "shares": 1,
+      "views": 683,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1922719955897778500"
+    },
+    {
+      "id": "facebook-1161992942367397",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-05-13T12:45:22.000Z",
+      "text": "",
+      "topics": [],
+      "likes": 11,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/events/1161992942367397"
+    },
+    {
+      "id": "x-1920537115240304999",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-08T17:51:44.000Z",
+      "text": "Epic shot from our customer service rep, Jared rapping off Spiderman at sunset. #metoliusemployees https://t.co/e1G1bWo5cs",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": 348,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1920537115240304999"
+    },
+    {
+      "id": "x-1919780371161297108",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-06T15:44:42.000Z",
+      "text": "Preorder the Yosemite Valley Guidebook, over 550 pages of detailed information.\nhttps://t.co/4RXIBE5B0B https://t.co/pp4AeNiqGP",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 468,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1919780371161297108"
+    },
+    {
+      "id": "x-1918018132209484126",
+      "authorName": "Metolius",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2025-05-01T19:02:12.000Z",
+      "text": "If you want a great deal on our super durable Freerider pack check out our Special Deals. Now only $127.96. https://t.co/ESMG7zPd7D https://t.co/PZcdgaV5EO",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 332,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/MetoliusClimb/status/1918018132209484126"
+    },
+    {
+      "id": "tiktok-7494652739272576288",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-04-18T14:00:36.000Z",
+      "text": "Power on steep terrain: Drag vs. Crimp 💥\nIf you want more power on steep terrain, it’s not just about finger strength — it’s how you use your grip.\nWhen using a closed grip (half crimp/full crimp), your elbow can travel higher (increased angle) without losing contact. That means:\n✅ More force\n✅ Longer time to apply force\n✅ Mechanically better grip when catching the next hold\nAn open drag is great for conserving energy, but it limits upward drive and reduces force production time for the same reason - your elbow just can't go that high around the hold.\nIf you're going big on steep terrain, switch to a closed grip and turn that pull into a powerful push.\n#climbingtraining #latticetraining #wetrainclimbers",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 46000,
+      "comments": 8,
+      "shares": 26600,
+      "views": 48200,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@lattice_training/video/7494652739272576288"
+    },
+    {
+      "id": "facebook-1175334454591972",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2025-02-28T10:41:08.000Z",
+      "text": "Say Hello to Svein👋🏻 Svein is a key part of our manufacturing team in Trondheim, Norway, helping to produce most of our products. He loves what he does and feels grateful to be a part of the team, he says. «I am proud og what we create and committed to delivering quality in everything we make.» -Svein",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 6,
+      "comments": 1,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/tindeq/posts/pfbid02LDMMYkDZfebbrouaXRiw9oDuLd5pS7XpkyytzdqGyYzWVrTAr1362JmzGmrRHyrTl"
+    },
+    {
+      "id": "tiktok-7470918756307307809",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2025-02-13T15:00:36.000Z",
+      "text": "Indoor vs. Outdoor Climber ft. @erinmcbeast and @climbingjane 🤔\nWhich style do you usually go for? Comment below! 👇\n#LatticeTraining #TrainingforClimbing #ClimbingTraining",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3460,
+      "comments": 16,
+      "shares": 86,
+      "views": 63000,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@lattice_training/video/7470918756307307809"
+    },
+    {
+      "id": "facebook-1103969671728451",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2024-11-29T10:00:13.000Z",
+      "text": "We are excited to announce that the Tindeq Snow Saw has been honored with the ISPO Award. The ISPO award is given to products within the sports industry that stand out with a particularly high level of innovation and quality.\n\nJury statement: In the world of avalanche safety, the Tindeq Snow Saw stands out as a powerful tool that is indispensable for snow stability analysis and risk management.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/tindeq/posts/pfbid0x2xyVXCEQAeMSBkzjrs2qSFNDjguXBCafQ9ydLJzTbwUDFmzTQQ5rzXiQ4VEW58Pl"
+    },
+    {
+      "id": "x-1656612324084535298",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2023-05-11T10:48:51.000Z",
+      "text": "学会@東京へ出発！！\n新幹線でぶつぶつ発表(英語)の練習。\n\nクライミングシューズだけは忘れずに持ってきた。\n\n昨日、派手に和太鼓でオープニングセレモニーが行われてた模様。\n#ISID2023Tokyo https://t.co/We3FFjD0in",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1656612324084535298"
+    },
+    {
+      "id": "facebook-675275741264515",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2023-03-21T19:19:55.000Z",
+      "text": "We are thrilled to have received the prestigious Doga award for our snow saw! Our saw has proven to be an indispensable tool for avalanche forecasters and skiers around the globe, enhancing snowpack assessments and contributing to saving lives. We are deeply honored to receive this recognition, which motivates us to keep striving towards developing more innovative and impactful products that make a real difference.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 39,
+      "comments": 3,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/tindeq/posts/pfbid0fUgT4EAqQbAPvW1DNgFScs4sHykiyCEZSYH7Adx7r7y8CSLfonsmyzYntEj1RsHgl"
+    },
+    {
+      "id": "x-1631389610465959967",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2023-03-02T20:22:47.000Z",
+      "text": "Depending on your diet, riding a pedal bike could be 20 times less environmentally friendly than riding an electric one.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1631389610465959967"
+    },
+    {
+      "id": "facebook-612383174224308",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2023-01-10T09:06:19.000Z",
+      "text": "2De keus grepen te koop, grepen die perfect zijn qua vorm maar kleurafwijkingen hebben. Indien interesse, stuur mij op 0032 478 59 51 37. Grepen te selecteren in zeeschipstraat 38i in Gent. \n\n2nd choice climbing holds available to buy in Gent, contact me on 0032 478 59 51 37",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 9,
+      "comments": 1,
+      "shares": 2,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/maxclimbingcompany/posts/pfbid02ZrUCasWxmvh2xayCUm58g9DQDbFgjZpuutWHuMQ4sLgPzvt2BRvcSLyP9uD1ZHfPl"
+    },
+    {
+      "id": "x-1612570502287052808",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2023-01-09T22:02:22.000Z",
+      "text": "Scotland and the North of England will dominate UK power generation by 2030.\n\nThis is a huge opportunity for jobs and eco…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1612570502287052808"
+    },
+    {
+      "id": "x-1601507787657576448",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-12-10T09:23:05.000Z",
+      "text": "Big thanks to @Beastmakers for their generous donation to help us develop our montane plant nursery at Wild Ingleborough. Da…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1601507787657576448"
+    },
+    {
+      "id": "x-1601507657571274754",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-12-10T09:22:34.000Z",
+      "text": "Of all the accomplishments and honours one could ever hope for in life. Having a scottish gritter named after you in your home town has got to be up there @CalvinHarris #madeit https://t.co/rPElxNPg77",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1601507657571274754"
+    },
+    {
+      "id": "facebook-578025980989492",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2022-11-21T10:36:21.000Z",
+      "text": "We've enjoyed a week of climbing in Finale Ligure. What an awesome place for an escape from cold Norway's November.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 9,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/tindeq/posts/pfbid02bP9ZRSMxcMX5mVf2W8rzamki1H8GTbL9j4k5BPfiUBhHxSSjR31GoXX7R4gxUroTl"
+    },
+    {
+      "id": "x-1583107590158184448",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-10-20T14:47:16.000Z",
+      "text": "https://t.co/5IQPPch9R4 so chuffed the lettuce won. Whoever came up with that competition is a total genius #LizTruss #lettuceWins",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1583107590158184448"
+    },
+    {
+      "id": "x-1576113389797277696",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-10-01T07:34:49.000Z",
+      "text": "#SaturdayMorning  woke up to this from @BulbUK rishi's £400 has helped but it's still a bit of an an expensive night. #pricecap #gladitwasntmore #fubar #kwazieconomics https://t.co/Lg1bhrddEx",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 4,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1576113389797277696"
+    },
+    {
+      "id": "x-1546943786491723778",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-07-12T19:45:14.000Z",
+      "text": "Where are they taught this? https://t.co/qU87Xt2ZkB",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1546943786491723778"
+    },
+    {
+      "id": "x-1543545649563582465",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-07-03T10:42:15.000Z",
+      "text": "Exceptional and record breaking heat from North Africa to Norway. Unbearably hot around the central Mediterranean especi…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1543545649563582465"
+    },
+    {
+      "id": "x-1537782840670183426",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-06-17T13:02:54.000Z",
+      "text": "A roll cloud is a low, horizontal, tube-shaped, and relatively rare type of arcus cloud. This unusual view is believed t…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1537782840670183426"
+    },
+    {
+      "id": "tiktok-7106777413412998406",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "tiktok",
+      "publishedAt": "2022-06-08T08:06:06.000Z",
+      "text": "Need some HULK Crimp energy? Just don't overdue it, we don't want you turning green 😉 💪 #latticetraining #hulkpower #power #testing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 16200,
+      "comments": 27,
+      "shares": 33,
+      "views": 3000000,
+      "isRepost": false,
+      "sourceUrl": "https://www.tiktok.com/@lattice_training/video/7106777413412998406"
+    },
+    {
+      "id": "x-1524022993608921088",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-05-10T13:46:11.000Z",
+      "text": "The Olympics bump turned out to be more of a blip https://t.co/zexQeTUnbo",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1524022993608921088"
+    },
+    {
+      "id": "x-1506993101033910272",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-03-24T13:55:28.000Z",
+      "text": "our beech footholds are back in stock. surprisingly popular of late",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1506993101033910272"
+    },
+    {
+      "id": "x-1505640263179452423",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-03-20T20:19:46.000Z",
+      "text": "Things said by nearly all Brits about the weather this weekend:\n\n1. “I can’t believe how nice it is!”\n2. “There’s people…",
+      "topics": [
+        "Persoonlijk & Niet-politiek"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1505640263179452423"
+    },
+    {
+      "id": "x-1502351729370841097",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-03-11T18:32:19.000Z",
+      "text": "Amazing to finally see projects like this coming to fruition. We already have a really low carbon grid in the north of the UK and seeing these different approaches to inertia realized feels like genuine progress. https://t.co/17MBarKCKj",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1502351729370841097"
+    },
+    {
+      "id": "x-1501289383084761091",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-03-08T20:10:56.000Z",
+      "text": "You have to say no to people. \nA nest of river tables and matching coasters of course. 🙈\nNaff.. next level https://t.co/JDtN9FS…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1501289383084761091"
+    },
+    {
+      "id": "facebook-357943383001623",
+      "authorName": "Max Climbing",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2022-02-19T15:22:09.000Z",
+      "text": "Max Mazes have arrived! Solve mazes while planking or pulling-up.\nLet's have some fun :)\n\nhttps://www.maxclimbing.com/collections/training-games/products/max-maze",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 24,
+      "comments": 0,
+      "shares": 2,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/maxclimbingcompany/posts/pfbid02HULnBfKhxfjhP1mDinYyyVVHJQgiEdVwkdYecosQJnySTszJoSjkhHCsbBw7iF6il"
+    },
+    {
+      "id": "x-1490780009203703809",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2022-02-07T20:10:26.000Z",
+      "text": "Check out this excerpt from \"Beastmaking\" by @Beastmakers  co-founder (and UK crusher) Ned Feehally.\n.\n.\n.\nhttps://t.co/at…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1490780009203703809"
+    },
+    {
+      "id": "facebook-10159577490605761",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2022-01-06T11:39:49.000Z",
+      "text": "Have you got that new year training psyche? 💪\n\nIf you’re motivated, but unsure where to start, hit the link in our bio for some session ideas. \n\n#beastmaker1000",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 22,
+      "comments": 3,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/beastmaker.co.uk/posts/pfbid02s5xg1grMDNGo4uB4p8dcv41pnRjEhd66Va9Gm18EQD9pVcrabuwMDh8whvRTYFdWl"
+    },
+    {
+      "id": "x-1468194180199591937",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2021-12-07T12:22:24.000Z",
+      "text": "Beastmaking Books and some new CNC jug and pocket holds are now in stock on our site: https://t.co/MLBQbnPDzN",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1468194180199591937"
+    },
+    {
+      "id": "facebook-10159516428150761",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2021-12-02T16:24:10.000Z",
+      "text": "It’s board climbing season. How about some new additions to your set up? \n\nHit the link in our bio to shop now! 💪",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 13,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/beastmaker.co.uk/posts/pfbid02iSaRZEs34wHaawbgXBM31vMV5MC4WHWhvAgQ9V1R1Yr2VtjjZp6UUMjyTn3CcoMrl"
+    },
+    {
+      "id": "x-1466107986175307776",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2021-12-01T18:12:37.000Z",
+      "text": "Ned Feehally has re-climbed the Main Vein sds on Y Clogfaen Caseg. He has suggested top end 8A+. Full story and footage i…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1466107986175307776"
+    },
+    {
+      "id": "facebook-10159458435675761",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2021-11-02T16:19:13.000Z",
+      "text": "Standardised board holds are now available! \n\nHit the link in our bio to find out more 💪 \n\n•\n#beastmakerboard #boardclimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 22,
+      "comments": 0,
+      "shares": 2,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/beastmaker.co.uk/posts/pfbid0GWKQGv3V8x5CcYGt554fbpDP14BdtzHHq6hwnNhR2D58yQECcKDaHY6MRWDUhBdkl"
+    },
+    {
+      "id": "x-1450147133944999939",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2021-10-18T17:09:53.000Z",
+      "text": "Giving Jay Leno a little tour of my van build… Watch me on this season of @LenosGarage this Wednesday at 10P ET on CNBC! #…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Beastmakers/status/1450147133944999939"
+    },
+    {
+      "id": "x-1435961131105800213",
+      "authorName": "Beastmaker",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2021-09-09T13:39:47.000Z",
+      "text": "Here's a little Blog update following up our donation to @RibbleriversNCS tree planting scheme in their Lancashire river catchments last year. \nhttps://t.co/10tjZhE1O4",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Beastmakers/status/1435961131105800213"
+    },
+    {
+      "id": "facebook-2629054257399168",
+      "authorName": "Tindeq",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "facebook",
+      "publishedAt": "2021-09-08T19:27:05.000Z",
+      "text": "From this Saturday's traverse of the jagged peaks surrounding Smørstabbreen in Hurrungane, Norway. The stars aligned and the weather was on our side, and we even completed the traverse before it got dark.",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 7,
+      "comments": 0,
+      "shares": 0,
+      "views": null,
+      "isRepost": false,
+      "sourceUrl": "https://www.facebook.com/tindeq/posts/pfbid0baWMGW7ake98k9Jeb8EMyxjmWZSYhNVn65PDbEdZGTLRY4VLip3JJgwShtP2fV3El"
+    },
+    {
+      "id": "x-1076266426921635841",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-12-22T00:01:26.000Z",
+      "text": "The man is on fire! Great to see such motivation from a dad, husband and full-time worker. Impressive 💪🏻💪🏻",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 2,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1076266426921635841"
+    },
+    {
+      "id": "x-1065189414786220034",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-21T10:25:21.000Z",
+      "text": "Latest blog post looking at @evalopezcoach research - there's some discussion over at the FB sharing/community page on @La…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Latticetraining/status/1065189414786220034"
+    },
+    {
+      "id": "x-1064641320319401985",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-19T22:07:25.000Z",
+      "text": "Nice one Gavin! @aheavysakejar Put the work in, in the UK and then enjoy that trip in Spain 🇪🇸 😊💪🏻💥 https://t.co/DZ7ETd5nIN",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1064641320319401985"
+    },
+    {
+      "id": "x-1063729564667600896",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-17T09:44:26.000Z",
+      "text": "Great pics Hannah!! 💥💥",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1063729564667600896"
+    },
+    {
+      "id": "x-1063106624666193922",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-15T16:29:05.000Z",
+      "text": "Soooo many good centres up in Scotland now. Nice minty temps too!! 😁😁",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1063106624666193922"
+    },
+    {
+      "id": "x-1058871157628256256",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-03T23:58:51.000Z",
+      "text": "4 full articles now up on UKC! Loads of info in the forum threads as well... @UKClimbing",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 3,
+      "comments": 0,
+      "shares": 1,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1058871157628256256"
+    },
+    {
+      "id": "x-1058285107079983105",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-11-02T09:10:06.000Z",
+      "text": "Interested in progressing your climbing? We’ve recently released our Lattice Lite plans which are just 3 months commitment and still hand-built by our coaches 💪🏻💪🏻 https://t.co/CWgBpRJSyD https://t.co/VEWv6V9dT5",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1058285107079983105"
+    },
+    {
+      "id": "x-1057440993094582274",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-31T01:15:53.000Z",
+      "text": "Our Lattice Lite competition winner enjoying himself 😁💪🏻💪🏻💪🏻",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1057440993094582274"
+    },
+    {
+      "id": "x-1057183574208774144",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-30T08:13:00.000Z",
+      "text": "Had a great time at the @tcaglasgow @urbanuprising_climbing comp on Saturday! Massive thank you to everyone who came t…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Latticetraining/status/1057183574208774144"
+    },
+    {
+      "id": "x-1055812740005138432",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-26T13:25:47.000Z",
+      "text": "Can’t get enough of watching Steve climb... always so good! 💪🏻💪🏻",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1055812740005138432"
+    },
+    {
+      "id": "x-1055812438241751040",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-26T13:24:35.000Z",
+      "text": "Interesting to see clients pushing their methodology and constantly reevaluating 🤓🤓",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1055812438241751040"
+    },
+    {
+      "id": "x-1054758075297603589",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-23T15:34:56.000Z",
+      "text": "One of our national treasures?!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1054758075297603589"
+    },
+    {
+      "id": "x-1053917661124550657",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-21T07:55:25.000Z",
+      "text": "Extremely important topic this one. Rest weeks are absolutely key!! It’s all about motivation management and realisation that progress only comes when training AND resting 😊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 1,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1053917661124550657"
+    },
+    {
+      "id": "x-1052461799570907136",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-17T07:30:21.000Z",
+      "text": "💪🏻💪🏻💪🏻 Loving these weekly updates!",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1052461799570907136"
+    },
+    {
+      "id": "x-1051770493840306176",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-15T09:43:21.000Z",
+      "text": "More real time reporting of what it’s like to follow our plans 😊",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1051770493840306176"
+    },
+    {
+      "id": "x-1050013514834866176",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-10T13:21:44.000Z",
+      "text": "*LIVE FORUM Q&amp;A* tonight - from 7-9pm you can ask Tom Randall of @Latticetraining anything about training - this week's top…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Latticetraining/status/1050013514834866176"
+    },
+    {
+      "id": "x-1049948796002738177",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-10T09:04:34.000Z",
+      "text": "Another great British Lead Climbing Championship done ✅, proud to be chief of a great setting team with longridge66 , @max_…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Latticetraining/status/1049948796002738177"
+    },
+    {
+      "id": "x-1049948472152084480",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-10T09:03:17.000Z",
+      "text": "One of the benefits of training post parenthood... improved fitness levels and a better physique 😁😁",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1049948472152084480"
+    },
+    {
+      "id": "x-1049947954818285569",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-10-10T09:01:14.000Z",
+      "text": "So psyched to win the British Lead Climbing Championships! Thanks to my coaches for their support!\n•\nWell done to ever…",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": true,
+      "sourceUrl": "https://x.com/Latticetraining/status/1049947954818285569"
+    },
+    {
+      "id": "x-1046133836759924736",
+      "authorName": "Lattice Training",
+      "party": "Onbekend",
+      "kieskring": null,
+      "platform": "x",
+      "publishedAt": "2018-09-29T20:25:17.000Z",
+      "text": "Well said Gav. Patience, persistence, a slow steady tortoise wins the race 💪🏻",
+      "topics": [
+        "Overige"
+      ],
+      "likes": 0,
+      "comments": 0,
+      "shares": 0,
+      "views": 0,
+      "isRepost": false,
+      "sourceUrl": "https://x.com/Latticetraining/status/1046133836759924736"
+    }
+  ]
+}
