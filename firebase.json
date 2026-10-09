@@ -33,8 +33,8 @@
     ],
     "redirects": [
       {
-        "regex": "^/FingerPrint$",
-        "destination": "/fingerprint",
+        "regex": "^/(FingerPrint|fingerprint)$",
+        "destination": "/bambum/fingerprint",
         "type": 301
       }
     ],

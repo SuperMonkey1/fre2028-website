@@ -328,4 +328,4 @@ Before rendering any long-form video export, run this mandatory quality gate:
 
 ---
 
-> 📋 **Complete End-to-End Quality Gate:** Before final render and publishing, run the full 27-section quality audit in [MASTER_YOUTUBE_CHECKLIST.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/MASTER_YOUTUBE_CHECKLIST.md) (Strategy, Story, Script, Engineering, Stranger Test, Safety & Autopsy).
+> 📋 **Complete End-to-End Quality Gate:** Before final render and publishing, run the full 27-section quality audit in [MASTER_YOUTUBE_CHECKLIST.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/MASTER_YOUTUBE_CHECKLIST.md) (Strategy, Story, Script, Engineering, Stranger Test, Safety & Autopsy).

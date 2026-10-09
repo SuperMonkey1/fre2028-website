@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FRE2028 Video Ideas – Which are good, which are stupid?</title>
+<style>
+  :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--txt:#e8eaf0;--mut:#8b93a5;--acc:#ff5a36;--good:#2ecc71;--meh:#f1c40f;--bad:#e74c3c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:24px 16px 120px}
+  h1{margin:0 0 4px;font-size:1.8rem}
+  .sub{color:var(--mut);margin:0 0 20px}
+  .intro{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:20px}
+  .intro b{color:var(--acc)}
+  .bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin-bottom:16px}
+  .bar .stat{color:var(--mut);font-size:.9rem;margin-right:auto}
+  button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:8px;padding:8px 12px}
+  button:hover{border-color:var(--mut)}
+  button.primary{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600}
+  .card{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+  .card.v-good{border-left-color:var(--good)}.card.v-meh{border-left-color:var(--meh)}.card.v-bad{border-left-color:var(--bad)}
+  .score{display:flex;align-items:center;gap:14px}
+  .score input[type=range]{flex:1;accent-color:var(--acc);height:28px;cursor:pointer}
+  .score .val{flex:none;min-width:64px;text-align:center;font-weight:700;font-size:1.1rem;border-radius:8px;padding:4px 8px;background:#222733;color:var(--mut)}
+  .score .val.good{background:var(--good);color:#04210f}.score .val.meh{background:var(--meh);color:#2b2300}.score .val.bad{background:var(--bad);color:#fff}
+  .ends{display:flex;justify-content:space-between;color:var(--mut);font-size:.75rem;margin:2px 78px 0 0}
+  .head{display:flex;gap:12px;align-items:flex-start}
+  .num{flex:none;width:38px;height:38px;border-radius:50%;background:#252a35;display:grid;place-items:center;font-weight:700}
+  .title{font-size:1.1rem;font-weight:650;margin:0}
+  .meta{color:var(--mut);font-size:.85rem;margin-top:2px}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px;font-size:.82rem}
+  .tag{background:#222733;border-radius:99px;padding:3px 10px;color:var(--mut)}
+  .tag.viral{background:#3a2218;color:#ffb199}
+  textarea{width:100%;margin-top:10px;background:#12151b;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit;resize:vertical;min-height:40px}
+  .pillars{margin-top:32px}
+  .pillars h2{font-size:1.2rem}
+  .pillars li{margin-bottom:8px;color:var(--mut)}
+  .pillars li b{color:var(--txt)}
+  dialog{background:var(--card);color:var(--txt);border:1px solid var(--line);border-radius:12px;max-width:640px;width:calc(100% - 32px)}
+  dialog textarea{min-height:260px;font-family:ui-monospace,Consolas,monospace;font-size:.85rem}
+  dialog::backdrop{background:rgba(0,0,0,.6)}
+  input[type=text]{background:#12151b;color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FRE2028 – 16 Video Ideas</h1>
+  <p class="sub">YouTube roadmap: Nov 2026 → Feb 2028 · by Fré Leys (PhD Mech. Eng., 2x World Cup Gold)</p>
+
+  <div class="intro">
+    <b>Hey!</b> Fré is planning one main YouTube video per month until LA 2028 (climbing + engineering + prosthetics).
+    For each idea, drag the slider from <b>0 (stupid)</b> to <b>10 (great)</b> and add a comment if you want (e.g. a better title).
+    When you're done, press <b>Send my verdict</b> and paste the result back to Fré. Your answers are saved in your browser while you work.
+  </div>
+
+  <div class="bar">
+    <span class="stat" id="stat"></span>
+    <input type="text" id="name" placeholder="Your name" size="14">
+    <button class="primary" id="send">Send my verdict</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="pillars">
+    <h2>🎯 How the channel is meant to grow</h2>
+    <ol>
+      <li><b>Top of funnel – viral breakouts:</b> Ep 03 (prosthetic for a pro climber), Ep 05 (Jakob Schubert), Ep 07 (transparent wall), Ep 12 (crazy prosthetics) bring tens of thousands of new viewers at once.</li>
+      <li><b>Middle of funnel – evergreen problem solvers &amp; data:</b> Ep 01 (slopers/pump), Ep 04 (A2 pulley), Ep 06 (Kilter), Ep 13 (power endurance) give steady search views and word of mouth in gyms.</li>
+      <li><b>Bottom of funnel – products &amp; LA2028 campaign:</b> Sloper King pre-orders (€24.95 / €44.95), Fingerprint hangboards (€89), apps and corporate sponsors on the road to LA2028.</li>
+    </ol>
+  </div>
+</div>
+
+<dialog id="dlg">
+  <p><b>Copy this and send it to Fré</b></p>
+  <textarea id="out" readonly></textarea>
+  <p style="display:flex;gap:8px;justify-content:flex-end;margin-bottom:0">
+    <button id="copy" class="primary">Copy</button>
+    <button id="close">Close</button>
+  </p>
+</dialog>
+
+<script>
+const V = [
+ [1,"Nov 2026","Why Climbers Suck at Slopers (And the Secret to Insane Power Endurance)","Core climbers & engineers","Product launch #1: Sloper King","35k – 80k (~55k)",0],
+ [2,"Dec 2026","Can 3D-Printed Climbing Gear Hold 800 kg? (Hydraulic Destruction Test)","Makers & tech skeptics","Authority & proof","60k – 150k (~100k)",0],
+ [3,"Jan 2027","I Gave an Elite Climber a Prosthetic Leg (It Did Not Go Well)","General YouTube & climbers","Mega viral breakout","150k – 500k+ (~300k)",1],
+ [4,"Feb 2027","Why Standard Hangboards Injure Your Fingers (The A2 Pulley Fix)","Climbers & biomechanics","Product launch #2: Fingerprint hangboard","40k – 90k (~65k)",0],
+ [5,"Mar 2027","I 3D-Printed a Custom Grip for World Champion Jakob Schubert","Global climbing community","Collab subscriber surge","100k – 300k (~180k)",1],
+ [6,"Apr 2027","I Analyzed 50,000 Kilter Board Climbs (The Most Sandbagged Holds)","Tech nerds & board climbers","Data & app virality","40k – 100k (~70k)",0],
+ [7,"May 2027","I Built a Transparent Climbing Wall in My Living Room","Makers, DIY & Shorts crossover","Visual spectacle viral","120k – 350k (~220k)",1],
+ [8,"Jun 2027","The Physics of Friction on Impossible Holds (feat. Hannes Van Duysen)","Climbers & physics geeks","Domestic super-collab","45k – 95k (~70k)",0],
+ [9,"Jul 2027","Can an Algorithm Predict When You Will Fall? (Heart Rate Telemetry)","Wearable & biohacking nerds","Scientific innovation","25k – 60k (~40k)",0],
+ [10,"Aug 2027","Engineering My Way to the Paralympics (Making Gear That Actually Worked)","Mainstream media & sponsors","Brand manifesto & origin story","50k – 120k (~80k)",0],
+ [11,"Sep 2027","I Remade the World's First Indoor Climbing Hold","Heritage & culture fans","Emotional depth & roots","20k – 50k (~35k)",0],
+ [12,"Oct 2027","I Built 3 Ridiculous Climbing Prosthetics (Drill, Spring & Jumper)","Mainstream YouTube & gamers","Maker chaos & comedy","100k – 400k (~250k)",1],
+ [13,"Nov 2027","Stop Doing Repeater Hangs (Why Alternating Hands Builds True Power Endurance)","Dedicated climbers & coaches","Protocol & training app","35k – 75k (~50k)",0],
+ [14,"Dec 2027","I Got a Medical DXA Scan (The Brutal Truth About Climbing Weight & Food)","Health & fitness audience","Vulnerable biohacking","40k – 85k (~60k)",0],
+ [15,"Jan 2028","Inside a 2x World Cup Gold Training Week (Periodization & Recovery)","Loyal community & athletes","Road to LA28 start","30k – 65k (~45k)",0],
+ [16,"Feb 2028","I Put Load Cells on Climbing Holds to Measure Real Force","B2B gyms & hardware tech","Future product & finale","30k – 70k (~50k)",0],
+];
+const cls=n=>n>=7?"good":n>=4?"meh":"bad";
+const KEY="fre2028-votes-v2";
+let S={};
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  document.getElementById("list").innerHTML=V.map(v=>{
+    const s=S[v[0]]||{};
+    return `<div class="card${s.v!=null?" v-"+cls(s.v):""}">
+      <div class="head"><div class="num">${v[0]}</div>
+        <div><p class="title">${esc(v[2])}</p><div class="meta">${v[1]} · ${esc(v[3])}</div></div></div>
+      <div class="tags"><span class="tag ${v[6]?"viral":""}">${v[6]?"🚀 ":""}${esc(v[4])}</span><span class="tag">Expected views: ${v[5]}</span></div>
+      <div class="score"><input type="range" min="0" max="10" step="1" value="${s.v!=null?s.v:5}" data-n="${v[0]}"><span class="val ${s.v!=null?cls(s.v):""}" id="val${v[0]}">${s.v!=null?s.v+" / 10":"not rated"}</span></div>
+      <div class="ends"><span>0 · stupid</span><span>10 · great</span></div>
+      <textarea data-c="${v[0]}" placeholder="Comment / better title (optional)">${esc(s.c||"")}</textarea>
+    </div>`;}).join("");
+  const done=V.filter(v=>(S[v[0]]||{}).v!=null).length;
+  document.getElementById("stat").textContent=`${done} / ${V.length} rated`;
+}
+document.getElementById("list").addEventListener("input",e=>{
+  if(e.target.type==="range"){
+    const n=e.target.dataset.n; S[n]=S[n]||{}; S[n].v=+e.target.value; save();
+    const val=document.getElementById("val"+n); val.textContent=S[n].v+" / 10"; val.className="val "+cls(S[n].v);
+    e.target.closest(".card").className="card v-"+cls(S[n].v);
+    const done=V.filter(v=>(S[v[0]]||{}).v!=null).length;
+    document.getElementById("stat").textContent=`${done} / ${V.length} rated`;
+    return;
+  }
+  const t=e.target.dataset.c; if(!t) return;
+  S[t]=S[t]||{}; S[t].c=e.target.value; save();
+});
+const nameEl=document.getElementById("name");
+try{nameEl.value=localStorage.getItem(KEY+"-name")||""}catch(e){}
+nameEl.addEventListener("input",()=>{try{localStorage.setItem(KEY+"-name",nameEl.value)}catch(e){}});
+
+document.getElementById("send").onclick=()=>{
+  let t=`FRE2028 video verdict from ${nameEl.value||"(anonymous)"}\n\n`;
+  V.forEach(v=>{const s=S[v[0]]||{};
+    t+=`${String(v[0]).padStart(2,"0")}. [${s.v!=null?s.v+"/10":"-/10"}] ${v[2]}${s.c?"\n      → "+s.c.replace(/\n/g,"\n        "):""}\n`;});
+  document.getElementById("out").value=t;
+  document.getElementById("dlg").showModal();
+};
+document.getElementById("copy").onclick=async()=>{
+  const o=document.getElementById("out"); o.select();
+  try{await navigator.clipboard.writeText(o.value)}catch(e){document.execCommand("copy")}
+  document.getElementById("copy").textContent="Copied!";
+  setTimeout(()=>document.getElementById("copy").textContent="Copy",1500);
+};
+document.getElementById("close").onclick=()=>document.getElementById("dlg").close();
+document.getElementById("reset").onclick=()=>{if(confirm("Clear all your votes?")){S={};save();render();}};
+render();
+</script>
+</body>
+</html>

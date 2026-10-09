@@ -68,13 +68,16 @@
 
 ---
 
-#### SCÈNE 4: De Werkplaats — Biomechanica (05:00 – 07:30)
+#### SCÈNE 4: De Werkplaats — Biomechanica & De Frictie-Paradox (05:00 – 07:30)
 * **Locatie:** Werkplaats / studio.
 * **Beeld:**
   * Close-up van een hand en onderarm. Anatomische overlays van pezen en spiergroepen.
   * Vergelijking: Crimp versus Sloper King.
+  * Demonstratie: Fré hangt 10 kg aan zijn gordel en blijft plots véél stabieler plakken aan de sloper dan zonder gewicht!
 * **Uitleg (Fré):**
   > *"Aan een klassiek hangboard hang je op je vingerkootjes. Je pols hangt passief omlaag. Daardoor gebruik je maar twee spieren: je diepe en oppervlakkige vingerbuigers (FDP en FDS). Maar op een echte sloper heb je niets om achter te haken. Je pols móét actief buigen om wrijving te genereren. De Sloper King forceert alle vier je buigspieren — inclusief de flexor carpi radialis en ulnaris. Als je die spieren nooit specifiek getraind hebt, pomp je binnen 5 seconden leeg."*
+* **De Frictie-Paradox (Waarom gewicht toevoegen het makkelijker maakt):**
+  > *"En hier is de meest bizarre paradox in de klimsport: wist je dat het MAKKELIJKER is om aan een sloper te blijven hangen als je extra gewicht toevoegt? Waarom? Omdat menselijke huid visco-elastisch is. Bij een laag gewicht raak je alleen de toppen van de textuur. Pas wanneer je er 10 of 15 kg aan hangt, perst de normaalkracht je huid microscopisch diep in de oneffenheden van de greep, waardoor je werkelijke contactoppervlak explodeert. Bovendien trekt het gewicht je zwaartepunt in een perfecte rechte loodlijn omlaag, waardoor je hand als een mechanische wig klem komt te zitten!"*
 
 ---
 
@@ -195,6 +198,27 @@
     *Visueel:* Snelle, mysterieuze panning shot over de werkbank: je hand pakt een innovatieve pinch-tool en een andere futuristische grip op. Je ziet CAD-tekeningen op het scherm.  
     *Voice-over:* "Als ingenieur kun je niet stoppen bij één greep. We testen momenteel 3 andere prototypes voor pinches en vingerstabiliteit. Volg het kanaal als je wilt zien wat we binnenkort kapot testen."  
     *CTA:* "Welk griptype vind jij het allermoeilijkst? Laat het achter in de comments."
+
+### Categorie F: Uit de reacties (zie README.md, sectie 2b)
+19. **"Sterk op slopers = sterk op crimps?"**  
+    *Hook:* "Are you strong on slopers? Your crimp strength might not tell."  
+    *Visueel:* Twee klimmers hangen op een 20mm rand en daarna op de Sloper King; resultaten als % lichaamsgewicht op één grafiek.  
+    *Kern:* Dit is een vraag uit de reacties die niemand test. Een tweede Short toont het resultaat.
+20. **"Polsen trainen: de grootste hack voor slopers?"**  
+    *Hook:* "Wrist curls fixed my slopers. Here's why."  
+    *Visueel:* Eén polsoefening, daarna dezelfde sloper-hang met de Sloper King.
+21. **"Eén of twee slopers?"**  
+    *Hook:* "Is hanging on two slopers easier than one?"  
+    *Visueel:* Zelfde klimmer, timer in beeld, één sloper versus twee.
+22. **"Krijt of zweet: wat werkt op slopers?"**  
+    *Hook:* "Chalk or sweaty hands? I timed it."  
+    *Visueel:* A/B-test met timer: gekrijte handen versus licht bezweette handen.
+23. **"Start licht: zo blesseer je je pols niet"**  
+    *Hook:* "Don't do this with a new wrist trainer."  
+    *Visueel:* Veiligheidskaart: licht beginnen, stoppen bij pijn, waarschuwing voor de polsband (TFCC). Geen medisch advies.
+24. **"Je eerste Sloper King sessie in 30 seconden"**  
+    *Hook:* "Your first session, step by step."  
+    *Visueel:* Warm-up, korte zware hang, pomp-set. CTA: gratis 6-weken protocol (e-mail).
 
 ---
 

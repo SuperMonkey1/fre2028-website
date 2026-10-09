@@ -73,7 +73,7 @@ export const event = (action: string, params: Record<string, any> = {}) => {
 // ============================================================================
 
 /**
- * Funnel Step 1: Bezoeker bekijkt /bambum landingspagina
+ * Funnel Step 1: Bezoeker bekijkt /bambum/sloper-king landingspagina
  */
 export const trackSloperKingView = () => {
   event('view_item_list', {

@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { 
   Mountain, 
   Sparkles, 
@@ -46,6 +45,9 @@ import {
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+import BambumLayout, { AlsoFromBambum } from '@/components/bambum/BambumLayout';
+import CheckoutDialog from '@/components/bambum/CheckoutDialog';
+import { PAYMENTS_API } from '@/lib/bambum/shop';
 import {
   trackSloperKingView,
   trackSloperKingVideo,
@@ -58,9 +60,18 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export default function BambumPage() {
-  const router = useRouter();
-  const { status } = router.query;
+const ORDER_API = `${PAYMENTS_API}/sloperking`;
+const UNIT_PRICES = { pair: 44.95, single: 24.95 } as const;
+const SHIPPING_NOTE = '€3.99 Belgium · €4.99 rest of the EU';
+
+type OrderState =
+  | { state: 'checking' }
+  | { state: 'paid'; orderId: string; email: string }
+  | { state: 'pending'; orderId: string }
+  | { state: 'cancelled' }
+  | { state: 'error' };
+
+export default function SloperKingPage() {
   const orderSectionRef = useRef<HTMLDivElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
 
@@ -70,13 +81,11 @@ export default function BambumPage() {
   // Order state
   const [itemType, setItemType] = useState<'pair' | 'single'>('pair');
   const [quantity, setQuantity] = useState<number>(1);
-  const [shippingZone, setShippingZone] = useState<'pickup' | 'be' | 'eu'>('be');
-  const [couponCode, setCouponCode] = useState<string>('');
-  const [couponApplied, setCouponApplied] = useState<string | null>(null);
-  const [email, setEmail] = useState<string>('');
-  const [customerName, setCustomerName] = useState<string>('');
+  const [delivery, setDelivery] = useState<'ship' | 'pickup'>('ship');
   const [isLoadingCheckout, setIsLoadingCheckout] = useState<boolean>(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [checkout, setCheckout] = useState<{ clientSecret: string; publishableKey: string; livemode: boolean } | null>(null);
+  const [order, setOrder] = useState<OrderState | null>(null);
 
   // Maker STL download state
   const [stlEmail, setStlEmail] = useState<string>('');
@@ -184,76 +193,61 @@ export default function BambumPage() {
     trackSloperKingView();
   }, []);
 
-  // Track Stripe purchase return
+  // Handle the return from Stripe: confirm the payment with the server and track the purchase
   useEffect(() => {
-    if (router.isReady && (status === 'success' || status === 'demo_success')) {
-      const sessionId = (router.query.session_id as string) || `order_${Date.now()}`;
-      const returnedType = (router.query.type as string) || itemType;
-      const paidAmount = Number(router.query.amount) || (returnedType === 'pair' ? 44.95 + 3.99 : 24.95 + 3.99);
-      trackSloperKingPurchase(sessionId, returnedType, paidAmount, shippingZone);
+    const q = new URLSearchParams(window.location.search);
+    const orderParam = q.get('order');
+    const sessionId = q.get('session_id');
+    if (orderParam === 'cancelled') setOrder({ state: 'cancelled' });
+    if (orderParam === 'success' && sessionId) {
+      setOrder({ state: 'checking' });
+      fetch(`${ORDER_API}/order/${encodeURIComponent(sessionId)}`)
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.paid) {
+            setOrder({ state: 'paid', orderId: d.orderId, email: d.email });
+            trackSloperKingPurchase(sessionId, d.itemType, d.amountTotal, d.pickup ? 'pickup' : 'ship');
+          } else if (d.orderId) setOrder({ state: 'pending', orderId: d.orderId });
+          else setOrder({ state: 'error' });
+        })
+        .catch(() => setOrder({ state: 'error' }));
     }
-  }, [router.isReady, status]);
-
-  // Pricing calculation
-  const basePrice = itemType === 'pair' ? 44.95 : 24.95;
-  let discountAmount = 0;
-  if (couponApplied === 'FOUNDER25' || couponApplied === 'LAUNCH25') {
-    discountAmount = basePrice * 0.25;
-  } else if (couponApplied === 'FRIENDS29' && itemType === 'pair') {
-    discountAmount = 10.00;
-  }
-
-  const unitPriceAfterDiscount = Math.max(5.00, basePrice - discountAmount);
-  const subtotal = unitPriceAfterDiscount * quantity;
-  
-  let shippingCost = 3.99;
-  if (shippingZone === 'pickup') shippingCost = 0.00;
-  if (shippingZone === 'eu') shippingCost = 4.99;
-
-  const grandTotal = subtotal + shippingCost;
-
-  const handleApplyCoupon = (e: React.FormEvent) => {
-    e.preventDefault();
-    const clean = couponCode.trim().toUpperCase();
-    if (clean === 'FOUNDER25' || clean === 'LAUNCH25' || (clean === 'FRIENDS29' && itemType === 'pair')) {
-      setCouponApplied(clean);
-      setCheckoutError(null);
-    } else {
-      setCheckoutError('Invalid coupon code or not applicable to this item.');
+    if (orderParam) {
+      q.delete('order');
+      q.delete('session_id');
+      const rest = q.toString();
+      window.history.replaceState(null, '', `${window.location.pathname}${rest ? `?${rest}` : ''}`);
     }
-  };
+  }, []);
+
+  // Pricing: shipping and promo codes are applied inside the Stripe form
+  const basePrice = UNIT_PRICES[itemType];
+  const subtotal = basePrice * quantity;
+  const shippingCost = delivery === 'pickup' ? 0 : null;
 
   const handleCheckout = async () => {
+    if (isLoadingCheckout) return;
     setIsLoadingCheckout(true);
     setCheckoutError(null);
-    trackSloperKingCheckout(itemType, quantity, grandTotal, shippingZone);
+    trackSloperKingCheckout(itemType, quantity, subtotal, delivery);
     try {
-      const res = await fetch('/api/bambum/checkout', {
+      const res = await fetch(`${ORDER_API}/checkout`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           itemType,
           quantity,
-          shippingZone,
-          couponCode: couponApplied || couponCode,
-          email,
-          customerName,
+          pickup: delivery === 'pickup',
           originUrl: window.location.origin,
         }),
       });
-
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to initialize payment session.');
-      }
-
-      if (data.url) {
-        window.location.href = data.url;
-      }
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.clientSecret) throw new Error(data.error || 'Could not start the checkout. Please try again.');
+      setCheckout({ clientSecret: data.clientSecret, publishableKey: data.publishableKey, livemode: !!data.livemode });
     } catch (err: any) {
       setCheckoutError(err.message || 'Could not load checkout. Please try again.');
-      setIsLoadingCheckout(false);
     }
+    setIsLoadingCheckout(false);
   };
 
   const handleStlSubmit = async (e: React.FormEvent) => {
@@ -289,7 +283,28 @@ export default function BambumPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-amber-400 selection:text-black">
+    <BambumLayout
+      active="sloper-king"
+      links={[
+        { label: '15-Min Docu', href: '#video-deepdive' },
+        { label: 'Fré', href: '#fre' },
+        { label: 'Story', href: '#story' },
+        { label: 'Biomechanics', href: '#biomechanics' },
+        { label: 'Specs', href: '#specs' },
+        { label: 'Training Methods', href: '#training' },
+        { label: 'Community', href: '#community' },
+      ]}
+      cta={
+        <button
+          onClick={scrollToOrder}
+          className="inline-flex items-center gap-2 bg-slate-950 text-white hover:bg-amber-500 hover:text-slate-950 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs md:text-sm font-extrabold tracking-wide transition-all shadow-md active:scale-95 whitespace-nowrap"
+        >
+          <Package className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline">Order Now — From €24.95</span>
+          <span className="sm:hidden">Order</span>
+        </button>
+      }
+    >
       <Head>
         <title>Sloper King™ by BamBum | The Biomechanical Sloper & Pump Trainer</title>
         <meta 
@@ -299,56 +314,10 @@ export default function BambumPage() {
         <meta property="og:title" content="Sloper King™ by BamBum | By Fré Leys (PhD.)" />
         <meta property="og:description" content="Master open slopers and delay forearm pump with the Sloper King. 800kg load cord, 5 cantilever angles, <100g." />
         <meta property="og:image" content="https://www.fre2028.la/images/sloperking-label.svg" />
-        <meta property="og:url" content="https://www.fre2028.la/bambum" />
-        <link rel="canonical" href="https://www.fre2028.la/bambum" />
+        <meta property="og:url" content="https://www.fre2028.la/bambum/sloper-king" />
+        <link rel="canonical" href="https://www.fre2028.la/bambum/sloper-king" />
       </Head>
 
-      {/* Sticky Navigation */}
-      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 shrink-0">
-            <button 
-              onClick={() => router.push('/')}
-              className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-950 transition-colors py-1"
-              title="Back to Fré2028.LA"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline tracking-wider uppercase text-[11px]">Fré2028.LA</span>
-            </button>
-
-            <div className="h-4 w-px bg-slate-200" />
-
-            <div className="flex items-center gap-2 font-black tracking-tight text-lg text-slate-950">
-              <span className="bg-amber-400 text-slate-950 text-[10px] px-1.5 py-0.5 rounded font-black tracking-widest uppercase">BAMBUM</span>
-              <span>SLOPER KING<span className="text-amber-500 font-bold text-xs align-super ml-0.5">TM</span></span>
-            </div>
-          </div>
-
-          {/* Clean, single-line desktop navigation */}
-          <div className="hidden md:flex items-center gap-5 lg:gap-7 text-xs font-semibold text-slate-600">
-            <a href="#video-deepdive" className="hover:text-amber-600 transition-colors flex items-center gap-1.5 whitespace-nowrap">
-              <Film className="w-3.5 h-3.5 text-amber-500" />
-              <span>15-Min Docu</span>
-            </a>
-            <a href="#fre" className="hover:text-amber-600 transition-colors whitespace-nowrap">Fré</a>
-            <a href="#story" className="hover:text-amber-600 transition-colors whitespace-nowrap">Story</a>
-            <a href="#biomechanics" className="hover:text-amber-600 transition-colors whitespace-nowrap">Biomechanics</a>
-            <a href="#specs" className="hover:text-amber-600 transition-colors whitespace-nowrap">Specs</a>
-            <a href="#training" className="hover:text-amber-600 transition-colors whitespace-nowrap">Training Methods</a>
-            <a href="#community" className="hover:text-amber-600 transition-colors whitespace-nowrap">Community</a>
-          </div>
-
-          <div className="flex items-center gap-3 shrink-0">
-            <button
-              onClick={scrollToOrder}
-              className="inline-flex items-center gap-2 bg-slate-950 text-white hover:bg-amber-500 hover:text-slate-950 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs md:text-sm font-extrabold tracking-wide transition-all shadow-md active:scale-95 whitespace-nowrap"
-            >
-              <Package className="w-3.5 h-3.5" />
-              <span>Order Now — From €24.95</span>
-            </button>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-28 bg-gradient-to-b from-white via-slate-50 to-slate-100 border-b border-slate-200">
@@ -1327,30 +1296,6 @@ export default function BambumPage() {
             </p>
           </div>
 
-          {status === 'success' && (
-            <div className="mb-8 p-6 bg-emerald-50 border-2 border-emerald-500 rounded-2xl text-left flex items-start gap-4">
-              <CheckCircle2 className="w-8 h-8 text-emerald-600 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-extrabold text-lg text-emerald-950">Thank you for your order!</h3>
-                <p className="text-sm text-emerald-800 mt-1">
-                  We have received your payment successfully. You will receive a confirmation email with tracking details as soon as your Sloper King™ package is dispatched.
-                </p>
-              </div>
-            </div>
-          )}
-
-          {status === 'demo_success' && (
-            <div className="mb-8 p-6 bg-amber-50 border-2 border-amber-500 rounded-2xl text-left flex items-start gap-4">
-              <CheckCircle2 className="w-8 h-8 text-amber-600 shrink-0 mt-0.5" />
-              <div>
-                <h3 className="font-extrabold text-lg text-amber-950">Pre-Order Registration Confirmed!</h3>
-                <p className="text-sm text-amber-800 mt-1">
-                  Your order is booked for Batch 1. We will contact you shortly for dispatch and delivery confirmation.
-                </p>
-              </div>
-            </div>
-          )}
-
           {checkoutError && (
             <div className="mb-8 p-4 bg-rose-50 border border-rose-300 rounded-xl text-left flex items-center gap-3 text-rose-900 text-sm font-medium">
               <AlertCircle className="w-5 h-5 text-rose-600 shrink-0" />
@@ -1550,53 +1495,39 @@ export default function BambumPage() {
                 </div>
               </div>
 
-              {/* Step 2: Shipping Destination */}
+              {/* Step 2: Delivery */}
               <div className="space-y-3 pt-2">
                 <label className="block text-xs font-black uppercase tracking-wider text-slate-500">
-                  2. Select shipping destination
+                  2. How do you want to receive it?
                 </label>
-                <div className="grid sm:grid-cols-3 gap-3">
-                  
-                  <div 
-                    onClick={() => setShippingZone('pickup')}
+                <div className="grid sm:grid-cols-2 gap-3">
+
+                  <div
+                    onClick={() => setDelivery('ship')}
                     className={cn(
                       "cursor-pointer p-4 rounded-2xl border text-center transition-all",
-                      shippingZone === 'pickup' 
-                        ? "border-slate-950 bg-white shadow-md ring-2 ring-slate-950" 
+                      delivery === 'ship'
+                        ? "border-slate-950 bg-white shadow-md ring-2 ring-slate-950"
+                        : "border-slate-200 bg-white/70 hover:border-slate-300"
+                    )}
+                  >
+                    <div className="font-extrabold text-sm text-slate-950">Ship to me</div>
+                    <div className="text-xs font-black text-slate-900 mt-0.5">{SHIPPING_NOTE}</div>
+                    <div className="text-[10px] text-slate-500 mt-1">bpost with Track &amp; Trace. Calculated from your address.</div>
+                  </div>
+
+                  <div
+                    onClick={() => setDelivery('pickup')}
+                    className={cn(
+                      "cursor-pointer p-4 rounded-2xl border text-center transition-all",
+                      delivery === 'pickup'
+                        ? "border-slate-950 bg-white shadow-md ring-2 ring-slate-950"
                         : "border-slate-200 bg-white/70 hover:border-slate-300"
                     )}
                   >
                     <div className="font-extrabold text-sm text-slate-950">Leuven Pickup</div>
                     <div className="text-xs font-black text-emerald-700 mt-0.5">FREE (€0.00)</div>
                     <div className="text-[10px] text-slate-500 mt-1">Local pickup by appointment</div>
-                  </div>
-
-                  <div 
-                    onClick={() => setShippingZone('be')}
-                    className={cn(
-                      "cursor-pointer p-4 rounded-2xl border text-center transition-all",
-                      shippingZone === 'be' 
-                        ? "border-slate-950 bg-white shadow-md ring-2 ring-slate-950" 
-                        : "border-slate-200 bg-white/70 hover:border-slate-300"
-                    )}
-                  >
-                    <div className="font-extrabold text-sm text-slate-950">Belgium (bpost)</div>
-                    <div className="text-xs font-black text-slate-900 mt-0.5">€3.99</div>
-                    <div className="text-[10px] text-slate-500 mt-1">With Track &amp; Trace</div>
-                  </div>
-
-                  <div 
-                    onClick={() => setShippingZone('eu')}
-                    className={cn(
-                      "cursor-pointer p-4 rounded-2xl border text-center transition-all",
-                      shippingZone === 'eu' 
-                        ? "border-slate-950 bg-white shadow-md ring-2 ring-slate-950" 
-                        : "border-slate-200 bg-white/70 hover:border-slate-300"
-                    )}
-                  >
-                    <div className="font-extrabold text-sm text-slate-950">European Union</div>
-                    <div className="text-xs font-black text-slate-900 mt-0.5">€4.99</div>
-                    <div className="text-[10px] text-slate-500 mt-1">Tracked across EU (NL, FR, DE...)</div>
                   </div>
 
                 </div>
@@ -1645,57 +1576,29 @@ export default function BambumPage() {
                   </div>
                 </div>
 
-                {/* Promo Coupon Input */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-600 mb-1.5">
-                    Have a promo coupon?
-                  </label>
-                  <form onSubmit={handleApplyCoupon} className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="e.g. FOUNDER25"
-                      value={couponCode}
-                      onChange={(e) => setCouponCode(e.target.value)}
-                      className="flex-1 bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-xs uppercase font-bold tracking-wider text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-slate-950"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-slate-900 hover:bg-slate-800 text-white font-bold px-4 py-2 rounded-xl text-xs tracking-wider uppercase transition-colors"
-                    >
-                      Apply
-                    </button>
-                  </form>
-                  {couponApplied && (
-                    <div className="mt-2 text-xs font-bold text-emerald-700 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                      <span>Coupon <strong>{couponApplied}</strong> applied!</span>
-                    </div>
-                  )}
-                </div>
-
                 {/* Price Breakdown */}
                 <div className="space-y-2.5 pt-4 border-t border-slate-100 text-xs">
                   <div className="flex justify-between text-slate-600">
                     <span>Subtotal ({quantity}x {itemType === 'pair' ? 'Pair' : 'Single'})</span>
-                    <span className="font-semibold text-slate-950">€{(basePrice * quantity).toFixed(2)}</span>
+                    <span className="font-semibold text-slate-950">€{subtotal.toFixed(2)}</span>
                   </div>
 
-                  {discountAmount > 0 && (
-                    <div className="flex justify-between font-bold text-emerald-600">
-                      <span>Launch Discount ({couponApplied})</span>
-                      <span>-€{(discountAmount * quantity).toFixed(2)}</span>
-                    </div>
-                  )}
-
-                  <div className="flex justify-between text-slate-600">
-                    <span>Shipping ({shippingZone === 'pickup' ? 'Leuven' : shippingZone === 'be' ? 'Belgium' : 'EU'})</span>
-                    <span className="font-semibold text-slate-950">{shippingCost === 0 ? 'FREE' : `€${shippingCost.toFixed(2)}`}</span>
+                  <div className="flex justify-between gap-3 text-slate-600">
+                    <span>Shipping</span>
+                    <span className="font-semibold text-slate-950 text-right">
+                      {shippingCost === 0 ? 'FREE (Leuven pickup)' : SHIPPING_NOTE}
+                    </span>
                   </div>
 
                   <div className="pt-3 border-t border-slate-200 flex justify-between items-baseline">
-                    <div className="font-black text-base text-slate-950">Total Amount</div>
-                    <div className="font-black text-3xl text-slate-950">€{grandTotal.toFixed(2)}</div>
+                    <div className="font-black text-base text-slate-950">{shippingCost === 0 ? 'Total Amount' : 'Subtotal'}</div>
+                    <div className="font-black text-3xl text-slate-950">€{subtotal.toFixed(2)}</div>
                   </div>
+                  <p className="text-[11px] text-slate-400">
+                    {shippingCost === 0
+                      ? 'Have a promo code? You can enter it in the payment form.'
+                      : 'Shipping is added in the payment form once you enter your address. Have a promo code? Enter it there too.'}
+                  </p>
                 </div>
 
                 {/* Checkout Button */}
@@ -1718,7 +1621,7 @@ export default function BambumPage() {
                   <div className="text-center text-[11px] text-slate-500 space-y-1">
                     <p className="flex items-center justify-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>256-bit encrypted checkout (Card, Bancontact, iDEAL)</span>
+                      <span>Secure checkout by Stripe (Card, Bancontact, iDEAL)</span>
                     </p>
                     <p className="text-slate-400">14-day money-back guarantee • Dispatched in 24-48h</p>
                   </div>
@@ -1862,24 +1765,90 @@ export default function BambumPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 bg-white text-slate-600 text-xs border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="font-black text-slate-950 tracking-wider">BAMBUM INNOVATION</span>
-            <span>• By Fré Leys (PhD.)</span>
-          </div>
-          <div className="flex items-center gap-6">
-            <button onClick={() => router.push('/')} className="hover:text-slate-950 transition-colors">fre2028.la</button>
-            <button onClick={() => router.push('/privacy')} className="hover:text-slate-950 transition-colors">Privacy</button>
-            <a href="mailto:fre@fre2028.la" className="hover:text-slate-950 transition-colors">Contact</a>
-          </div>
-          <div className="text-slate-400">
-            © {new Date().getFullYear()} Fré Leys. All rights reserved.
+      <AlsoFromBambum current="sloper-king" />
+
+      {checkout && (
+        <CheckoutDialog
+          clientSecret={checkout.clientSecret}
+          publishableKey={checkout.publishableKey}
+          livemode={checkout.livemode}
+          shippingUrl={delivery === 'pickup' ? undefined : `${ORDER_API}/shipping`}
+          title={itemType === 'pair' ? 'Sloper King™ Set of 2 (Pair)' : 'Sloper King™ Single Unit'}
+          subtitle={
+            itemType === 'pair'
+              ? '2x Sloper King™ units, 2x 800kg load cords, cotton pouch & guide card.'
+              : '1x Sloper King™ unit with 800kg load cord & guide card.'
+          }
+          rows={[
+            { label: `${quantity}x ${itemType === 'pair' ? 'Pair' : 'Single unit'}`, value: `€${subtotal.toFixed(2)}` },
+            { label: 'Shipping', value: delivery === 'pickup' ? 'Free pickup in Leuven' : SHIPPING_NOTE },
+          ]}
+          onClose={() => setCheckout(null)}
+        />
+      )}
+
+      {order && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm" onClick={() => setOrder(null)}>
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="relative w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {order.state === 'checking' && (
+              <>
+                <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Checking your payment…</h2>
+              </>
+            )}
+            {order.state === 'paid' && (
+              <>
+                <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Thank you for your order!</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  We have received your payment. You will receive tracking details as soon as your Sloper King™ package is dispatched.
+                  {order.email && (
+                    <>
+                      {' '}
+                      We&apos;ll keep you posted at <strong>{order.email}</strong>.
+                    </>
+                  )}
+                </p>
+                <p className="mt-3 text-xs text-slate-400">Order number: {order.orderId}</p>
+              </>
+            )}
+            {order.state === 'pending' && (
+              <>
+                <div className="mx-auto h-10 w-10 animate-spin rounded-full border-4 border-amber-400 border-t-transparent" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Payment is being processed</h2>
+                <p className="mt-2 text-sm text-slate-600">We&apos;ll prepare your order as soon as the payment is confirmed.</p>
+                <p className="mt-3 text-xs text-slate-400">Order number: {order.orderId}</p>
+              </>
+            )}
+            {order.state === 'cancelled' && (
+              <>
+                <h2 className="text-xl font-black text-slate-950">Checkout cancelled</h2>
+                <p className="mt-2 text-sm text-slate-600">No payment was made. Your Sloper King™ is waiting whenever you&apos;re ready.</p>
+              </>
+            )}
+            {order.state === 'error' && (
+              <>
+                <h2 className="text-xl font-black text-slate-950">We couldn&apos;t check your order</h2>
+                <p className="mt-2 text-sm text-slate-600">If you completed the payment, your order is safe. We&apos;ll be in touch by email.</p>
+              </>
+            )}
+            {order.state !== 'checking' && (
+              <button
+                onClick={() => setOrder(null)}
+                className="mt-5 w-full rounded-xl bg-slate-950 py-2.5 text-sm font-black text-white hover:bg-slate-800"
+              >
+                Close
+              </button>
+            )}
           </div>
         </div>
-      </footer>
+      )}
 
-    </div>
+    </BambumLayout>
   );
 }

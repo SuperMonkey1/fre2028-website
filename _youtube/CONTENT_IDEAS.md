@@ -15,13 +15,15 @@
 > **"Can the title and premise be understood by someone who has NEVER climbed?"**  
 > *Target Portfolio for First 10–15 Videos:* 70% Broad Curiosity / Engineering | 20% Climbing Performance | 10% Pure Personal / LA28 Stakes.
 
-> 📂 **Launch Slate Production Brainstorms (First 6 Videos):**  
-> • [Ep 01: Bionic Climbing Foot (HW-04)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP01_BIONIC_CLIMBING_FOOT.md)  
-> • [Ep 02: Transparent Climbing Wall (HW-08 — Thermoforming, Tooling & System Redesign)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP02_TRANSPARENT_CLIMBING_WALL.md)  
-> • [Ep 03: Can a 3D Print Hold 200 kg? (HW-07 / HW-11 — Rig Destruction Test)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP03_200KG_RIG_TEST.md)  
-> • [Ep 04: The Sloper King (HW-01 — Biomechanics & Private Pilot)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP04_SLOPER_TOOL.md)  
-> • [Ep 05: Jakob Schubert Custom Grip (COL-01 — Elite Collab)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP05_JAKOB_SCHUBERT_GRIP.md)  
-> • [Ep 06: The Uneven Hangboard (HW-02 — Anatomical Crimp)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP06_UNEVEN_HANGBOARD.md)  
+> 📂 **Launch Slate Production Folders (16-Month Master Plan):**  
+> Zie het officiële publicatieschema in [CONTENT_PLANNING_16_MONTHS.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/CONTENT_PLANNING_16_MONTHS.md):  
+> • [Ep 01: Sloper King & Power Endurance (HW-01)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP01_SLOPER_KING_POWER_ENDURANCE/README.md)  
+> • [Ep 02: Can a 3D Print Hold 800 kg? (HW-07 / HW-11 — Rig Destruction Test)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP02_3D_PRINT_800KG_RIG_TEST/README.md)  
+> • [Ep 03: I Gave an Elite Climber a Prosthetic Leg (BIO-02 / PARA-01)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP03_ALL_ABOUT_AMPUTEE_CLIMBING/README.md)  
+> • [Ep 04: The Fingerprint Hangboard & A2 Pulley Fix (HW-02)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP04_FINGERPRINT_HANGBOARD/README.md)  
+> • [Ep 05: Jakob Schubert Custom Grip (COL-01)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP05_JAKOB_SCHUBERT_CUSTOM_GRIP/README.md)  
+> • [Ep 06: Kilter Board Big Data Analytics (SW-01)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP06_KILTER_BOARD_ANALYTICS/README.md)  
+> • [Ep 07: Transparent Climbing Wall (HW-08)](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP07_TRANSPARENT_CLIMBING_WALL/README.md)  
 
 ---
 

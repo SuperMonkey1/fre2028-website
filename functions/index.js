@@ -485,7 +485,7 @@ const parseHand = (hand) => {
   return {offset, width};
 };
 
-// Same format the /fingerprint page reads to reload a design: ring,middle,index,pinkyW,ringW,middleW,indexW
+// Same format the /bambum/fingerprint page reads to reload a design: ring,middle,index,pinkyW,ringW,middleW,indexW
 const handParam = (h) => [h.offset.ring, h.offset.middle, h.offset.index, h.width.pinky, h.width.ring, h.width.middle, h.width.index].join(",");
 const handSummary = (h) =>
   `Length ring ${h.offset.ring} / middle ${h.offset.middle} / index ${h.offset.index} mm; ` +
@@ -525,7 +525,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     const db = getFirestore();
     const orderRef = db.collection("fingerprint_orders").doc();
     const orderId = orderRef.id;
-    const designUrl = `https://fre2028.la/fingerprint?left=${handParam(left)}&right=${handParam(right)}`;
+    const designUrl = `https://fre2028.la/bambum/fingerprint?left=${handParam(left)}&right=${handParam(right)}`;
 
     await orderRef.set({
       orderId,
@@ -553,7 +553,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     params.append("line_items[0][price]", FINGERPRINT_PRICE_ID);
     params.append("line_items[0][quantity]", "1");
     params.append("client_reference_id", orderId);
-    params.append("return_url", `${origin}/fingerprint?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.append("return_url", `${origin}/bambum/fingerprint?order=success&session_id={CHECKOUT_SESSION_ID}`);
     params.append("billing_address_collection", "required");
     params.append("phone_number_collection[enabled]", "true");
     FINGERPRINT_SHIP_COUNTRIES.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
@@ -606,8 +606,8 @@ paymentApp.post("/fingerprint/contribution", async (req, res) => {
     params.append("submit_type", "donate");
     params.append("line_items[0][price]", FINGERPRINT_CONTRIBUTION_PRICE_ID);
     params.append("line_items[0][quantity]", "1");
-    params.append("success_url", `${origin}/fingerprint?contribution=thanks${designQuery}`);
-    params.append("cancel_url", `${origin}/fingerprint?contribution=cancelled${designQuery}`);
+    params.append("success_url", `${origin}/bambum/fingerprint?contribution=thanks${designQuery}`);
+    params.append("cancel_url", `${origin}/bambum/fingerprint?contribution=cancelled${designQuery}`);
     params.append("metadata[product]", "fingerprint_contribution");
     params.append("payment_intent_data[metadata][product]", "fingerprint_contribution");
     params.append("payment_intent_data[description]", "FingerPrint - pay what you want");
@@ -646,7 +646,7 @@ paymentApp.post("/fingerprint/shipping", async (req, res) => {
   }
 });
 
-// Called by the /fingerprint page when the customer returns from Stripe.
+// Called by the /bambum/fingerprint page when the customer returns from Stripe.
 paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
   try {
     const sessionId = req.params.sessionId;
@@ -741,6 +741,250 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
     });
   } catch (error) {
     console.error("Error checking FingerPrint order:", error);
+    res.status(error.status === 404 ? 404 : 500).json({error: "Could not check the order."});
+  }
+});
+
+// ==================== SLOPER KING ORDERS ====================
+// Same flow as FingerPrint (embedded Stripe form, shipping from the entered address, order stored in
+// Firestore, admin email once paid), but for a standard product sold as a single unit or a pair.
+// Test/live mode follows FINGERPRINT_STRIPE_MODE. Prices come from Stripe Price ids when configured
+// (STRIPE_PRICE_SLOPERKING_PAIR / _SINGLE, with _TEST variants), otherwise from the amounts below.
+const SLOPERKING_PRODUCTS = {
+  pair: {
+    cents: 4495,
+    name: "Sloper King™ (Set of 2 - Pair)",
+    description: "Complete set of 2x Sloper King™ units, 2x Petzl 800kg load cords, 1x stamped cotton pouch & guide card",
+    priceId: FINGERPRINT_LIVE ? process.env.STRIPE_PRICE_SLOPERKING_PAIR : process.env.STRIPE_PRICE_SLOPERKING_PAIR_TEST,
+  },
+  single: {
+    cents: 2495,
+    name: "Sloper King™ (Single Unit)",
+    description: "1x Sloper King™ unit with Petzl 800kg cord & 220-grit contact strip",
+    priceId: FINGERPRINT_LIVE ? process.env.STRIPE_PRICE_SLOPERKING_SINGLE : process.env.STRIPE_PRICE_SLOPERKING_SINGLE_TEST,
+  },
+};
+const SLOPERKING_SHIPPING = {
+  be: {amount: 399, label: "Belgium (bpost track & trace)", countries: ["BE"]},
+  eu: {amount: 499, label: "Europe (EU, tracked)", countries: FINGERPRINT_SHIPPING.eu.countries},
+};
+const SLOPERKING_SHIP_COUNTRIES = Object.values(SLOPERKING_SHIPPING).flatMap((z) => z.countries);
+const sloperKingZoneFor = (country) =>
+  Object.keys(SLOPERKING_SHIPPING).find((z) => SLOPERKING_SHIPPING[z].countries.includes(String(country || "").toUpperCase()));
+const appendSloperKingShipping = (params, zone) => {
+  const shipping = SLOPERKING_SHIPPING[zone];
+  params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
+  params.append("shipping_options[0][shipping_rate_data][display_name]", shipping.label);
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(shipping.amount));
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
+};
+
+paymentApp.post("/sloperking/checkout", async (req, res) => {
+  try {
+    const {itemType, quantity, pickup, email, originUrl} = req.body || {};
+    if (!FINGERPRINT_PUBLISHABLE_KEY) throw new Error("Stripe publishable key is not configured");
+    const product = SLOPERKING_PRODUCTS[itemType];
+    const qty = Math.round(Number(quantity));
+    if (!product || !Number.isFinite(qty) || qty < 1 || qty > 20) {
+      res.status(400).json({error: "Invalid order. Choose a single unit or a pair and a quantity."});
+      return;
+    }
+    const isPickup = pickup === true;
+
+    const origin = originUrl || req.headers.origin || "https://fre2028.la";
+    const db = getFirestore();
+    const orderRef = db.collection("sloperking_orders").doc();
+    const orderId = orderRef.id;
+
+    await orderRef.set({
+      orderId,
+      status: "checkout_created",
+      livemode: FINGERPRINT_LIVE,
+      itemType,
+      quantity: qty,
+      pickup: isPickup,
+      email: email || "",
+      createdAt: new Date(),
+    });
+
+    const metadata = {
+      product: "sloperking",
+      orderId,
+      itemType,
+      quantity: String(qty),
+      pickup: isPickup ? "yes" : "no",
+    };
+
+    const params = new URLSearchParams();
+    params.append("mode", "payment");
+    params.append("ui_mode", "form");
+    if (product.priceId) {
+      params.append("line_items[0][price]", product.priceId);
+    } else {
+      params.append("line_items[0][price_data][currency]", "eur");
+      params.append("line_items[0][price_data][unit_amount]", String(product.cents));
+      params.append("line_items[0][price_data][product_data][name]", product.name);
+      params.append("line_items[0][price_data][product_data][description]", product.description);
+    }
+    params.append("line_items[0][quantity]", String(qty));
+    params.append("client_reference_id", orderId);
+    params.append("return_url", `${origin}/bambum/sloper-king?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.append("phone_number_collection[enabled]", "true");
+    if (isPickup) {
+      params.append("billing_address_collection", "auto");
+    } else {
+      params.append("billing_address_collection", "required");
+      SLOPERKING_SHIP_COUNTRIES.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
+      // Start at the highest rate until the address is known, so a payment can never be under-charged.
+      params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
+      params.append("shipping_options[0][shipping_rate_data][display_name]", "Shipping");
+      params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(SLOPERKING_SHIPPING.eu.amount));
+      params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
+    }
+    params.append("allow_promotion_codes", "true");
+    if (email) params.append("customer_email", email);
+    for (const [key, value] of Object.entries(metadata)) {
+      params.append(`metadata[${key}]`, value);
+      params.append(`payment_intent_data[metadata][${key}]`, value);
+    }
+    params.append("payment_intent_data[description]", `Sloper King ${itemType} x${qty} - order ${orderId}`);
+
+    const session = await stripeRequest("checkout/sessions", {method: "POST", params});
+    await orderRef.update({sessionId: session.id});
+
+    res.status(200).json({
+      clientSecret: session.client_secret,
+      publishableKey: FINGERPRINT_PUBLISHABLE_KEY,
+      orderId,
+      livemode: FINGERPRINT_LIVE,
+    });
+  } catch (error) {
+    console.error("Error creating Sloper King checkout:", error);
+    res.status(error.status && error.status < 500 ? error.status : 500).json({error: "Could not start the checkout. Please try again."});
+  }
+});
+
+// Called by the embedded Stripe form once the shipping address is complete (same contract as FingerPrint).
+paymentApp.post("/sloperking/shipping", async (req, res) => {
+  try {
+    const sessionId = String(req.body?.sessionId || "");
+    const country = req.body?.shippingDetails?.address?.country || req.body?.shippingDetails?.country;
+    const zone = sloperKingZoneFor(country);
+    if (!sessionId.startsWith("cs_")) {
+      res.status(400).json({type: "error", message: "Invalid checkout session."});
+      return;
+    }
+    if (!zone) {
+      res.status(200).json({type: "error", message: "We currently only ship to Belgium and the rest of the EU."});
+      return;
+    }
+    const params = new URLSearchParams();
+    appendSloperKingShipping(params, zone);
+    params.append("metadata[shippingCountry]", String(country).toUpperCase());
+    await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {method: "POST", params});
+    res.status(200).json({type: "object", value: {succeeded: true}});
+  } catch (error) {
+    console.error("Error updating Sloper King shipping:", error);
+    res.status(200).json({type: "error", message: "We couldn't calculate shipping. Please try again."});
+  }
+});
+
+// Called by the Sloper King page when the customer returns from Stripe.
+paymentApp.get("/sloperking/order/:sessionId", async (req, res) => {
+  try {
+    const sessionId = req.params.sessionId;
+    const key = sessionId.startsWith("cs_live_") ? STRIPE_SECRET_KEY : process.env.STRIPE_SECRET_KEY_TEST;
+    const session = await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {key});
+    const orderId = session.client_reference_id || session.metadata?.orderId;
+    if (session.metadata?.product !== "sloperking" || !orderId) {
+      res.status(404).json({error: "Order not found"});
+      return;
+    }
+    const paid = session.payment_status === "paid";
+    const isPickup = session.metadata?.pickup === "yes";
+    const db = getFirestore();
+    const orderRef = db.collection("sloperking_orders").doc(orderId);
+
+    if (paid) {
+      const shipDetails = session.collected_information?.shipping_details || session.shipping_details;
+      const expectedZone = sloperKingZoneFor(shipDetails?.address?.country);
+      const expectedShipping = isPickup ? 0 : expectedZone ? SLOPERKING_SHIPPING[expectedZone].amount : null;
+      const chargedShipping = session.shipping_cost?.amount_total ?? 0;
+      const shippingCheck = expectedShipping === chargedShipping ? "ok" :
+        `charged €${(chargedShipping / 100).toFixed(2)}, expected ` +
+        (expectedShipping === null ? "no delivery to this country" : `€${(expectedShipping / 100).toFixed(2)}`);
+
+      await db.runTransaction(async (tx) => {
+        const snap = await tx.get(orderRef);
+        if (!snap.exists || snap.data().status === "paid") return;
+        tx.update(orderRef, {
+          status: "paid",
+          paidAt: new Date(),
+          paymentIntentId: session.payment_intent || "",
+          amountTotal: session.amount_total,
+          currency: session.currency,
+          customerEmail: session.customer_details?.email || "",
+          customerName: session.customer_details?.name || "",
+          customerPhone: session.customer_details?.phone || "",
+          shipping: shipDetails || null,
+          shippingCharged: chargedShipping,
+          shippingCheck,
+        });
+      });
+
+      // Notify the admin until one email has gone out (see the FingerPrint handler for the claim logic).
+      const claimed = await db.runTransaction(async (tx) => {
+        const snap = await tx.get(orderRef);
+        if (!snap.exists) return false;
+        const data = snap.data();
+        const claimedAt = data.adminNotifyClaimedAt?.toDate?.();
+        if (data.adminNotifiedAt || (claimedAt && Date.now() - claimedAt.getTime() < 60000)) return false;
+        tx.update(orderRef, {adminNotifyClaimedAt: new Date()});
+        return true;
+      });
+
+      if (claimed) {
+        try {
+          const addr = shipDetails?.address || {};
+          const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"})[c]);
+          const product = SLOPERKING_PRODUCTS[session.metadata.itemType];
+          await createTransporter().sendMail({
+            from: process.env.EMAIL_USER || "your-email@gmail.com",
+            to: ADMIN_EMAIL,
+            subject: `${session.livemode ? "" : "[TEST] "}New Sloper King order ${orderId}`,
+            html: `
+              <h2>New Sloper King order (paid${session.livemode ? "" : ", TEST"})</h2>
+              <p><strong>Order:</strong> ${orderId}<br>
+              <strong>Item:</strong> ${esc(session.metadata.quantity)} x ${esc(product ? product.name : session.metadata.itemType)}<br>
+              <strong>Customer:</strong> ${esc(session.customer_details?.name)} &lt;${esc(session.customer_details?.email)}&gt;<br>
+              <strong>Phone:</strong> ${esc(session.customer_details?.phone)}<br>
+              <strong>Amount:</strong> €${((session.amount_total || 0) / 100).toFixed(2)}
+              (shipping €${(chargedShipping / 100).toFixed(2)})</p>
+              ${shippingCheck === "ok" ? "" : `<p style="color:#b91c1c"><strong>Check shipping:</strong> ${esc(shippingCheck)}</p>`}
+              ${isPickup ?
+                "<p><strong>Local pickup in Leuven</strong> (no shipping address)</p>" :
+                `<p><strong>Ship to:</strong><br>${esc(shipDetails?.name)}<br>${esc(addr.line1)} ${esc(addr.line2)}<br>
+                ${esc(addr.postal_code)} ${esc(addr.city)}<br>${esc(addr.country)}</p>`}
+            `,
+          });
+          await orderRef.update({adminNotifiedAt: new Date()});
+        } catch (mailErr) {
+          console.error("Error sending Sloper King order email:", mailErr);
+        }
+      }
+    }
+
+    res.status(200).json({
+      paid,
+      orderId,
+      email: session.customer_details?.email || "",
+      itemType: session.metadata.itemType,
+      quantity: Number(session.metadata.quantity) || 1,
+      pickup: isPickup,
+      amountTotal: (session.amount_total || 0) / 100,
+    });
+  } catch (error) {
+    console.error("Error checking Sloper King order:", error);
     res.status(error.status === 404 ? 404 : 500).json({error: "Could not check the order."});
   }
 });

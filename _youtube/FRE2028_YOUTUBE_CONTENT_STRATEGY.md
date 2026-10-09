@@ -150,7 +150,7 @@ There is no universal "optimal" YouTube video length. YouTube explicitly states 
 * The **Jakob Schubert Collab** could easily earn **17 to 20 minutes**.
 * **The Rule:** Never pad a thin video to reach 10:00, and never butcher a compelling story to satisfy an arbitrary ceiling. Let **audience retention curves** show where interest actually drops.
 
-> 📋 **Production Quality Gate:** Every script, experiment, thumbnail, and final export must be vetted against the 27-section [MASTER_YOUTUBE_CHECKLIST.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/MASTER_YOUTUBE_CHECKLIST.md) (Fit, Story, Script, Engineering, Stranger Test, Safety & Post-Upload Autopsy).
+> 📋 **Production Quality Gate:** Every script, experiment, thumbnail, and final export must be vetted against the 27-section [MASTER_YOUTUBE_CHECKLIST.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/MASTER_YOUTUBE_CHECKLIST.md) (Fit, Story, Script, Engineering, Stranger Test, Safety & Post-Upload Autopsy).
 
 ---
 
@@ -169,89 +169,60 @@ Every idea must pass this single test before entering production:
 
 ---
 
-### 🚀 Phase 1: The Inverted Launch Slate (The 6 Foundation Films)
+### 🚀 Phase 1: The Active Launch Slate (November 2026 → Voorjaar 2027)
+*Zie het complete 16-maanden publicatieoverzicht in [CONTENT_PLANNING_16_MONTHS.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/CONTENT_PLANNING_16_MONTHS.md).*
 
-This exact sequence tells the viewer:  
-*"This isn't a disabled athlete making inspirational videos. This guy builds insane engineering projects, and he's also an elite climber with a prosthetic."*
-
-* **Video 0 (Private Pilot / Screen Test):** *The Sloper King (HW-01)* — Low stakes, tests pacing, lighting, audio, and English delivery with 3 honest strangers before going public.
-
----
-
-#### 🎬 Video 1 (HW-04): The Custom Bionic Foot (Statement to the World)
-* **Brainstorm File:** [EP01_BIONIC_CLIMBING_FOOT.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP01_BIONIC_CLIMBING_FOOT.md)
-* **YouTube Title:** *I Built a Prosthetic Foot That Grips Better Than a Climbing Shoe*
-  *(Alternatieve A/B-titel: "I 3D-Printed My Own Foot to Climb On")*
-* **Why this title?** Removes ambiguity completely: a non-climber reading "foot" no longer confuses it with a shoe. "Built" outperforms "Engineered" across YouTube maker channels.
-* **Thumbnail Concept:** Hypothesis test: (A) Fré looking intently into the lens holding the sculpted carbon-fiber and 3D-printed bionic foot with neon friction rubber, socket visible on bench. OR (B) Macro shot of the 3D-printed carbon foot gripping an impossible 2mm crystal on the wall. Single clean idea, zero clutter. Text overlay: `BETTER THAN SHOES` of `I BUILT MY FOOT`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Fré is standing in the workshop fitting a carbon-fiber prosthetic climbing foot onto his leg. Cut directly to him stepping onto an impossibly small 2mm crystal on a steep overhang—rock-solid stability.)*  
-  > **Fré (Camera):** *"Commercial prosthetics are built for walking on pavements, not standing on 2-millimeter rock crystals. So as a mechanical engineer competing for Paralympic Gold, I spent 6 months in CAD building my own bionic climbing foot from scratch. Today, we test if it actually grips better than a climbing shoe."*
-* **Strategic Purpose:** Fuses all 4 moat layers in one artifact. Unrepeatable anywhere on YouTube. Captures cold traffic across maker, engineering, robotics, and sports. Shot as project #2 immediately AFTER the Sloper pilot.
-* **Shorts Extracted:** (1) "Walking leg vs. bionic climbing foot", (2) "Testing custom bionic edge on a 2mm crystal".
+#### 🎬 Video 1 (HW-01): The Sloper King & Power Endurance
+* **Dossier & Folder:** [EP01_SLOPER_KING_POWER_ENDURANCE/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP01_SLOPER_KING_POWER_ENDURANCE/README.md)
+* **Dedicated Script:** [YOUTUBE_SCRIPT_SLOPER_KING.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP01_SLOPER_KING_POWER_ENDURANCE/YOUTUBE_SCRIPT_SLOPER_KING.md)
+* **YouTube Title:** *Why Climbers Suck at Slopers (And the Secret to Insane Power Endurance)*
+* **Strategic Purpose:** Product Launch #1 (Sloper King) in november vlak voor de feestdagen. Combineert frictietribologie, de gewicht-paradox en de ontdekking van de ultieme occlusiepomp voor onderarmen.
 
 ---
 
-#### 🎬 Video 2 (HW-08): The Transparent Living Room Climbing Wall (Proof of Depth)
-* **Brainstorm File:** [EP02_TRANSPARENT_CLIMBING_WALL.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP02_TRANSPARENT_CLIMBING_WALL.md)
-* **YouTube Title:** *I Built a Transparent Climbing Wall in My Living Room*
-* **Thumbnail Concept:** Shot from *behind* the clear plastic wall looking through at Fré's face strained in concentration, chalked hands gripping transparent holds, ambient light shining through. Text overlay: `SEE-THROUGH WALL`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Camera is mounted behind the clear wall. Fré pulls onto a hard move; we see his face, eyes, chest tension, and foot placement directly through the crystal-clear plastic surface.)*  
-  > **Fré (Camera / Voiceover):** *"Climbing videos have always had a fatal flaw: you can only film the climber's back. So I built an entire modular climbing wall out of 50 by 50 centimeter transparent thermoformed tiles in my living room—so you can see every millimeter of beta from inside the wall."*
-* **Strategic Purpose:** Proves you are NOT a one-video gimmick. Massive visual novelty and maker appeal (polycarbonate thermoforming). The *"filmed from inside the wall"* angle becomes a permanent signature B-roll asset.
-* **Shorts Extracted:** (1) "Climbing filmed from INSIDE the wall (mind-bending angle)", (2) "Thermoforming a 50x50cm climbing tile in 45 seconds".
+#### 🎬 Video 2 (HW-07 / HW-11): Can a 3D Print Hold 800 kg?
+* **Dossier & Folder:** [EP02_3D_PRINT_800KG_RIG_TEST/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP02_3D_PRINT_800KG_RIG_TEST/README.md)
+* **YouTube Title:** *Can 3D-Printed Climbing Gear Hold 800 kg? (Hydraulic Destruction Test)*
+* **Strategic Purpose:** Bewijst onverwoestbare ingenieurskracht en bouwt absoluut vertrouwen op voor 3D-geprinte hardware (Sloper King & Fingerprint).
 
 ---
 
-#### 🎬 Video 3 (HW-07 / HW-11): Can a 3D Print Hold 200 kg? (Pure Hard Engineering)
-* **Brainstorm File:** [EP03_200KG_RIG_TEST.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP03_200KG_RIG_TEST.md)
-* **YouTube Title:** *Can a 3D Print Hold 200 kg? (Testing Climbing Gear to Destruction)*
-* **Thumbnail Concept:** 3D-printed climbing rung in a steel hydraulic test rig, digital load cell screaming `214 KG`, plastic beginning to yield with micro-fractures. Text overlay: `200 KG OR BREAK`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Hydraulic jack pumping up pressure. Extreme macro shot of a 3D-printed edge under 150 kg of load, cracking sounds echoing.)*  
-  > **Fré (Camera):** *"Climbers always tell me 3D-printed training gear is dangerous, brittle plastic. Today, we're finding out the exact truth: I'm putting 3D-printed edges into a hydraulic load cell rig and pulling until catastrophic failure. PLA vs. PETG vs. Carbon-Nylon."*
-* **Strategic Purpose:** Proves the channel is hard engineering, physics, and destructive testing—not merely prosthetic storytelling.  
-  *(Safety Mandate: Testing to catastrophic failure occurs exclusively in the static hydraulic rig under 1000 FPS slow-motion; zero bodily injury risk).*
-* **Shorts Extracted:** (1) "1000 FPS slow-mo of 3D print snapping under 180kg", (2) "Can cheap PLA plastic hold 200 kg?".
+#### 🎬 Video 3 (BIO-02 / PARA-01): I Gave an Elite Climber a Prosthetic Leg
+* **Dossier & Folder:** [EP03_ALL_ABOUT_AMPUTEE_CLIMBING/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP03_ALL_ABOUT_AMPUTEE_CLIMBING/README.md)
+* **YouTube Title:** *I Gave an Elite Climber a Prosthetic Leg (It Did Not Go Well)*
+* **Strategic Purpose:** De grote virale mainstream uitbraak (150k–500k views). Toont de brutaliteit van amputee klimmen via humor en experiment zonder zieligheid.
 
 ---
 
-#### 🎬 Video 4 (HW-01): The Sloper Fix (Climbing Audience Arrival & D2C Engine)
-* **Brainstorm File:** [EP04_SLOPER_TOOL.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP04_SLOPER_TOOL.md)
-* **YouTube Title:** *I Built a 3D-Printed Tool to Grip Impossible Slopers*
-  *(Alternatieve titels: "I 3D-Printed a Tool to Fix Slopers" / "Why Everyone Sucks at Slopers (And How I Fixed It)")*
-* **Thumbnail Concept:** Fré's focused face looking at camera holding the neon 3D-printed Sloper King device against a slick fiberglass sloper. Text overlay: `THE SLOPER FIX`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Fré peels off a glassy 50° sloper in 4K slow-motion. Cut immediately to Fré holding the curved 3D-printed device at his workbench.)*  
-  > **Fré (Camera):** *"Most climbers think slipping off slopers is a finger strength issue. It's actually a wrist torque stabilization problem. So I designed a 3D-printed tool to force the exact biomechanics—and the test results were completely unexpected."*
-* **Strategic Purpose:** The climbing training audience begins arriving in force. Launches the **Open Core / Personal License** commercial engine: free personal STL download on fre2028.la vs. ready-made €39 batch.
-* **Shorts Extracted:** (1) "Why standard sloper training fails", (2) "3D-printing a sloper trainer in 30 seconds".
+#### 🎬 Video 4 (HW-02): The Fingerprint Hangboard & A2 Pulley Fix
+* **Dossier & Folder:** [EP04_FINGERPRINT_HANGBOARD/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP04_FINGERPRINT_HANGBOARD/README.md)
+* **YouTube Title:** *Why Standard Hangboards Injure Your Fingers (The A2 Pulley Fix)*
+* **Strategic Purpose:** Product Launch #2 (Fingerprint Hangboard). Iedere vinger heeft een andere lengte; vlakke hangboards overbelasten pezen.
 
 ---
 
-#### 🎬 Video 5 (COL-01): The Jakob Schubert Custom Grip (Major Audience Expansion)
-* **Brainstorm File:** [EP05_JAKOB_SCHUBERT_GRIP.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP05_JAKOB_SCHUBERT_GRIP.md)
+#### 🎬 Video 5 (COL-01): Jakob Schubert Custom Grip
+* **Dossier & Folder:** [EP05_JAKOB_SCHUBERT_CUSTOM_GRIP/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP05_JAKOB_SCHUBERT_CUSTOM_GRIP/README.md)
 * **YouTube Title:** *I 3D-Printed a Custom Training Grip for World Champion Jakob Schubert*
-* **Thumbnail Concept:** Fré and 6x World Champion / 2x Olympic Bronze medalist Jakob Schubert holding a customized ergonomic handprint grip, CAD wireframe overlay. Text overlay: `WORLD CHAMP GRIP`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Jakob Schubert crushing an impossible 9b boulder. Cut to Fré 3D-scanning Schubert's hand mold in the lab.)*  
-  > **Fré (Camera):** *"Jakob Schubert is a 6-time World Champion. But standard training grips don't match his specific hand anatomy. Today, I'm 3D-scanning his hand to engineer a 100% custom ergonomic training edge in CAD, 3D-printing the prototypes, and testing if it makes the strongest climber on earth even stronger."*
-* **Strategic Purpose:** Major cross-pollination with the global climbing elite. Schubert's distribution (Instagram Collab Reel + YouTube community feature) brings a wave of international credibility and new subscribers.
-* **Shorts Extracted:** (1) "3D scanning an Olympic medalist's hand", (2) "Testing custom 3D grip with Jakob".
+* **Strategic Purpose:** Internationale elite-collab. Enorme abonneesprong door het bereik van 6x wereldkampioen Jakob Schubert.
 
 ---
 
-#### 🎬 Video 6 (HW-02): The Uneven Crimp (Biomechanical Depth)
-* **Brainstorm File:** [EP06_UNEVEN_HANGBOARD.md](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_communicatie/social-media/brainstorms/EP06_UNEVEN_HANGBOARD.md)
-* **YouTube Title:** *Your Fingers Aren't the Same Length. So I Built an Uneven Hangboard.*
-  *(Alternatieve titels: "I 3D-Printed an 'Uneven' Hangboard (Because Flat Rungs Make No Sense)" / "Your Hand Isn't Flat. Why Is Your Hangboard?")*
-* **Thumbnail Concept:** Close-up with digital caliper measuring the height delta across index, middle, ring, and pinky on a flat rung vs. flush placement on the 3D-printed stepped edge. Text overlay: `FLAT IS WRONG` of `UNEVEN CRIMP`.
-* **Exact First 15 Seconds (Cold Hook):**
-  > *(Visual: Macro shot of a digital caliper measuring the height delta between index, middle, ring, and pinky. Cut immediately to Fré holding the stepped 3D-printed edge at his workbench.)*  
-  > **Fré (Camera):** *"Look at your hand right now. Your index, middle, ring, and pinky are completely different lengths—and everyone's anatomy is different. Yet for 30 years, every hangboard in the world has been a straight, flat block of wood. That forces your shorter fingers to hyperextend or take almost zero load. So I 3D-printed an uneven, anatomically staggered edge tailored to real finger lengths—and the load distribution results are night and day."*
-* **Core Takeaway:** Biomechanical physics of unequal finger lengths: why flat edges overload the middle finger while the pinky barely recruits, and how an uneven/custom 3D-printed geometry equalizes tendon load and reduces A2 pulley blowout risk.
-* **Shorts Extracted:** (1) "Look at your hand: why flat hangboards fail your pinky", (2) "Measuring finger lengths with calipers for custom 3D prints".
+#### 🎬 Video 6 (SW-01): Kilter Board 50k Analysis
+* **Dossier & Folder:** [EP06_KILTER_BOARD_ANALYTICS/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP06_KILTER_BOARD_ANALYTICS/README.md)
+* **YouTube Title:** *I Analyzed 50,000 Kilter Board Climbs (The Most Sandbagged Holds)*
+* **Strategic Purpose:** Big data, algoritmes en app software virality.
+
+---
+
+#### 🎬 Video 7 (HW-08): Transparent Climbing Wall
+* **Dossier & Folder:** [EP07_TRANSPARENT_CLIMBING_WALL/](file:///c:/Users/frede/Documents/GitHub/fre2028-website/_youtube/EP07_TRANSPARENT_CLIMBING_WALL/README.md)
+* **YouTube Title:** *I Built a Transparent Climbing Wall in My Living Room*
+* **Strategic Purpose:** Visueel spektakel en maker-doorbraak. Filmen van voren door transparante dieptrek-tegels.
+
+
+---
+
 
 ---
 

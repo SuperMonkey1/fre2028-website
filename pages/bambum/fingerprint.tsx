@@ -1,16 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import {
   AlertTriangle,
-  ArrowLeft,
   Box,
   Check,
   CheckCircle2,
   Download,
   Dumbbell,
-  Fingerprint,
   Hand as HandIcon,
   Heart,
   Info,
@@ -28,6 +25,8 @@ import {
   Unlock,
   X,
 } from 'lucide-react';
+import BambumLayout, { AlsoFromBambum } from '@/components/bambum/BambumLayout';
+import { PAYMENTS_API } from '@/lib/bambum/shop';
 import { newsletterService } from '@/services/newsletterService';
 import {
   DEFAULT_PARAMS,
@@ -60,8 +59,7 @@ type FileKind = 'stl' | 'step';
 
 const SUBSCRIBED_KEY = 'fingerprint_newsletter_subscribed';
 
-// Orders run through the `payments` Cloud Function (the static site has no API routes in production)
-const ORDER_API = 'https://us-central1-fre-2028-website.cloudfunctions.net/payments/fingerprint';
+const ORDER_API = `${PAYMENTS_API}/fingerprint`;
 const SET_PRICE_CENTS = 4900;
 // Shipping is calculated by the payments function from the address entered in the Stripe form
 const euro = (cents: number) => `€${(cents / 100).toFixed(2).replace(/\.00$/, '')}`;
@@ -370,7 +368,13 @@ export default function FingerPrintPage() {
   const stale = !!result && busy;
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-amber-400 selection:text-black">
+    <BambumLayout
+      active="fingerprint"
+      links={[
+        { label: 'Why FingerPrint', href: '#advantages' },
+        { label: 'How it works', href: '#tutorial' },
+      ]}
+    >
       <Head>
         <title>FingerPrint | Custom Unequal Crimp Generator</title>
         <meta
@@ -378,25 +382,6 @@ export default function FingerPrintPage() {
           content="Enter the length difference and width of your fingers and download a FingerPrint crimp edge made for your hand, as STL or STEP."
         />
       </Head>
-
-      <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <Link href="/" className="flex items-center gap-1.5 py-1 text-xs font-bold text-slate-500 transition-colors hover:text-slate-950">
-            <ArrowLeft className="h-4 w-4" /> FRE2028
-          </Link>
-          <div className="flex items-center gap-2 text-lg font-black tracking-tight text-slate-950">
-            <Fingerprint className="h-5 w-5 text-amber-500" /> FingerPrint
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="#advantages" className="hidden text-xs font-bold text-slate-600 hover:text-slate-950 sm:inline">
-              Why FingerPrint
-            </a>
-            <a href="#tutorial" className="text-xs font-bold text-slate-600 hover:text-slate-950">
-              How it works
-            </a>
-          </div>
-        </div>
-      </header>
 
       <main className="mx-auto max-w-6xl px-4 pb-24">
         {/* Hero */}
@@ -752,6 +737,8 @@ export default function FingerPrintPage() {
         </section>
       </main>
 
+      <AlsoFromBambum current="fingerprint" />
+
       {checkout && (
         <CheckoutDialog
           clientSecret={checkout.clientSecret}
@@ -890,7 +877,7 @@ export default function FingerPrintPage() {
           </div>
         </div>
       )}
-    </div>
+    </BambumLayout>
   );
 }
 
