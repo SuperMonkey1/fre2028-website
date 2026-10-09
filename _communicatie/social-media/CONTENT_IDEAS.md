@@ -25,7 +25,7 @@
 
 ---
 
-# 👤 PART 1: Core Concepts Originated by Fré Leys (19 Blueprints)
+# 👤 PART 1: Core Concepts Originated by Fré Leys (20 Blueprints)
 
 ### 🛠️ 1. 3D-Printed Hardware & Maker Inventions
 | ID | Title / Concept | Status | Format | Core Asset / Notes |
@@ -51,9 +51,12 @@
 | :---: | :--- | :---: | :---: | :--- |
 | **BIO-01** | **What Everyone Gets Wrong About Hangboard Training (According to Physics)** | 🟡 In Dev (Ep 3) | YouTube + LI | Hangboard physics, time-under-tension (TUT) vs. tendon creep & recruitment. |
 | **BIO-02** | **The Brutal Physics of Climbing With a Prosthetic** | ⚪ Backlog | YouTube + LI | Biomechanical torque loss, ankle mechanics & lack of sensory feedback. |
+| **PARA-01**| **All About Leg Amputee Climbing (Technique, Biomechanics & The Prosthetics Debate)** | 🟡 In Dev | YouTube (12-15m) + Shorts | The definitive masterclass on lower-limb amputee climbing: with vs. without prosthesis, zero plantar flexion physics (hip drive replacing calves), aggressive flagging, dynamic momentum, socket shear torque, IFSC classification rules, and what able-bodied climbers can learn about precision footwork. |
 | **BIO-03** | **How to Build Unstoppable Pinch Grip Strength (Biomechanics & Tools)** | ⚪ Backlog | YouTube + Shorts | Thenar muscle recruitment, thumb opposition & custom pinch blocks. |
 | **BIO-04** | **I Got a Medical DXA Scan to Build the Optimal Climbing Body** | ⚪ Backlog | YouTube (Vlog) | Full-body DXA scan: bone density, lean mass & power-to-weight ratio. |
 | **BIO-05** | **The Only 4 Supplements Proven to Work for Climbers** | ⚪ Backlog | YouTube + Shorts | Evidence-based science of Creatine, Vitamin D3, Vitamin C, and Folate. |
+| **BIO-12** | **The Science of Grip Strength (History, Research & What It Really Predicts)** | ⚪ Backlog | YouTube (Explainer) | Deep-dive video on grip strength: history of its measurement (dynamometer), research on grip strength as a health/longevity marker, and what it means for climbers. |
+| **BIO-13** | **How I Train as a Paralympic Climber (My Full Training Schedule)** | ⚪ Backlog | YouTube (Vlog) + Shorts | Walkthrough of my weekly training schedule: climbing, strength, hangboard, recovery and how it fits around PhD work. Related to COL-03. |
 
 ### 🏆 4. Elite Collaborations, Sports Business & Documentary
 | ID | Title / Concept | Status | Format | Core Asset / Notes |
@@ -95,4 +98,4 @@
 
 ---
 
-*Last Updated: 2026-09-20 by Stan*
+*Last Updated: 2026-10-05 by Stan & Fré*

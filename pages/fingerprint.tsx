@@ -6,10 +6,13 @@ import {
   AlertTriangle,
   ArrowLeft,
   Box,
+  Check,
+  CheckCircle2,
   Download,
   Dumbbell,
   Fingerprint,
   Hand as HandIcon,
+  Heart,
   Info,
   Layers,
   Loader2,
@@ -20,6 +23,7 @@ import {
   Ruler,
   Scale,
   ShieldCheck,
+  ShoppingCart,
   Target,
   Unlock,
   X,
@@ -47,6 +51,7 @@ import {
   WidthIllustration,
 } from '@/components/fingerprint/Illustrations';
 import type { ViewerLabel } from '@/components/fingerprint/FingerPrintViewer';
+import CheckoutDialog from '@/components/fingerprint/CheckoutDialog';
 
 const FingerPrintViewer = dynamic(() => import('@/components/fingerprint/FingerPrintViewer'), { ssr: false });
 
@@ -54,6 +59,20 @@ type Status = 'idle' | 'loading-engine' | 'building' | 'ready' | 'error';
 type FileKind = 'stl' | 'step';
 
 const SUBSCRIBED_KEY = 'fingerprint_newsletter_subscribed';
+
+// Orders run through the `payments` Cloud Function (the static site has no API routes in production)
+const ORDER_API = 'https://us-central1-fre-2028-website.cloudfunctions.net/payments/fingerprint';
+const SET_PRICE_CENTS = 4900;
+// Shipping is calculated by the payments function from the address entered in the Stripe form
+const euro = (cents: number) => `€${(cents / 100).toFixed(2).replace(/\.00$/, '')}`;
+
+type OrderState =
+  | { state: 'checking' }
+  | { state: 'paid'; orderId: string; email: string }
+  | { state: 'pending'; orderId: string }
+  | { state: 'cancelled' }
+  | { state: 'contribution_thanks' }
+  | { state: 'error' };
 type LengthFinger = Exclude<Finger, 'pinky'>;
 type Inputs = { offset: Record<LengthFinger, string>; width: Record<Finger, string> };
 
@@ -77,6 +96,26 @@ const defaultInputs = (): Inputs => ({
     index: String(DEFAULT_PARAMS.width.index),
   },
 });
+
+const toParams = (i: Inputs): FingerParams => ({
+  offset: { ring: parseFloat(i.offset.ring), middle: parseFloat(i.offset.middle), index: parseFloat(i.offset.index) },
+  width: {
+    pinky: parseFloat(i.width.pinky),
+    ring: parseFloat(i.width.ring),
+    middle: parseFloat(i.width.middle),
+    index: parseFloat(i.width.index),
+  },
+});
+
+/** Design links (`?left=…&right=…`, as in the order emails): ring,middle,index lengths then pinky,ring,middle,index widths. */
+const parseHandQuery = (q: string | null): Inputs | null => {
+  const v = (q || '').split(',').map((x) => x.trim());
+  if (v.length !== 7 || v.some((x) => x === '' || !Number.isFinite(Number(x)))) return null;
+  return {
+    offset: { ring: v[0], middle: v[1], index: v[2] },
+    width: { pinky: v[3], ring: v[4], middle: v[5], index: v[6] },
+  };
+};
 
 const inputClass =
   'w-full rounded-lg border border-slate-300 px-2.5 py-1 text-right text-sm font-bold focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200';
@@ -103,23 +142,115 @@ export default function FingerPrintPage() {
   const [builtFor, setBuiltFor] = useState<{ params: FingerParams; hand: Hand } | null>(null);
   const buildId = useRef(0);
 
-  const params: FingerParams = useMemo(
-    () => ({
-      offset: {
-        ring: parseFloat(inputs.offset.ring),
-        middle: parseFloat(inputs.offset.middle),
-        index: parseFloat(inputs.offset.index),
-      },
-      width: {
-        pinky: parseFloat(inputs.width.pinky),
-        ring: parseFloat(inputs.width.ring),
-        middle: parseFloat(inputs.width.middle),
-        index: parseFloat(inputs.width.index),
-      },
-    }),
-    [inputs],
-  );
+  const params: FingerParams = useMemo(() => toParams(inputs), [inputs]);
   const layout = useMemo(() => computeLayout(params), [params]);
+
+  /* ---------- Ordering ---------- */
+  // A set is always left + right, so both hands must be valid before ordering
+  const orderBlocker = useMemo(() => {
+    if (computeLayout(toParams(handInputs.left)).errors.length) return 'left';
+    if (computeLayout(toParams(handInputs.right)).errors.length) return 'right';
+    return null;
+  }, [handInputs]);
+  const [ordering, setOrdering] = useState(false);
+  const [checkout, setCheckout] = useState<{
+    clientSecret: string;
+    publishableKey: string;
+    livemode: boolean;
+    design: { left: FingerParams; right: FingerParams; locked: boolean };
+  } | null>(null);
+  const [orderError, setOrderError] = useState<string | null>(null);
+  const [contributing, setContributing] = useState(false);
+  const [contributionError, setContributionError] = useState<string | null>(null);
+
+  // Voluntary "pay what you want" contribution for the free files: amount chosen on Stripe's page
+  const startContribution = async () => {
+    if (contributing) return;
+    setContributing(true);
+    setContributionError(null);
+    try {
+      const res = await fetch(`${ORDER_API}/contribution`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          design: { left: toParams(handInputs.left), right: toParams(handInputs.right) },
+          originUrl: window.location.origin,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.url) throw new Error(data.error || 'Could not open the contribution page.');
+      window.location.href = data.url;
+    } catch (e: any) {
+      setContributionError(e?.message || 'Could not open the contribution page.');
+      setContributing(false);
+    }
+  };
+  const [order, setOrder] = useState<OrderState | null>(null);
+
+  const startOrder = async () => {
+    if (orderBlocker || ordering) return;
+    setOrdering(true);
+    setOrderError(null);
+    try {
+      const res = await fetch(`${ORDER_API}/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          design: { locked, left: toParams(handInputs.left), right: toParams(handInputs.right) },
+          originUrl: window.location.origin,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.clientSecret) throw new Error(data.error || 'Could not start the checkout. Please try again.');
+      setCheckout({
+        clientSecret: data.clientSecret,
+        publishableKey: data.publishableKey,
+        livemode: !!data.livemode,
+        design: { left: toParams(handInputs.left), right: toParams(handInputs.right), locked },
+      });
+      setOrdering(false);
+    } catch (e: any) {
+      setOrderError(e?.message || 'Could not start the checkout. Please try again.');
+      setOrdering(false);
+    }
+  };
+
+  // Load a design from the URL and handle the return from Stripe Checkout
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const left = parseHandQuery(q.get('left'));
+    const right = parseHandQuery(q.get('right'));
+    if (left || right) {
+      const l = left || right!;
+      const r = right || left!;
+      setHandInputs({ left: l, right: r });
+      setLocked(JSON.stringify(l) === JSON.stringify(r));
+    }
+
+    const orderParam = q.get('order');
+    const sessionId = q.get('session_id');
+    if (orderParam === 'cancelled') setOrder({ state: 'cancelled' });
+    if (orderParam === 'success' && sessionId) {
+      setOrder({ state: 'checking' });
+      fetch(`${ORDER_API}/order/${encodeURIComponent(sessionId)}`)
+        .then((r) => r.json())
+        .then((d) => {
+          if (d.paid) setOrder({ state: 'paid', orderId: d.orderId, email: d.email });
+          else if (d.orderId) setOrder({ state: 'pending', orderId: d.orderId });
+          else setOrder({ state: 'error' });
+        })
+        .catch(() => setOrder({ state: 'error' }));
+    }
+    const contributionParam = q.get('contribution');
+    if (contributionParam === 'thanks') setOrder({ state: 'contribution_thanks' });
+    if (orderParam || contributionParam) {
+      q.delete('order');
+      q.delete('session_id');
+      q.delete('contribution');
+      const rest = q.toString();
+      window.history.replaceState(null, '', `${window.location.pathname}${rest ? `?${rest}` : ''}`);
+    }
+  }, []);
 
   // Rebuild (debounced) whenever the inputs change and are valid
   useEffect(() => {
@@ -285,8 +416,8 @@ export default function FingerPrintPage() {
         </section>
 
         {/* Configurator */}
-        <section id="designer" className="grid scroll-mt-20 gap-6 lg:h-[calc(100vh-6rem)] lg:min-h-[500px] lg:grid-cols-[380px_1fr]">
-          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm lg:min-h-0 lg:overflow-y-auto">
+        <section id="designer" className="grid scroll-mt-20 gap-6 lg:h-[calc(100vh-6rem)] lg:min-h-[500px] lg:grid-cols-[1fr_380px]">
+          <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm lg:order-2 lg:min-h-0 lg:overflow-y-auto">
             <div>
               <div className="mb-1.5 flex items-center justify-between">
                 <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">Hand</span>
@@ -417,26 +548,35 @@ export default function FingerPrintPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
+              <div className="flex items-baseline justify-between gap-2">
+                <div>
+                  <div className="text-sm font-extrabold text-slate-950">Printed set, made for you</div>
+                  <div className="text-[11px] text-slate-600">
+                    Left + right hand{locked ? ', same values' : ', each with its own values'}
+                  </div>
+                </div>
+                <div className="text-xl font-black text-slate-950">{euro(SET_PRICE_CENTS)}</div>
+              </div>
+              <p className="mt-1 text-[11px] text-slate-600">
+                + shipping: €2.99 Belgium · €4.99 rest of the EU
+              </p>
               <button
-                onClick={() => download('stl')}
-                disabled={!result || busy}
-                className="flex items-center justify-center gap-2 rounded-xl bg-amber-400 py-2 text-sm font-black text-slate-950 shadow-md transition-all hover:bg-amber-500 disabled:cursor-not-allowed disabled:opacity-50"
+                onClick={startOrder}
+                disabled={!!orderBlocker || ordering}
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 py-2.5 text-sm font-black text-white shadow-md transition-all hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <Download className="h-4 w-4" /> STL
+                {ordering ? <Loader2 className="h-4 w-4 animate-spin" /> : <ShoppingCart className="h-4 w-4" />}
+                {ordering ? 'Opening checkout…' : `Order your set · ${euro(SET_PRICE_CENTS)}`}
               </button>
-              <button
-                onClick={() => download('step')}
-                disabled={!result || busy}
-                className="flex items-center justify-center gap-2 rounded-xl bg-slate-950 py-2 text-sm font-black text-white shadow-md transition-all hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                <Download className="h-4 w-4" /> STEP
-              </button>
+              {orderBlocker && (
+                <p className="mt-1.5 text-xs font-semibold text-red-700">Fix the {orderBlocker} hand values before ordering.</p>
+              )}
+              {orderError && <p className="mt-1.5 text-xs font-semibold text-red-700">{orderError}</p>}
             </div>
-            <p className="text-center text-xs text-slate-500">STL to print · STEP to keep editing in CAD</p>
           </div>
 
-          <div className="relative h-[420px] overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm sm:h-[520px] lg:h-full">
+          <div className="relative h-[420px] overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-b from-white to-slate-100 shadow-sm sm:h-[520px] lg:order-1 lg:h-full">
             <FingerPrintViewer result={result} labels={labels} target={VIEW_TARGET} />
 
             {(busy || status === 'idle') && (
@@ -465,7 +605,7 @@ export default function FingerPrintPage() {
           <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Why FingerPrint</div>
           <h2 className="max-w-3xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
             More ergonomic. Fewer injuries.{' '}
-            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">More training.</span>
+            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">More training. Stronger grip.</span>
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
             On a straight edge your longest fingers do most of the work while the others hang along. FingerPrint gives every
@@ -540,7 +680,161 @@ export default function FingerPrintPage() {
             first time, and replace the print as soon as you see layer cracks.
           </Note>
         </section>
+        {/* Print it yourself: open for makers, personal use only (CC BY-NC 4.0) */}
+        <section id="makers" className="mt-16 scroll-mt-20 rounded-2xl border border-slate-200 bg-white p-5 sm:p-6">
+          <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <div className="mb-2 flex flex-wrap items-center gap-2">
+                <span className="flex items-center gap-1.5 text-xs font-extrabold uppercase tracking-wider text-rose-500">
+                  <Heart className="h-3.5 w-3.5 fill-rose-500" /> For makers
+                </span>
+                <a
+                  href="https://creativecommons.org/licenses/by-nc/4.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-md border border-slate-300 px-1.5 py-0.5 text-[10px] font-bold text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                >
+                  CC BY-NC 4.0
+                </a>
+              </div>
+              <h2 className="text-xl font-black text-slate-950">Own a 3D printer? Print your FingerPrint yourself.</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                I love open source and the maker community, so the design is free for personal use. Download the file for the hand
+                currently shown in the designer above, print it, tweak it, share your improvements.
+              </p>
+              <ul className="mt-3 space-y-1 text-sm text-slate-600">
+                <li className="flex gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> Print it for yourself, your friends or your club
+                </li>
+                <li className="flex gap-2">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> Remix and share it, with credit to FingerPrint by
+                  FRE2028
+                </li>
+                <li className="flex gap-2">
+                  <X className="mt-0.5 h-4 w-4 shrink-0 text-rose-500" /> No commercial use: don&apos;t sell the files or printed
+                  FingerPrints
+                </li>
+              </ul>
+              <div className="mt-4 rounded-xl border border-rose-100 bg-rose-50/60 p-3">
+                <p className="text-sm leading-relaxed text-slate-700">
+                  <strong>Pay what you want:</strong> the files are free. If FingerPrint helps your climbing, you can give what you
+                  want to support my road to LA 2028.
+                </p>
+                <button
+                  onClick={startContribution}
+                  disabled={contributing}
+                  className="mt-2 inline-flex items-center gap-2 rounded-lg bg-rose-500 px-3 py-1.5 text-xs font-black text-white shadow-sm transition-all hover:bg-rose-600 disabled:opacity-60"
+                >
+                  {contributing ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Heart className="h-3.5 w-3.5 fill-white" />}
+                  {contributing ? 'Opening…' : 'Give what you want'}
+                </button>
+                {contributionError && <p className="mt-1.5 text-xs font-semibold text-red-700">{contributionError}</p>}
+              </div>
+              <p className="mt-3 text-xs text-slate-400">Printed parts are used at your own risk.</p>
+            </div>
+            <div className="flex gap-2 md:flex-col">
+              <button
+                onClick={() => download('stl')}
+                disabled={!result || busy}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-black text-slate-800 transition-all hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <Download className="h-4 w-4" /> STL
+              </button>
+              <button
+                onClick={() => download('step')}
+                disabled={!result || busy}
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-2.5 text-sm font-black text-slate-800 transition-all hover:border-slate-400 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <Download className="h-4 w-4" /> STEP
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {checkout && (
+        <CheckoutDialog
+          clientSecret={checkout.clientSecret}
+          publishableKey={checkout.publishableKey}
+          livemode={checkout.livemode}
+          design={checkout.design}
+          priceCents={SET_PRICE_CENTS}
+          shippingUrl={`${ORDER_API}/shipping`}
+          onClose={() => setCheckout(null)}
+        />
+      )}
+
+      {order && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm" onClick={() => setOrder(null)}>
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="relative w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {order.state === 'checking' && (
+              <div className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-slate-600">
+                <Loader2 className="h-5 w-5 animate-spin" /> Checking your payment…
+              </div>
+            )}
+            {order.state === 'paid' && (
+              <>
+                <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Thank you for your order!</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Your FingerPrint set is being made to your measurements.
+                  {order.email && (
+                    <>
+                      {' '}
+                      We&apos;ll keep you posted at <strong>{order.email}</strong>.
+                    </>
+                  )}
+                </p>
+                <p className="mt-3 text-xs text-slate-400">Order number: {order.orderId}</p>
+              </>
+            )}
+            {order.state === 'pending' && (
+              <>
+                <Loader2 className="mx-auto h-10 w-10 animate-spin text-amber-500" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Payment is being processed</h2>
+                <p className="mt-2 text-sm text-slate-600">We&apos;ll start on your set as soon as the payment is confirmed.</p>
+                <p className="mt-3 text-xs text-slate-400">Order number: {order.orderId}</p>
+              </>
+            )}
+            {order.state === 'contribution_thanks' && (
+              <>
+                <Heart className="mx-auto h-12 w-12 fill-rose-500 text-rose-500" />
+                <h2 className="mt-3 text-xl font-black text-slate-950">Thank you for your contribution!</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  It means a lot and directly supports my road to LA 2028. Happy printing and strong fingers!
+                </p>
+              </>
+            )}
+            {order.state === 'cancelled' && (
+              <>
+                <h2 className="text-xl font-black text-slate-950">Checkout cancelled</h2>
+                <p className="mt-2 text-sm text-slate-600">No payment was made. Your design is still here whenever you&apos;re ready.</p>
+              </>
+            )}
+            {order.state === 'error' && (
+              <>
+                <h2 className="text-xl font-black text-slate-950">We couldn&apos;t check your order</h2>
+                <p className="mt-2 text-sm text-slate-600">
+                  If you completed the payment, your order is safe and linked to your design. We&apos;ll be in touch by email.
+                </p>
+              </>
+            )}
+            {order.state !== 'checking' && (
+              <button
+                onClick={() => setOrder(null)}
+                className="mt-5 w-full rounded-xl bg-slate-950 py-2.5 text-sm font-black text-white hover:bg-slate-800"
+              >
+                Close
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {gateKind && (
         <div
