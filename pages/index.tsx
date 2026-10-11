@@ -32,7 +32,7 @@ import { partnerService } from '../services/partnerService';
 import { Partner } from '../types/partner';
 import { useRouter } from 'next/router';
 import resultsData from '../public/data/results.json';
-import { PartnersWelcomeModal } from '../components/PartnersWelcomeModal';
+import { PartnersBanner } from '../components/PartnersBanner';
 
 // --- Utils ---
 function cn(...inputs: ClassValue[]) {
@@ -162,19 +162,6 @@ export default function ParaclimberSite() {
   // Partners & 25 Founding Partners Welcome Modal state
   const [partners, setPartners] = useState<Partner[]>([]);
   const [isLoadingPartners, setIsLoadingPartners] = useState(true);
-  const [isPartnersModalOpen, setIsPartnersModalOpen] = useState(false);
-
-  // Auto-open 25 Partners Welcome Modal on landing / refresh
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPartnersModalOpen(true);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleClosePartnersModal = () => {
-    setIsPartnersModalOpen(false);
-  };
 
   // Contact form state
   const [contactForm, setContactForm] = useState({
@@ -549,7 +536,7 @@ export default function ParaclimberSite() {
                 The Engineer-Athlete
               </div>
               <button 
-                onClick={() => setIsPartnersModalOpen(true)}
+                onClick={() => scrollToSection('partners-banner')}
                 className="inline-flex items-center gap-2 px-4 py-2 border border-white/30 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-xs font-bold uppercase tracking-wider text-white transition-all hover:scale-105 shadow-sm"
               >
                 <ShieldCheck className="w-4 h-4 text-white" />
@@ -592,6 +579,8 @@ export default function ParaclimberSite() {
           </div>
         </div>
       </section>
+
+      <PartnersBanner />
 
       {/* About Section */}
       <section id="about" className="py-32 bg-white">
@@ -1579,15 +1568,6 @@ export default function ParaclimberSite() {
         </div>
       )}
 
-      {/* 25 Founding Financial Partners Modal */}
-      <PartnersWelcomeModal 
-        isOpen={isPartnersModalOpen} 
-        onClose={handleClosePartnersModal}
-        onSelectBecomePartner={() => {
-          handleClosePartnersModal();
-          router.push('/become-partner');
-        }}
-      />
     </div>
   )
 }

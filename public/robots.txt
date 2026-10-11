@@ -8,6 +8,7 @@ Disallow: /leads/*
 Disallow: /payments
 Disallow: /comp-analysis
 Disallow: /comp-analysis/*
+Disallow: /contentplanning
 
 # Host
 Host: https://www.fre2028.la

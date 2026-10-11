@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 850 1200" width="850" height="1200">
+  <defs>
+    <style type="text/css">
+      <![CDATA[
+      .bg-card { fill: #0B0D11; rx: 20px; }
+      .border-card { stroke: #212631; stroke-width: 2px; fill: none; rx: 20px; }
+      
+      .font-sans {
+        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      }
+      
+      /* Header typography */
+      .brand-title {
+        font-weight: 900;
+        font-size: 46px;
+        fill: #FFFFFF;
+        letter-spacing: 3px;
+        text-anchor: middle;
+      }
+      
+      .brand-endorsement-top {
+        font-weight: 700;
+        font-size: 15px;
+        fill: #94A3B8;
+        letter-spacing: 3.5px;
+        text-anchor: middle;
+      }
+      
+      .tm-mark {
+        font-weight: 700;
+        font-size: 14px;
+        fill: #94A3B8;
+        letter-spacing: 1px;
+        text-anchor: start;
+      }
+      
+      .by-author {
+        font-weight: 500;
+        font-size: 16px;
+        fill: #94A3B8;
+        letter-spacing: 3px;
+        text-anchor: middle;
+      }
+      
+      .tagline-top {
+        font-weight: 500;
+        font-style: italic;
+        font-size: 15px;
+        fill: #E2E8F0;
+        letter-spacing: 0.8px;
+        text-anchor: middle;
+      }
+      
+      /* Section titles */
+      .section-heading {
+        font-weight: 800;
+        font-size: 20px;
+        fill: #FFCC00;
+        letter-spacing: 2px;
+      }
+      
+      /* Body typography */
+      .item-title {
+        font-weight: 700;
+        font-size: 16px;
+        fill: #FFFFFF;
+        letter-spacing: 0.5px;
+      }
+      
+      .item-desc {
+        font-weight: 400;
+        font-size: 14px;
+        fill: #94A3B8;
+        letter-spacing: 0.3px;
+      }
+      
+      .step-num {
+        font-weight: 900;
+        font-size: 14px;
+        fill: #0B0D11;
+        text-anchor: middle;
+      }
+      
+      /* Divider and Badges */
+      .divider-line {
+        stroke: #212631;
+        stroke-width: 1.5px;
+      }
+      
+      .step-badge {
+        fill: #FFCC00;
+      }
+      
+      .icon-bg {
+        fill: #161A22;
+        stroke: #2D333F;
+        stroke-width: 1px;
+      }
+      
+      /* Footer */
+      .footer-text {
+        font-weight: 700;
+        font-size: 14px;
+        fill: #94A3B8;
+        letter-spacing: 2px;
+        text-anchor: middle;
+      }
+      
+      .footer-sub {
+        font-weight: 500;
+        font-size: 12px;
+        fill: #64748B;
+        letter-spacing: 1.5px;
+        text-anchor: middle;
+      }
+      ]]>
+    </style>
+  </defs>
+
+  <!-- 8.5 x 12 cm Card Base (Margins: 20px padding) -->
+  <rect width="810" height="1160" x="20" y="20" class="bg-card" />
+  <rect width="810" height="1160" x="20" y="20" class="border-card" />
+
+  <!-- ==================== 1. HEADER ==================== -->
+  <!-- Crown perched on the 'O' apex -->
+  <g transform="translate(341, 68) rotate(14) scale(1.1)">
+    <path d="M -10 0 
+             L -13 -8 
+             L -5 -4.5 
+             L 0 -10.5 
+             L 5 -4.5 
+             L 13 -8 
+             L 10 0 
+             Q 0 -2.5 -10 0 
+             Z" 
+          fill="#FFCC00" 
+          stroke="#FFCC00" 
+          stroke-width="0.8" 
+          stroke-linejoin="round" />
+  </g>
+
+  <!-- Main Title: SLOPER KING -->
+  <text x="425" y="98" class="font-sans brand-title">SLOPER KING</text>
+  <text x="590" y="68" class="font-sans tm-mark">TM</text>
+
+  <!-- Brand Endorsement directly under SLOPER KING: A BAMBUM INNOVATION -->
+  <text x="425" y="128" class="font-sans brand-endorsement-top">A BAMBUM INNOVATION</text>
+
+  <!-- Sub-headers (Centered) -->
+  <text x="425" y="162" class="font-sans by-author">BY FRÉ LEYS</text>
+  <text x="425" y="190" class="font-sans tagline-top">Engineering my way to the Paralympics</text>
+
+  <line x1="80" y1="215" x2="770" y2="215" class="divider-line" />
+
+  <!-- ==================== 2. KEY ADVANTAGES ==================== -->
+  <g transform="translate(60, 252)">
+    <!-- Section Title -->
+    <text x="0" y="0" class="font-sans section-heading">KEY ADVANTAGES</text>
+
+    <!-- Advantage 1: 5-Angle Lever -->
+    <g transform="translate(0, 30)">
+      <rect x="0" y="0" width="36" height="36" rx="8" class="icon-bg" />
+      <!-- Gauge / Lever Icon -->
+      <path d="M 18 10 A 10 10 0 0 1 26 23 L 18 18 Z" fill="#FFCC00" />
+      <circle cx="18" cy="18" r="3" fill="#FFFFFF" />
+
+      <text x="52" y="18" class="font-sans item-title">5-Angle Biomechanical Lever</text>
+      <text x="52" y="38" class="font-sans item-desc">Shift the pivot cord to progressively increase wrist torque and open-hand recruitment.</text>
+    </g>
+
+    <!-- Advantage 2: 200g Portable -->
+    <g transform="translate(0, 100)">
+      <rect x="0" y="0" width="36" height="36" rx="8" class="icon-bg" />
+      <!-- Feather / Travel Icon -->
+      <path d="M 12 25 L 24 11 C 25 15 23 21 16 25 Z" fill="#FFCC00" />
+
+      <text x="52" y="18" class="font-sans item-title">Ultra-Portable &amp; Lightweight (200g)</text>
+      <text x="52" y="38" class="font-sans item-desc">Fits in any climbing pack for warm-ups at the crag, gym, home, or office.</text>
+    </g>
+
+    <!-- Advantage 3: True Dual-Tex Friction -->
+    <g transform="translate(0, 170)">
+      <rect x="0" y="0" width="36" height="36" rx="8" class="icon-bg" />
+      <!-- Texture Grid Icon -->
+      <rect x="12" y="12" width="5" height="5" rx="1" fill="#FFCC00" />
+      <rect x="19" y="12" width="5" height="5" rx="1" fill="#FFCC00" />
+      <rect x="12" y="19" width="5" height="5" rx="1" fill="#FFCC00" />
+      <rect x="19" y="19" width="5" height="5" rx="1" fill="#FFCC00" />
+
+      <text x="52" y="18" class="font-sans item-title">Real Sloper Friction Surface</text>
+      <text x="52" y="38" class="font-sans item-desc">Self-adhesive replaceable grip tape perfectly replicates comp-style slopers.</text>
+    </g>
+  </g>
+
+  <line x1="80" y1="500" x2="770" y2="500" class="divider-line" />
+
+  <!-- ==================== 3. HOW TO USE ==================== -->
+  <g transform="translate(60, 540)">
+    <!-- Section Title -->
+    <text x="0" y="0" class="font-sans section-heading">HOW TO USE &amp; TRAIN</text>
+
+    <!-- Step 1: Hanging & Suspension -->
+    <g transform="translate(0, 30)">
+      <circle cx="18" cy="18" r="14" class="step-badge" />
+      <text x="18" y="23" class="font-sans step-num">1</text>
+      <text x="48" y="16" class="font-sans item-title">Bodyweight Suspension</text>
+      <text x="48" y="36" class="font-sans item-desc">Hang the tool from a pull-up bar, tree branch, or carabiner for isometric open-hand hangs.</text>
+    </g>
+
+    <!-- Step 2: No-Hang Lifting -->
+    <g transform="translate(0, 105)">
+      <circle cx="18" cy="18" r="14" class="step-badge" />
+      <text x="18" y="23" class="font-sans step-num">2</text>
+      <text x="48" y="16" class="font-sans item-title">Lifting &amp; No-Hang Pulls</text>
+      <text x="48" y="36" class="font-sans item-desc">Attach a loading pin, kettlebell, or dumbbell to build pure wrist curl &amp; contact strength from the floor.</text>
+    </g>
+
+    <!-- Step 3: Difficulty Adjustment -->
+    <g transform="translate(0, 180)">
+      <circle cx="18" cy="18" r="14" class="step-badge" />
+      <text x="18" y="23" class="font-sans step-num">3</text>
+      <text x="48" y="16" class="font-sans item-title">Adjust Difficulty (Positions 1 to 5)</text>
+      <text x="48" y="36" class="font-sans item-desc">Slot 1 = Easy (stable/incut angle) • Slot 3 = Neutral sweet spot • Slot 5 = Max torque (brutal sloper).</text>
+    </g>
+
+    <!-- Step 4: Grip Maintenance -->
+    <g transform="translate(0, 255)">
+      <circle cx="18" cy="18" r="14" class="step-badge" />
+      <text x="18" y="23" class="font-sans step-num">4</text>
+      <text x="48" y="16" class="font-sans item-title">Chalk &amp; Grip Care</text>
+      <text x="48" y="36" class="font-sans item-desc">Use standard climbing chalk. Easily replace or customize grip tape strips when worn.</text>
+    </g>
+  </g>
+
+  <line x1="80" y1="875" x2="770" y2="875" class="divider-line" />
+
+  <!-- ==================== 4. TRAINING PROTOCOL HIGHLIGHT ==================== -->
+  <g transform="translate(60, 915)">
+    <!-- Box Container -->
+    <rect x="0" y="0" width="730" height="135" rx="12" class="icon-bg" />
+    
+    <text x="25" y="35" class="font-sans" font-weight="800" font-size="16px" fill="#FFCC00" letter-spacing="1px">RECOMMENDED STARTER PROTOCOL</text>
+    
+    <text x="25" y="65" class="font-sans item-desc" fill="#E2E8F0">
+      • <tspan font-weight="700" fill="#FFFFFF">Isometric Lifts:</tspan> 5 sets × 7-10 sec hold at 70-80% max effort (2 min rest).
+    </text>
+    <text x="25" y="92" class="font-sans item-desc" fill="#E2E8F0">
+      • <tspan font-weight="700" fill="#FFFFFF">Wrist Curl Overload:</tspan> 3 sets × 8-12 controlled lifts focusing on wrist flexion.
+    </text>
+    <text x="25" y="118" class="font-sans item-desc" fill="#94A3B8">
+      Start in Position 2-3 to warm up wrists before progressing to Position 4-5.
+    </text>
+  </g>
+
+  <!-- ==================== 5. FOOTER & ORIGIN ==================== -->
+  <text x="425" y="1105" class="font-sans footer-text">WWW.FRE2028.LA • BELGIUM</text>
+  <text x="425" y="1130" class="font-sans footer-sub">BAMBUM INNOVATION LAB • DESIGNED &amp; MANUFACTURED IN LEUVEN</text>
+
+</svg>

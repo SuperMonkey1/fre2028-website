@@ -26,6 +26,17 @@ service cloud.firestore {
       allow create, update, delete: if true; // Temporary for admin panel - TODO: add proper auth
     }
     
+    // Content planning votes (/contentplanning) - one doc per voter, written from the client
+    match /content_votes/{voterId} {
+      allow read: if true;
+      allow create, update: if request.resource.data.keys().hasOnly(['name', 'profile', 'scores', 'comments', 'updatedAt'])
+        && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && request.resource.data.profile is list
+        && request.resource.data.scores is map
+        && request.resource.data.comments is map;
+      allow delete: if false;
+    }
+
     // Default deny all other collections
     match /{document=**} {
       allow read, write: if false;

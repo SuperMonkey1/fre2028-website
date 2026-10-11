@@ -1,0 +1,17 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/*
+Disallow: /leads
+Disallow: /leads/*
+Disallow: /payments
+Disallow: /comp-analysis
+Disallow: /comp-analysis/*
+Disallow: /contentplanning
+
+# Host
+Host: https://www.fre2028.la
+
+# Sitemaps
+Sitemap: https://www.fre2028.la/sitemap.xml
