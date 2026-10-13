@@ -34,9 +34,9 @@ const PRODUCT_MEDIA: Record<string, { label: string; brief: string }> = {
     label: 'Sloper King in action',
     brief: 'Action shot of Fré gripping the Sloper King on a cable machine or on the wall, chalk dust in the air, forearm and wrist clearly in frame.',
   },
-  fingerprint: {
-    label: 'FingerPrint edge in hand',
-    brief: 'Close-up of a printed FingerPrint edge with a hand on it so the unequal finger lengths are visible. Optional: split-screen with the 3D render from the designer.',
+  'tailr-edge': {
+    label: 'Tailr Edge in hand',
+    brief: 'Close-up of a printed Tailr Edge with a hand on it so the unequal finger lengths are visible. Optional: split-screen with the 3D render from the designer.',
   },
 };
 
@@ -47,13 +47,13 @@ export default function BambumShopPage() {
         <title>BamBum | Climbing training tools by Fré Leys (PhD.)</title>
         <meta
           name="description"
-          content="BamBum designs smart climbing training tools: Sloper King™, the biomechanical sloper and pump trainer, and FingerPrint, custom crimp edges shaped to your hand."
+          content="BamBum designs smart climbing training tools: Sloper King™, the biomechanical sloper and pump trainer, and Tailr Edge, custom crimp edges shaped to your hand."
         />
         <meta property="og:title" content="BamBum | Climbing training tools by Fré Leys (PhD.)" />
-        <meta property="og:description" content="Sloper King™ and FingerPrint: two training tools for climbers, engineered by a World Cup para climber." />
+        <meta property="og:description" content="Sloper King™ and Tailr Edge: two training tools for climbers, engineered by a World Cup para climber." />
         <meta property="og:image" content="https://www.fre2028.la/images/sloperking-label.svg" />
-        <meta property="og:url" content="https://www.fre2028.la/bambum" />
-        <link rel="canonical" href="https://www.fre2028.la/bambum" />
+        <meta property="og:url" content="https://www.fre2028.la/shop" />
+        <link rel="canonical" href="https://www.fre2028.la/shop" />
       </Head>
 
       <main>
@@ -89,7 +89,7 @@ export default function BambumShopPage() {
                 kind="photo"
                 label="Hero product shot"
                 aspect="aspect-[4/3]"
-                brief="Both products together on a clean, chalky surface: the matte black Sloper King with its yellow crown and cord next to a printed FingerPrint edge. Warm light, shallow depth of field."
+                brief="Both products together on a clean, chalky surface: the matte black Sloper King with its yellow crown and cord next to a printed Tailr Edge. Warm light, shallow depth of field."
               />
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function BambumShopPage() {
           <div className="mx-auto max-w-4xl space-y-4 px-4 text-center md:px-8">
             <h2 className="text-3xl font-black tracking-tight text-slate-950">Questions, gyms or coaches?</h2>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
-              Want a Sloper King™ test-stand in your climbing gym, or have a question about FingerPrint? Get in touch.
+              Want a Sloper King™ test-stand in your climbing gym, or have a question about Tailr Edge? Get in touch.
             </p>
             <a
               href="mailto:fre@fre2028.la?subject=BamBum"

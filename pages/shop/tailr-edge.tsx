@@ -118,7 +118,7 @@ const parseHandQuery = (q: string | null): Inputs | null => {
 const inputClass =
   'w-full rounded-lg border border-slate-300 px-2.5 py-1 text-right text-sm font-bold focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-200';
 
-export default function FingerPrintPage() {
+export default function TailrEdgePage() {
   const [hand, setHand] = useState<Hand>('left');
   // One set of values per hand. Locked (default): both hands share the values of the hand being edited.
   const [handInputs, setHandInputs] = useState<Record<Hand, Inputs>>(() => ({ left: defaultInputs(), right: defaultInputs() }));
@@ -300,10 +300,10 @@ export default function FingerPrintPage() {
   }, [builtFor]);
 
   const fileBase = builtFor
-    ? `FingerPrint_${builtFor.hand}_R${round1(builtFor.params.offset.ring)}_M${round1(builtFor.params.offset.middle)}_I${round1(
+    ? `TailrEdge_${builtFor.hand}_R${round1(builtFor.params.offset.ring)}_M${round1(builtFor.params.offset.middle)}_I${round1(
         builtFor.params.offset.index,
       )}_W${FINGER_ORDER.map((f) => round1(builtFor.params.width[f])).join('-')}`
-    : 'FingerPrint';
+    : 'TailrEdge';
 
   const saveFile = async (kind: FileKind) => {
     if (!result) return;
@@ -369,35 +369,52 @@ export default function FingerPrintPage() {
 
   return (
     <BambumLayout
-      active="fingerprint"
+      active="tailr-edge"
       links={[
-        { label: 'Why FingerPrint', href: '#advantages' },
+        { label: 'Why Tailr Edge', href: '#advantages' },
         { label: 'How it works', href: '#tutorial' },
       ]}
     >
       <Head>
-        <title>FingerPrint | Custom Unequal Crimp Generator</title>
+        <title>Tailr Edge | Custom Unequal Crimp Generator</title>
         <meta
           name="description"
-          content="Enter the length difference and width of your fingers and download a FingerPrint crimp edge made for your hand, as STL or STEP."
+          content="Enter the length difference and width of your fingers and download a Tailr Edge crimp edge made for your hand, as STL or STEP."
         />
       </Head>
 
       <main className="mx-auto max-w-6xl px-4 pb-24">
         {/* Hero */}
         <section className="py-6 md:py-8">
-          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Custom unequal crimp</div>
+          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Made-to-measure crimp edge</div>
           <h1 className="max-w-3xl text-4xl font-medium leading-[1.1] tracking-tight text-slate-800 sm:text-5xl">
-            One edge <strong className="font-black text-slate-950">per finger</strong>,{' '}
+            Every finger,{' '}
             <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text font-black text-transparent">
-              shaped to your hand.
+              its share.
             </span>
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-700">
+          <p className="mt-3 text-xl font-bold text-slate-900">Made to your fingers. Kind to your pulleys.</p>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-700">
             Your fingers are not the same length, so why train on a straight edge? Enter how much longer your ring, middle and
-            index finger are than your pinky, and how wide each finger is. FingerPrint shapes each edge to match, shows you the
+            index finger are than your pinky, and how wide each finger is. Tailr Edge shapes each edge to match, shows you the
             result in 3D and gives you an STL to print or a STEP file to edit.
           </p>
+          <ul className="mt-6 grid max-w-3xl gap-x-8 gap-y-2.5 text-sm text-slate-700 sm:grid-cols-2">
+            {[
+              ['Made to measure', '3D-printed from your finger lengths'],
+              ['Even load', 'all 4 fingers loaded evenly, including your little finger'],
+              ['Open drag position', 'middle joint extended, minimal load on A2'],
+              ['No pressure points', 'so no skin problems on your little finger'],
+              ['Same position every time', 'consistent, measurable training'],
+            ].map(([title, text]) => (
+              <li key={title} className="flex items-start gap-2">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" />
+                <span>
+                  <strong className="text-slate-950">{title}:</strong> {text}
+                </span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* Configurator */}
@@ -587,33 +604,36 @@ export default function FingerPrintPage() {
 
         {/* Advantages */}
         <section id="advantages" className="scroll-mt-20 pt-20">
-          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Why FingerPrint</div>
+          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Why Tailr Edge</div>
           <h2 className="max-w-3xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-            More ergonomic. Fewer injuries.{' '}
-            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">More training. Stronger grip.</span>
+            Even load.{' '}
+            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
+              Every finger. Every session.
+            </span>
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            On a straight edge your longest fingers do most of the work while the others hang along. FingerPrint gives every
+            On a straight edge your longest fingers do most of the work while the others hang along. Tailr Edge gives every
             finger its own edge at its own length, so all four fingers grip the way your hand is built.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <Advantage icon={<HandIcon className="h-5 w-5" />} title="Ergonomic grip">
-              Each edge sits exactly where that fingertip lands, so your hand stays in a natural position instead of bending to fit a
-              straight line.
+            <Advantage icon={<Ruler className="h-5 w-5" />} title="Made to measure">
+              Each edge is 3D-printed from your own finger lengths and sits exactly where that fingertip lands, so your hand stays
+              in a natural position instead of bending to fit a straight line.
             </Advantage>
-            <Advantage icon={<Scale className="h-5 w-5" />} title="Load spread over every finger">
-              Every finger carries its own share. No single finger has to take the peak load while the others barely touch the edge.
+            <Advantage icon={<Scale className="h-5 w-5" />} title="Even load on all 4 fingers">
+              Every finger carries its own share, including your little finger. No single finger takes the peak load while the
+              others barely touch the edge.
             </Advantage>
-            <Advantage icon={<Layers className="h-5 w-5" />} title="Calluses spread evenly">
-              The skin load is shared too, so calluses don&apos;t build up on one finger the way they do on a straight edge.
+            <Advantage icon={<Layers className="h-5 w-5" />} title="No pressure points">
+              The load is spread across the skin too, so you don&apos;t get pressure points or skin problems on your little
+              finger.
             </Advantage>
-            <Advantage icon={<ShieldCheck className="h-5 w-5" />} title="Spares your A2 pulleys">
-              The A2 finger pulleys aren&apos;t loaded in this grip, so you can train hard without worrying about that pulley.
+            <Advantage icon={<ShieldCheck className="h-5 w-5" />} title="Open drag position, kind to your A2">
+              The middle joint stays extended, which puts minimal load on the A2 pulley. Train hard without worrying about it.
             </Advantage>
-            <Advantage icon={<Dumbbell className="h-5 w-5" />} title="More training volume">
-              Because the grip is ergonomic and less stressful on your fingers, you can train more: more sets, more sessions, less
-              time recovering.
+            <Advantage icon={<Dumbbell className="h-5 w-5" />} title="The same position every time">
+              Your hand lands in the same spot every session, so your training is consistent and measurable.
             </Advantage>
             <Advantage icon={<Target className="h-5 w-5" />} title="Carries over to real holds">
               Every finger is trained to its own maximum, which translates much better to three-finger drags and two-finger pocket
@@ -651,7 +671,7 @@ export default function FingerPrintPage() {
         <section className="mt-16 grid gap-4 md:grid-cols-3">
           <Note icon={<Ruler className="h-5 w-5" />} title="What do the numbers mean?">
             Each length is the distance between the pinky edge and that finger&apos;s edge, measured square to the 5° edge face. The
-            original FingerPrint uses {round1(DEFAULT_PARAMS.offset.ring)} / {round1(DEFAULT_PARAMS.offset.middle)} /{' '}
+            original Tailr Edge uses {round1(DEFAULT_PARAMS.offset.ring)} / {round1(DEFAULT_PARAMS.offset.middle)} /{' '}
             {round1(DEFAULT_PARAMS.offset.index)} mm (ring / middle / index) and edge widths of{' '}
             {FINGER_ORDER.map((f) => DEFAULT_PARAMS.width[f]).join(' / ')} mm (index / middle / ring / pinky).
           </Note>
@@ -682,7 +702,7 @@ export default function FingerPrintPage() {
                   CC BY-NC 4.0
                 </a>
               </div>
-              <h2 className="text-xl font-black text-slate-950">Own a 3D printer? Print your FingerPrint yourself.</h2>
+              <h2 className="text-xl font-black text-slate-950">Own a 3D printer? Print your Tailr Edge yourself.</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
                 I love open source and the maker community, so the design is free for personal use. Download the file for the hand
                 currently shown in the designer above, print it, tweak it, share your improvements.
@@ -692,17 +712,17 @@ export default function FingerPrintPage() {
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> Print it for yourself, your friends or your club
                 </li>
                 <li className="flex gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> Remix and share it, with credit to FingerPrint by
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" /> Remix and share it, with credit to Tailr Edge by
                   FRE2028
                 </li>
                 <li className="flex gap-2">
                   <X className="mt-0.5 h-4 w-4 shrink-0 text-rose-500" /> No commercial use: don&apos;t sell the files or printed
-                  FingerPrints
+                  Tailr Edges
                 </li>
               </ul>
               <div className="mt-4 rounded-xl border border-rose-100 bg-rose-50/60 p-3">
                 <p className="text-sm leading-relaxed text-slate-700">
-                  <strong>Pay what you want:</strong> the files are free. If FingerPrint helps your climbing, you can give what you
+                  <strong>Pay what you want:</strong> the files are free. If Tailr Edge helps your climbing, you can give what you
                   want to support my road to LA 2028.
                 </p>
                 <button
@@ -737,7 +757,7 @@ export default function FingerPrintPage() {
         </section>
       </main>
 
-      <AlsoFromBambum current="fingerprint" />
+      <AlsoFromBambum current="tailr-edge" />
 
       {checkout && (
         <CheckoutDialog
@@ -769,7 +789,7 @@ export default function FingerPrintPage() {
                 <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
                 <h2 className="mt-3 text-xl font-black text-slate-950">Thank you for your order!</h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  Your FingerPrint set is being made to your measurements.
+                  Your Tailr Edge set is being made to your measurements.
                   {order.email && (
                     <>
                       {' '}
@@ -850,7 +870,7 @@ export default function FingerPrintPage() {
               Get your {gateKind.toUpperCase()} file
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-slate-600">
-              FingerPrint is free. Subscribe to my newsletter and your custom file downloads right away. You only have to do this
+              Tailr Edge is free. Subscribe to my newsletter and your custom file downloads right away. You only have to do this
               once.
             </p>
             <form onSubmit={handleSubscribe} className="mt-4 space-y-3">

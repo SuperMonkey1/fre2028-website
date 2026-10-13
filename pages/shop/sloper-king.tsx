@@ -314,8 +314,8 @@ export default function SloperKingPage() {
         <meta property="og:title" content="Sloper King™ by BamBum | By Fré Leys (PhD.)" />
         <meta property="og:description" content="Master open slopers and delay forearm pump with the Sloper King. 800kg load cord, 5 cantilever angles, <100g." />
         <meta property="og:image" content="https://www.fre2028.la/images/sloperking-label.svg" />
-        <meta property="og:url" content="https://www.fre2028.la/bambum/sloper-king" />
-        <link rel="canonical" href="https://www.fre2028.la/bambum/sloper-king" />
+        <meta property="og:url" content="https://www.fre2028.la/shop/sloper-king" />
+        <link rel="canonical" href="https://www.fre2028.la/shop/sloper-king" />
       </Head>
 
 

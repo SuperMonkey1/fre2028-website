@@ -485,7 +485,7 @@ const parseHand = (hand) => {
   return {offset, width};
 };
 
-// Same format the /bambum/fingerprint page reads to reload a design: ring,middle,index,pinkyW,ringW,middleW,indexW
+// Same format the /shop/tailr-edge page reads to reload a design: ring,middle,index,pinkyW,ringW,middleW,indexW
 const handParam = (h) => [h.offset.ring, h.offset.middle, h.offset.index, h.width.pinky, h.width.ring, h.width.middle, h.width.index].join(",");
 const handSummary = (h) =>
   `Length ring ${h.offset.ring} / middle ${h.offset.middle} / index ${h.offset.index} mm; ` +
@@ -525,7 +525,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     const db = getFirestore();
     const orderRef = db.collection("fingerprint_orders").doc();
     const orderId = orderRef.id;
-    const designUrl = `https://fre2028.la/bambum/fingerprint?left=${handParam(left)}&right=${handParam(right)}`;
+    const designUrl = `https://fre2028.la/shop/tailr-edge?left=${handParam(left)}&right=${handParam(right)}`;
 
     await orderRef.set({
       orderId,
@@ -553,7 +553,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     params.append("line_items[0][price]", FINGERPRINT_PRICE_ID);
     params.append("line_items[0][quantity]", "1");
     params.append("client_reference_id", orderId);
-    params.append("return_url", `${origin}/bambum/fingerprint?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.append("return_url", `${origin}/shop/tailr-edge?order=success&session_id={CHECKOUT_SESSION_ID}`);
     params.append("billing_address_collection", "required");
     params.append("phone_number_collection[enabled]", "true");
     FINGERPRINT_SHIP_COUNTRIES.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
@@ -569,7 +569,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
       params.append(`metadata[${key}]`, value);
       params.append(`payment_intent_data[metadata][${key}]`, value);
     }
-    params.append("payment_intent_data[description]", `FingerPrint set - order ${orderId}`);
+    params.append("payment_intent_data[description]", `Tailr Edge set - order ${orderId}`);
 
     const session = await stripeRequest("checkout/sessions", {method: "POST", params});
     await orderRef.update({sessionId: session.id});
@@ -606,11 +606,11 @@ paymentApp.post("/fingerprint/contribution", async (req, res) => {
     params.append("submit_type", "donate");
     params.append("line_items[0][price]", FINGERPRINT_CONTRIBUTION_PRICE_ID);
     params.append("line_items[0][quantity]", "1");
-    params.append("success_url", `${origin}/bambum/fingerprint?contribution=thanks${designQuery}`);
-    params.append("cancel_url", `${origin}/bambum/fingerprint?contribution=cancelled${designQuery}`);
+    params.append("success_url", `${origin}/shop/tailr-edge?contribution=thanks${designQuery}`);
+    params.append("cancel_url", `${origin}/shop/tailr-edge?contribution=cancelled${designQuery}`);
     params.append("metadata[product]", "fingerprint_contribution");
     params.append("payment_intent_data[metadata][product]", "fingerprint_contribution");
-    params.append("payment_intent_data[description]", "FingerPrint - pay what you want");
+    params.append("payment_intent_data[description]", "Tailr Edge - pay what you want");
 
     const session = await stripeRequest("checkout/sessions", {method: "POST", params});
     res.status(200).json({url: session.url});
@@ -646,7 +646,7 @@ paymentApp.post("/fingerprint/shipping", async (req, res) => {
   }
 });
 
-// Called by the /bambum/fingerprint page when the customer returns from Stripe.
+// Called by the /shop/tailr-edge page when the customer returns from Stripe.
 paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
   try {
     const sessionId = req.params.sessionId;
@@ -711,9 +711,9 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
           await createTransporter().sendMail({
             from: process.env.EMAIL_USER || "your-email@gmail.com",
             to: ADMIN_EMAIL,
-            subject: `${session.livemode ? "" : "[TEST] "}New FingerPrint order ${orderId}`,
+            subject: `${session.livemode ? "" : "[TEST] "}New Tailr Edge order ${orderId}`,
             html: `
-              <h2>New FingerPrint order (paid${session.livemode ? "" : ", TEST"})</h2>
+              <h2>New Tailr Edge order (paid${session.livemode ? "" : ", TEST"})</h2>
               <p><strong>Order:</strong> ${orderId}<br>
               <strong>Customer:</strong> ${esc(session.customer_details?.name)} &lt;${esc(session.customer_details?.email)}&gt;<br>
               <strong>Phone:</strong> ${esc(session.customer_details?.phone)}<br>
@@ -724,7 +724,7 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
               ${esc(addr.postal_code)} ${esc(addr.city)}<br>${esc(addr.country)}</p>
               <p><strong>Left hand:</strong> ${esc(session.metadata.left)}<br>
               <strong>Right hand:</strong> ${esc(session.metadata.right)}</p>
-              <p><a href="${esc(session.metadata.designUrl)}">Open this design in the FingerPrint designer</a></p>
+              <p><a href="${esc(session.metadata.designUrl)}">Open this design in the Tailr Edge designer</a></p>
             `,
           });
           await orderRef.update({adminNotifiedAt: new Date()});
@@ -828,7 +828,7 @@ paymentApp.post("/sloperking/checkout", async (req, res) => {
     }
     params.append("line_items[0][quantity]", String(qty));
     params.append("client_reference_id", orderId);
-    params.append("return_url", `${origin}/bambum/sloper-king?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.append("return_url", `${origin}/shop/sloper-king?order=success&session_id={CHECKOUT_SESSION_ID}`);
     params.append("phone_number_collection[enabled]", "true");
     if (isPickup) {
       params.append("billing_address_collection", "auto");

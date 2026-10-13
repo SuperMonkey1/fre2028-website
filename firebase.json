@@ -33,8 +33,18 @@
     ],
     "redirects": [
       {
-        "regex": "^/(FingerPrint|fingerprint)$",
-        "destination": "/bambum/fingerprint",
+        "regex": "^/(FingerPrint|fingerprint|bambum/fingerprint|bambum/tailr-edge)$",
+        "destination": "/shop/tailr-edge",
+        "type": 301
+      },
+      {
+        "regex": "^/bambum/sloper-king$",
+        "destination": "/shop/sloper-king",
+        "type": 301
+      },
+      {
+        "regex": "^/bambum$",
+        "destination": "/shop",
         "type": 301
       }
     ],

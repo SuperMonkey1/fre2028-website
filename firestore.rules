@@ -29,8 +29,10 @@ service cloud.firestore {
     // Content planning votes (/contentplanning) - one doc per voter, written from the client
     match /content_votes/{voterId} {
       allow read: if true;
-      allow create, update: if request.resource.data.keys().hasOnly(['name', 'profile', 'scores', 'comments', 'updatedAt'])
+      allow create, update: if request.resource.data.keys().hasOnly(['name', 'profile', 'scores', 'comments', 'idea', 'favorite', 'updatedAt'])
         && request.resource.data.name is string && request.resource.data.name.size() <= 60
+        && (!('idea' in request.resource.data) || (request.resource.data.idea is string && request.resource.data.idea.size() <= 1000))
+        && (!('favorite' in request.resource.data) || request.resource.data.favorite == null || (request.resource.data.favorite is int && request.resource.data.favorite >= 1 && request.resource.data.favorite <= 16))
         && request.resource.data.profile is list
         && request.resource.data.scores is map
         && request.resource.data.comments is map;

@@ -1,7 +1,7 @@
 // Orders run through the `payments` Cloud Function (the static site has no API routes in production)
 export const PAYMENTS_API = 'https://us-central1-fre-2028-website.cloudfunctions.net/payments';
 
-export type ShopProductSlug = 'sloper-king' | 'fingerprint';
+export type ShopProductSlug = 'sloper-king' | 'tailr-edge';
 
 export const SHOP_PRODUCTS: {
   slug: ShopProductSlug;
@@ -17,7 +17,7 @@ export const SHOP_PRODUCTS: {
   {
     slug: 'sloper-king',
     name: 'Sloper King™',
-    href: '/bambum/sloper-king',
+    href: '/shop/sloper-king',
     eyebrow: 'Pump trainer',
     headline: 'Train the strength that hangboards forget.',
     blurb:
@@ -27,15 +27,15 @@ export const SHOP_PRODUCTS: {
     cta: 'View Sloper King™',
   },
   {
-    slug: 'fingerprint',
-    name: 'FingerPrint',
-    href: '/bambum/fingerprint',
-    eyebrow: 'Custom crimp edge',
-    headline: 'One edge per finger, shaped to your hand.',
+    slug: 'tailr-edge',
+    name: 'Tailr Edge',
+    href: '/shop/tailr-edge',
+    eyebrow: 'Made-to-measure crimp edge',
+    headline: 'Every finger, its share.',
     blurb:
-      'Your fingers are not the same length, so why train on a straight edge? Enter your measurements, see the result in 3D and get a set made for your hand.',
+      'Made to your fingers, kind to your pulleys. Enter your finger lengths, see the result in 3D and get an edge that loads all four fingers evenly.',
     price: '€49 per set',
-    points: ['Designed in your browser', 'Free STL & STEP files to print yourself', 'Or order a set made for you'],
-    cta: 'Design your FingerPrint',
+    points: ['3D-printed from your finger lengths', 'Open drag position, minimal load on A2', 'Free STL & STEP files to print yourself'],
+    cta: 'Design your Tailr Edge',
   },
 ];

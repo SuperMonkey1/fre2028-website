@@ -51,7 +51,7 @@ export default function FingerPrintCheckoutDialog({ design, priceCents, ...rest 
   return (
     <CheckoutDialog
       {...rest}
-      title="FingerPrint set"
+      title="Tailr Edge set"
       subtitle="Custom crimp edges for your left and right hand, made to your measurements."
       summary={
         design.locked ? (
@@ -64,7 +64,7 @@ export default function FingerPrintCheckoutDialog({ design, priceCents, ...rest 
         )
       }
       rows={[
-        { label: 'FingerPrint set (left + right)', value: euro(priceCents) },
+        { label: 'Tailr Edge set (left + right)', value: euro(priceCents) },
         { label: 'Shipping', value: '€2.99 Belgium · €4.99 rest of the EU' },
       ]}
     />

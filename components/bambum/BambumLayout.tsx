@@ -7,7 +7,7 @@ export type BambumActive = 'shop' | ShopProductSlug;
 
 export const PRODUCT_ICONS: Record<ShopProductSlug, typeof Dumbbell> = {
   'sloper-king': Dumbbell,
-  fingerprint: Fingerprint,
+  'tailr-edge': Fingerprint,
 };
 
 interface LayoutProps {
@@ -40,13 +40,13 @@ export default function BambumLayout({ active, links, cta, children }: LayoutPro
               <span className="hidden text-[11px] uppercase tracking-wider lg:inline">Fré2028.LA</span>
             </Link>
             <div className="h-4 w-px bg-slate-200" />
-            <Link href="/bambum" className="rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-slate-950">
+            <Link href="/shop" className="rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-slate-950">
               BamBum
             </Link>
           </div>
 
           <nav aria-label="Products" className="flex items-center gap-1 overflow-x-auto">
-            <Link href="/bambum" className={tabClass(active === 'shop')}>
+            <Link href="/shop" className={tabClass(active === 'shop')}>
               Shop
             </Link>
             {SHOP_PRODUCTS.map((p) => (
@@ -80,8 +80,8 @@ export default function BambumLayout({ active, links, cta, children }: LayoutPro
             <span>• By Fré Leys (PhD.)</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/bambum/sloper-king" className="transition-colors hover:text-slate-950">Sloper King™</Link>
-            <Link href="/bambum/fingerprint" className="transition-colors hover:text-slate-950">FingerPrint</Link>
+            <Link href="/shop/sloper-king" className="transition-colors hover:text-slate-950">Sloper King™</Link>
+            <Link href="/shop/tailr-edge" className="transition-colors hover:text-slate-950">Tailr Edge</Link>
             <Link href="/" className="transition-colors hover:text-slate-950">fre2028.la</Link>
             <Link href="/privacy" className="transition-colors hover:text-slate-950">Privacy</Link>
             <a href="mailto:fre@fre2028.la" className="transition-colors hover:text-slate-950">Contact</a>
