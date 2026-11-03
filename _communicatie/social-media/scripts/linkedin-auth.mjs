@@ -61,7 +61,10 @@ if (!CLIENT_ID || !CLIENT_SECRET) {
   process.exit(1);
 }
 
-const SCOPES = ['openid', 'profile', 'email', 'w_member_social'].join(' ');
+// --post-only asks just for posting rights, for when the app's "Sign In with LinkedIn using OpenID Connect"
+// product is missing. The existing LINKEDIN_PERSON_URN in .env.local is kept in that case.
+const POST_ONLY = process.argv.includes('--post-only');
+const SCOPES = (POST_ONLY ? ['w_member_social'] : ['openid', 'profile', 'email', 'w_member_social']).join(' ');
 const AUTH_URL = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${encodeURIComponent(
   CLIENT_ID
 )}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=${encodeURIComponent(SCOPES)}`;
@@ -172,7 +175,8 @@ const server = http.createServer(async (req, res) => {
 server.listen(PORT, () => {
   console.log(`\n👉 Opening browser for authorization:\n   ${AUTH_URL}\n`);
   const startCmd = process.platform === 'win32' ? 'start' : process.platform === 'darwin' ? 'open' : 'xdg-open';
-  exec(`${startCmd} "${AUTH_URL}"`, (err) => {
+  // On Windows, `start` treats the first quoted argument as the window title, so pass an empty one.
+  exec(process.platform === 'win32' ? `start "" "${AUTH_URL}"` : `${startCmd} "${AUTH_URL}"`, (err) => {
     if (err) console.log('If browser did not open, click the link above.');
   });
 });

@@ -22,7 +22,7 @@ export const SHOP_PRODUCTS: {
     headline: 'Train the strength that hangboards forget.',
     blurb:
       'An ultra-lightweight (<100g), biomechanically engineered sloper with 5 cantilever angles. Train the 4 forearm and wrist muscles that a hangboard skips.',
-    price: 'From €24.95',
+    price: 'Presale from €21',
     points: ['Single unit or complete pair', '800kg load cord, 5 difficulty angles', 'Made in Belgium'],
     cta: 'View Sloper King™',
   },

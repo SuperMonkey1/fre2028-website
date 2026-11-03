@@ -9,6 +9,7 @@
     "start": "next start",
     "auth:linkedin": "node _communicatie/social-media/scripts/linkedin-auth.mjs",
     "post:linkedin": "node _communicatie/social-media/scripts/publish-linkedin.mjs",
+    "content": "node _communicatie/social-media/scripts/content.mjs",
     "auth:instagram": "node _communicatie/social-media/scripts/instagram-auth.mjs",
     "post:instagram": "node _communicatie/social-media/scripts/publish-instagram.mjs",
     "post:facebook": "node _communicatie/social-media/scripts/publish-facebook.mjs",
@@ -19,6 +20,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.14",
     "@stripe/stripe-js": "^9.13.0",
     "@tailwindcss/typography": "^0.5.19",
     "clsx": "^2.0.0",

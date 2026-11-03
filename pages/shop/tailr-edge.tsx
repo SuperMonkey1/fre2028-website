@@ -561,7 +561,7 @@ export default function TailrEdgePage() {
                 <div className="text-xl font-black text-slate-950">{euro(SET_PRICE_CENTS)}</div>
               </div>
               <p className="mt-1 text-[11px] text-slate-600">
-                + shipping: €2.99 Belgium · €4.99 rest of the EU
+                + shipping (cost per country, shown at checkout)
               </p>
               <button
                 onClick={startOrder}
@@ -650,14 +650,15 @@ export default function TailrEdgePage() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Step n={1} title="Trace your hand" image={<TraceHandIllustration />}>
               You only need to measure one hand: the other is usually the same. Lay it flat on a sheet of paper, fingers relaxed and
-              together, as you would hold an edge, and trace around the fingertips with a pencil held vertically.
+              together, as you would hold an edge, and trace around the fingertips with a pencil held vertically. Then mark the first
+              crease of each finger (the one closest to the fingertip, at the distal interphalangeal joint) with a short line.
             </Step>
             <Step n={2} title="Measure the lengths" image={<MeasureIllustration />}>
-              Draw a line through the tip of your pinky, square to your fingers. That line is <strong>0</strong>. Measure how far the
-              ring, middle and index fingertips stick out past it, in millimetres.
+              Draw a line through the first crease of your pinky, square to your fingers. That line is <strong>0</strong>. Measure how
+              far the first crease of your ring, middle and index fingers sits past it, in millimetres.
             </Step>
             <Step n={3} title="Measure the widths" image={<WidthIllustration />}>
-              Measure each finger across its last joint, where the fingertip is widest, with a ruler held flat over the
+              Measure each finger across its first crease, where the fingertip joint is widest, with a ruler held flat over the
               finger. Do this for all four fingers. If the fingers feel cramped side by side on the edge, add 1–2 mm to each.
             </Step>
             <Step n={4} title="Enter your numbers" image={<EnterValuesIllustration />}>

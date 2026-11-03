@@ -18,7 +18,8 @@ import {
   Sparkles,
   ChevronDown,
   ChevronUp,
-  ShieldCheck
+  ShieldCheck,
+  Truck
 } from 'lucide-react';
 import { Partner } from '../types/partner';
 import { partnerService } from '../services/partnerService';
@@ -334,6 +335,13 @@ export default function AdminPage() {
               >
                 <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                 Leads Tracker (CSV)
+              </Link>
+              <Link
+                href="/admin/shipping"
+                className="px-3.5 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
+              >
+                <Truck className="w-3.5 h-3.5 text-zinc-500" />
+                Sloper King Shipping
               </Link>
               <Link 
                 href="/admin"

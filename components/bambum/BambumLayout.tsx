@@ -16,8 +16,21 @@ interface LayoutProps {
   links?: { label: string; href: string }[];
   /** Right-hand header action (e.g. an "Order now" button). */
   cta?: ReactNode;
+  /** Hide the shop links in the header (for landing pages like the presale). */
+  hideShopNav?: boolean;
   children: ReactNode;
 }
+
+// Panda logo from the bambuu_fitness app, next to the brand name
+const brand = (
+  <>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src="/images/bambum/panda-logo.webp" alt="BamBum logo" className="h-8 w-8 shrink-0 object-contain" />
+    <span className="rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-slate-950">
+      BamBum Innovation
+    </span>
+  </>
+);
 
 const tabClass = (on: boolean) =>
   `whitespace-nowrap rounded-lg px-3 py-1.5 text-xs font-extrabold tracking-wide transition-colors ${
@@ -25,7 +38,7 @@ const tabClass = (on: boolean) =>
   }`;
 
 /** Shared shell for the BamBum shop: brand header with product switcher, and footer. */
-export default function BambumLayout({ active, links, cta, children }: LayoutProps) {
+export default function BambumLayout({ active, links, cta, hideShopNav, children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-amber-400 selection:text-black">
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur-md">
@@ -40,21 +53,28 @@ export default function BambumLayout({ active, links, cta, children }: LayoutPro
               <span className="hidden text-[11px] uppercase tracking-wider lg:inline">Fré2028.LA</span>
             </Link>
             <div className="h-4 w-px bg-slate-200" />
-            <Link href="/shop" className="rounded bg-amber-400 px-1.5 py-0.5 text-[10px] font-black uppercase tracking-widest text-slate-950">
-              BamBum
-            </Link>
+            {hideShopNav ? (
+              <span className="flex items-center gap-2">{brand}</span>
+            ) : (
+              <Link href="/shop" className="flex items-center gap-2">
+                {brand}
+              </Link>
+            )}
+            <span className="whitespace-nowrap text-xs italic text-slate-500">by Fré Leys</span>
           </div>
 
-          <nav aria-label="Products" className="flex items-center gap-1 overflow-x-auto">
-            <Link href="/shop" className={tabClass(active === 'shop')}>
-              Shop
-            </Link>
-            {SHOP_PRODUCTS.map((p) => (
-              <Link key={p.slug} href={p.href} className={tabClass(active === p.slug)}>
-                {p.name}
+          {!hideShopNav && (
+            <nav aria-label="Products" className="flex items-center gap-1 overflow-x-auto">
+              <Link href="/shop" className={tabClass(active === 'shop')}>
+                Shop
               </Link>
-            ))}
-          </nav>
+              {SHOP_PRODUCTS.map((p) => (
+                <Link key={p.slug} href={p.href} className={tabClass(active === p.slug)}>
+                  {p.name}
+                </Link>
+              ))}
+            </nav>
+          )}
 
           <div className="flex shrink-0 items-center gap-4">
             {links && links.length > 0 && (
@@ -77,15 +97,17 @@ export default function BambumLayout({ active, links, cta, children }: LayoutPro
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row md:px-8">
           <div className="flex items-center gap-2">
             <span className="font-black tracking-wider text-slate-950">BAMBUM INNOVATION</span>
-            <span>• By Fré Leys (PhD.)</span>
+            <span>• By Fré Leys</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-            <Link href="/shop/sloper-king" className="transition-colors hover:text-slate-950">Sloper King™</Link>
-            <Link href="/shop/tailr-edge" className="transition-colors hover:text-slate-950">Tailr Edge</Link>
+            {!hideShopNav && (
+              <>
+                <Link href="/shop/sloper-king" className="transition-colors hover:text-slate-950">Sloper King™</Link>
+                <Link href="/shop/tailr-edge" className="transition-colors hover:text-slate-950">Tailr Edge</Link>
+              </>
+            )}
             <Link href="/" className="transition-colors hover:text-slate-950">fre2028.la</Link>
-            <Link href="/privacy" className="transition-colors hover:text-slate-950">Privacy</Link>
-            <a href="mailto:fre@fre2028.la" className="transition-colors hover:text-slate-950">Contact</a>
-          </div>
+            <Link href="/privacy" className="transition-colors hover:text-slate-950">Privacy</Link>          </div>
           <div className="text-slate-400">© {new Date().getFullYear()} Fré Leys. All rights reserved.</div>
         </div>
       </footer>

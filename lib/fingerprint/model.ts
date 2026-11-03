@@ -5,7 +5,8 @@
 // of the top plate (z = 20). Between x = 15 and x = 64 the body is a plain extrusion, so to change the
 // finger widths we keep both ends of the original (eyelets and cord fillets), rebuild the middle at the new
 // width, then rebuild each finger edge and re-drill the cord channel and the central load hole
-// (shrunk around its centre when an edge comes too close).
+// (shrunk around its centre when an edge comes too close). When an edge needs to sit deeper than the back allows,
+// everything behind SPLIT_Y (the side curves, eyelets and back wall) is moved back and the gap filled with top plate.
 import { importSTEP, makeBox, makeCylinder, Sketcher, type Shape3D } from 'replicad';
 import { COS, END_ZONE, HOLE, TILT, type EdgeLayout, type Hand } from './layout';
 
@@ -20,6 +21,8 @@ const PLATE_Z = 20; // underside of the top plate
 const BOTTOM_R = 5;
 const TOP_R = 3;
 const CUT_Y_START = -6; // front of the rebuilt region (inside the solid lip)
+/** In front of the side curves: here the end pieces are only the top plate, so the body can be split and stretched. */
+const SPLIT_Y = 20;
 
 function edgeProfile(x0: number, x1: number, E: number): Shape3D {
   const cb = { y: E - BOTTOM_R * TAN - BOTTOM_R / COS, z: BOTTOM_R };
@@ -64,32 +67,60 @@ function loadHoleVolume(x: number, k: number): Shape3D {
 }
 
 /** Plain middle section: front lip (R5 front fillet) and top plate, without finger edges. */
-function middleSection(x0: number, x1: number): Shape3D {
+function middleSection(x0: number, x1: number, backY: number): Shape3D {
   const r = 5;
   return new Sketcher('YZ', x0)
     .movePointerTo([CUT_Y_START, 0])
     .lineTo([FRONT_Y + r, 0])
     .threePointsArcTo([FRONT_Y, r], [FRONT_Y + r - r * Math.SQRT1_2, r - r * Math.SQRT1_2])
     .lineTo([FRONT_Y, TOP_Z])
-    .lineTo([BACK_Y, TOP_Z])
-    .lineTo([BACK_Y, PLATE_Z])
+    .lineTo([backY, TOP_Z])
+    .lineTo([backY, PLATE_Z])
     .lineTo([CUT_Y_START, PLATE_Z])
     .close()
     .extrude(x1 - x0) as Shape3D;
 }
 
+/** One end of the original body, split at SPLIT_Y into the part in front and the back (side curve, eyelet, back wall). */
+interface EndPiece {
+  front: Shape3D;
+  back: Shape3D;
+  /** x range of the top plate at SPLIT_Y */
+  x0: number;
+  x1: number;
+}
+
 export interface BaseParts {
-  left: Shape3D;
-  right: Shape3D;
+  left: EndPiece;
+  right: EndPiece;
+}
+
+function splitEnd(original: Shape3D, x0: number, x1: number): EndPiece {
+  const end = original.intersect(makeBox([x0 === 0 ? -50 : x0, -50, -10], [x1 === ORIGINAL_WIDTH ? 150 : x1, 100, 50])) as Shape3D;
+  return {
+    front: end.clone().intersect(makeBox([-50, -50, -10], [150, SPLIT_Y, 50])) as Shape3D,
+    back: end.intersect(makeBox([-50, SPLIT_Y, -10], [150, 100, 50])) as Shape3D,
+    x0,
+    x1,
+  };
 }
 
 /** Splits the original design into its two ends (eyelets, cord fillets), which are kept as-is. */
 export async function loadBase(stepBlob: Blob): Promise<BaseParts> {
   const original = (await importSTEP(stepBlob)) as Shape3D;
   return {
-    left: original.intersect(makeBox([-50, -50, -10], [END_ZONE, 100, 50])),
-    right: original.intersect(makeBox([ORIGINAL_WIDTH - END_ZONE, -50, -10], [150, 100, 50])),
+    left: splitEnd(original, 0, END_ZONE),
+    right: splitEnd(original, ORIGINAL_WIDTH - END_ZONE, ORIGINAL_WIDTH),
   };
+}
+
+/** An end piece with its back moved `d` further back and the gap filled with top plate. */
+function endPiece(p: EndPiece, d: number): Shape3D {
+  if (d <= 0) return p.front.clone().fuse(p.back.clone()) as Shape3D;
+  return p.front
+    .clone()
+    .fuse(makeBox([p.x0, SPLIT_Y, PLATE_Z], [p.x1, SPLIT_Y + d, TOP_Z]))
+    .fuse(p.back.clone().translate([0, d, 0])) as Shape3D;
 }
 
 /** Deepest original edge inside the end pieces (the index edge at y = 12). */
@@ -97,10 +128,10 @@ const ORIGINAL_END_EDGE_Y = 12;
 
 export function buildFingerPrint(base: BaseParts, layout: EdgeLayout, hand: Hand): Shape3D {
   const W = layout.width;
-  let shape = base.left
-    .clone()
-    .fuse(middleSection(END_ZONE, W - END_ZONE))
-    .fuse(base.right.clone().translate([W - ORIGINAL_WIDTH, 0, 0])) as Shape3D;
+  const d = layout.backShift;
+  let shape = endPiece(base.left, d)
+    .fuse(middleSection(END_ZONE, W - END_ZONE, BACK_Y + d))
+    .fuse(endPiece(base.right, d).translate([W - ORIGINAL_WIDTH, 0, 0])) as Shape3D;
 
   for (const c of layout.columns) {
     const E = layout.edgeY[c.finger];

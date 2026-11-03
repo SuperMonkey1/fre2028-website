@@ -18,7 +18,11 @@ type Video = {
   descNl?: string;
 };
 
+// `n` is the stable id stored in Firestore (scores, comments, favorite); the array order is the display order.
 const VIDEOS: Video[] = [
+  { n: 7, dateNl: 'Mei 2027', date: 'May 2027', titleNl: "Ik bouwde een doorzichtige klimmuur in mijn living", title: "I Built a See-Through Climbing Wall in My Living Room", audienceNl: 'Makers, doe-het-zelvers & Shorts-kijkers', audience: 'Makers, DIY & Shorts crossover', angle: 'Visual spectacle viral', views: '120k – 350k (~220k)', viral: true,
+    desc: "I used to vacuum form transparent climbing holds and cut them out of plastic sheets. I have a pile of sheets left, so what if I skip the cutting and put them side by side? A fully see-through wall. Plus: why vacuum-formed holds are greener and faster to make.",
+    descNl: "Vroeger vacuümvormde ik transparante grepen en sneed ze uit plastic platen. Ik heb nog een hoop platen over: wat als ik ze niet uitsnijd maar naast elkaar zet? Een volledig doorzichtige muur. Plus: waarom gevacuümvormde grepen groener en sneller te maken zijn." },
   { n: 1, dateNl: 'Nov 2026', date: 'Nov 2026', titleNl: "Waarom je slopers niet kunt houden (en hoe je dat oplost)", title: "Why You Can't Hold Slopers (And How to Fix It)", audienceNl: 'Kernklimmers & ingenieurs', audience: 'Core climbers & engineers', angle: 'Product launch #1: Sloper King', views: '35k – 80k (~55k)',
     desc: "Why do slopers load your fingers so differently from crimps or jugs? I failed at the World Championships on slopers, figured out why, and built the Sloper King. An explainer on forces and biomechanics, woven with tests, reactions and a sloper challenge.",
     descNl: "Waarom belasten slopers je vingers zo anders dan crimps of jugs? Ik faalde op het WK op slopers, zocht uit waarom en bouwde de Sloper King. Uitleg over krachten en biomechanica, afgewisseld met tests, reacties en een sloper-challenge." },
@@ -37,9 +41,6 @@ const VIDEOS: Video[] = [
   { n: 6, dateNl: 'Apr 2027', date: 'Apr 2027', titleNl: "3 Kilter Board-grepen die niemand ooit gebruikt (ik checkte 1.000 boulders)", title: "3 Kilter Board Holds Nobody Ever Uses (I Checked 1,000 Climbs)", audienceNl: 'Techneuten & boardklimmers', audience: 'Tech nerds & board climbers', angle: 'Data & app virality', views: '40k – 100k (~70k)',
     desc: "My Bambum app loaded all ~1,000 verified Kilter boulders. Which holds are used most, which barely, and which three are never used? We set fun boulders on those forgotten holds, plus routes that train one grip type: crimps, pinches or slopers.",
     descNl: "Mijn Bambum-app laadde alle ~1.000 geverifieerde Kilter-boulders in. Welke grepen worden veel gebruikt, welke amper, en welke drie nooit? We maken boulders op die vergeten grepen, en routes die één greepstijl trainen: crimps, pinches of slopers." },
-  { n: 7, dateNl: 'Mei 2027', date: 'May 2027', titleNl: "Ik bouwde een doorzichtige klimmuur in mijn living", title: "I Built a See-Through Climbing Wall in My Living Room", audienceNl: 'Makers, doe-het-zelvers & Shorts-kijkers', audience: 'Makers, DIY & Shorts crossover', angle: 'Visual spectacle viral', views: '120k – 350k (~220k)', viral: true,
-    desc: "I used to vacuum form transparent climbing holds and cut them out of plastic sheets. I have a pile of sheets left, so what if I skip the cutting and put them side by side? A fully see-through wall. Plus: why vacuum-formed holds are greener and faster to make.",
-    descNl: "Vroeger vacuümvormde ik transparante grepen en sneed ze uit plastic platen. Ik heb nog een hoop platen over: wat als ik ze niet uitsnijd maar naast elkaar zet? Een volledig doorzichtige muur. Plus: waarom gevacuümvormde grepen groener en sneller te maken zijn." },
   { n: 8, dateNl: 'Jun 2027', date: 'Jun 2027', titleNl: "Dit grijpt beter dan klimschoenen (getest door Hannes Van Duysen)", title: "This Grips Better Than Climbing Shoes (Tested by Hannes Van Duysen)", audienceNl: 'Klimmers & fysicanerds', audience: 'Climbers & physics geeks', angle: 'Domestic super-collab', views: '45k – 95k (~70k)',
     desc: "Making my prosthetics, I found materials with far more friction than climbing shoe rubber. They wear out fast, but for slab specialist Hannes Van Duysen that may not matter. I stick it over his shoes, we test it on slabs, and I explain why it grips better.",
     descNl: "Bij het maken van mijn protheses vond ik materialen met veel meer frictie dan klimschoenrubber. Ze slijten snel, maar voor slabspecialist Hannes Van Duysen maakt dat misschien niet uit. Ik plak het over zijn schoenen, we testen op slabs en ik leg uit waarom het beter grijpt." },
@@ -67,14 +68,20 @@ const VIDEOS: Video[] = [
   { n: 16, dateNl: 'Feb 2028', date: 'Feb 2028', titleNl: "Waarom lijken sommige klimmers moeiteloos? Ik heb het gemeten.", title: "Why Do Some Climbers Look Effortless? I Measured It.",
     desc: "Why do some climbers climb more efficiently than others? We fit every hold on a boulder with force sensors and let different climbers try it, maybe as a contest to use the least force. That shows exactly why some people and some moves cost less energy.",
     descNl: "Waarom klimmen sommige mensen efficiënter dan anderen? We rusten alle grepen van een boulder uit met krachtsensoren en laten verschillende klimmers klimmen, misschien als wedstrijd met zo weinig mogelijk kracht. Zo zien we waarom bepaalde bewegingen minder energie kosten.", audienceNl: 'B2B-zalen & hardwaretech', audience: 'B2B gyms & hardware tech', angle: 'Future product & finale', views: '30k – 70k (~50k)' },
+  { n: 17, dateNl: 'nnb', date: 'tbd', titleNl: "Warm water kan je herstel versnellen (ik bouwde een mouw om het te testen)", title: "Hot Water Could Speed Up Your Recovery (I Built a Sleeve to Test It)", audienceNl: 'Klimmers & herstelnerds', audience: 'Climbers & recovery nerds', angle: 'Recovery experiment', views: '–',
+    desc: "Research suggests that heating your muscles might help them recover faster. So I build a sleeve that wraps around my forearm with warm water running through it, and use it for an hour every day. Does it actually help? I test it, and explain what the research says.",
+    descNl: "Onderzoek suggereert dat je spieren opwarmen het herstel kan versnellen. Dus bouw ik een mouw rond mijn onderarm waar warm water door stroomt, en gebruik ik die elke dag een uur. Helpt het echt? Ik test het en leg uit wat het onderzoek zegt." },
 ];
+
+const POS: Record<number, number> = {};
+VIDEOS.forEach((v, i) => { POS[v.n] = i + 1; });
 
 type Lang = 'en' | 'nl';
 const LANG_KEY = 'fre2028-content-lang';
 const TXT = {
   en: {
     eyebrow: 'YouTube roadmap • Nov 2026 → Feb 2028',
-    h1a: '16 video ideas,',
+    h1a: '17 video ideas,',
     h1b: 'which should I make?',
     hey: 'Hey!',
     intro1: 'Fré is planning to start a YouTube channel about climbing, engineering and prosthetics, with one main video per month until LA 2028. For each idea, drag the slider from',
@@ -86,13 +93,13 @@ const TXT = {
     intro3: 'would you click on and watch this video? Add a comment if you want. Your answers are saved automatically as you go.',
     rated: 'rated', saving: 'saving…', saved: 'saved ✓', error: 'could not save, try again',
     q1: 'I am…', climber: 'a climber', maker: 'a maker', none: 'none of the above', pickMore: 'You can pick both climber and maker.',
-    nameQ: "What's your name?", namePh: 'Your name', notRated: 'not rated', comment: 'Comment (optional)', results: 'Results', voters: 'voters',
+    nameQ: "What's your name?", namePh: 'Your name', notRated: 'not rated', comment: 'Comment (optional)', results: 'Results', voters: 'voters', included: 'included', excludedNote: 'left out (rated 2 or fewer videos)', excludedTag: 'not counted', segAll: 'Everyone', segClimber: 'Climbers', segMaker: 'Makers', method: 'How the ranking works', methodText: "Everyone uses the scale differently: some give only 0s and 10s, others stay between 5 and 8. So each person's scores are first standardised against their own average and spread (a z-score). The ranking uses the average of those relative scores, converted back to a 0–10 scale. People who rated 2 or fewer videos are left out. The raw data is unchanged.", rawAvg: 'raw avg', top3: 'in personal top 3', favs: 'favourite', csv: 'Download raw data (CSV)', perVideo: 'individual scores', perPerson: 'Answers per person', submit: 'Save my answers', thanks: 'Thank you', thanksText: 'Your answers are saved. This is me doing my victory dance. You can still change your answers anytime.', close: 'Close', minion: 'Even the Minion approves', favLabel: 'Favourite', ideaLabel: 'Own idea',
     ideaQ: 'Do you have a video idea of your own?', ideaPh: 'Your idea (optional)',
     favQ: 'If you could watch only one of these videos, which would it be?', favPh: 'Choose a video…',
   },
   nl: {
     eyebrow: 'YouTube-planning • nov 2026 → feb 2028',
-    h1a: '16 video-ideeën,',
+    h1a: '17 video-ideeën,',
     h1b: 'welke moet ik maken?',
     hey: 'Hey!',
     intro1: 'Fré plant een YouTube-kanaal te starten over klimmen, engineering en protheses, met tot LA 2028 elke maand één hoofdvideo. Sleep bij elk idee de schuifbalk van',
@@ -104,7 +111,7 @@ const TXT = {
     intro3: 'zou jij op deze video klikken en hem bekijken? Voeg gerust een opmerking toe. Je antwoorden worden automatisch bewaard.',
     rated: 'beoordeeld', saving: 'bewaren…', saved: 'bewaard ✓', error: 'bewaren mislukt, probeer opnieuw',
     q1: 'Ik ben…', climber: 'een klimmer', maker: 'een maker', none: 'geen van beide', pickMore: 'Je mag zowel klimmer als maker kiezen.',
-    nameQ: 'Wat is je naam?', namePh: 'Je naam', notRated: 'niet beoordeeld', comment: 'Opmerking (optioneel)', results: 'Resultaten', voters: 'stemmers',
+    nameQ: 'Wat is je naam?', namePh: 'Je naam', notRated: 'niet beoordeeld', comment: 'Opmerking (optioneel)', results: 'Resultaten', voters: 'stemmers', included: 'meegeteld', excludedNote: "weggelaten (2 of minder video's beoordeeld)", excludedTag: 'niet meegeteld', segAll: 'Iedereen', segClimber: 'Klimmers', segMaker: 'Makers', method: 'Hoe de ranking werkt', methodText: "Iedereen gebruikt de schaal anders: sommigen geven enkel 0 en 10, anderen blijven tussen 5 en 8. Daarom worden de scores van elke persoon eerst gestandaardiseerd ten opzichte van hun eigen gemiddelde en spreiding (een z-score). De ranking gebruikt het gemiddelde van die relatieve scores, terug omgezet naar een schaal van 0–10. Wie 2 of minder video's beoordeelde, wordt weggelaten. De ruwe data blijft ongewijzigd.", rawAvg: 'ruw gem.', top3: 'in persoonlijke top 3', favs: 'favoriet', csv: 'Ruwe data downloaden (CSV)', perVideo: 'individuele scores', perPerson: 'Antwoorden per persoon', submit: 'Bewaar mijn antwoorden', thanks: 'Bedankt', thanksText: 'Je antwoorden zijn bewaard. Dit ben ik die mijn overwinningsdansje doet. Je kunt je antwoorden altijd nog aanpassen.', close: 'Sluiten', minion: 'Zelfs de Minion keurt het goed', favLabel: 'Favoriet', ideaLabel: 'Eigen idee',
     ideaQ: 'Heb je zelf een idee voor een video?', ideaPh: 'Jouw idee (optioneel)',
     favQ: "Als je maar één van deze video's mocht bekijken, welke zou het zijn?", favPh: 'Kies een video…',
   },
@@ -120,6 +127,10 @@ type Scores = Record<string, number>;
 type Comments = Record<string, string>;
 type Voter = { id: string; name: string; profile: string[]; scores: Scores; comments: Comments; idea: string; favorite: number | null };
 const PROFILES = ['climber', 'maker', 'none'] as const;
+
+const MIN_RATED = 3;
+const mean = (xs: number[]) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
+const ratedCount = (x: { scores: Scores }) => VIDEOS.filter((v) => typeof x.scores[v.n] === 'number').length;
 
 function newId() {
   return (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2) + Date.now().toString(36));
@@ -137,6 +148,9 @@ export default function ContentPlanning() {
   const [loaded, setLoaded] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [voters, setVoters] = useState<Voter[]>([]);
+  const [openVoter, setOpenVoter] = useState<string | null>(null);
+  const [thanks, setThanks] = useState(false);
+  const [segment, setSegment] = useState<'all' | 'climber' | 'maker'>('all');
   const dirty = useRef(false);
   const [lang, setLangState] = useState<Lang>('en');
   const L = TXT[lang];
@@ -171,15 +185,19 @@ export default function ContentPlanning() {
       .finally(() => setLoaded(true));
   }, []);
 
+  const save = () => {
+    if (!voterId) return Promise.resolve();
+    setStatus('saving');
+    return setDoc(doc(db, COLLECTION, voterId), { name, profile, scores, comments, idea, favorite, updatedAt: serverTimestamp() })
+      .then(() => setStatus('saved'))
+      .catch(() => setStatus('error'));
+  };
+
   // Debounced autosave to Firestore
   useEffect(() => {
     if (!voterId || !loaded || !dirty.current) return;
     setStatus('saving');
-    const t = setTimeout(() => {
-      setDoc(doc(db, COLLECTION, voterId), { name, profile, scores, comments, idea, favorite, updatedAt: serverTimestamp() })
-        .then(() => setStatus('saved'))
-        .catch(() => setStatus('error'));
-    }, 700);
+    const t = setTimeout(save, 700);
     return () => clearTimeout(t);
   }, [name, profile, scores, comments, idea, favorite, voterId, loaded]);
 
@@ -198,14 +216,50 @@ export default function ContentPlanning() {
   const setComment = (n: number, v: string) => { dirty.current = true; setComments((c) => ({ ...c, [n]: v.slice(0, 1000) })); };
   const rated = VIDEOS.filter((v) => scores[v.n] != null).length;
 
-  const averages = useMemo(() => {
-    const out: Record<number, { avg: number; count: number }> = {};
-    VIDEOS.forEach((v) => {
-      const vals = voters.map((x) => x.scores[v.n]).filter((x) => typeof x === 'number');
-      out[v.n] = { avg: vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0, count: vals.length };
+  // Results analysis. Raw Firestore data is never changed: low-effort responses are only left out of the calculation,
+  // and each respondent's scores are standardised (z-score) to remove differences in how people use the 0–10 scale.
+  const analysis = useMemo(() => {
+    const isValid = (x: Voter) => ratedCount(x) >= MIN_RATED;
+    const included = voters.filter((x) => isValid(x) && (segment === 'all' || x.profile.includes(segment)));
+    const excluded = voters.filter((x) => !isValid(x)).length;
+    const people = included.map((x) => {
+      const vals = VIDEOS.map((v) => x.scores[v.n]).filter((sc): sc is number => typeof sc === 'number');
+      const m = mean(vals);
+      const sd = Math.sqrt(mean(vals.map((sc) => (sc - m) ** 2)));
+      const third = [...vals].sort((a, b) => b - a)[Math.min(2, vals.length - 1)];
+      return { x, m, sd, third };
     });
-    return out;
-  }, [voters]);
+    const grandMean = mean(people.map((p) => p.m));
+    const spreads = people.map((p) => p.sd).filter((sd) => sd > 0);
+    const pooledSd = spreads.length ? mean(spreads) : 1;
+    const rows = VIDEOS.map((v) => {
+      const rated = people.filter((p) => typeof p.x.scores[v.n] === 'number');
+      const zs = rated.map((p) => (p.sd > 0 ? (p.x.scores[v.n] - p.m) / p.sd : 0));
+      const z = zs.length ? mean(zs) : 0;
+      return {
+        v,
+        n: rated.length,
+        z,
+        adjusted: Math.min(10, Math.max(0, grandMean + z * pooledSd)),
+        raw: rated.length ? mean(rated.map((p) => p.x.scores[v.n])) : 0,
+        top3: rated.length ? rated.filter((p) => p.x.scores[v.n] >= p.third).length / rated.length : 0,
+        favs: included.filter((x) => x.favorite === v.n).length,
+      };
+    }).sort((a, b) => b.z - a.z);
+    return { included, excluded, rows };
+  }, [voters, segment]);
+
+  const downloadCsv = () => {
+    const head = ['id', 'name', 'profile', 'rated', 'favorite', 'idea', ...VIDEOS.map((v) => `score_${v.n}`), ...VIDEOS.map((v) => `comment_${v.n}`)];
+    const esc = (val: unknown) => `"${String(val ?? '').replace(/"/g, '""')}"`;
+    const lines = voters.map((x) => [x.id, x.name, x.profile.join('+'), ratedCount(x), x.favorite ?? '', x.idea, ...VIDEOS.map((v) => x.scores[v.n] ?? ''), ...VIDEOS.map((v) => x.comments[v.n] ?? '')].map(esc).join(','));
+    const blob = new Blob(['\ufeff' + [head.map(esc).join(','), ...lines].join('\n')], { type: 'text/csv;charset=utf-8' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'content_votes_raw.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800">
@@ -215,12 +269,12 @@ export default function ContentPlanning() {
       </Head>
 
       <div className="mx-auto max-w-3xl px-4 pb-24 pt-10 md:pt-14">
-        <div className="mb-4 flex items-center justify-between gap-2">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-slate-500">
-            <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+        <div className="mb-4 flex items-start justify-between gap-3">
+          <div className="flex min-w-0 items-start gap-2 pt-1.5 text-xs font-bold uppercase leading-snug tracking-widest text-slate-500">
+            <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
             <span>{L.eyebrow}</span>
           </div>
-          <div className="flex overflow-hidden rounded-full border border-slate-300 bg-white text-xs font-black">
+          <div className="flex shrink-0 overflow-hidden rounded-full border border-slate-300 bg-white text-xs font-black">
             {(['en', 'nl'] as Lang[]).map((l) => (
               <button
                 key={l}
@@ -243,33 +297,102 @@ export default function ContentPlanning() {
 
         {showResults && (
           <div className="mb-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-            <h2 className="mb-3 text-lg font-black text-slate-950">{L.results} ({voters.length} {L.voters})</h2>
-            <ul className="space-y-2 text-sm">
-              {[...VIDEOS].sort((a, b) => averages[b.n].avg - averages[a.n].avg).map((v) => (
-                <li key={v.n} className="flex items-start gap-3">
-                  <span className={`shrink-0 w-14 text-center font-bold rounded px-2 py-0.5 ${averages[v.n].count ? TONE_BADGE[tone(averages[v.n].avg)] : 'bg-slate-100 text-slate-500'}`}>
-                    {averages[v.n].count ? averages[v.n].avg.toFixed(1) : '–'}
+            <h2 className="text-lg font-black text-slate-950">{L.results}</h2>
+            <p className="mt-1 text-sm text-slate-500">
+              {analysis.included.length} {L.included} · {analysis.excluded} {L.excludedNote}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {([['all', L.segAll], ['climber', L.segClimber], ['maker', L.segMaker]] as const).map(([k, label]) => (
+                <button
+                  key={k}
+                  type="button"
+                  onClick={() => setSegment(k)}
+                  aria-pressed={segment === k}
+                  className={`rounded-full border px-3 py-1 text-xs font-bold ${segment === k ? 'border-amber-400 bg-amber-400 text-slate-950' : 'border-slate-300 text-slate-600 hover:bg-slate-100'}`}
+                >
+                  {label}
+                </button>
+              ))}
+              <button type="button" onClick={downloadCsv} className="ml-auto rounded-full border border-slate-300 px-3 py-1 text-xs font-bold text-slate-600 hover:bg-slate-100">
+                ⬇ {L.csv}
+              </button>
+            </div>
+            <details className="mt-3 rounded-xl bg-slate-50 px-3 py-2 text-sm text-slate-600">
+              <summary className="cursor-pointer font-bold text-slate-800">{L.method}</summary>
+              <p className="mt-2 leading-relaxed">{L.methodText}</p>
+            </details>
+            <ol className="mt-4 space-y-3 text-sm">
+              {analysis.rows.map((r, i) => (
+                <li key={r.v.n} className="flex items-start gap-3">
+                  <span className="w-5 shrink-0 pt-0.5 text-right font-black text-slate-400">{i + 1}</span>
+                  <span className={`shrink-0 w-12 text-center font-bold rounded px-1.5 py-0.5 ${r.n ? TONE_BADGE[tone(r.adjusted)] : 'bg-slate-100 text-slate-500'}`}>
+                    {r.n ? r.adjusted.toFixed(1) : '–'}
                   </span>
-                  <div>
-                    <div>{v.n}. {lang === 'nl' ? v.titleNl : v.title}</div>
-                    {voters.map((x) => (x.scores[v.n] != null || x.comments[v.n]) ? (
-                      <div key={x.id} className="text-slate-500">
-                        {x.name}{x.profile.length ? ` (${x.profile.join(' + ')})` : ''}: <b className="text-slate-800">{x.scores[v.n] ?? '–'}</b>{x.comments[v.n] ? ` — ${x.comments[v.n]}` : ''}
-                      </div>
-                    ) : null)}
+                  <div className="min-w-0">
+                    <div className="font-bold text-slate-900">#{POS[r.v.n]} {lang === 'nl' ? r.v.titleNl : r.v.title}</div>
+                    <div className="text-xs text-slate-500">
+                      z {r.z >= 0 ? '+' : ''}{r.z.toFixed(2)} · {L.rawAvg} {r.raw.toFixed(1)} · {Math.round(r.top3 * 100)}% {L.top3} · {r.favs}× {L.favs} · n={r.n}
+                    </div>
+                    <details className="text-xs text-slate-500">
+                      <summary className="cursor-pointer">{L.perVideo}</summary>
+                      {analysis.included.map((x) => (x.scores[r.v.n] != null || x.comments[r.v.n]) ? (
+                        <div key={x.id}>
+                          {x.name}{x.profile.length ? ` (${x.profile.join(' + ')})` : ''}: <b className="text-slate-800">{x.scores[r.v.n] ?? '–'}</b>{x.comments[r.v.n] ? ` — ${x.comments[r.v.n]}` : ''}
+                        </div>
+                      ) : null)}
+                    </details>
                   </div>
                 </li>
               ))}
-            </ul>
+            </ol>
             {voters.some((x) => x.idea || x.favorite != null) && (
               <div className="mt-4 space-y-1 border-t border-slate-200 pt-3 text-sm text-slate-500">
                 {voters.map((x) => (x.idea || x.favorite != null) ? (
                   <div key={x.id}>
-                    {x.name}: {x.favorite != null ? <b className="text-slate-800">#{x.favorite}</b> : null}{x.idea ? ` — ${x.idea}` : ''}
+                    {x.name}: {x.favorite != null ? <b className="text-slate-800">#{POS[x.favorite]}</b> : null}{x.idea ? ` — ${x.idea}` : ''}
                   </div>
                 ) : null)}
               </div>
             )}
+            <h3 className="mt-5 mb-2 border-t border-slate-200 pt-4 font-black text-slate-950">{L.perPerson}</h3>
+            <ul className="space-y-2 text-sm">
+              {voters.map((x) => {
+                const open = openVoter === x.id;
+                const fav = VIDEOS.find((v) => v.n === x.favorite);
+                return (
+                  <li key={x.id} className="rounded-xl border border-slate-200">
+                    <button
+                      type="button"
+                      onClick={() => setOpenVoter(open ? null : x.id)}
+                      aria-expanded={open}
+                      className="flex w-full items-center gap-2 px-3 py-2.5 text-left hover:bg-slate-50"
+                    >
+                      <span className="font-bold text-slate-900">{x.name}</span>
+                      {ratedCount(x) < MIN_RATED ? <span className="rounded bg-slate-100 px-1.5 text-xs text-slate-400">{L.excludedTag}</span> : null}
+                      {x.profile.length ? <span className="text-slate-500">({x.profile.join(' + ')})</span> : null}
+                      <span className="ml-auto text-slate-400">{VIDEOS.filter((v) => x.scores[v.n] != null).length} / {VIDEOS.length} {open ? '▴' : '▾'}</span>
+                    </button>
+                    {open && (
+                      <div className="space-y-1.5 border-t border-slate-200 px-3 py-3 text-slate-600">
+                        {fav && <div><b className="text-slate-800">{L.favLabel}:</b> {POS[fav.n]}. {lang === 'nl' ? fav.titleNl : fav.title}</div>}
+                        {x.idea && <div><b className="text-slate-800">{L.ideaLabel}:</b> {x.idea}</div>}
+                        {VIDEOS.map((v) => (
+                          <div key={v.n} className="flex items-start gap-3">
+                            <span className={`shrink-0 w-10 text-center font-bold rounded px-1.5 py-0.5 ${x.scores[v.n] != null ? TONE_BADGE[tone(x.scores[v.n])] : 'bg-slate-100 text-slate-500'}`}>
+                              {x.scores[v.n] ?? '–'}
+                            </span>
+                            <div>
+                              <div>{POS[v.n]}. {lang === 'nl' ? v.titleNl : v.title}</div>
+                              {x.comments[v.n] ? <div className="text-slate-500 italic">{x.comments[v.n]}</div> : null}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         )}
 
@@ -320,30 +443,23 @@ export default function ContentPlanning() {
           const t = s != null ? tone(s) : null;
           return (
             <div key={v.n} className={`bg-white border border-slate-200 border-l-4 rounded-3xl p-5 mb-4 shadow-sm ${t ? TONE_BORDER[t] : 'border-l-slate-200'}`}>
-              <div className="flex gap-3 items-start">
-                <div className="shrink-0 w-9 h-9 rounded-full border border-amber-300 bg-amber-100 text-amber-700 grid place-items-center font-black">{v.n}</div>
-                <div>
-                  <p className="font-black text-lg leading-snug text-slate-950">{lang === 'nl' ? v.titleNl : v.title}</p>
-                  {(lang === 'nl' ? v.descNl : v.desc) && (
-                    <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{lang === 'nl' ? v.descNl : v.desc}</p>
-                  )}
-                </div>
+              <div className="flex gap-3 items-start justify-between">
+                <p className="font-black text-lg leading-snug text-slate-950">{lang === 'nl' ? v.titleNl : v.title}</p>
+                <span className="shrink-0 pt-1 text-xs font-black text-amber-600">#{POS[v.n]}</span>
               </div>
+              {(lang === 'nl' ? v.descNl : v.desc) && (
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{lang === 'nl' ? v.descNl : v.desc}</p>
+              )}
               <div className="h-3" />
-              <div className="flex items-center gap-3.5">
-                <input
-                  type="range" min={0} max={10} step={1}
-                  value={s ?? 5}
-                  onChange={(e) => setScore(v.n, Number(e.target.value))}
-                  className="flex-1 h-7 cursor-pointer accent-amber-500"
-                  aria-label={`Score for video ${v.n}`}
-                />
-                <span className={`shrink-0 min-w-[68px] text-center font-bold rounded-lg px-2 py-1 ${t ? TONE_BADGE[t] : 'bg-slate-100 text-slate-500 border border-slate-200'}`}>
-                  {s != null ? `${s} / 10` : L.notRated}
-                </span>
-              </div>
-              <div className="flex justify-between text-xs text-slate-400 mt-0.5 mr-[82px]">
-                <span>0 · {L.notInt}</span><span>10 · {L.veryInt}</span>
+              <input
+                type="range" min={0} max={10} step={1}
+                value={s ?? 5}
+                onChange={(e) => setScore(v.n, Number(e.target.value))}
+                className={`w-full h-7 cursor-pointer ${s != null ? 'accent-amber-500' : 'accent-slate-300'}`}
+                aria-label={`Score for video ${POS[v.n]}`}
+              />
+              <div className="flex justify-between gap-2 text-xs text-slate-400">
+                <span>0 · {L.notInt}</span><span className="text-right">10 · {L.veryInt}</span>
               </div>
               <textarea
                 value={comments[v.n] || ''}
@@ -364,7 +480,7 @@ export default function ContentPlanning() {
           >
             <option value="">{L.favPh}</option>
             {VIDEOS.map((v) => (
-              <option key={v.n} value={v.n}>{v.n}. {lang === 'nl' ? v.titleNl : v.title}</option>
+              <option key={v.n} value={v.n}>{POS[v.n]}. {lang === 'nl' ? v.titleNl : v.title}</option>
             ))}
           </select>
         </div>
@@ -379,7 +495,97 @@ export default function ContentPlanning() {
           />
         </div>
 
+        <button
+          type="button"
+          onClick={() => { save(); setThanks(true); }}
+          className="w-full rounded-2xl bg-amber-400 px-5 py-4 text-lg font-black text-slate-950 shadow-sm transition-transform hover:scale-[1.01] hover:bg-amber-300 active:scale-[0.99]"
+        >
+          {L.submit} 🎉
+        </button>
+
       </div>
+
+      {thanks && (
+        <div className="fixed inset-0 z-50 grid place-items-center overflow-hidden bg-slate-950/60 p-4 backdrop-blur-sm" onClick={() => setThanks(false)}>
+          <Confetti />
+          <div className="relative w-full max-w-sm rounded-3xl bg-white p-6 text-center shadow-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="cp-dance mx-auto h-56 w-56 overflow-hidden rounded-full border-4 border-amber-400 shadow-lg">
+              <img src="/images/web/me_winning_innsbruck_web.webp" alt="Fré celebrating" className="h-full w-full object-cover" style={{ objectPosition: '22% 50%', transform: 'scale(1.9)', transformOrigin: '22% 50%' }} />
+            </div>
+            <div className="cp-pop absolute -right-3 top-28 w-24 rotate-12 rounded-2xl border-4 border-white bg-white shadow-xl">
+              <img src="/images/me_la_minion.jpg" alt="" className="h-28 w-full rounded-xl object-cover" style={{ objectPosition: '50% 40%' }} />
+              <p className="px-1 py-1 text-[10px] font-bold leading-tight text-slate-600">{L.minion}</p>
+            </div>
+            <h2 className="mt-5 text-3xl font-black text-slate-950">{L.thanks}{name.trim() ? `, ${name.trim()}` : ''}! 🙌</h2>
+            <p className="mt-2 text-sm leading-relaxed text-slate-600">{L.thanksText}</p>
+            <button type="button" onClick={() => setThanks(false)} className="mt-5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white hover:bg-slate-700">
+              {L.close}
+            </button>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes cp-dance {
+          0%, 100% { transform: rotate(-8deg) translateY(0); }
+          25% { transform: rotate(8deg) translateY(-12px) scale(1.04); }
+          50% { transform: rotate(-6deg) translateY(0); }
+          75% { transform: rotate(10deg) translateY(-8px) scale(0.98); }
+        }
+        @keyframes cp-pop {
+          0% { transform: scale(0) rotate(-30deg); }
+          70% { transform: scale(1.15) rotate(18deg); }
+          100% { transform: scale(1) rotate(12deg); }
+        }
+        @keyframes cp-fall {
+          0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 1; }
+          100% { transform: translate3d(var(--drift), 110vh, 0) rotate(720deg); opacity: 0.9; }
+        }
+        .cp-dance { animation: cp-dance 0.9s ease-in-out infinite; }
+        .cp-pop { animation: cp-pop 0.6s 0.8s cubic-bezier(.3,1.6,.5,1) both; }
+        .cp-confetti { position: absolute; top: 0; animation: cp-fall linear forwards; }
+        @media (prefers-reduced-motion: reduce) {
+          .cp-dance, .cp-pop, .cp-confetti { animation: none; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+const CONFETTI_COLORS = ['#f59e0b', '#fbbf24', '#10b981', '#3b82f6', '#ef4444', '#a855f7', '#ec4899'];
+
+function Confetti() {
+  const pieces = useMemo(
+    () =>
+      Array.from({ length: 140 }, (_, i) => ({
+        left: Math.random() * 100,
+        delay: Math.random() * 1.5,
+        duration: 2.5 + Math.random() * 2.5,
+        drift: (Math.random() - 0.5) * 200,
+        size: 6 + Math.random() * 8,
+        color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+        round: Math.random() < 0.3,
+      })),
+    []
+  );
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden>
+      {pieces.map((p, i) => (
+        <span
+          key={i}
+          className="cp-confetti"
+          style={{
+            left: `${p.left}%`,
+            width: p.size,
+            height: p.round ? p.size : p.size * 0.45,
+            background: p.color,
+            borderRadius: p.round ? '50%' : 2,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            ['--drift' as string]: `${p.drift}px`,
+          }}
+        />
+      ))}
     </div>
   );
 }

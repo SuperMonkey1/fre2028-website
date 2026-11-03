@@ -36,6 +36,8 @@ export const FINGER_ORDER: Finger[] = ['index', 'middle', 'ring', 'pinky'];
 export const END_ZONE = 15;
 const END_ZONE_MAX_Y = 22.5;
 const CENTRE_MAX_Y = 44;
+/** How far the back of the body (side curves, eyelets, back wall) may be moved back to make room for deep edges. */
+export const MAX_BACK_SHIFT = 30;
 
 export interface Column {
   finger: Finger;
@@ -51,6 +53,8 @@ export interface EdgeLayout {
   edgeY: Record<Finger, number>;
   /** How far all edges were pushed back so no edge cuts into the cord channel. */
   shift: number;
+  /** How far the back of the body was moved back so the deepest edge fits (0 = original body). */
+  backShift: number;
   errors: string[];
   /** Scale of the central load hole (1 = original size, 0 = no hole). */
   holeScale: number;
@@ -80,7 +84,7 @@ export function computeLayout(p: FingerParams): EdgeLayout {
   const holeX = width / 2;
 
   if (errors.length) {
-    return { columns, width, edgeY: { pinky: 0, ring: 0, middle: 0, index: 0 }, shift: 0, errors, holeScale: 0, holeX };
+    return { columns, width, edgeY: { pinky: 0, ring: 0, middle: 0, index: 0 }, shift: 0, backShift: 0, errors, holeScale: 0, holeX };
   }
 
   const rel: Record<Finger, number> = {
@@ -92,14 +96,17 @@ export function computeLayout(p: FingerParams): EdgeLayout {
   // An edge may not sit in front of the original pinky edge, or it would cut into the cord channel.
   const shift = Math.max(0, -Math.min(rel.ring, rel.middle, rel.index));
   const edgeY = {} as Record<Finger, number>;
+  // An edge deeper than the body allows moves the whole back of the body back (rounded up to 0.5 mm)
+  let backShift = 0;
   for (const c of columns) {
     const E = (edgeY[c.finger] = rel[c.finger] + shift);
-    const maxY = maxEdgeY(c, width);
-    if (E > maxY + 1e-6) {
-      errors.push(`The ${c.finger} edge would end up ${(E - maxY).toFixed(1)} mm too far back to fit the body.`);
-    }
+    backShift = Math.max(backShift, E - maxEdgeY(c, width));
   }
-  return { columns, width, edgeY, shift, errors, holeScale: computeHoleScale(columns, edgeY, holeX), holeX };
+  backShift = backShift > 1e-6 ? Math.ceil(backShift * 2) / 2 : 0;
+  if (backShift > MAX_BACK_SHIFT) {
+    errors.push(`The edges are too far apart: the body would have to be ${backShift.toFixed(1)} mm longer (at most ${MAX_BACK_SHIFT} mm).`);
+  }
+  return { columns, width, edgeY, shift, backShift, errors, holeScale: computeHoleScale(columns, edgeY, holeX), holeX };
 }
 
 function maxEdgeY(c: Column, width: number) {

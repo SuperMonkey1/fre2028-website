@@ -29,6 +29,10 @@ const SHARED = [
   },
 ];
 
+const PRODUCT_PHOTOS: Record<string, { src: string; alt: string }> = {
+  'sloper-king': { src: '/sloperking/presale/2.jpg', alt: 'Five Sloper King units with orange load cords on a wooden table' },
+};
+
 const PRODUCT_MEDIA: Record<string, { label: string; brief: string }> = {
   'sloper-king': {
     label: 'Sloper King in action',
@@ -107,13 +111,25 @@ export default function BambumShopPage() {
                     href={p.href}
                     className="group flex flex-col rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:border-slate-400 hover:bg-white hover:shadow-xl md:p-8"
                   >
-                    <MediaPlaceholder
-                      kind="photo"
-                      label={PRODUCT_MEDIA[p.slug].label}
-                      brief={PRODUCT_MEDIA[p.slug].brief}
-                      aspect="aspect-[16/10]"
-                      className="mb-6"
-                    />
+                    {PRODUCT_PHOTOS[p.slug] ? (
+                      <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+                        <Image
+                          src={PRODUCT_PHOTOS[p.slug].src}
+                          alt={PRODUCT_PHOTOS[p.slug].alt}
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 1024px) 100vw, 50vw"
+                        />
+                      </div>
+                    ) : (
+                      <MediaPlaceholder
+                        kind="photo"
+                        label={PRODUCT_MEDIA[p.slug].label}
+                        brief={PRODUCT_MEDIA[p.slug].brief}
+                        aspect="aspect-[16/10]"
+                        className="mb-6"
+                      />
+                    )}
                     <div className="flex items-center justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-amber-300 bg-amber-100 text-amber-700">
                         <Icon className="h-6 w-6" />
@@ -197,12 +213,15 @@ export default function BambumShopPage() {
               </p>
             </div>
             <div className="lg:col-span-4">
-              <MediaPlaceholder
-                kind="photo"
-                label="Workshop"
-                aspect="aspect-[4/5]"
-                brief="Behind the scenes: Fré at the workbench with a 3D printer in the background, a prototype in one hand and calipers or a cord in the other."
-              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+                <Image
+                  src="/sloperking/presale/3.jpg"
+                  alt="Workshop table with stacks of Sloper King units, a bundle of orange cord, clamps and a 3D printer build plate"
+                  fill
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+              </div>
             </div>
           </div>
         </section>

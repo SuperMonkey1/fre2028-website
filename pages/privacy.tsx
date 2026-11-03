@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
               Deze Privacy Policy is van toepassing op de website <strong>fre2028.la</strong> en alle daaraan gekoppelde applicaties en sociale media beheertools van de officiële Paralympische campagne van <strong>Frederik Leys</strong> (Leuven, België).
             </p>
             <p className="mt-2">
-              Voor vragen over privacy of gegevensbescherming kun je contact opnemen via <a href="mailto:frederik.leys@gmail.com" className="text-black font-semibold underline underline-offset-4">frederik.leys@gmail.com</a>.
+              Voor vragen over privacy of gegevensbescherming kun je contact opnemen via <a href="mailto:info@paraclimbing.be" className="text-black font-semibold underline underline-offset-4">info@paraclimbing.be</a>.
             </p>
           </section>
 
@@ -124,7 +124,7 @@ export default function PrivacyPolicy() {
               </ol>
               <p className="font-semibold text-black text-sm pt-2">Verzoek tot volledige verwijdering via e-mail:</p>
               <p className="text-sm text-zinc-600">
-                Stuur een eenvoudig verzoek naar <a href="mailto:frederik.leys@gmail.com" className="text-black font-medium underline">frederik.leys@gmail.com</a> met het onderwerp &ldquo;Verzoek Gegevensverwijdering&rdquo;. Wij verwijderen je e-mailadres en eventuele opgeslagen gegevens binnen 48 uur permanent uit onze systemen.
+                Stuur een eenvoudig verzoek naar <a href="mailto:info@paraclimbing.be" className="text-black font-medium underline">info@paraclimbing.be</a> met het onderwerp &ldquo;Verzoek Gegevensverwijdering&rdquo;. Wij verwijderen je e-mailadres en eventuele opgeslagen gegevens binnen 48 uur permanent uit onze systemen.
               </p>
             </div>
           </section>
@@ -145,7 +145,7 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-bold text-black mb-3">6. Contact</h2>
             <div className="flex items-center gap-3 mt-2 text-zinc-800">
               <Mail className="w-4 h-4 text-black" />
-              <span>frederik.leys@gmail.com</span>
+              <span>info@paraclimbing.be</span>
             </div>
             <div className="flex items-center gap-3 mt-2 text-zinc-800">
               <Globe className="w-4 h-4 text-black" />

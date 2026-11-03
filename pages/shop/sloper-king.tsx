@@ -61,8 +61,10 @@ function cn(...inputs: ClassValue[]) {
 }
 
 const ORDER_API = `${PAYMENTS_API}/sloperking`;
-const UNIT_PRICES = { pair: 44.95, single: 24.95 } as const;
-const SHIPPING_NOTE = '€3.99 Belgium · €4.99 rest of the EU';
+// Current price tier comes from the sold counter (payments function); presale prices until it loads
+const FALLBACK_PRICES = { pair: 39, single: 21 };
+// "Own a 3D printer?" free STL download block: hidden for now
+const SHOW_MAKER_CORNER = false;
 
 type OrderState =
   | { state: 'checking' }
@@ -86,6 +88,9 @@ export default function SloperKingPage() {
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const [checkout, setCheckout] = useState<{ clientSecret: string; publishableKey: string; livemode: boolean } | null>(null);
   const [order, setOrder] = useState<OrderState | null>(null);
+  // Shipping cost per country is set on /admin/shipping
+  const [unitPrices, setUnitPrices] = useState<{ pair: number; single: number }>(FALLBACK_PRICES);
+  const shippingNote = 'Shipping cost shown at checkout';
 
   // Maker STL download state
   const [stlEmail, setStlEmail] = useState<string>('');
@@ -191,6 +196,10 @@ export default function SloperKingPage() {
   // Track pageview on load
   useEffect(() => {
     trackSloperKingView();
+    fetch(`${ORDER_API}/stats`)
+      .then((r) => r.json())
+      .then((d) => d.tier?.prices && setUnitPrices(d.tier.prices))
+      .catch(() => {});
   }, []);
 
   // Handle the return from Stripe: confirm the payment with the server and track the purchase
@@ -221,7 +230,7 @@ export default function SloperKingPage() {
   }, []);
 
   // Pricing: shipping and promo codes are applied inside the Stripe form
-  const basePrice = UNIT_PRICES[itemType];
+  const basePrice = unitPrices[itemType];
   const subtotal = basePrice * quantity;
   const shippingCost = delivery === 'pickup' ? 0 : null;
 
@@ -300,7 +309,7 @@ export default function SloperKingPage() {
           className="inline-flex items-center gap-2 bg-slate-950 text-white hover:bg-amber-500 hover:text-slate-950 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg text-xs md:text-sm font-extrabold tracking-wide transition-all shadow-md active:scale-95 whitespace-nowrap"
         >
           <Package className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Order Now — From €24.95</span>
+          <span className="hidden sm:inline">Order Now — From €{unitPrices.single.toFixed(2)}</span>
           <span className="sm:hidden">Order</span>
         </button>
       }
@@ -379,25 +388,26 @@ export default function SloperKingPage() {
             <div className="lg:col-span-5 space-y-3">
               <div className="relative mx-auto max-w-md bg-white rounded-2xl p-6 md:p-8 border border-slate-200 shadow-xl">
                 
-                {/* Image Placeholder: Hero Product In Hand */}
-                <div className="mb-6 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/50 p-4 text-left relative overflow-hidden">
-                  <div className="flex items-center gap-2 text-xs font-extrabold text-amber-900 uppercase tracking-wider mb-1.5">
-                    <Camera className="w-4 h-4 text-amber-600" />
-                    <span>PHOTO PLACEHOLDER • HERO PRODUCT SHOT</span>
-                  </div>
-                  <div className="text-xs text-slate-700 leading-relaxed">
-                    <strong>What to showcase here:</strong> Clean close-up action photo of Fré gripping the Sloper King on the climbing wall or cable machine, highlighting active wrist flexion, deep forearm muscle tension, and the matte black finish with yellow mascot crown.
-                  </div>
+                {/* Hero product photo */}
+                <div className="relative mb-6 aspect-[16/10] overflow-hidden rounded-xl border border-slate-200 bg-slate-100">
+                  <Image
+                    src="/sloperking/presale/2.jpg"
+                    alt="Five Sloper King units with orange load cords on a wooden table"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    priority
+                  />
                 </div>
 
                 <div className="space-y-3 text-left">
                   <div className="flex justify-between items-start border-b border-slate-100 pb-3">
                     <div>
                       <h3 className="font-extrabold text-lg text-slate-950">Sloper King™</h3>
-                      <p className="text-xs text-slate-500">Single piece (€24.95) or Pair with pouch (€44.95)</p>
+                      <p className="text-xs text-slate-500">Single piece (€{unitPrices.single.toFixed(2)}) or Pair with pouch (€{unitPrices.pair.toFixed(2)})</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-black text-slate-950">From €24.95</div>
+                      <div className="text-2xl font-black text-slate-950">From €{unitPrices.single.toFixed(2)}</div>
                       <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">In stock</span>
                     </div>
                   </div>
@@ -405,11 +415,11 @@ export default function SloperKingPage() {
                   <ul className="text-xs space-y-2 text-slate-700">
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span><strong>Single Unit (€24.95):</strong> 1x Sloper King + 800kg cord + Guide</span>
+                      <span><strong>Single Unit (€{unitPrices.single.toFixed(2)}):</strong> 1x Sloper King + 800kg cord + Guide</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
-                      <span><strong>Complete Pair (€44.95):</strong> 2x units + 2x cords + Cotton Pouch + Guide</span>
+                      <span><strong>Complete Pair (€{unitPrices.pair.toFixed(2)}):</strong> 2x units + 2x cords + Cotton Pouch + Guide</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-amber-500 shrink-0" />
@@ -439,7 +449,7 @@ export default function SloperKingPage() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Truck className="w-4 h-4 text-emerald-600 shrink-0" />
-                  <span>BE €3.99 | EU €4.99 Tracked</span>
+                  <span>{shippingNote} · Tracked</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -881,14 +891,19 @@ export default function SloperKingPage() {
             </p>
           </div>
 
-          {/* Prototype Evolution & 100kg Break Test Placeholder */}
-          <div className="max-w-4xl mx-auto rounded-2xl border-2 border-dashed border-slate-300 bg-white p-6 text-left">
-            <div className="flex items-center gap-2 text-xs font-extrabold text-slate-800 uppercase tracking-wider mb-1.5">
-              <Camera className="w-4 h-4 text-amber-600" />
-              <span>PHOTO PLACEHOLDER • CAD PROTOTYPES & 100KG BREAK-TEST RIG</span>
+          {/* Prototype evolution */}
+          <div className="max-w-4xl mx-auto overflow-hidden rounded-2xl border border-slate-200 bg-white text-left">
+            <div className="relative aspect-[16/9] bg-slate-100">
+              <Image
+                src="/sloperking/presale/5.jpg"
+                alt="Sloper King prototypes in black and orange next to each other"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 896px"
+              />
             </div>
-            <div className="text-xs text-slate-600 leading-relaxed">
-              <strong>What to showcase here:</strong> Photo of the CAD prototype evolution next to the final production model with the 220-grit contact surface, plus a screenshot of the 100 kg pull-force load test on the semi-static cord.
+            <div className="p-4 text-xs text-slate-600 leading-relaxed">
+              <strong>From prototype to production:</strong> every shape was printed, tested and improved before the final Sloper King™.
             </div>
           </div>
 
@@ -1337,18 +1352,16 @@ export default function SloperKingPage() {
                     </div>
 
                     <div className="space-y-4">
-                      {/* Photo Placeholder: Complete Pair */}
-                      <div className="relative aspect-[16/10] rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50/80 p-4 flex flex-col justify-between overflow-hidden">
-                        <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-amber-900 uppercase tracking-wider bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-md border border-amber-200 w-fit">
-                          <Camera className="w-3.5 h-3.5 text-amber-600" />
-                          <span>PHOTO • COMPLETE PAIR</span>
-                        </div>
-
-                        <div className="text-[11px] text-slate-700 leading-snug font-medium">
-                          <strong>What to showcase:</strong> 2x matte black Sloper Kings with yellow crowns, 2x 800kg load cords, soft cotton carry pouch &amp; guide.
-                        </div>
-
-                        <div className="text-[10px] font-black text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-md w-fit">
+                      {/* Complete pair photo */}
+                      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-slate-200 bg-slate-100">
+                        <Image
+                          src="/sloperking/presale/1.jpg"
+                          alt="Sloper King pair with orange load cord"
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                        />
+                        <div className="absolute bottom-2 left-2 text-[10px] font-black text-amber-900 bg-amber-200/90 px-2 py-0.5 rounded-md">
                           Dual-Hand Bilateral Training
                         </div>
                       </div>
@@ -1356,7 +1369,7 @@ export default function SloperKingPage() {
                       <div>
                         <div className="flex items-baseline justify-between gap-2">
                           <h3 className="font-black text-xl text-slate-950">Complete Training Pair</h3>
-                          <div className="text-2xl font-black text-slate-950">€44.95</div>
+                          <div className="text-2xl font-black text-slate-950">€{unitPrices.pair.toFixed(2)}</div>
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
                           Full pair for dual-hand hangs, pull-up bar holds &amp; bilateral pump training.
@@ -1442,7 +1455,7 @@ export default function SloperKingPage() {
                       <div>
                         <div className="flex items-baseline justify-between gap-2">
                           <h3 className="font-black text-xl text-slate-950">Single Unit (1 Piece)</h3>
-                          <div className="text-2xl font-black text-slate-950">€24.95</div>
+                          <div className="text-2xl font-black text-slate-950">€{unitPrices.single.toFixed(2)}</div>
                         </div>
                         <p className="text-xs text-slate-500 mt-1">
                           Ideal for unilateral cable pulls, loading pin lifts &amp; portable crag warmups.
@@ -1512,7 +1525,7 @@ export default function SloperKingPage() {
                     )}
                   >
                     <div className="font-extrabold text-sm text-slate-950">Ship to me</div>
-                    <div className="text-xs font-black text-slate-900 mt-0.5">{SHIPPING_NOTE}</div>
+                    <div className="text-xs font-black text-slate-900 mt-0.5">{shippingNote}</div>
                     <div className="text-[10px] text-slate-500 mt-1">bpost with Track &amp; Trace. Calculated from your address.</div>
                   </div>
 
@@ -1586,7 +1599,7 @@ export default function SloperKingPage() {
                   <div className="flex justify-between gap-3 text-slate-600">
                     <span>Shipping</span>
                     <span className="font-semibold text-slate-950 text-right">
-                      {shippingCost === 0 ? 'FREE (Leuven pickup)' : SHIPPING_NOTE}
+                      {shippingCost === 0 ? 'FREE (Leuven pickup)' : shippingNote}
                     </span>
                   </div>
 
@@ -1621,7 +1634,7 @@ export default function SloperKingPage() {
                   <div className="text-center text-[11px] text-slate-500 space-y-1">
                     <p className="flex items-center justify-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>Secure checkout by Stripe (Card, Bancontact, iDEAL)</span>
+                      <span>Secure checkout by Stripe</span>
                     </p>
                     <p className="text-slate-400">14-day money-back guarantee • Dispatched in 24-48h</p>
                   </div>
@@ -1635,7 +1648,8 @@ export default function SloperKingPage() {
         </div>
       </section>
 
-      {/* Maker Corner (Free STL Lead Magnet) */}
+      {/* Maker Corner (Free STL Lead Magnet), hidden for now: set SHOW_MAKER_CORNER to true to bring it back */}
+      {SHOW_MAKER_CORNER && (
       <section id="makers" className="py-20 md:py-24 bg-white border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 md:px-8 text-left">
           
@@ -1692,6 +1706,7 @@ export default function SloperKingPage() {
 
         </div>
       </section>
+      )}
 
       {/* B2B / Gym Consignment Section */}
       <section className="py-20 md:py-24 bg-slate-50 border-b border-slate-200">
@@ -1781,7 +1796,7 @@ export default function SloperKingPage() {
           }
           rows={[
             { label: `${quantity}x ${itemType === 'pair' ? 'Pair' : 'Single unit'}`, value: `€${subtotal.toFixed(2)}` },
-            { label: 'Shipping', value: delivery === 'pickup' ? 'Free pickup in Leuven' : SHIPPING_NOTE },
+            { label: 'Shipping', value: delivery === 'pickup' ? 'Free pickup in Leuven' : shippingNote },
           ]}
           onClose={() => setCheckout(null)}
         />

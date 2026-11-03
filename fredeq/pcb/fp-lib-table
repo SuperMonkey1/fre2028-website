@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "Fredeq") (type "KiCad") (uri "${KIPRJMOD}/Fredeq.pretty") (options "") (descr "Fredeq coils and mounting holes"))
+)

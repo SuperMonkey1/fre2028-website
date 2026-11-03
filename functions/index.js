@@ -552,16 +552,23 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     params.append("ui_mode", "form");
     params.append("line_items[0][price]", FINGERPRINT_PRICE_ID);
     params.append("line_items[0][quantity]", "1");
+    params.append("customer_creation", "always");
     params.append("client_reference_id", orderId);
     params.append("return_url", `${origin}/shop/tailr-edge?order=success&session_id={CHECKOUT_SESSION_ID}`);
     params.append("billing_address_collection", "required");
-    params.append("phone_number_collection[enabled]", "true");
-    FINGERPRINT_SHIP_COUNTRIES.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
+    // Same per-country shipping prices as Sloper King (edited on /admin/shipping)
+    const rates = await getSloperKingRates();
+    const shipCountries = Object.keys(rates);
+    if (shipCountries.length === 0) {
+      res.status(400).json({error: "Shipping is not available at the moment."});
+      return;
+    }
+    shipCountries.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
     // Start at the highest rate until the address is known, so a payment can never be under-charged.
     // Neutral name, because the customer's country isn't known yet.
     params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
     params.append("shipping_options[0][shipping_rate_data][display_name]", "Shipping");
-    params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(FINGERPRINT_SHIPPING.eu.amount));
+    params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(Math.max(...Object.values(rates))));
     params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
     params.append("allow_promotion_codes", "true");
     if (email) params.append("customer_email", email);
@@ -626,17 +633,17 @@ paymentApp.post("/fingerprint/shipping", async (req, res) => {
   try {
     const sessionId = String(req.body?.sessionId || "");
     const country = req.body?.shippingDetails?.address?.country || req.body?.shippingDetails?.country;
-    const zone = shippingZoneFor(country);
     if (!sessionId.startsWith("cs_")) {
       res.status(400).json({type: "error", message: "Invalid checkout session."});
       return;
     }
-    if (!zone) {
-      res.status(200).json({type: "error", message: "We currently only ship to Belgium and the rest of the EU."});
+    const amount = sloperKingRateFor(await getSloperKingRates(), country);
+    if (amount === undefined) {
+      res.status(200).json({type: "error", message: "We don't ship to this country yet."});
       return;
     }
     const params = new URLSearchParams();
-    appendShippingOption(params, zone);
+    appendSloperKingShipping(params, String(country).toUpperCase(), amount);
     params.append("metadata[shippingCountry]", String(country).toUpperCase());
     await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {method: "POST", params});
     res.status(200).json({type: "object", value: {succeeded: true}});
@@ -665,8 +672,8 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
       // Flag orders whose charged shipping doesn't match the delivery country (e.g. a wallet
       // payment that skipped our address-based update), so it can be corrected by hand.
       const shipDetails = session.collected_information?.shipping_details || session.shipping_details;
-      const expectedZone = shippingZoneFor(shipDetails?.address?.country);
-      const expectedShipping = expectedZone ? FINGERPRINT_SHIPPING[expectedZone].amount : null;
+      const expectedRate = sloperKingRateFor(await getSloperKingRates(), shipDetails?.address?.country);
+      const expectedShipping = expectedRate === undefined ? null : expectedRate;
       const chargedShipping = session.shipping_cost?.amount_total ?? null;
       const shippingCheck = expectedShipping === chargedShipping ? "ok" :
         `charged €${((chargedShipping || 0) / 100).toFixed(2)}, expected ` +
@@ -748,40 +755,68 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
 // ==================== SLOPER KING ORDERS ====================
 // Same flow as FingerPrint (embedded Stripe form, shipping from the entered address, order stored in
 // Firestore, admin email once paid), but for a standard product sold as a single unit or a pair.
-// Test/live mode follows FINGERPRINT_STRIPE_MODE. Prices come from Stripe Price ids when configured
-// (STRIPE_PRICE_SLOPERKING_PAIR / _SINGLE, with _TEST variants), otherwise from the amounts below.
+// Test/live mode follows FINGERPRINT_STRIPE_MODE. The price depends on how many orders are sold (see tiers below).
 const SLOPERKING_PRODUCTS = {
   pair: {
-    cents: 4495,
+    productId: FINGERPRINT_LIVE ? process.env.SLOPERKING_PRODUCT_PAIR : process.env.SLOPERKING_PRODUCT_PAIR_TEST,
     name: "Sloper King™ (Set of 2 - Pair)",
     description: "Complete set of 2x Sloper King™ units, 2x Petzl 800kg load cords, 1x stamped cotton pouch & guide card",
-    priceId: FINGERPRINT_LIVE ? process.env.STRIPE_PRICE_SLOPERKING_PAIR : process.env.STRIPE_PRICE_SLOPERKING_PAIR_TEST,
   },
   single: {
-    cents: 2495,
+    productId: FINGERPRINT_LIVE ? process.env.SLOPERKING_PRODUCT_SINGLE : process.env.SLOPERKING_PRODUCT_SINGLE_TEST,
     name: "Sloper King™ (Single Unit)",
     description: "1x Sloper King™ unit with Petzl 800kg cord & 220-grit contact strip",
-    priceId: FINGERPRINT_LIVE ? process.env.STRIPE_PRICE_SLOPERKING_SINGLE : process.env.STRIPE_PRICE_SLOPERKING_SINGLE_TEST,
   },
 };
-const SLOPERKING_SHIPPING = {
-  be: {amount: 399, label: "Belgium (bpost track & trace)", countries: ["BE"]},
-  eu: {amount: 499, label: "Europe (EU, tracked)", countries: FINGERPRINT_SHIPPING.eu.countries},
+// Sloper Kings sold before the online shop (the first 60 early birds plus 2), counted on top of the paid units in Firestore.
+const SLOPERKING_SOLD_OFFSET = 62;
+// Price per Sloper King number: 1-60 early bird, up to 300 presale, then retail. An order is priced at the tier of its first unit.
+const SLOPERKING_PRICE_TIERS = [
+  {upTo: 60, label: "Early bird", single: 1600, pair: 3000},
+  {upTo: 300, label: "Presale", single: 2100, pair: 3900},
+  {upTo: Infinity, label: "Retail", single: 2495, pair: 4495},
+];
+const sloperKingTierFor = (orderNumber) => SLOPERKING_PRICE_TIERS.find((t) => orderNumber <= t.upTo);
+// Counts Sloper Kings, not orders: a pair is 2 units, and every order can have a quantity.
+const sloperKingUnits = (itemType, quantity) => (itemType === "pair" ? 2 : 1) * (Math.round(Number(quantity)) || 1);
+const countSloperKingSold = async () => {
+  const snap = await getFirestore().collection("sloperking_orders")
+    .where("status", "==", "paid")
+    .where("livemode", "==", FINGERPRINT_LIVE)
+    .select("itemType", "quantity")
+    .get();
+  let units = 0;
+  snap.forEach((doc) => {
+    const {itemType, quantity} = doc.data();
+    units += sloperKingUnits(itemType, quantity);
+  });
+  return SLOPERKING_SOLD_OFFSET + units;
 };
-const SLOPERKING_SHIP_COUNTRIES = Object.values(SLOPERKING_SHIPPING).flatMap((z) => z.countries);
-const sloperKingZoneFor = (country) =>
-  Object.keys(SLOPERKING_SHIPPING).find((z) => SLOPERKING_SHIPPING[z].countries.includes(String(country || "").toUpperCase()));
-const appendSloperKingShipping = (params, zone) => {
-  const shipping = SLOPERKING_SHIPPING[zone];
+// Shipping cost per country in cents, edited on /admin/shipping and stored in Firestore.
+// Countries without a rate can't order yet. Until the admin saves rates, these defaults apply.
+const SLOPERKING_DEFAULT_RATES = Object.fromEntries(FINGERPRINT_SHIPPING.eu.countries.map((c) => [c, 499]));
+SLOPERKING_DEFAULT_RATES.BE = 399;
+const SLOPERKING_RATES_DOC = "settings/sloperking_shipping";
+let sloperKingRatesCache = {at: 0, rates: null};
+const getSloperKingRates = async () => {
+  if (!sloperKingRatesCache.rates || Date.now() - sloperKingRatesCache.at > 60000) {
+    const snap = await getFirestore().doc(SLOPERKING_RATES_DOC).get();
+    const rates = snap.exists && snap.data().rates ? snap.data().rates : SLOPERKING_DEFAULT_RATES;
+    sloperKingRatesCache = {at: Date.now(), rates};
+  }
+  return sloperKingRatesCache.rates;
+};
+const sloperKingRateFor = (rates, country) => rates[String(country || "").toUpperCase()];
+const appendSloperKingShipping = (params, country, amount) => {
   params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
-  params.append("shipping_options[0][shipping_rate_data][display_name]", shipping.label);
-  params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(shipping.amount));
+  params.append("shipping_options[0][shipping_rate_data][display_name]", `Shipping (${country}, tracked)`);
+  params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(amount));
   params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
 };
 
 paymentApp.post("/sloperking/checkout", async (req, res) => {
   try {
-    const {itemType, quantity, pickup, email, originUrl} = req.body || {};
+    const {itemType, quantity, pickup, email, originUrl, country, returnPath} = req.body || {};
     if (!FINGERPRINT_PUBLISHABLE_KEY) throw new Error("Stripe publishable key is not configured");
     const product = SLOPERKING_PRODUCTS[itemType];
     const qty = Math.round(Number(quantity));
@@ -790,6 +825,20 @@ paymentApp.post("/sloperking/checkout", async (req, res) => {
       return;
     }
     const isPickup = pickup === true;
+    const rates = await getSloperKingRates();
+    const shipCountries = Object.keys(rates);
+    if (!isPickup && shipCountries.length === 0) {
+      res.status(400).json({error: "Shipping is not available at the moment."});
+      return;
+    }
+    // Country picked on the presale page (informational; the shipping cost still follows the entered address)
+    const chosenCountry = sloperKingRateFor(rates, country) !== undefined ? String(country).toUpperCase() : "";
+    // The presale landing page sends buyers back to itself; anything else returns to the shop page
+    const returnTo = returnPath === "/sloperking" ? "/sloperking" : "/shop/sloper-king";
+    // Price from the live count, never from the browser
+    const orderNumber = (await countSloperKingSold()) + 1; // number of the first Sloper King in this order
+    const tier = sloperKingTierFor(orderNumber);
+    const unitCents = tier[itemType];
 
     const origin = originUrl || req.headers.origin || "https://fre2028.la";
     const db = getFirestore();
@@ -804,6 +853,9 @@ paymentApp.post("/sloperking/checkout", async (req, res) => {
       quantity: qty,
       pickup: isPickup,
       email: email || "",
+      country: chosenCountry,
+      priceTier: tier.label,
+      unitCents,
       createdAt: new Date(),
     });
 
@@ -813,33 +865,43 @@ paymentApp.post("/sloperking/checkout", async (req, res) => {
       itemType,
       quantity: String(qty),
       pickup: isPickup ? "yes" : "no",
+      country: chosenCountry,
+      priceTier: tier.label,
     };
 
     const params = new URLSearchParams();
     params.append("mode", "payment");
     params.append("ui_mode", "form");
-    if (product.priceId) {
-      params.append("line_items[0][price]", product.priceId);
+    params.append("line_items[0][price_data][currency]", "eur");
+    params.append("line_items[0][price_data][unit_amount]", String(unitCents));
+    if (product.productId) {
+      // Linked to the catalog product, so orders show up under Products in Stripe
+      params.append("line_items[0][price_data][product]", product.productId);
     } else {
-      params.append("line_items[0][price_data][currency]", "eur");
-      params.append("line_items[0][price_data][unit_amount]", String(product.cents));
-      params.append("line_items[0][price_data][product_data][name]", product.name);
+      params.append("line_items[0][price_data][product_data][name]", `${product.name} - ${tier.label} price`);
       params.append("line_items[0][price_data][product_data][description]", product.description);
     }
     params.append("line_items[0][quantity]", String(qty));
+    params.append("customer_creation", "always");
     params.append("client_reference_id", orderId);
-    params.append("return_url", `${origin}/shop/sloper-king?order=success&session_id={CHECKOUT_SESSION_ID}`);
-    params.append("phone_number_collection[enabled]", "true");
+    params.append("return_url", `${origin}${returnTo}?order=success&session_id={CHECKOUT_SESSION_ID}`);
     if (isPickup) {
       params.append("billing_address_collection", "auto");
     } else {
       params.append("billing_address_collection", "required");
-      SLOPERKING_SHIP_COUNTRIES.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
-      // Start at the highest rate until the address is known, so a payment can never be under-charged.
-      params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
-      params.append("shipping_options[0][shipping_rate_data][display_name]", "Shipping");
-      params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(SLOPERKING_SHIPPING.eu.amount));
-      params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
+      if (chosenCountry) {
+        // The buyer already picked the country on the page: only accept that country and charge its rate from the
+        // start, so the total in the payment form is right immediately.
+        params.append("shipping_address_collection[allowed_countries][0]", chosenCountry);
+        appendSloperKingShipping(params, chosenCountry, sloperKingRateFor(rates, chosenCountry));
+      } else {
+        shipCountries.forEach((c, i) => params.append(`shipping_address_collection[allowed_countries][${i}]`, c));
+        // Start at the highest rate until the address is known, so a payment can never be under-charged.
+        params.append("shipping_options[0][shipping_rate_data][type]", "fixed_amount");
+        params.append("shipping_options[0][shipping_rate_data][display_name]", "Shipping");
+        params.append("shipping_options[0][shipping_rate_data][fixed_amount][amount]", String(Math.max(...Object.values(rates))));
+        params.append("shipping_options[0][shipping_rate_data][fixed_amount][currency]", "eur");
+      }
     }
     params.append("allow_promotion_codes", "true");
     if (email) params.append("customer_email", email);
@@ -869,17 +931,17 @@ paymentApp.post("/sloperking/shipping", async (req, res) => {
   try {
     const sessionId = String(req.body?.sessionId || "");
     const country = req.body?.shippingDetails?.address?.country || req.body?.shippingDetails?.country;
-    const zone = sloperKingZoneFor(country);
     if (!sessionId.startsWith("cs_")) {
       res.status(400).json({type: "error", message: "Invalid checkout session."});
       return;
     }
-    if (!zone) {
-      res.status(200).json({type: "error", message: "We currently only ship to Belgium and the rest of the EU."});
+    const amount = sloperKingRateFor(await getSloperKingRates(), country);
+    if (amount === undefined) {
+      res.status(200).json({type: "error", message: "We don't ship to this country yet."});
       return;
     }
     const params = new URLSearchParams();
-    appendSloperKingShipping(params, zone);
+    appendSloperKingShipping(params, String(country).toUpperCase(), amount);
     params.append("metadata[shippingCountry]", String(country).toUpperCase());
     await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {method: "POST", params});
     res.status(200).json({type: "object", value: {succeeded: true}});
@@ -907,8 +969,8 @@ paymentApp.get("/sloperking/order/:sessionId", async (req, res) => {
 
     if (paid) {
       const shipDetails = session.collected_information?.shipping_details || session.shipping_details;
-      const expectedZone = sloperKingZoneFor(shipDetails?.address?.country);
-      const expectedShipping = isPickup ? 0 : expectedZone ? SLOPERKING_SHIPPING[expectedZone].amount : null;
+      const rate = sloperKingRateFor(await getSloperKingRates(), shipDetails?.address?.country);
+      const expectedShipping = isPickup ? 0 : rate ?? null;
       const chargedShipping = session.shipping_cost?.amount_total ?? 0;
       const shippingCheck = expectedShipping === chargedShipping ? "ok" :
         `charged €${(chargedShipping / 100).toFixed(2)}, expected ` +
@@ -986,6 +1048,142 @@ paymentApp.get("/sloperking/order/:sessionId", async (req, res) => {
   } catch (error) {
     console.error("Error checking Sloper King order:", error);
     res.status(error.status === 404 ? 404 : 500).json({error: "Could not check the order."});
+  }
+});
+
+// Public shipping rates (euros per country) for the shop and presale pages.
+paymentApp.get("/sloperking/shipping-rates", async (req, res) => {
+  try {
+    const rates = await getSloperKingRates();
+    res.status(200).json({rates: Object.fromEntries(Object.entries(rates).map(([c, cents]) => [c, cents / 100]))});
+  } catch (error) {
+    console.error("Error loading Sloper King shipping rates:", error);
+    res.status(500).json({error: "Could not load shipping rates."});
+  }
+});
+
+// Saves the rates from /admin/shipping. The admin page has no server-side login, so writes need
+// SLOPERKING_ADMIN_KEY (functions/.env), which the admin types in once per browser.
+paymentApp.post("/sloperking/shipping-rates", async (req, res) => {
+  try {
+    const adminKey = process.env.SLOPERKING_ADMIN_KEY;
+    if (!adminKey || req.get("x-admin-key") !== adminKey) {
+      res.status(401).json({error: "Wrong admin key."});
+      return;
+    }
+    const input = req.body?.rates;
+    if (!input || typeof input !== "object" || Array.isArray(input)) {
+      res.status(400).json({error: "Invalid rates."});
+      return;
+    }
+    const rates = {};
+    for (const [code, euros] of Object.entries(input)) {
+      const cents = Math.round(Number(euros) * 100);
+      if (!/^[A-Z]{2}$/.test(code) || !Number.isFinite(cents) || cents < 0 || cents > 10000) {
+        res.status(400).json({error: `Invalid rate for ${code}.`});
+        return;
+      }
+      rates[code] = cents;
+    }
+    await getFirestore().doc(SLOPERKING_RATES_DOC).set({rates, updatedAt: new Date()});
+    sloperKingRatesCache = {at: Date.now(), rates};
+    res.status(200).json({ok: true});
+  } catch (error) {
+    console.error("Error saving Sloper King shipping rates:", error);
+    res.status(500).json({error: "Could not save the rates."});
+  }
+});
+
+// Sold counter for the shop and presale pages: it sets the current price tier and the estimated ship date.
+// Cached briefly so a busy landing page doesn't run a Firestore count on every visit (checkout always counts fresh).
+let sloperKingStatsCache = {at: 0, sold: 0};
+paymentApp.get("/sloperking/stats", async (req, res) => {
+  try {
+    if (Date.now() - sloperKingStatsCache.at > 20000) {
+      sloperKingStatsCache = {at: Date.now(), sold: await countSloperKingSold()};
+    }
+    const sold = sloperKingStatsCache.sold;
+    const tier = sloperKingTierFor(sold + 1);
+    const next = SLOPERKING_PRICE_TIERS[SLOPERKING_PRICE_TIERS.indexOf(tier) + 1];
+    const euros = (t) => ({single: t.single / 100, pair: t.pair / 100});
+    res.status(200).json({
+      sold,
+      tier: {label: tier.label, upTo: Number.isFinite(tier.upTo) ? tier.upTo : null, prices: euros(tier)},
+      next: next ? {label: next.label, prices: euros(next)} : null,
+    });
+  } catch (error) {
+    console.error("Error counting Sloper King orders:", error);
+    res.status(500).json({error: "Could not load the order count."});
+  }
+});
+
+// Waitlist for countries we don't ship to yet: one entry per email and country.
+paymentApp.post("/sloperking/waitlist", async (req, res) => {
+  try {
+    const email = String(req.body?.email || "").trim().toLowerCase();
+    const country = String(req.body?.country || "").trim().toUpperCase().slice(0, 40);
+    const quantity = Math.round(Number(req.body?.quantity));
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 200 || !country) {
+      res.status(400).json({error: "Please enter a valid email address and country."});
+      return;
+    }
+    const id = `${country}_${email}`.replace(/[\/]/g, "_");
+    await getFirestore().collection("sloperking_waitlist").doc(id).set({
+      email,
+      country,
+      quantity: Number.isFinite(quantity) && quantity > 0 && quantity <= 50 ? quantity : 1,
+      source: String(req.body?.source || "presale").slice(0, 40),
+      updatedAt: new Date(),
+    }, {merge: true});
+    res.status(200).json({ok: true});
+  } catch (error) {
+    console.error("Error saving Sloper King waitlist entry:", error);
+    res.status(500).json({error: "Could not save your email. Please try again."});
+  }
+});
+
+// Question form on the presale page: saved in Firestore and emailed to info@paraclimbing.be (reply goes to the sender).
+paymentApp.post("/sloperking/question", async (req, res) => {
+  try {
+    const {name, email, message, country, website} = req.body || {};
+    // "website" is a hidden honeypot field: bots fill it, people don't
+    if (website) {
+      res.status(200).json({ok: true});
+      return;
+    }
+    const cleanEmail = String(email || "").trim().toLowerCase();
+    const cleanName = String(name || "").trim().slice(0, 100);
+    const cleanMessage = String(message || "").trim().slice(0, 3000);
+    const cleanCountry = String(country || "").trim().slice(0, 40);
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail) || cleanEmail.length > 200 || cleanMessage.length < 2) {
+      res.status(400).json({error: "Please enter your email address and a question."});
+      return;
+    }
+    await getFirestore().collection("sloperking_questions").add({
+      name: cleanName,
+      email: cleanEmail,
+      message: cleanMessage,
+      country: cleanCountry,
+      createdAt: new Date(),
+    });
+    const esc = (v) => String(v || "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;"})[c]);
+    await createTransporter().sendMail({
+      from: process.env.EMAIL_USER || "your-email@gmail.com",
+      to: "info@paraclimbing.be",
+      replyTo: cleanEmail,
+      subject: `Sloper King question from ${cleanName || cleanEmail}`,
+      html: `
+        <h2>New Sloper King question (presale page)</h2>
+        <p><strong>From:</strong> ${esc(cleanName)} &lt;${esc(cleanEmail)}&gt;<br>
+        <strong>Country:</strong> ${esc(cleanCountry) || "-"}</p>
+        <p style="white-space:pre-wrap">${esc(cleanMessage)}</p>
+        <p style="color:#999;font-size:12px">Reply to this email to answer them directly.</p>
+      `,
+    });
+    res.status(200).json({ok: true});
+  } catch (error) {
+    console.error("Error sending Sloper King question:", error);
+    res.status(500).json({error: "Could not send your question. Please try again."});
   }
 });
 

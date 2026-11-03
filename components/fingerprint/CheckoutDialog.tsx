@@ -44,10 +44,12 @@ interface Props {
   /** The design being ordered, shown in the order summary. */
   design: { left: FingerParams; right: FingerParams; locked: boolean };
   priceCents: number;
+  /** Shipping prices as text, e.g. "€5.62 Belgium · from €8.35 elsewhere". */
+  shippingNote?: string;
   onClose: () => void;
 }
 
-export default function FingerPrintCheckoutDialog({ design, priceCents, ...rest }: Props) {
+export default function FingerPrintCheckoutDialog({ design, priceCents, shippingNote, ...rest }: Props) {
   return (
     <CheckoutDialog
       {...rest}
@@ -65,7 +67,7 @@ export default function FingerPrintCheckoutDialog({ design, priceCents, ...rest 
       }
       rows={[
         { label: 'Tailr Edge set (left + right)', value: euro(priceCents) },
-        { label: 'Shipping', value: '€2.99 Belgium · €4.99 rest of the EU' },
+        { label: 'Shipping', value: shippingNote || 'Calculated from your address' },
       ]}
     />
   );

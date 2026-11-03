@@ -34,12 +34,14 @@ interface Props {
   subtitle?: string;
   /** What is being ordered (e.g. the hand measurements). */
   summary?: ReactNode;
+  /** The total in the form is already exact (shipping known), so don't tell the customer to fill in the address first. */
+  exactTotal?: boolean;
   /** Price rows shown under the summary. */
   rows: { label: string; value: string }[];
   onClose: () => void;
 }
 
-export default function CheckoutDialog({ clientSecret, publishableKey, shippingUrl, livemode, title, subtitle, summary, rows, onClose }: Props) {
+export default function CheckoutDialog({ clientSecret, publishableKey, shippingUrl, livemode, title, subtitle, summary, rows, exactTotal, onClose }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -72,11 +74,25 @@ export default function CheckoutDialog({ clientSecret, publishableKey, shippingU
         form.mount(mountRef.current);
         setLoading(false);
 
+        const actionsPromise = checkout.loadActions();
+
+        // The pay button only fires this event: without a handler nothing happens when the customer taps it.
+        form.on('confirm', async (event: any) => {
+          const loaded = await actionsPromise;
+          if (loaded.type !== 'success') return;
+          try {
+            await loaded.actions.confirm({ formConfirmEvent: event });
+          } catch (e: any) {
+            console.error(e);
+            setShippingError(e?.message || 'The payment could not be completed. Please try again.');
+          }
+        });
+
         form.on('change', async (event: any) => {
           const { value, status } = event;
           if (shippingUrl && status?.shippingAddress?.complete && !addressDone) {
             addressDone = true;
-            const loaded = await checkout.loadActions();
+            const loaded = await actionsPromise;
             if (loaded.type !== 'success') {
               addressDone = false;
               return;
@@ -146,7 +162,7 @@ export default function CheckoutDialog({ clientSecret, publishableKey, shippingU
                 </div>
               ))}
             </dl>
-            {shippingUrl && (
+            {shippingUrl && !exactTotal && (
               <p className="mt-2 text-[11px] text-slate-400">The exact total appears in the payment form once your address is filled in.</p>
             )}
 

@@ -135,7 +135,8 @@ const convertMilestoneToTimeline = (milestone: any) => {
     title: milestone.Title,
     desc: milestone.Description,
     milestone: milestone.type === 'Milestone',
-    highlight: isHighlight
+    highlight: isHighlight,
+    link: milestone.Link
   };
 };
 
@@ -153,6 +154,7 @@ export default function ParaclimberSite() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [isMediaDialogOpen, setIsMediaDialogOpen] = useState(false);
   const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
+  const [isVrtVideoDialogOpen, setIsVrtVideoDialogOpen] = useState(false);
   const [isPortfolioSliderOpen, setIsPortfolioSliderOpen] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [portfolioSectionVisible, setPortfolioSectionVisible] = useState(false);
@@ -850,7 +852,17 @@ export default function ParaclimberSite() {
                   <div className="md:col-span-4 pt-1">
                     <h3 className="text-xl font-bold mb-3">{event.title}</h3>
                     <p className="text-zinc-600 leading-relaxed">{event.desc}</p>
-                    {event.milestone && 
+                    {event.link && (
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-black underline underline-offset-4 hover:opacity-60 transition-opacity"
+                      >
+                        Bekijk de reportage in het VRT NWS-journaal <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                    {event.milestone &&
                       <span className="inline-block mt-4 text-[10px] font-bold uppercase tracking-widest text-zinc-400 border border-zinc-200 px-2 py-1">
                         Milestone
                       </span>
@@ -946,6 +958,9 @@ export default function ParaclimberSite() {
                   </svg>
                 </div>
               </div>
+              <div className="absolute bottom-2 left-2 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+                Podcast
+              </div>
             </div>
             <div 
               className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
@@ -970,7 +985,31 @@ export default function ParaclimberSite() {
                 Video
               </div>
             </div>
-            <div 
+            <div
+              className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
+              onClick={() => setIsVrtVideoDialogOpen(true)}
+            >
+              <Image
+                src="https://images.vrt.be/vrtnws_share/2026/06/20/50666fd0-649a-47ea-b786-310cd5036af6.png"
+                alt="VRT NWS reportage over het internationaal paraklimfestival in Puurs"
+                width={480}
+                height={270}
+                unoptimized
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-black/20 hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
+                <div className="bg-white/90 rounded-full p-3">
+                  <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+              <div className="absolute bottom-2 left-2 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+                Paraclimbing festival
+              </div>
+            </div>
+            <div
               className="relative bg-zinc-100 overflow-hidden transition-all duration-500 cursor-pointer hover:scale-105"
               onClick={() => setIsPortfolioSliderOpen(true)}
             >
@@ -1479,6 +1518,57 @@ export default function ParaclimberSite() {
                       />
                     </div>
                   </div>
+                </div>
+              </main>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {/* VRT Video Dialog */}
+      {isVrtVideoDialogOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setIsVrtVideoDialogOpen(false)}>
+          <div className="bg-white max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsVrtVideoDialogOpen(false)}
+              className="absolute top-4 right-4 z-10 bg-white/90 rounded-full p-2 text-zinc-600 hover:text-black transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <article className="blog-post-content">
+              <header className="post-header p-6 pb-0">
+                <span className="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-semibold uppercase tracking-wider rounded-full mb-3">
+                  VRT NWS
+                </span>
+                <h1 className="text-2xl md:text-3xl font-bold tracking-tight mb-3">Paraclimbing festival</h1>
+                <p className="post-intro text-lg text-zinc-600 leading-relaxed">
+                  VRT NWS op het internationaal paraklimfestival in Puurs (20 juni 2026).
+                </p>
+              </header>
+
+              <main className="post-main p-6 pt-4">
+                <div className="video-content">
+                  <div className="video-embed">
+                    <div className="relative w-full" style={{ paddingBottom: '56.25%' /* 16:9 aspect ratio */ }}>
+                      <iframe
+                        src="https://player.vrt.be/vrtnws/embed.html?video=pbs-pub-cfdd6538-8e57-4d09-96aa-315d581c140b$vid-ac3cf065-7a0e-4b5e-9493-0d408121b97c&skin=vrtnws&start=true&cc=vrtnieuws"
+                        title="Paraklimmen wint aan populariteit - VRT NWS"
+                        frameBorder="0"
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full rounded-lg"
+                      />
+                    </div>
+                  </div>
+                  <a
+                    href="https://www.vrt.be/vrtnws/nl/kijk/2026/06/20/video-paraklimmen-puurs/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 mt-4 text-sm text-zinc-500 hover:text-black transition-colors"
+                  >
+                    Bekijk op VRT NWS <ExternalLink className="w-3 h-3" />
+                  </a>
                 </div>
               </main>
             </article>

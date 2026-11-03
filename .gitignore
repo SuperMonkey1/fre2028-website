@@ -1,8 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
-_communicatie/social-media/node_modules/
+node_modules/
 /.pnp
 .pnp.js
 
@@ -11,6 +10,7 @@ _communicatie/social-media/node_modules/
 
 # next.js
 /.next/
+/.next-build/
 /out/
 
 # production
@@ -18,7 +18,14 @@ _communicatie/social-media/node_modules/
 
 # misc
 .DS_Store
+Thumbs.db
+desktop.ini
 *.pem
+
+# python
+__pycache__/
+*.pyc
+.venv/
 
 # debug
 npm-debug.log*
@@ -54,3 +61,89 @@ gmail-token.json
 
 # social media sessions
 .instagram_session/
+# social media content: private diary and large media drops stay local
+_communicatie/social-media/diary/
+_communicatie/social-media/inbox/
+
+# ---------------------------------------------------------------------------
+# Media, office and CAD files stay local. The site only serves what is in
+# /public, so everything below is re-allowed there.
+# ---------------------------------------------------------------------------
+# images
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.png
+*.PNG
+*.webp
+*.gif
+*.heic
+*.HEIC
+*.tif
+*.tiff
+*.psd
+# video / audio
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.avi
+*.mkv
+*.webm
+*.aac
+*.m4a
+*.mp3
+*.wav
+*.opus
+# archives
+*.zip
+*.rar
+*.7z
+# documents
+*.pdf
+*.pptx
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.idml
+*.indd
+# fonts
+*.ttf
+*.otf
+# CAD / 3D / cutting machine
+*.stl
+*.step
+*.stp
+*.3mf
+*.FCStd
+*.FCStd1
+*.FCBak
+*.blend
+*.blend1
+*.cwprj
+*.fcm
+# KiCad local state and backups
+*.kicad_prl
+*-backups/
+fp-info-cache
+_autosave-*
+# site assets are tracked
+!/public/**
+
+# ---------------------------------------------------------------------------
+# Private business data (this repo is public)
+# ---------------------------------------------------------------------------
+/_sales/partners/
+/_sales/leads/
+/Sloper King/financieel/
+/Sloper King/shipping/
+/Sloper King/competitors/
+/Sloper King/content/*
+!/Sloper King/content/3d-video/
+/Sloper King/content/3d-video/renders/
+/fredeq/screenshots/
+# scraped data dumps
+apify_*.json
+*.npy

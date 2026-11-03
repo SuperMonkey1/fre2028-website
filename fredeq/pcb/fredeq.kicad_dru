@@ -1,0 +1,9 @@
+(version 1)
+(rule "coil L1 centre via"
+	(condition "A.memberOfFootprint('L1') && B.memberOfFootprint('L1')")
+	(constraint hole_clearance (min 0mm))
+	(constraint clearance (min 0mm)))
+(rule "coil L2 centre via"
+	(condition "A.memberOfFootprint('L2') && B.memberOfFootprint('L2')")
+	(constraint hole_clearance (min 0mm))
+	(constraint clearance (min 0mm)))

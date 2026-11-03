@@ -23,6 +23,20 @@ const FINGERS = [
   { f: 'index' as Finger, x: 172, tip: 80 },
 ];
 
+// The first crease (distal interphalangeal joint) lies this far below the fingertip in the sketches
+const CREASE = 34;
+
+/** Short crease line across each finger, drawn on the traced hand. */
+function CreaseMarks({ color = '#0f172a', width = 2.5 }: { color?: string; width?: number }) {
+  return (
+    <g stroke={color} strokeWidth={width} strokeLinecap="round">
+      {FINGERS.map((d) => (
+        <line key={d.f} x1={d.x + 5} x2={d.x + 29} y1={d.tip + CREASE} y2={d.tip + CREASE} />
+      ))}
+    </g>
+  );
+}
+
 function HandShapes() {
   return (
     <>
@@ -62,6 +76,7 @@ export function TraceHandIllustration() {
   return (
     <Paper>
       <Hand />
+      <CreaseMarks />
       {/* pencil tracing around the index finger */}
       <g transform="translate(222 52) rotate(35)">
         <rect x={0} y={0} width={14} height={95} rx={3} fill="#f59e0b" stroke="#0f172a" strokeWidth={2.5} />
@@ -75,25 +90,27 @@ export function TraceHandIllustration() {
 }
 
 export function MeasureIllustration() {
-  const base = FINGERS[0].tip;
+  const base = FINGERS[0].tip + CREASE;
   return (
     <Paper>
       <Hand fill="#f8fafc" stroke="#94a3b8" dashed />
+      <CreaseMarks color="#94a3b8" width={2} />
       <line x1={36} x2={290} y1={base} y2={base} stroke="#f472b6" strokeWidth={3} strokeDasharray="8 6" />
       <text x={40} y={base + 22} fontSize={15} fontWeight={800} fill="#db2777">
-        pinky = 0
+        pinky crease = 0
       </text>
       {FINGERS.slice(1).map((d) => {
         const x = d.x + 17;
         const c = FINGER_COLORS[d.f];
+        const cy = d.tip + CREASE;
         return (
           <g key={d.f}>
-            <line x1={x} x2={x} y1={base - 4} y2={d.tip + 4} stroke={c} strokeWidth={4} />
-            <path d={`M${x - 7} ${d.tip + 12} L${x} ${d.tip + 1} L${x + 7} ${d.tip + 12} Z`} fill={c} />
+            <line x1={x} x2={x} y1={base - 4} y2={cy + 4} stroke={c} strokeWidth={4} />
+            <path d={`M${x - 7} ${cy + 12} L${x} ${cy + 1} L${x + 7} ${cy + 12} Z`} fill={c} />
             <path d={`M${x - 7} ${base - 12} L${x} ${base - 1} L${x + 7} ${base - 12} Z`} fill={c} />
-            <line x1={d.x - 2} x2={d.x + 36} y1={d.tip} y2={d.tip} stroke={c} strokeWidth={2.5} />
-            <rect x={x - 13} y={(base + d.tip) / 2 - 11} width={26} height={22} rx={11} fill={c} />
-            <text x={x} y={(base + d.tip) / 2 + 5} fontSize={13} fontWeight={800} textAnchor="middle" fill="#0f172a">
+            <line x1={d.x - 2} x2={d.x + 36} y1={cy} y2={cy} stroke={c} strokeWidth={2.5} />
+            <rect x={x - 13} y={(base + cy) / 2 - 11} width={26} height={22} rx={11} fill={c} />
+            <text x={x} y={(base + cy) / 2 + 5} fontSize={13} fontWeight={800} textAnchor="middle" fill="#0f172a">
               {d.f[0].toUpperCase()}
             </text>
           </g>
@@ -111,12 +128,12 @@ export function MeasureIllustration() {
 }
 
 export function WidthIllustration() {
-  // Same traced hand as step 2, with a width arrow across the last joint of each finger.
+  // Same traced hand as step 2, with a width arrow across the first crease of each finger.
   return (
     <Paper>
       <Hand fill="#f8fafc" stroke="#94a3b8" dashed />
       {FINGERS.map((d) => {
-        const y = d.tip + 24;
+        const y = d.tip + CREASE;
         const x0 = d.x - 1;
         const x1 = d.x + 35;
         const c = FINGER_COLORS[d.f];
@@ -135,7 +152,7 @@ export function WidthIllustration() {
         );
       })}
       <text x={134} y={262} fontSize={14} fontWeight={800} textAnchor="middle" fill="#b45309">
-        width at the last joint
+        width at the first crease
       </text>
     </Paper>
   );
@@ -188,7 +205,7 @@ export function EnterValuesIllustration() {
 export function EdgeMap({ layout, hand, compact = false }: { layout: EdgeLayout; hand: Hand; compact?: boolean }) {
   const s = 3.2; // px per mm
   const pad = 14;
-  const backY = 50; // back of the body (model y)
+  const backY = 50 + layout.backShift; // back of the body (model y)
   const frontY = -FRONT_DEPTH;
   const BW = layout.width;
   const maxEdge = Math.max(...layout.columns.map((c) => layout.edgeY[c.finger]));

@@ -1,0 +1,12 @@
+(footprint "Hole_Pin_2.05mm"
+	(version 20241229)
+	(generator "fredeq_gen")
+	(layer "F.Cu")
+	(descr "NPTH for a 2 mm dowel pin (slip fit through the PCB)")
+	(property "Reference" "REF**" (at 0 -7 0) (layer "F.SilkS") (effects (font (size 0.8 0.8) (thickness 0.12))))
+	(property "Value" "Hole_Pin_2.05mm" (at 0 7 0) (layer "F.Fab") (effects (font (size 0.8 0.8) (thickness 0.12))))
+	(attr board_only exclude_from_pos_files exclude_from_bom)
+	(pad "" np_thru_hole circle (at 0 0) (size 2.05 2.05) (drill 2.05) (layers "*.Cu" "*.Mask"))
+	(fp_circle (center 0 0) (end 1.300 0) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd"))
+	(fp_circle (center 0 0) (end 1.300 0) (stroke (width 0.1) (type solid)) (fill no) (layer "F.Fab"))
+)
