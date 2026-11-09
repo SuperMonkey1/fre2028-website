@@ -1,40 +1,27 @@
-// Measures a hand from a photo (palm up, coin next to it), entirely in the browser.
+// Measures a hand from a photo (palm up, a bank card flat on the palm), entirely in the browser.
 // 1. MediaPipe finds the hand and its 21 landmarks (no hand -> stop).
-// 2. A Hough transform finds the coin, a ray search + ellipse fit refines its outline and the colours tell which coin it is.
-// 3. The photo is flattened (the affine transform that turns the coin ellipse back into a circle) and turned so the
+// 2. A search over angles finds the rectangle with the card's proportions (85.6 x 54 mm); its four edges are fitted as lines.
+// 3. The photo is flattened with the full perspective correction from the card's four corners and turned so the
 //    fingers point straight up.
 // 4. On that photo each finger gets an upright box: its width across the upper-joint (DIP) crease, and the crease height.
+// 5. Height correction: the creases lie about 1 mm below the card, so they look slightly smaller. The camera distance
+//    follows from the card's size in pixels and the lens (photo metadata when present, otherwise a normal phone camera).
 
 import type { Finger } from './layout';
 
 export type Pt = { x: number; y: number };
 
-export interface Coin {
-  id: string;
-  label: string;
-  diameter: number;
-}
+/** ISO/IEC 7810 ID-1: bank cards, loyalty cards, ID cards (mm). */
+export const CARD = { long: 85.6, short: 53.98 };
 
-export const COINS: Coin[] = [
-  { id: 'eur200', label: '€2', diameter: 25.75 },
-  { id: 'eur100', label: '€1', diameter: 23.25 },
-  { id: 'eur050', label: '50 cent', diameter: 24.25 },
-  { id: 'eur020', label: '20 cent', diameter: 22.25 },
-  { id: 'eur010', label: '10 cent', diameter: 19.75 },
-  { id: 'eur005', label: '5 cent', diameter: 21.25 },
-  { id: 'eur002', label: '2 cent', diameter: 18.75 },
-  { id: 'eur001', label: '1 cent', diameter: 16.25 },
-  { id: 'usd025', label: 'US quarter', diameter: 24.26 },
-  { id: 'usd001', label: 'US penny', diameter: 19.05 },
-  { id: 'gbp100', label: 'UK £1', diameter: 23.43 },
-  { id: 'gbp010', label: 'UK 10p', diameter: 24.5 },
-];
-export const coinById = (id: string) => COINS.find((c) => c.id === id) || COINS[0];
+/** How far the finger creases are above the card (mm): the card lies on the palm, about 1 mm above them. */
+const CREASE_HEIGHT_ABOVE_CARD = -1;
+
+/** 35 mm equivalent focal length of a normal phone main camera, used when the photo has no metadata. */
+const DEFAULT_FOCAL_35 = 26;
 
 export const MEASURED_FINGERS: Finger[] = ['index', 'middle', 'ring', 'pinky'];
 
-/** Extra width added outside the index and the pinky (mm). */
-const OUTER_MARGIN_MM = 2;
 
 /** Upright box around a finger on the flattened photo (fingers point up, -y), in px. */
 export interface FingerBox {
@@ -53,8 +40,10 @@ export interface HandPhotoResult {
   image: string;
   width: number;
   height: number;
-  /** Coin on the flattened photo (a circle). */
-  coin: { center: Pt; radius: number; id: string; ellipseRatio: number };
+  /** Card on the flattened photo (its corners), and the photo scale it gives. */
+  card: { corners: Pt[]; mmPerPx: number };
+  /** Camera distance = distPerRefMm × card length (mm); heightMm = how far the creases are above the card. */
+  camera: { distPerRefMm: number; heightMm: number; focal35: number; fromMetadata: boolean };
   fingers: Record<Finger, FingerBox>;
   warnings: string[];
 }
@@ -66,7 +55,7 @@ export interface Measurements {
 
 export class HandPhotoError extends Error {}
 
-export type Stage = 'loading' | 'hand' | 'coin' | 'flatten' | 'fingers';
+export type Stage = 'loading' | 'hand' | 'card' | 'flatten' | 'fingers';
 
 /* ---------- small vector helpers ---------- */
 const sub = (a: Pt, b: Pt): Pt => ({ x: a.x - b.x, y: a.y - b.y });
@@ -90,9 +79,18 @@ const LM: Record<Finger, [number, number, number, number]> = {
 export const fingersLeftToRight = (boxes: Record<Finger, FingerBox>) =>
   [...MEASURED_FINGERS].sort((a, b) => boxes[a].x0 + boxes[a].x1 - boxes[b].x0 - boxes[b].x1);
 
+/** Estimated camera distance to the card (mm). */
+export const cameraDistance = (r: HandPhotoResult) => r.camera.distPerRefMm * CARD.long;
+
+/** Scale of the flattened photo at the height of the creases (mm per px), corrected for camera distance. */
+export function mmPerPxAtCreases(r: HandPhotoResult) {
+  const D = cameraDistance(r);
+  return D > 0 ? (r.card.mmPerPx * (D - r.camera.heightMm)) / D : r.card.mmPerPx;
+}
+
 /** Turns the (edited) finger boxes into the designer values (mm). */
-export function measure(r: HandPhotoResult, coinId = r.coin.id): Measurements {
-  const mmPerPx = coinById(coinId).diameter / (2 * r.coin.radius);
+export function measure(r: HandPhotoResult): Measurements {
+  const mmPerPx = mmPerPxAtCreases(r);
   const round1 = (n: number) => Math.round(n * 10) / 10;
   // Fingers point up, so a crease higher than the pinky's has a smaller y
   const off = (f: Finger) => round1((r.fingers.pinky.crease - r.fingers[f].crease) * mmPerPx);
@@ -105,12 +103,16 @@ export function measure(r: HandPhotoResult, coinId = r.coin.id): Measurements {
 
 /* ---------- MediaPipe ---------- */
 const MP_VERSION = '0.10.14';
+const MP_BASE = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VERSION}`;
+// Loaded from the CDN at runtime, past the bundler (like the CAD engine): a lazily compiled chunk makes the dev
+// server rebuild and reload the page in the middle of an analysis
+const runtimeImport = new Function('url', 'return import(url)') as (url: string) => Promise<any>;
 let landmarkerPromise: Promise<any> | null = null;
 function getLandmarker() {
   if (!landmarkerPromise) {
     landmarkerPromise = (async () => {
-      const { FilesetResolver, HandLandmarker } = await import('@mediapipe/tasks-vision');
-      const fileset = await FilesetResolver.forVisionTasks(`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VERSION}/wasm`);
+      const { FilesetResolver, HandLandmarker } = await runtimeImport(`${MP_BASE}/vision_bundle.mjs`);
+      const fileset = await FilesetResolver.forVisionTasks(`${MP_BASE}/wasm`);
       return HandLandmarker.createFromOptions(fileset, {
         baseOptions: {
           modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task',
@@ -118,7 +120,7 @@ function getLandmarker() {
         },
         runningMode: 'IMAGE',
         numHands: 1,
-        minHandDetectionConfidence: 0.4,
+        minHandDetectionConfidence: 0.3,
       });
     })().catch((e) => {
       landmarkerPromise = null;
@@ -187,282 +189,286 @@ const chroma = ([r, g, b]: [number, number, number]) => ({
   y: 0.299 * r + 0.587 * g + 0.114 * b,
 });
 
-function hsv([r, g, b]: [number, number, number]) {
-  const max = Math.max(r, g, b), min = Math.min(r, g, b), d = max - min;
-  let h = 0;
-  if (d > 0) {
-    if (max === r) h = ((g - b) / d) % 6;
-    else if (max === g) h = (b - r) / d + 2;
-    else h = (r - g) / d + 4;
-    h *= 60;
-    if (h < 0) h += 360;
-  }
-  return { h, s: max ? d / max : 0, v: max / 255 };
-}
-
 const median = (a: number[]) => {
   const s = [...a].sort((x, y) => x - y);
   return s.length ? s[Math.floor(s.length / 2)] : 0;
 };
 
-/* ---------- coin ---------- */
+/* ---------- photo metadata ---------- */
 
-/** Distance from p to the segment ab. */
-function segDist(p: Pt, a: Pt, b: Pt) {
-  const ab = sub(b, a);
-  const t = Math.min(1, Math.max(0, dot(sub(p, a), ab) / (dot(ab, ab) || 1)));
-  return dist(p, add(a, mul(ab, t)));
+/** 35 mm equivalent focal length from the JPEG's Exif data, or null (WhatsApp and screenshots have none). */
+async function readFocal35(file: File): Promise<number | null> {
+  try {
+    const buf = new DataView(await file.slice(0, 256 * 1024).arrayBuffer());
+    if (buf.getUint16(0) !== 0xffd8) return null;
+    let o = 2;
+    while (o + 4 < buf.byteLength) {
+      const marker = buf.getUint16(o);
+      const size = buf.getUint16(o + 2);
+      if (marker === 0xffe1 && buf.getUint32(o + 4) === 0x45786966) {
+        const t = o + 10; // TIFF header
+        const le = buf.getUint16(t) === 0x4949;
+        const u16 = (p: number) => buf.getUint16(p, le);
+        const u32 = (p: number) => buf.getUint32(p, le);
+        const tag = (ifd: number, id: number) => {
+          const n = u16(t + ifd);
+          for (let i = 0; i < n; i++) {
+            const e = t + ifd + 2 + i * 12;
+            if (u16(e) === id) return e;
+          }
+          return -1;
+        };
+        const exifPtr = tag(u32(t + 4), 0x8769);
+        if (exifPtr < 0) return null;
+        const f35 = tag(u32(exifPtr + 8), 0xa405); // FocalLengthIn35mmFilm (SHORT)
+        return f35 < 0 ? null : u16(f35 + 8) || null;
+      }
+      if ((marker & 0xff00) !== 0xff00) return null;
+      o += 2 + size;
+    }
+  } catch {}
+  return null;
 }
 
-const HAND_BONES: [number, number][] = [
-  [0, 1], [1, 2], [2, 3], [3, 4], [0, 5], [5, 6], [6, 7], [7, 8], [5, 9], [9, 10], [10, 11], [11, 12],
-  [9, 13], [13, 14], [14, 15], [15, 16], [13, 17], [0, 17], [17, 18], [18, 19], [19, 20], [0, 9], [0, 13], [1, 5],
-];
+/* ---------- card ---------- */
 
-/** Rough coin circle (centre, radius in px of the original photo) via a gradient Hough transform on a downscaled copy. */
-function findCoinRough(src: HTMLCanvasElement, lm: Pt[]): { c: Pt; r: number } | null {
-  const k = Math.min(1, 700 / Math.max(src.width, src.height));
-  const W = Math.round(src.width * k), H = Math.round(src.height * k);
-  const cv = document.createElement('canvas');
-  cv.width = W;
-  cv.height = H;
-  const ctx = cv.getContext('2d')!;
-  ctx.drawImage(src, 0, 0, W, H);
-  const im = new Img(ctx.getImageData(0, 0, W, H));
-  const P = lm.map((p) => mul(p, k));
-  const L = dist(P[0], P[9]);
-  const pad = 0.17 * L;
-  const up = norm(sub(P[9], P[0]));
-  const side = perp(up);
-  const inHand = (p: Pt) => {
-    for (const [i, j] of HAND_BONES) if (segDist(p, P[i], P[j]) < pad) return true;
-    // forearm below the wrist
-    const q = sub(p, P[0]);
-    return dot(q, up) < 0.1 * L && Math.abs(dot(q, side)) < 0.6 * L;
-  };
+/** Fits a line through points (total least squares): a point on it and its direction. */
+function fitLine(pts: Pt[]) {
+  const m = mul(pts.reduce((s, p) => add(s, p), { x: 0, y: 0 }), 1 / pts.length);
+  let sxx = 0, sxy = 0, syy = 0;
+  for (const p of pts) {
+    const d = sub(p, m);
+    sxx += d.x * d.x; sxy += d.x * d.y; syy += d.y * d.y;
+  }
+  const a = 0.5 * Math.atan2(2 * sxy, sxx - syy);
+  return { p: m, d: { x: Math.cos(a), y: Math.sin(a) } };
+}
 
-  // Sobel
-  const G = im.gray;
-  const gx = new Float32Array(W * H), gy = new Float32Array(W * H), mag = new Float32Array(W * H);
+function intersect(l1: { p: Pt; d: Pt }, l2: { p: Pt; d: Pt }): Pt {
+  const den = l1.d.x * l2.d.y - l1.d.y * l2.d.x;
+  const t = ((l2.p.x - l1.p.x) * l2.d.y - (l2.p.y - l1.p.y) * l2.d.x) / (den || 1e-9);
+  return add(l1.p, mul(l1.d, t));
+}
+
+/**
+ * Finds a card (85.6 × 54 mm) around the palm and returns its four corners on the photo, in order around it.
+ * For each angle, edge pixels whose gradient points along one of the two card axes are projected onto that axis;
+ * card sides show up as peaks. Peak pairs with the card's proportions are checked along all four sides, then each
+ * side is refined to a fitted line and the corners are where those lines cross.
+ */
+function findCard(im: Img, P: Pt[]): Pt[] | null {
+  // With the palm covered, MediaPipe's wrist and palm points are unreliable; the fingers are not. The last two finger
+  // segments (middle joint to tip) average about 45 mm, which gives the expected card size; the card sits on the palm,
+  // just below the knuckles.
+  const fingerLen = (['index', 'middle', 'ring'] as Finger[]).reduce((s, f) => s + dist(P[LM[f][1]], P[LM[f][3]]), 0) / 3;
+  const L = (fingerLen * CARD.long) / 45;
+  const knuckles = mul([5, 9, 13, 17].reduce((s, i) => add(s, P[i]), { x: 0, y: 0 }), 1 / 4);
+  const up = norm((['index', 'middle', 'ring', 'pinky'] as Finger[]).reduce((s, f) => add(s, sub(P[LM[f][3]], P[LM[f][1]])), { x: 0, y: 0 }));
+  const C = sub(knuckles, mul(up, 0.5 * L));
+  const R = Math.round(1.1 * L);
+  const x0 = Math.max(1, Math.round(C.x - R)), x1 = Math.min(im.w - 2, Math.round(C.x + R));
+  const y0 = Math.max(1, Math.round(C.y - R)), y1 = Math.min(im.h - 2, Math.round(C.y + R));
+  const G = im.gray, W = im.w;
+  const ex: number[] = [], ey: number[] = [], enx: number[] = [], eny: number[] = [], em: number[] = [];
   const mags: number[] = [];
-  for (let y = 1; y < H - 1; y++)
-    for (let x = 1; x < W - 1; x++) {
+  for (let y = y0; y <= y1; y++)
+    for (let x = x0; x <= x1; x++) {
       const i = y * W + x;
-      const a = G[i - W - 1], b = G[i - W], c = G[i - W + 1], d = G[i - 1], f = G[i + 1], g = G[i + W - 1], h = G[i + W], j = G[i + W + 1];
-      gx[i] = c + 2 * f + j - a - 2 * d - g;
-      gy[i] = g + 2 * h + j - a - 2 * b - c;
-      mag[i] = Math.hypot(gx[i], gy[i]);
-      if ((x + y) % 7 === 0) mags.push(mag[i]);
+      const gx = G[i - W + 1] + 2 * G[i + 1] + G[i + W + 1] - G[i - W - 1] - 2 * G[i - 1] - G[i + W - 1];
+      const gy = G[i + W - 1] + 2 * G[i + W] + G[i + W + 1] - G[i - W - 1] - 2 * G[i - W] - G[i - W + 1];
+      const m = Math.hypot(gx, gy);
+      if ((x + y) % 5 === 0) mags.push(m);
+      if (m > 30) { ex.push(x - C.x); ey.push(y - C.y); enx.push(gx / m); eny.push(gy / m); em.push(m); }
     }
   mags.sort((a, b) => a - b);
-  const thr = Math.max(40, mags[Math.floor(mags.length * 0.9)]);
+  const thr = Math.max(30, mags[Math.floor(mags.length * 0.85)] || 0);
 
-  const rmin = Math.max(4, 0.06 * L), rmax = 0.21 * L;
-  const acc = new Float32Array(W * H);
-  const handMask = new Uint8Array(W * H);
-  for (let y = 0; y < H; y += 2) for (let x = 0; x < W; x += 2) if (inHand({ x, y })) handMask[y * W + x] = handMask[y * W + x + 1] = handMask[(y + 1) * W + x] = handMask[(y + 1) * W + x + 1] = 1;
-  for (let y = 1; y < H - 1; y++)
-    for (let x = 1; x < W - 1; x++) {
-      const i = y * W + x;
-      if (mag[i] < thr || handMask[i]) continue;
-      const nx = gx[i] / mag[i], ny = gy[i] / mag[i];
-      for (let r = rmin; r <= rmax; r += 1)
-        for (const s of [1, -1]) {
-          const cx = Math.round(x + s * r * nx), cy = Math.round(y + s * r * ny);
-          if (cx >= 0 && cy >= 0 && cx < W && cy < H) acc[cy * W + cx] += 1;
-        }
+  // Is there an edge across this side point (gradient along n) within ±2 px?
+  const edgeAcross = (p: Pt, n: Pt) => {
+    for (let o = -2; o <= 2; o += 0.5) {
+      const q = add(p, mul(n, o));
+      if (!im.inside(add(q, n)) || !im.inside(sub(q, n))) continue;
+      if (Math.abs(im.g(q.x + n.x, q.y + n.y) - im.g(q.x - n.x, q.y - n.y)) > 14) return true;
     }
-
-  // 5x5 box blur of the accumulator, then local maxima
-  const blur = new Float32Array(W * H);
-  for (let y = 2; y < H - 2; y++)
-    for (let x = 2; x < W - 2; x++) {
-      let s = 0;
-      for (let dy = -2; dy <= 2; dy++) for (let dx = -2; dx <= 2; dx++) s += acc[(y + dy) * W + x + dx];
-      blur[y * W + x] = s;
-    }
-  const peaks: { x: number; y: number; v: number }[] = [];
-  for (let y = 3; y < H - 3; y++)
-    for (let x = 3; x < W - 3; x++) {
-      const v = blur[y * W + x];
-      if (v <= 0 || handMask[y * W + x]) continue;
-      let max = true;
-      for (let dy = -3; dy <= 3 && max; dy++) for (let dx = -3; dx <= 3; dx++) if (blur[(y + dy) * W + x + dx] > v) { max = false; break; }
-      if (max) peaks.push({ x, y, v });
-    }
-  peaks.sort((a, b) => b.v - a.v);
-
-  // Score each candidate by how much of a circle of edge pixels (gradient pointing radially) surrounds it
-  let best: { c: Pt; r: number; score: number } | null = null;
-  const N = 120;
-  for (const pk of peaks.slice(0, 12)) {
-    const scores: { r: number; score: number }[] = [];
-    for (let r = rmin; r <= rmax; r += 0.5) {
-      let hit = 0;
-      for (let t = 0; t < N; t++) {
-        const ang = (t / N) * 2 * Math.PI, ux = Math.cos(ang), uy = Math.sin(ang);
-        for (const dr of [-1, 0, 1]) {
-          const x = Math.round(pk.x + (r + dr) * ux), y = Math.round(pk.y + (r + dr) * uy);
-          if (x < 1 || y < 1 || x >= W - 1 || y >= H - 1) continue;
-          const i = y * W + x;
-          if (mag[i] >= thr * 0.7 && Math.abs(gx[i] * ux + gy[i] * uy) > 0.75 * mag[i]) { hit++; break; }
-        }
-      }
-      scores.push({ r, score: hit / N });
-    }
-    // Bimetal coins (€1, €2) show an inner circle too: take the outermost circle that is nearly as strong
-    const top = Math.max(...scores.map((s) => s.score));
-    const outer = scores.filter((s) => s.score >= 0.75 * top).pop()!;
-    if (!best || top > best.score) best = { c: { x: pk.x, y: pk.y }, r: outer.r, score: top };
-  }
-  if (!best || best.score < 0.4) return null;
-  return { c: mul(best.c, 1 / k), r: best.r / k };
-}
-
-/** Least-squares conic fit, returned as ellipse centre, semi-axes (a >= b) and angle of the major axis. */
-function fitEllipse(pts: Pt[]) {
-  const m = mul(pts.reduce((s, p) => add(s, p), { x: 0, y: 0 }), 1 / pts.length);
-  const sc = Math.sqrt(pts.reduce((s, p) => s + dot(sub(p, m), sub(p, m)), 0) / pts.length) || 1;
-  // A x² + B xy + C y² + D x + E y = 1 on normalised points
-  const M = Array.from({ length: 5 }, () => new Array(6).fill(0));
-  for (const p of pts) {
-    const x = (p.x - m.x) / sc, y = (p.y - m.y) / sc;
-    const row = [x * x, x * y, y * y, x, y];
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 5; j++) M[i][j] += row[i] * row[j];
-      M[i][5] += row[i];
-    }
-  }
-  for (let i = 0; i < 5; i++) {
-    let piv = i;
-    for (let r = i + 1; r < 5; r++) if (Math.abs(M[r][i]) > Math.abs(M[piv][i])) piv = r;
-    [M[i], M[piv]] = [M[piv], M[i]];
-    if (Math.abs(M[i][i]) < 1e-12) return null;
-    for (let r = 0; r < 5; r++) {
-      if (r === i) continue;
-      const f = M[r][i] / M[i][i];
-      for (let c = i; c < 6; c++) M[r][c] -= f * M[i][c];
-    }
-  }
-  const [A, B, C, D, E] = M.map((r, i) => r[5] / r[i]);
-  const F = -1;
-  if (B * B - 4 * A * C >= 0) return null;
-  const det = 4 * A * C - B * B;
-  const x0 = (B * E - 2 * C * D) / det, y0 = (B * D - 2 * A * E) / det;
-  const F0 = A * x0 * x0 + B * x0 * y0 + C * y0 * y0 + D * x0 + E * y0 + F;
-  const th = 0.5 * Math.atan2(B, A - C);
-  const cs = Math.cos(th), sn = Math.sin(th);
-  const A2 = A * cs * cs + B * sn * cs + C * sn * sn;
-  const C2 = A * sn * sn - B * sn * cs + C * cs * cs;
-  if (-F0 / A2 <= 0 || -F0 / C2 <= 0) return null;
-  const ax = Math.sqrt(-F0 / A2) * sc, ay = Math.sqrt(-F0 / C2) * sc;
-  const center = { x: x0 * sc + m.x, y: y0 * sc + m.y };
-  return ax >= ay ? { center, a: ax, b: ay, angle: th } : { center, a: ay, b: ax, angle: th + Math.PI / 2 };
-}
-
-/** Radius of an ellipse in direction ang. */
-function ellipseRadius(e: { a: number; b: number; angle: number }, ang: number) {
-  const t = ang - e.angle;
-  return (e.a * e.b) / Math.hypot(e.b * Math.cos(t), e.a * Math.sin(t));
-}
-
-/** Refines the rough circle into an ellipse on the full-resolution photo. */
-function refineCoin(im: Img, rough: { c: Pt; r: number }) {
-  const pts: Pt[] = [];
-  const N = 144;
-  for (let t = 0; t < N; t++) {
-    const ang = (t / N) * 2 * Math.PI, u = { x: Math.cos(ang), y: Math.sin(ang) };
-    // The rough radius is close to the rim. Take the innermost strong edge: the rim comes before the coin's shadow.
-    const prof: { r: number; d: number }[] = [];
-    for (let r = 0.85 * rough.r; r <= 1.2 * rough.r; r += 0.5) {
-      const p1 = add(rough.c, mul(u, r - 1)), p2 = add(rough.c, mul(u, r + 1));
-      if (!im.inside(p1) || !im.inside(p2)) continue;
-      prof.push({ r, d: Math.abs(im.g(p2.x, p2.y) - im.g(p1.x, p1.y)) });
-    }
-    const max = Math.max(0, ...prof.map((p) => p.d));
-    const rim = prof.find((p, i) => p.d >= 0.5 * max && p.d >= (prof[i - 1]?.d ?? 0) && p.d >= (prof[i + 1]?.d ?? 0));
-    if (rim && max > 6) pts.push(add(rough.c, mul(u, rim.r)));
-  }
-  const circle = { center: rough.c, a: rough.r, b: rough.r, angle: 0 };
-  if (pts.length < 20) return circle;
-  let e = fitEllipse(pts);
-  if (!e) return circle;
-  // Drop outliers (shadows, glare) once and refit
-  const res = pts.map((p) => Math.abs(dist(p, e!.center) - ellipseRadius(e!, Math.atan2(p.y - e!.center.y, p.x - e!.center.x))));
-  const mad = median(res) || 0.5;
-  const kept = pts.filter((_, i) => res[i] < 2.5 * mad + 0.5);
-  e = (kept.length >= 20 && fitEllipse(kept)) || e;
-  if (e.a / e.b > 1.6) return circle;
-  // A slightly oval fit is mostly noise (coin relief, shadow), and flattening on noise distorts the lengths.
-  // Below 10 % treat the coin as a circle with the median rim distance as radius.
-  if (e.a / e.b < 1.1) {
-    const c = e.center;
-    const r = median((kept.length >= 20 ? kept : pts).map((p) => dist(p, c)));
-    return { center: c, a: r, b: r, angle: 0 };
-  }
-  return e;
-}
-
-/** Guesses the coin from its colours (bimetal or not, gold/copper/silver) and the hand size. */
-function identifyCoin(im: Img, c: Pt, r: number, palmLenPx: number): string {
-  const avg = (r0: number, r1: number) => {
-    const s = [0, 0, 0];
-    let n = 0;
-    for (let rr = r0; rr <= r1; rr += Math.max(1, r / 20))
-      for (let t = 0; t < 48; t++) {
-        const a = (t / 48) * 2 * Math.PI;
-        const px = im.rgb(c.x + rr * Math.cos(a), c.y + rr * Math.sin(a));
-        s[0] += px[0]; s[1] += px[1]; s[2] += px[2]; n++;
-      }
-    return s.map((v) => v / n) as [number, number, number];
+    return false;
   };
-  // White-balance against the background just around the coin
-  const bg = avg(1.35 * r, 1.6 * r);
-  const wb = (p: [number, number, number]) => p.map((v, i) => Math.min(255, (v / (bg[i] || 1)) * 200)) as [number, number, number];
-  const centre = hsv(wb(avg(0, 0.4 * r)));
-  const ring = hsv(wb(avg(0.78 * r, 0.9 * r)));
+  // Fraction of the middle 70 % of a side (from a to b, normal n) that has an edge across it
+  const sideSupport = (a: Pt, b: Pt, n: Pt) => {
+    let hit = 0;
+    const N = 30;
+    for (let i = 0; i < N; i++) {
+      const t = 0.15 + (0.7 * i) / (N - 1);
+      if (edgeAcross(add(a, mul(sub(b, a), t)), n)) hit++;
+    }
+    return hit / N;
+  };
 
-  let family: string[];
-  if (Math.abs(centre.s - ring.s) > 0.1) family = centre.s > ring.s ? ['eur200'] : ['eur100'];
-  else if (centre.s < 0.15) family = ['usd025', 'gbp010'];
-  else if (centre.h < 25) family = ['eur005', 'eur002', 'eur001', 'usd001'];
-  else family = ['eur050', 'eur020', 'eur010', 'gbp100'];
-  // Pick the size that gives the most typical adult palm (wrist to middle knuckle ≈ 95 mm)
-  let best = family[0], bestErr = Infinity;
-  for (const id of family) {
-    const err = Math.abs((palmLenPx * coinById(id).diameter) / (2 * r) - 95);
-    if (err < bestErr) { bestErr = err; best = id; }
+  const ratio = CARD.long / CARD.short;
+  const minLong = 0.6 * L, maxLong = 1.5 * L;
+  const size = 2 * R + 3;
+  let best: { score: number; u: Pt; v: Pt; a: number; b: number; c: number; d: number } | null = null;
+  for (let deg = 0; deg < 180; deg += 1) {
+    const th = (deg * Math.PI) / 180;
+    const u = { x: Math.cos(th), y: Math.sin(th) }, v = { x: -u.y, y: u.x };
+    const Hu = new Float32Array(size), Hv = new Float32Array(size);
+    for (let k = 0; k < em.length; k++) {
+      if (em[k] < thr) continue;
+      if (Math.abs(enx[k] * u.x + eny[k] * u.y) > 0.95) Hu[Math.round(ex[k] * u.x + ey[k] * u.y) + R + 1] += em[k];
+      else if (Math.abs(enx[k] * v.x + eny[k] * v.y) > 0.95) Hv[Math.round(ex[k] * v.x + ey[k] * v.y) + R + 1] += em[k];
+    }
+    const peaks = (H: Float32Array) => {
+      const sm = H.map((_, i) => (H[i - 1] || 0) + H[i] + (H[i + 1] || 0));
+      const pk: { i: number; v: number }[] = [];
+      for (let i = 2; i < size - 2; i++)
+        if (sm[i] > 0 && sm[i] >= sm[i - 1] && sm[i] > sm[i + 1] && sm[i] >= sm[i - 2] && sm[i] > sm[i + 2]) pk.push({ i, v: sm[i] });
+      return pk.sort((a, b) => b.v - a.v).slice(0, 8).map((p) => p.i - R - 1);
+    };
+    const pu = peaks(Hu), pv = peaks(Hv);
+    for (let i = 0; i < pu.length; i++)
+      for (let j = i + 1; j < pu.length; j++)
+        for (let k = 0; k < pv.length; k++)
+          for (let l = k + 1; l < pv.length; l++) {
+            const a = Math.min(pu[i], pu[j]), b = Math.max(pu[i], pu[j]), c = Math.min(pv[k], pv[l]), d = Math.max(pv[k], pv[l]);
+            const du = b - a, dv = d - c;
+            const lng = Math.max(du, dv), sht = Math.min(du, dv);
+            if (lng < minLong || lng > maxLong || Math.abs(lng / sht / ratio - 1) > 0.08) continue;
+            const corner = (s: number, t: number) => add(C, add(mul(u, s), mul(v, t)));
+            const sup = [
+              sideSupport(corner(a, c), corner(a, d), u),
+              sideSupport(corner(b, c), corner(b, d), u),
+              sideSupport(corner(a, c), corner(b, c), v),
+              sideSupport(corner(a, d), corner(b, d), v),
+            ];
+            if (Math.min(...sup) < 0.5) continue;
+            const score = sup.reduce((x, y) => x + y, 0);
+            if (!best || score > best.score) best = { score, u, v, a, b, c, d };
+          }
   }
-  return best;
+  if (!best) return null;
+
+  // Refine each side: strongest edge across it at many points, then a fitted line
+  const { u, v, a, b, c, d } = best;
+  const at = (s: number, t: number) => add(C, add(mul(u, s), mul(v, t)));
+  const sides = [
+    { p0: at(a, c), p1: at(a, d), n: u },
+    { p0: at(a, d), p1: at(b, d), n: v },
+    { p0: at(b, d), p1: at(b, c), n: u },
+    { p0: at(b, c), p1: at(a, c), n: v },
+  ];
+  const lines = sides.map(({ p0, p1, n }) => {
+    const pts: Pt[] = [];
+    for (let i = 0; i < 40; i++) {
+      const base = add(p0, mul(sub(p1, p0), 0.12 + (0.76 * i) / 39));
+      let bestO = 0, bestD = 0;
+      for (let o = -4; o <= 4; o += 0.25) {
+        const q = add(base, mul(n, o));
+        const dd = Math.abs(im.g(q.x + n.x, q.y + n.y) - im.g(q.x - n.x, q.y - n.y));
+        if (dd > bestD) { bestD = dd; bestO = o; }
+      }
+      if (bestD > 10) pts.push(add(base, mul(n, bestO)));
+    }
+    let line = fitLine(pts.length >= 8 ? pts : [p0, p1]);
+    const res = pts.map((q) => Math.abs(dot(sub(q, line.p), perp(line.d))));
+    const kept = pts.filter((_, i) => res[i] < 1.5);
+    if (kept.length >= 8) line = fitLine(kept);
+    return line;
+  });
+  return [0, 1, 2, 3].map((i) => intersect(lines[(i + 3) % 4], lines[i]));
+}
+
+/** Homography (3×3, row-major) mapping the four points `from` onto `to`. */
+function homography(from: Pt[], to: Pt[]): number[] {
+  const A: number[][] = [];
+  for (let i = 0; i < 4; i++) {
+    const { x, y } = from[i], { x: X, y: Y } = to[i];
+    A.push([x, y, 1, 0, 0, 0, -X * x, -X * y, X]);
+    A.push([0, 0, 0, x, y, 1, -Y * x, -Y * y, Y]);
+  }
+  for (let i = 0; i < 8; i++) {
+    let piv = i;
+    for (let r = i + 1; r < 8; r++) if (Math.abs(A[r][i]) > Math.abs(A[piv][i])) piv = r;
+    [A[i], A[piv]] = [A[piv], A[i]];
+    for (let r = 0; r < 8; r++) {
+      if (r === i) continue;
+      const f = A[r][i] / A[i][i];
+      for (let col = i; col < 9; col++) A[r][col] -= f * A[i][col];
+    }
+  }
+  return [...A.map((r, i) => r[8] / r[i]), 1];
+}
+
+const applyH = (H: number[], p: Pt): Pt => {
+  const w = H[6] * p.x + H[7] * p.y + H[8];
+  return { x: (H[0] * p.x + H[1] * p.y + H[2]) / w, y: (H[3] * p.x + H[4] * p.y + H[5]) / w };
+};
+
+function invert3(m: number[]): number[] {
+  const [a, b, c, d, e, f, g, h, i] = m;
+  const A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g;
+  const det = a * A + b * B + c * C;
+  return [A, -(b * i - c * h), b * f - c * e, B, a * i - c * g, -(a * f - c * d), C, -(a * h - b * g), a * e - b * d].map((v) => v / det);
+}
+
+/** Draws the photo through a projective transform: `outToSrc` maps an output pixel back to the source photo. */
+function warp(src: Img, outW: number, outH: number, outToSrc: (q: Pt) => Pt): HTMLCanvasElement {
+  const cv = document.createElement('canvas');
+  cv.width = outW;
+  cv.height = outH;
+  const ctx = cv.getContext('2d')!;
+  const out = ctx.createImageData(outW, outH);
+  const D = src.d, W = src.w, Hh = src.h;
+  for (let y = 0; y < outH; y++)
+    for (let x = 0; x < outW; x++) {
+      const p = outToSrc({ x: x + 0.5, y: y + 0.5 });
+      const o = (y * outW + x) * 4;
+      const sx = p.x - 0.5, sy = p.y - 0.5;
+      out.data[o + 3] = 255;
+      if (sx < 0 || sy < 0 || sx >= W - 1 || sy >= Hh - 1) {
+        out.data[o] = out.data[o + 1] = out.data[o + 2] = 255;
+        continue;
+      }
+      const x0 = Math.floor(sx), y0 = Math.floor(sy), fx = sx - x0, fy = sy - y0;
+      const i = (y0 * W + x0) * 4;
+      for (let ch = 0; ch < 3; ch++)
+        out.data[o + ch] =
+          D[i + ch] * (1 - fx) * (1 - fy) + D[i + 4 + ch] * fx * (1 - fy) + D[i + W * 4 + ch] * (1 - fx) * fy + D[i + W * 4 + 4 + ch] * fx * fy;
+    }
+  ctx.putImageData(out, 0, 0);
+  return cv;
 }
 
 /* ---------- fingers ---------- */
 
-/** P are the landmarks on the flattened, upright photo. */
-function measureFingers(im: Img, P: Pt[], coin: { center: Pt; radius: number }, warnings: string[]): Record<Finger, FingerBox> {
-  // Skin colour model from the palm
-  const palmC = mul([0, 5, 9, 13, 17].reduce((s, i) => add(s, P[i]), { x: 0, y: 0 }), 1 / 5);
+/**
+ * P are the landmarks on the flattened, upright photo. The card covers the palm, so skin colour comes from the middle
+ * finger segments and the background from around the fingers.
+ */
+function measureFingers(im: Img, P: Pt[], pxPerMm: number, warnings: string[]): Record<Finger, FingerBox> {
+  // Skin colour model from the middle segment of each finger (between the two joints)
   const skin: { cb: number; cr: number; y: number }[] = [];
-  for (const i of [0, 5, 9, 13, 17])
-    for (let f = 0.1; f <= 0.6; f += 0.1) {
-      const p = add(palmC, mul(sub(P[i], palmC), f));
+  for (const f of MEASURED_FINGERS)
+    for (let t = 0.3; t <= 0.7; t += 0.1) {
+      const p = add(P[LM[f][1]], mul(sub(P[LM[f][2]], P[LM[f][1]]), t));
       skin.push(chroma(im.rgb(p.x, p.y)));
     }
   const mcb = skin.reduce((s, v) => s + v.cb, 0) / skin.length, mcr = skin.reduce((s, v) => s + v.cr, 0) / skin.length;
-  // Background colour model: around the coin and just past the fingertips
+  // Background colour model: past the fingertips and beside the outer fingers
   const bgS: { cb: number; cr: number; y: number }[] = [];
-  for (let t = 0; t < 36; t++) {
-    const a = (t / 36) * 2 * Math.PI;
-    for (const k of [1.6, 2.0]) {
-      const p = add(coin.center, mul({ x: Math.cos(a), y: Math.sin(a) }, k * coin.radius));
+  for (const f of MEASURED_FINGERS) {
+    const [, , d, tip] = LM[f];
+    for (const k of [0.8, 1.2, 1.6]) {
+      const p = add(P[tip], mul(sub(P[tip], P[d]), k));
       if (im.inside(p)) bgS.push(chroma(im.rgb(p.x, p.y)));
     }
   }
-  for (const f of MEASURED_FINGERS) {
-    const [, , d, tip] = LM[f];
-    const p = add(P[tip], mul(sub(P[tip], P[d]), 0.8));
-    if (im.inside(p)) bgS.push(chroma(im.rgb(p.x, p.y)));
-  }
+  const spacing = Math.abs(P[LM.index[2]].x - P[LM.middle[2]].x);
+  const outerSide = Math.sign(P[LM.index[2]].x - P[LM.pinky[2]].x);
+  for (const [f, side] of [['index', outerSide], ['pinky', -outerSide]] as [Finger, number][])
+    for (const k of [1.6, 2.2])
+      for (const j of [1, 2]) {
+        const p = add(P[LM[f][j]], { x: side * k * spacing, y: 0 });
+        if (im.inside(p)) bgS.push(chroma(im.rgb(p.x, p.y)));
+      }
   const bcb = bgS.reduce((s, v) => s + v.cb, 0) / bgS.length, bcr = bgS.reduce((s, v) => s + v.cr, 0) / bgS.length;
   const bgLum = median(bgS.map((v) => v.y));
 
@@ -476,14 +482,16 @@ function measureFingers(im: Img, P: Pt[], coin: { center: Pt; radius: number }, 
     const neighbours = [MEASURED_FINGERS[idx - 1], MEASURED_FINGERS[idx + 1]].filter(Boolean) as Finger[];
     const spacing = Math.min(...neighbours.map((n) => Math.abs(dot(sub(dip(n), dip(f)), v))));
     const halfW = 0.5 * spacing;
-    const seg = dist(P[LM[f][1]], P[LM[f][2]]);
+    // Middle segment length; MediaPipe sometimes bunches the joints together (the pinky especially), so never less
+    // than 18 mm, which keeps the crease search wide enough
+    const seg = Math.max(dist(P[LM[f][1]], P[LM[f][2]]), 18 * pxPerMm);
 
     // Crease: the darkest line across the finger near the DIP landmark. MediaPipe puts that landmark on the joint
     // centre, which lies a little below the crease seen on the palm side, so the search leans towards the fingertip.
     // A median across the finger keeps calluses and skin flakes from shifting it.
     const step = 0.5;
     const ts: number[] = [], prof: number[] = [];
-    for (let t = -0.35 * seg; t <= 0.75 * seg; t += step) {
+    for (let t = -0.55 * seg; t <= 0.75 * seg; t += step) {
       const row: number[] = [];
       for (let w = -0.45 * halfW; w <= 0.45 * halfW; w += 1) {
         const p = add(dip(f), add(mul(u, t), mul(v, w)));
@@ -492,10 +500,16 @@ function measureFingers(im: Img, P: Pt[], coin: { center: Pt; radius: number }, 
       ts.push(t); prof.push(median(row));
     }
     const win = Math.max(2, Math.round((0.15 * seg) / step));
+    const half = Math.max(1, Math.round(win / 2));
     const expected = 0.2 * seg;
     let bestT = expected, bestScore = Infinity, contrast = 0;
     for (let i = 0; i < prof.length; i++) {
-      if (ts[i] < -0.2 * seg || ts[i] > 0.6 * seg) continue;
+      if (ts[i] < -0.4 * seg || ts[i] > 0.6 * seg) continue;
+      // Only the darkest point of its neighbourhood counts: points on a slope (towards the brighter fingertip) are
+      // darker than the average around them without being a crease
+      let isMin = true;
+      for (let j = Math.max(0, i - half); j <= Math.min(prof.length - 1, i + half); j++) if (prof[j] < prof[i]) { isMin = false; break; }
+      if (!isMin) continue;
       let s = 0, n = 0;
       for (let j = Math.max(0, i - win); j <= Math.min(prof.length - 1, i + win); j++) { s += prof[j]; n++; }
       const d = prof[i] - s / n;
@@ -559,27 +573,27 @@ function measureFingers(im: Img, P: Pt[], coin: { center: Pt; radius: number }, 
       return e;
     };
     const [mcp, pip, d, tip] = LM[f];
-    // An outer side (no finger next to it) must cover the whole finger: the widest point between the
-    // middle of the last segment and the middle joint, not just the width at the crease
-    const outer = (sideSign: number) => {
+    const hasNb = (sideSign: number) => neighbours.some((n) => Math.sign(dip(n).x - c.x) === sideSign);
+    // Each side at the finger's widest point between the middle of the last segment and the middle joint, not just
+    // at the crease (so neighbouring boxes may overlap a little). Outer sides also take in the dark shaded edge.
+    const widest = (sideSign: number) => {
+      const edge = hasNb(sideSign) ? edgeAt : outerEdgeAt;
       // Outward position per row; a high percentile instead of the single widest row, so one stray row can't win
-      const xs = [sideSign * (c.x + sideSign * outerEdgeAt(sideSign, c))];
+      const xs = [sideSign * (c.x + sideSign * edge(sideSign, c))];
       const yFrom = P[d].y + 0.5 * (P[tip].y - P[d].y), yTo = P[pip].y;
       for (let y = yFrom; y <= yTo; y += 2) {
         // point on the finger axis at this height (tip-DIP-PIP polyline)
         const [a, b] = y < P[d].y ? [P[tip], P[d]] : [P[d], P[pip]];
         const t = (y - a.y) / (b.y - a.y || 1);
         const from = { x: a.x + t * (b.x - a.x), y };
-        const e = from.x + sideSign * outerEdgeAt(sideSign, from);
-        xs.push(sideSign * e);
+        xs.push(sideSign * (from.x + sideSign * edge(sideSign, from)));
       }
       xs.sort((p, q) => p - q);
       return sideSign * xs[Math.floor(0.85 * (xs.length - 1))];
     };
-    const hasNb = (sideSign: number) => neighbours.some((n) => Math.sign(dip(n).x - c.x) === sideSign);
     out[f] = {
-      x0: hasNb(-1) ? c.x - edgeAt(-1) : outer(-1),
-      x1: hasNb(1) ? c.x + edgeAt(1) : outer(1),
+      x0: widest(-1),
+      x1: widest(1),
       crease: c.y,
       // the tip landmark sits just inside the fingertip
       top: P[tip].y - 0.3 * dist(P[tip], P[d]),
@@ -593,13 +607,53 @@ function measureFingers(im: Img, P: Pt[], coin: { center: Pt; radius: number }, 
   return out;
 }
 
+/**
+ * MediaPipe shrinks the photo to about 192 px before looking for a palm, so a small hand (or one whose palm is
+ * covered by a card) can be missed. Try the whole photo first, then zoomed-in squares, each also turned a quarter
+ * turn both ways (it finds upright hands best). Returns the 21 landmarks in photo px.
+ */
+function detectHand(landmarker: any, src: HTMLCanvasElement): Pt[] | null {
+  const side = Math.min(src.width, src.height);
+  const crops: { x: number; y: number; s: number }[] = [];
+  for (const s of [side, side * 0.6]) {
+    for (let y = 0; y <= src.height - s + 1; y += s / 2)
+      for (let x = 0; x <= src.width - s + 1; x += s / 2) crops.push({ x, y, s });
+  }
+  const tries: { crop: { x: number; y: number; s: number } | null; turn: number }[] = [{ crop: null, turn: 0 }];
+  for (const crop of crops) for (const turn of [0, 1, 3]) tries.push({ crop, turn });
+  for (const { crop, turn } of tries) {
+    const { x, y, s } = crop || { x: 0, y: 0, s: 0 };
+    const w = crop ? s : src.width, h = crop ? s : src.height;
+    const cv = document.createElement('canvas');
+    const size = crop ? Math.min(s, 640) : 0;
+    cv.width = crop ? size : w;
+    cv.height = crop ? size : h;
+    const k = crop ? size / s : 1;
+    const ctx = cv.getContext('2d')!;
+    // turn quarter turns clockwise around the centre of the (square) crop
+    ctx.translate(cv.width / 2, cv.height / 2);
+    ctx.rotate((turn * Math.PI) / 2);
+    ctx.translate(-cv.width / 2, -cv.height / 2);
+    ctx.drawImage(src, x, y, w, h, 0, 0, cv.width, cv.height);
+    const det = landmarker.detect(cv);
+    if (!det.landmarks?.length) continue;
+    return det.landmarks[0].map((p: { x: number; y: number }) => {
+      // undo the turn (in the drawn canvas), then the crop and scale
+      let px = p.x * cv.width - cv.width / 2, py = p.y * cv.height - cv.height / 2;
+      for (let i = 0; i < turn; i++) [px, py] = [py, -px];
+      return { x: x + (px + cv.width / 2) / k, y: y + (py + cv.height / 2) / k };
+    });
+  }
+  return null;
+}
+
 /* ---------- main ---------- */
 
 export async function analyzeHandPhoto(file: File, onStage: (s: Stage) => void = () => {}): Promise<HandPhotoResult> {
   const tick = () => new Promise((r) => setTimeout(r, 20));
   const warnings: string[] = [];
   onStage('loading');
-  const src = await loadImage(file);
+  const [src, focalFromMeta] = await Promise.all([loadImage(file), readFocal35(file)]);
   let landmarker: any;
   try {
     landmarker = await getLandmarker();
@@ -610,60 +664,77 @@ export async function analyzeHandPhoto(file: File, onStage: (s: Stage) => void =
 
   onStage('hand');
   await tick();
-  const det = landmarker.detect(src);
-  if (!det.landmarks?.length) throw new HandPhotoError('No hand found in this photo. Lay your hand flat, palm up, with the whole hand in view.');
-  const lm: Pt[] = det.landmarks[0].map((p: { x: number; y: number }) => ({ x: p.x * src.width, y: p.y * src.height }));
+  const lm = detectHand(landmarker, src);
+  if (!lm) throw new HandPhotoError('No hand found in this photo. Lay your hand flat, palm up, with the whole hand in view.');
   const edgeMargin = 0.01 * Math.max(src.width, src.height);
   if (lm.slice(5).some((p) => p.x < edgeMargin || p.y < edgeMargin || p.x > src.width - edgeMargin || p.y > src.height - edgeMargin))
     throw new HandPhotoError('Part of your fingers is outside the photo. Take the photo again with the whole hand in view.');
 
-  onStage('coin');
+  // Lens: focal length in px of this photo (35 mm equivalent is defined on the 43.3 mm full-frame diagonal)
+  const focal35 = focalFromMeta || DEFAULT_FOCAL_35;
+  const focalPx = (focal35 / 43.27) * Math.hypot(src.width, src.height);
+
+  onStage('card');
   await tick();
-  const rough = findCoinRough(src, lm);
-  if (!rough) throw new HandPhotoError('No coin found. Put a coin flat next to your hand (not touching it) and take the photo again.');
   const full = new Img(src.getContext('2d')!.getImageData(0, 0, src.width, src.height));
-  const ell = refineCoin(full, rough);
-  const coinId = identifyCoin(full, ell.center, (ell.a + ell.b) / 2, dist(lm[0], lm[9]));
+  const fromMetadata = !!focalFromMeta;
+  const found = findCard(full, lm);
+  if (!found)
+    throw new HandPhotoError('No card found. Lay a bank card (or any card of that size) flat on your palm, fully in view, and take the photo again.');
+  // The flattened card rectangle runs clockwise (on screen); corners running the other way would mirror the photo
+  const turn = found.reduce((s, p, i) => s + p.x * found[(i + 1) % 4].y - found[(i + 1) % 4].x * p.y, 0);
+  const corners = turn > 0 ? found : [found[0], found[3], found[2], found[1]];
+  const sideLen = [0, 1, 2, 3].map((i) => dist(corners[i], corners[(i + 1) % 4]));
+  const longPx = sideLen[0] >= sideLen[1] ? (sideLen[0] + sideLen[2]) / 2 : (sideLen[1] + sideLen[3]) / 2;
+  const shortPx = sideLen[0] >= sideLen[1] ? (sideLen[1] + sideLen[3]) / 2 : (sideLen[0] + sideLen[2]) / 2;
+  if (Math.abs(longPx / shortPx / (CARD.long / CARD.short) - 1) > 0.15)
+    warnings.push('The card outline looks skewed. Hold your phone straight above the hand for more accurate values.');
 
   onStage('flatten');
   await tick();
-  // Stretch along the coin's minor axis so the ellipse becomes a circle again
-  const ratio = ell.a / ell.b;
-  if (ratio > 1.25) warnings.push('The photo was taken at an angle. Hold your phone straight above the hand for more accurate values.');
-  const w = { x: -Math.sin(ell.angle), y: Math.cos(ell.angle) };
-  const S = [1 + (ratio - 1) * w.x * w.x, (ratio - 1) * w.x * w.y, (ratio - 1) * w.x * w.y, 1 + (ratio - 1) * w.y * w.y];
-  // ... and turn it so the fingers point straight up, which makes every crease line horizontal
-  const sApply = (p: Pt): Pt => ({ x: S[0] * p.x + S[1] * p.y, y: S[2] * p.x + S[3] * p.y });
-  const axis = MEASURED_FINGERS.reduce((s, f) => add(s, sub(sApply(lm[LM[f][3]]), sApply(lm[LM[f][1]]))), { x: 0, y: 0 });
+  // Perspective correction from the four corners: photo px -> mm on the card plane
+  const [Lw, Sw] = sideLen[0] >= sideLen[1] ? [CARD.long, CARD.short] : [CARD.short, CARD.long];
+  const H = homography(corners, [{ x: 0, y: 0 }, { x: Lw, y: 0 }, { x: Lw, y: Sw }, { x: 0, y: Sw }]);
+  // ... turned so the fingers point straight up
+  const m = lm.map((p) => applyH(H, p));
+  const axis = MEASURED_FINGERS.reduce((s, f) => add(s, sub(m[LM[f][3]], m[LM[f][1]])), { x: 0, y: 0 });
   const rot = -Math.PI / 2 - Math.atan2(axis.y, axis.x);
   const rc = Math.cos(rot), rs = Math.sin(rot);
-  const M = [rc * S[0] - rs * S[2], rc * S[1] - rs * S[3], rs * S[0] + rc * S[2], rs * S[1] + rc * S[3]];
-  const corners = [{ x: 0, y: 0 }, { x: src.width, y: 0 }, { x: 0, y: src.height }, { x: src.width, y: src.height }].map((p) => ({
-    x: M[0] * p.x + M[1] * p.y,
-    y: M[2] * p.x + M[3] * p.y,
-  }));
-  const minX = Math.min(...corners.map((p) => p.x)), minY = Math.min(...corners.map((p) => p.y));
-  const fw = Math.max(...corners.map((p) => p.x)) - minX, fh = Math.max(...corners.map((p) => p.y)) - minY;
-  const k = Math.min(1, (MAX_SIDE * 1.1) / Math.max(fw, fh));
-  const T = (p: Pt): Pt => ({ x: (M[0] * p.x + M[1] * p.y - minX) * k, y: (M[2] * p.x + M[3] * p.y - minY) * k });
-  const flat = document.createElement('canvas');
-  flat.width = Math.round(fw * k);
-  flat.height = Math.round(fh * k);
-  const fctx = flat.getContext('2d')!;
-  fctx.fillStyle = '#fff';
-  fctx.fillRect(0, 0, flat.width, flat.height);
-  fctx.setTransform(M[0] * k, M[2] * k, M[1] * k, M[3] * k, -minX * k, -minY * k);
-  fctx.drawImage(src, 0, 0);
-  fctx.setTransform(1, 0, 0, 1, 0, 0);
+  const R = (p: Pt): Pt => ({ x: rc * p.x - rs * p.y, y: rs * p.x + rc * p.y });
+  const Rinv = (p: Pt): Pt => ({ x: rc * p.x + rs * p.y, y: -rs * p.x + rc * p.y });
+  // Output scale: keep about the resolution the card had on the photo
+  let s = longPx / CARD.long;
+  const bounds = [{ x: 0, y: 0 }, { x: src.width, y: 0 }, { x: 0, y: src.height }, { x: src.width, y: src.height }].map((p) => R(applyH(H, p)));
+  const minX = Math.min(...bounds.map((p) => p.x)), minY = Math.min(...bounds.map((p) => p.y));
+  const bw = Math.max(...bounds.map((p) => p.x)) - minX, bh = Math.max(...bounds.map((p) => p.y)) - minY;
+  s = Math.min(s, (MAX_SIDE * 1.1) / Math.max(bw, bh));
+  const T = (p: Pt): Pt => {
+    const q = R(applyH(H, p));
+    return { x: (q.x - minX) * s, y: (q.y - minY) * s };
+  };
+  const Hinv = invert3(H);
+  const flat = warp(full, Math.round(bw * s), Math.round(bh * s), (q) => applyH(Hinv, Rinv({ x: q.x / s + minX, y: q.y / s + minY })));
 
   onStage('fingers');
   await tick();
-  const fim = new Img(fctx.getImageData(0, 0, flat.width, flat.height));
-  const coin = { center: T(ell.center), radius: ell.a * k };
-  const fingers = measureFingers(fim, lm.map(T), coin, warnings);
+  const fim = new Img(flat.getContext('2d')!.getImageData(0, 0, flat.width, flat.height));
+  const card = corners.map(T);
+  const fingers = measureFingers(fim, lm.map(T), s, warnings);
+  const { image, width, height, shift, boxes } = cropAndTidy(flat, fingers, card);
+  return {
+    image,
+    width,
+    height,
+    card: { corners: card.map((p) => sub(p, shift)), mmPerPx: 1 / s },
+    camera: { distPerRefMm: focalPx / longPx, heightMm: CREASE_HEIGHT_ABOVE_CARD, focal35, fromMetadata },
+    fingers: boxes,
+    warnings,
+  };
+}
 
-  // Crop to the fingers and the coin, so the boxes are big enough to adjust
-  const xs = [coin.center.x - coin.radius, coin.center.x + coin.radius], ys = [coin.center.y - coin.radius, coin.center.y + coin.radius];
+/** Crops the flattened photo to the fingers and the card, and moves the boxes along. */
+function cropAndTidy(flat: HTMLCanvasElement, fingers: Record<Finger, FingerBox>, extent: Pt[]) {
+  const xs = extent.map((p) => p.x), ys = extent.map((p) => p.y);
   for (const f of MEASURED_FINGERS) xs.push(fingers[f].x0, fingers[f].x1), ys.push(fingers[f].top, fingers[f].bottom);
   const margin = 0.12 * (Math.max(...xs) - Math.min(...xs));
   const cx = Math.max(0, Math.floor(Math.min(...xs) - margin)), cy = Math.max(0, Math.floor(Math.min(...ys) - margin));
@@ -672,28 +743,10 @@ export async function analyzeHandPhoto(file: File, onStage: (s: Stage) => void =
   crop.width = cw;
   crop.height = ch;
   crop.getContext('2d')!.drawImage(flat, cx, cy, cw, ch, 0, 0, cw, ch);
-  const shifted = {} as Record<Finger, FingerBox>;
+  const boxes = {} as Record<Finger, FingerBox>;
   for (const f of MEASURED_FINGERS) {
     const b = fingers[f];
-    shifted[f] = { x0: b.x0 - cx, x1: b.x1 - cx, crease: b.crease - cy, top: b.top - cy, bottom: b.bottom - cy };
+    boxes[f] = { x0: b.x0 - cx, x1: b.x1 - cx, crease: b.crease - cy, top: b.top - cy, bottom: b.bottom - cy };
   }
-  // Neighbouring boxes always touch: the side they share sits halfway between the two measured edges
-  const order = fingersLeftToRight(shifted);
-  for (let i = 0; i + 1 < order.length; i++) {
-    const l = shifted[order[i]], r = shifted[order[i + 1]];
-    l.x1 = r.x0 = (l.x1 + r.x0) / 2;
-  }
-  // Some room on both outer sides
-  const outerMargin = (OUTER_MARGIN_MM * 2 * coin.radius) / coinById(coinId).diameter;
-  shifted[order[0]].x0 -= outerMargin;
-  shifted[order[order.length - 1]].x1 += outerMargin;
-
-  return {
-    image: crop.toDataURL('image/jpeg', 0.9),
-    width: cw,
-    height: ch,
-    coin: { center: { x: coin.center.x - cx, y: coin.center.y - cy }, radius: coin.radius, id: coinId, ellipseRatio: ratio },
-    fingers: shifted,
-    warnings,
-  };
+  return { image: crop.toDataURL('image/jpeg', 0.9), width: cw, height: ch, shift: { x: cx, y: cy }, boxes };
 }

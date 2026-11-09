@@ -13,6 +13,8 @@ import { KNOWN_COUNTRIES, type ShippingRates, countryNamer, fetchShippingRates }
 // or a waitlist for countries we don't ship to yet. Checkout reuses the Sloper King payment flow;
 // the countries we ship to and their cost come from /admin/shipping.
 const ORDER_API = `${PAYMENTS_API}/sloperking`;
+// In production the counter goes through Firebase Hosting, whose CDN answers from a nearby edge
+const STATS_URL = process.env.NODE_ENV === 'production' ? '/api/payments/sloperking/stats' : `${ORDER_API}/stats`;
 // The price depends on how many are sold; the server sets the tier (shown until the counter loads: presale tier)
 const FALLBACK_PRICES = { pair: 39, single: 21 };
 const EARLY_BIRD = { count: 60, single: 16, pair: 30 };
@@ -32,6 +34,7 @@ const SHIP_START = new Date(2026, 11, 1);
 const UNITS_PER_DAY = 40;
 const BREAK_EVEN = 150; // Sloper Kings sold to cover the costs
 const CHRISTMAS_SPOTS = 300;
+const AFTER_CHRISTMAS_START = new Date(2027, 0, 4); // first ship day for orders beyond the Christmas batch
 const CHRISTMAS_CUTOFF = new Date(2026, 11, 18); // last ship day that still arrives before Christmas
 const HOLIDAYS = ['2026-12-25', '2027-01-01'];
 
@@ -58,9 +61,12 @@ const nextWorkingDay = (d: Date) => {
 
 /** Ship date for the n-th Sloper King (1-based) in the queue. */
 const shipDateFor = (position: number) => {
-  let d = new Date(SHIP_START);
+  // Beyond the Christmas batch the queue restarts after the holidays
+  const beyond = position > CHRISTMAS_SPOTS;
+  let d = new Date(beyond ? AFTER_CHRISTMAS_START : SHIP_START);
   if (!isWorkingDay(d)) d = nextWorkingDay(d);
-  for (let slot = Math.floor((position - 1) / UNITS_PER_DAY); slot > 0; slot--) d = nextWorkingDay(d);
+  const index = beyond ? position - CHRISTMAS_SPOTS : position;
+  for (let slot = Math.floor((index - 1) / UNITS_PER_DAY); slot > 0; slot--) d = nextWorkingDay(d);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   return d < today ? nextWorkingDay(today) : d;
@@ -108,7 +114,7 @@ export default function SloperKingPresalePage() {
   };
 
   const loadStats = () =>
-    fetch(`${ORDER_API}/stats`)
+    fetch(STATS_URL)
       .then((r) => r.json())
       .then((d) => {
         if (typeof d.sold !== 'number' || !d.tier) return;
@@ -163,6 +169,7 @@ export default function SloperKingPresalePage() {
   const lastPosition = sold === null ? null : sold + units;
   const shipDate = lastPosition === null ? null : shipDateFor(lastPosition);
   const spotsLeft = sold === null ? null : Math.max(CHRISTMAS_SPOTS - sold, 0);
+  const batchFull = sold !== null && sold >= CHRISTMAS_SPOTS;
   const eur = (v: number) => `€${Number.isInteger(v) ? v : v.toFixed(2)}`;
 
   const scrollToOrder = () => orderRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -273,6 +280,10 @@ export default function SloperKingPresalePage() {
         <meta property="og:title" content="Sloper King™ Presale" />
         <meta property="og:description" content="Shipping from 1 December. First 300 Sloper Kings delivered before Christmas." />
         <meta property="og:image" content="https://www.fre2028.la/sloperking/reel-poster.png" />
+        {/* Start the counter request while the page is still loading */}
+        {process.env.NODE_ENV === 'production' && (
+          <link rel="preload" as="fetch" href="/api/payments/sloperking/stats" crossOrigin="anonymous" />
+        )}
       </Head>
 
       {/* Hero: the reel + the promise */}
@@ -300,7 +311,9 @@ export default function SloperKingPresalePage() {
             <ul className="mt-6 space-y-3 text-sm font-semibold text-slate-800">
               <li className="flex items-start gap-3">
                 <Gift className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-                The first {CHRISTMAS_SPOTS} Sloper Kings are delivered before Christmas
+                {batchFull
+                  ? `The Christmas batch of ${CHRISTMAS_SPOTS} is full. You can still pre-order, delivery after Christmas`
+                  : `The first ${CHRISTMAS_SPOTS} Sloper Kings are delivered before Christmas`}
               </li>
               <li className="flex items-start gap-3">
                 <Truck className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
@@ -365,7 +378,7 @@ export default function SloperKingPresalePage() {
                   {spotsLeft === null ? (
                     <NumberSkeleton className="h-4 w-24" />
                   ) : (
-                    <span>{spotsLeft > 0 ? `${spotsLeft} of ${CHRISTMAS_SPOTS} left` : 'All taken'}</span>
+                    <span>{spotsLeft > 0 ? `${spotsLeft} of ${CHRISTMAS_SPOTS} left` : 'Christmas batch full'}</span>
                   )}
                 </div>
                 <div className="relative mt-1.5">
@@ -396,7 +409,7 @@ export default function SloperKingPresalePage() {
               onClick={scrollToOrder}
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-black text-white hover:bg-slate-800"
             >
-              Check delivery to my country <ArrowRight className="h-4 w-4" />
+              Pre-order now · from {eur(prices.single)} <ArrowRight className="h-4 w-4" />
             </button>
           </div>
         </div>
@@ -483,6 +496,11 @@ export default function SloperKingPresalePage() {
       <section ref={orderRef} id="order" className="scroll-mt-20 border-b border-slate-200 bg-slate-50 px-4 py-14">
         <div className="mx-auto max-w-xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-2xl font-black text-slate-950">Reserve your Sloper King™</h2>
+          {batchFull && (
+            <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-semibold text-slate-800">
+              The Christmas batch is full, but you can still pre-order. New orders ship from {formatDay(shipDateFor(CHRISTMAS_SPOTS + 1))}.
+            </p>
+          )}
 
           {/* Step 1: country */}
           <label className="mt-6 block text-xs font-black uppercase tracking-wider text-slate-500" htmlFor="country">

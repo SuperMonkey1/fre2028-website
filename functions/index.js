@@ -462,6 +462,60 @@ const appendShippingOption = (params, zone) => {
 
 const ADMIN_EMAIL = "frederik.leys@gmail.com";
 
+// Promo codes that make a Tailr Edge order completely free. The customer types them in Stripe's own promo code field:
+// they are Stripe promotion codes on a 100% coupon that only applies to the Tailr Edge product (so not to Sloper King),
+// created by this function when missing. Stripe never discounts shipping, so the shipping update sets it to €0 too.
+const FINGERPRINT_FREE_CODES = ["FRITS"];
+const FINGERPRINT_FREE_COUPON_ID = "tailr-edge-free";
+const isFreeCode = (code) => FINGERPRINT_FREE_CODES.includes(String(code || "").trim().toUpperCase());
+
+let freePromotionReady = null;
+/** Makes sure the free coupon and its promotion codes exist in the Stripe account (once per function instance). */
+const ensureFreePromotion = () => {
+  if (!freePromotionReady) {
+    freePromotionReady = (async () => {
+      try {
+        await stripeRequest(`coupons/${FINGERPRINT_FREE_COUPON_ID}`);
+      } catch (error) {
+        if (error.status !== 404) throw error;
+        const price = await stripeRequest(`prices/${FINGERPRINT_PRICE_ID}`);
+        const params = new URLSearchParams();
+        params.append("id", FINGERPRINT_FREE_COUPON_ID);
+        params.append("percent_off", "100");
+        params.append("duration", "once");
+        params.append("name", "Free Tailr Edge");
+        params.append("applies_to[products][0]", typeof price.product === "string" ? price.product : price.product.id);
+        await stripeRequest("coupons", {method: "POST", params});
+      }
+      for (const code of FINGERPRINT_FREE_CODES) {
+        const list = await stripeRequest(`promotion_codes?code=${encodeURIComponent(code)}&active=true&limit=1`);
+        if (list.data?.length) continue;
+        const params = new URLSearchParams();
+        params.append("code", code);
+        params.append("coupon", FINGERPRINT_FREE_COUPON_ID);
+        try {
+          await stripeRequest("promotion_codes", {method: "POST", params});
+        } catch (error) {
+          // Newer Stripe API versions name the coupon under "promotion"
+          const alt = new URLSearchParams();
+          alt.append("code", code);
+          alt.append("promotion[type]", "coupon");
+          alt.append("promotion[coupon]", FINGERPRINT_FREE_COUPON_ID);
+          await stripeRequest("promotion_codes", {method: "POST", params: alt});
+        }
+      }
+    })().catch((error) => {
+      freePromotionReady = null;
+      throw error;
+    });
+  }
+  return freePromotionReady;
+};
+
+/** The free promo code applied to a checkout session (retrieved with expand[]=discounts.promotion_code), or "". */
+const freeCodeOf = (session) =>
+  (session.discounts || []).map((d) => d.promotion_code?.code).find((code) => isFreeCode(code)) || "";
+
 const toNumber = (v, min, max) => {
   const n = Number(v);
   return Number.isFinite(n) && n >= min && n <= max ? Math.round(n * 1000) / 1000 : null;
@@ -512,7 +566,7 @@ const stripeRequest = async (path, {method = "GET", params, key = FINGERPRINT_ST
 
 paymentApp.post("/fingerprint/checkout", async (req, res) => {
   try {
-    const {design, email, originUrl} = req.body || {};
+    const {design, email, originUrl, heightCm, gender} = req.body || {};
     if (!FINGERPRINT_PUBLISHABLE_KEY) throw new Error("Stripe publishable key for FingerPrint orders is not configured");
     const left = parseHand(design?.left);
     const right = parseHand(design?.right);
@@ -520,6 +574,11 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
       res.status(400).json({error: "Invalid FingerPrint design. Check your finger lengths and widths."});
       return;
     }
+    // Body height and gender from the photo measure page (optional for designs entered by hand)
+    const height = toNumber(heightCm, 100, 250);
+    const sex = ["male", "female"].includes(gender) ? gender : "";
+    // The free promo codes must exist before the customer types one; a failure here mustn't block the order
+    await ensureFreePromotion().catch((error) => console.error("Could not set up the free Tailr Edge promo code:", error));
 
     const origin = originUrl || req.headers.origin || "https://fre2028.la";
     const db = getFirestore();
@@ -535,6 +594,8 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
       designUrl,
       email: email || "",
       priceId: FINGERPRINT_PRICE_ID,
+      heightCm: height,
+      gender: sex,
       createdAt: new Date(),
     });
 
@@ -545,6 +606,8 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
       right: handSummary(right),
       designUrl,
     };
+    if (height) metadata.heightCm = String(Math.round(height));
+    if (sex) metadata.gender = sex;
 
     const params = new URLSearchParams();
     // Embedded Stripe form on our page; shipping is set from the address the customer enters.
@@ -642,8 +705,10 @@ paymentApp.post("/fingerprint/shipping", async (req, res) => {
       res.status(200).json({type: "error", message: "We don't ship to this country yet."});
       return;
     }
+    // Free shipping when a free promo code is applied (the form calls this again when a code is added or removed)
+    const current = await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}?expand[]=discounts.promotion_code`);
     const params = new URLSearchParams();
-    appendSloperKingShipping(params, String(country).toUpperCase(), amount);
+    appendSloperKingShipping(params, String(country).toUpperCase(), freeCodeOf(current) ? 0 : amount);
     params.append("metadata[shippingCountry]", String(country).toUpperCase());
     await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {method: "POST", params});
     res.status(200).json({type: "object", value: {succeeded: true}});
@@ -658,13 +723,15 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
   try {
     const sessionId = req.params.sessionId;
     const key = sessionId.startsWith("cs_live_") ? STRIPE_SECRET_KEY : process.env.STRIPE_SECRET_KEY_TEST;
-    const session = await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}`, {key});
+    const session = await stripeRequest(`checkout/sessions/${encodeURIComponent(sessionId)}?expand[]=discounts.promotion_code`, {key});
+    const freeCode = freeCodeOf(session);
     const orderId = session.client_reference_id || session.metadata?.orderId;
     if (session.metadata?.product !== "fingerprint" || !orderId) {
       res.status(404).json({error: "Order not found"});
       return;
     }
-    const paid = session.payment_status === "paid";
+    // A free order (promo code) is complete without a payment
+    const paid = session.payment_status === "paid" || (session.status === "complete" && session.payment_status === "no_payment_required");
     const db = getFirestore();
     const orderRef = db.collection("fingerprint_orders").doc(orderId);
 
@@ -673,7 +740,7 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
       // payment that skipped our address-based update), so it can be corrected by hand.
       const shipDetails = session.collected_information?.shipping_details || session.shipping_details;
       const expectedRate = sloperKingRateFor(await getSloperKingRates(), shipDetails?.address?.country);
-      const expectedShipping = expectedRate === undefined ? null : expectedRate;
+      const expectedShipping = freeCode ? 0 : expectedRate === undefined ? null : expectedRate;
       const chargedShipping = session.shipping_cost?.amount_total ?? null;
       const shippingCheck = expectedShipping === chargedShipping ? "ok" :
         `charged €${((chargedShipping || 0) / 100).toFixed(2)}, expected ` +
@@ -687,6 +754,8 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
           status: "paid",
           paidAt: new Date(),
           paymentIntentId: session.payment_intent || "",
+          free: !!freeCode,
+          promoCode: freeCode,
           amountTotal: session.amount_total,
           currency: session.currency,
           customerEmail: session.customer_details?.email || "",
@@ -720,7 +789,7 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
             to: ADMIN_EMAIL,
             subject: `${session.livemode ? "" : "[TEST] "}New Tailr Edge order ${orderId}`,
             html: `
-              <h2>New Tailr Edge order (paid${session.livemode ? "" : ", TEST"})</h2>
+              <h2>New Tailr Edge order (${freeCode ? `free, code ${esc(freeCode)}` : "paid"}${session.livemode ? "" : ", TEST"})</h2>
               <p><strong>Order:</strong> ${orderId}<br>
               <strong>Customer:</strong> ${esc(session.customer_details?.name)} &lt;${esc(session.customer_details?.email)}&gt;<br>
               <strong>Phone:</strong> ${esc(session.customer_details?.phone)}<br>
@@ -749,6 +818,43 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
   } catch (error) {
     console.error("Error checking FingerPrint order:", error);
     res.status(error.status === 404 ? 404 : 500).json({error: "Could not check the order."});
+  }
+});
+
+// Tailr Edge orders for /admin/tailr-edge (newest first). Same admin key as /admin/shipping.
+paymentApp.get("/fingerprint/admin/orders", async (req, res) => {
+  try {
+    const adminKey = process.env.SLOPERKING_ADMIN_KEY;
+    if (!adminKey || req.get("x-admin-key") !== adminKey) {
+      res.status(401).json({error: "Wrong admin key."});
+      return;
+    }
+    const snap = await getFirestore().collection("fingerprint_orders").orderBy("createdAt", "desc").limit(300).get();
+    const iso = (v) => (v && v.toDate ? v.toDate().toISOString() : null);
+    const orders = snap.docs.map((d) => {
+      const o = d.data();
+      return {
+        orderId: d.id,
+        status: o.status || "",
+        livemode: !!o.livemode,
+        free: !!o.free || !!o.promoCode,
+        promoCode: o.promoCode || "",
+        createdAt: iso(o.createdAt),
+        paidAt: iso(o.paidAt),
+        customerName: o.customerName || "",
+        customerEmail: o.customerEmail || o.email || "",
+        heightCm: o.heightCm || null,
+        gender: o.gender || "",
+        design: o.design || null,
+        designUrl: o.designUrl || "",
+        amountTotal: o.amountTotal ?? null,
+        shippingCountry: o.shipping?.address?.country || "",
+      };
+    });
+    res.status(200).json({orders});
+  } catch (error) {
+    console.error("Error listing Tailr Edge orders:", error);
+    res.status(500).json({error: "Could not load the orders."});
   }
 });
 
@@ -1097,7 +1203,10 @@ paymentApp.post("/sloperking/shipping-rates", async (req, res) => {
 // Sold counter for the shop and presale pages: it sets the current price tier and the estimated ship date.
 // Cached briefly so a busy landing page doesn't run a Firestore count on every visit (checkout always counts fresh).
 let sloperKingStatsCache = {at: 0, sold: 0};
-paymentApp.get("/sloperking/stats", async (req, res) => {
+// Also served through Firebase Hosting (/api/payments/...), where the CDN keeps the answer for 30 seconds,
+// so visitors far from the US get it from a nearby edge instead of waiting for the function.
+paymentApp.get(["/sloperking/stats", "/api/payments/sloperking/stats"], async (req, res) => {
+  res.set("Cache-Control", "public, max-age=5, s-maxage=30");
   try {
     if (Date.now() - sloperKingStatsCache.at > 20000) {
       sloperKingStatsCache = {at: Date.now(), sold: await countSloperKingSold()};

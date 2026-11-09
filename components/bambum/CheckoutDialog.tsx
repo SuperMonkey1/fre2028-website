@@ -51,6 +51,8 @@ export default function CheckoutDialog({ clientSecret, publishableKey, shippingU
     let cancelled = false;
     let form: any = null;
     let addressDone = false;
+    let lastAddress: unknown = null;
+    let promoKey = '';
 
     const updateShipping = async (sessionId: string, shippingDetails: unknown) => {
       const res = await fetch(shippingUrl as string, {
@@ -88,8 +90,26 @@ export default function CheckoutDialog({ clientSecret, publishableKey, shippingU
           }
         });
 
+        // Shipping can depend on the promo code (a free code also makes shipping free), so recalculate it when a code
+        // is added or removed after the address is known
+        checkout.on?.('change', async (session: any) => {
+          const key = (session?.discountAmounts || []).map((d: any) => d.promotionCode || d.displayName || '').join(',');
+          if (key === promoKey) return;
+          promoKey = key;
+          if (!shippingUrl || !addressDone || !lastAddress) return;
+          const loaded = await actionsPromise;
+          if (loaded.type !== 'success') return;
+          try {
+            await loaded.actions.runServerUpdate(() => updateShipping(loaded.actions.getSession().id, lastAddress));
+            setShippingError(null);
+          } catch (e: any) {
+            setShippingError(e?.message || 'We couldn’t calculate shipping for this address.');
+          }
+        });
+
         form.on('change', async (event: any) => {
           const { value, status } = event;
+          if (status?.shippingAddress?.complete) lastAddress = value.shippingAddress;
           if (shippingUrl && status?.shippingAddress?.complete && !addressDone) {
             addressDone = true;
             const loaded = await actionsPromise;

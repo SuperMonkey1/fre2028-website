@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { AlertTriangle, Camera, CheckCircle2, Coins, Info, Loader2, RotateCcw, Upload } from 'lucide-react';
+import { AlertTriangle, Camera, CheckCircle2, Info, Loader2, RotateCcw, Upload } from 'lucide-react';
 import type { Finger } from '@/lib/fingerprint/layout';
 import { FINGER_COLORS, FINGER_NAMES } from '@/components/fingerprint/Illustrations';
 // The hand detection model itself is only downloaded when a photo is analysed (inside analyzeHandPhoto)
 import {
-  COINS,
+  CARD,
   HandPhotoError,
   analyzeHandPhoto,
-  coinById,
+  cameraDistance,
   fingersLeftToRight,
   measure,
   type FingerBox,
@@ -20,10 +20,11 @@ import {
 const STAGES: [Stage, string][] = [
   ['loading', 'Loading the hand detection model'],
   ['hand', 'Checking for a hand'],
-  ['coin', 'Finding and identifying the coin'],
+  ['card', 'Finding the card'],
   ['flatten', 'Flattening the photo'],
   ['fingers', 'Finding the finger creases and widths'],
 ];
+
 
 const ROW_ORDER: Finger[] = ['pinky', 'ring', 'middle', 'index'];
 
@@ -31,7 +32,6 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
   const [stage, setStage] = useState<Stage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<HandPhotoResult | null>(null);
-  const [coinId, setCoinId] = useState('eur200');
   const [measurements, setMeasurements] = useState<Measurements | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -39,15 +39,15 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
   // The crease moves up and down only; the box sides move left and right only
   const drag = useRef<{ finger: Finger; part: 'crease' | 'x0' | 'x1' } | null>(null);
 
-  // Recompute the values whenever a crease line is moved or another coin is chosen
+  // Recompute the values whenever a crease line is moved
   useEffect(() => {
     if (!result) return;
-    const m = measure(result, coinId);
+    const m = measure(result);
     setMeasurements(m);
     onMeasured(m);
     // onMeasured is a state setter wrapper from the page; it does not need to retrigger this
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result, coinId]);
+  }, [result]);
 
   const analyze = async (file: File) => {
     setError(null);
@@ -56,7 +56,6 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
     onMeasured(null);
     try {
       const r = await analyzeHandPhoto(file, setStage);
-      setCoinId(r.coin.id);
       setResult(r);
     } catch (e: any) {
       if (!(e instanceof HandPhotoError)) console.error(e);
@@ -93,17 +92,10 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
       setResult({ ...result, fingers: { ...result.fingers, [finger]: next } });
       return;
     }
-    // A side shared with the neighbouring box moves both boxes, so they keep touching
-    const order = fingersLeftToRight(result.fingers);
-    const i = order.indexOf(finger);
-    const nb = order[part === 'x0' ? i - 1 : i + 1];
+    // Each box has its own sides (boxes may overlap); a box can't get narrower than a few px
     const min = unit * 2;
-    const lo = part === 'x0' ? (nb ? result.fingers[nb].x0 + min : -Infinity) : box.x0 + min;
-    const hi = part === 'x0' ? box.x1 - min : nb ? result.fingers[nb].x1 - min : Infinity;
-    const x = Math.min(Math.max(p.x, lo), hi);
-    const fingers = { ...result.fingers, [finger]: { ...box, [part]: x } };
-    if (nb) fingers[nb] = { ...result.fingers[nb], [part === 'x0' ? 'x1' : 'x0']: x };
-    setResult({ ...result, fingers });
+    const x = part === 'x0' ? Math.min(p.x, box.x1 - min) : Math.max(p.x, box.x0 + min);
+    setResult({ ...result, fingers: { ...result.fingers, [finger]: { ...box, [part]: x } } });
   };
 
   const busy = stage !== null;
@@ -140,15 +132,15 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
             onFile(e.dataTransfer.files?.[0]);
           }}
           className={`flex flex-col items-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 text-center transition-all ${
-            dragOver ? 'border-amber-500 bg-amber-50' : 'border-slate-300 bg-slate-50 hover:border-amber-400 hover:bg-amber-50/50'
+            dragOver ? 'border-slate-500 bg-slate-100' : 'border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100'
           }`}
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-200 text-slate-700">
             <Camera className="h-6 w-6" />
           </div>
           <div className="text-sm font-extrabold text-slate-900">Upload a photo of your hand</div>
           <div className="text-xs leading-relaxed text-slate-500">
-            Palm up, fingers straight and together, with a coin next to your hand. Taken from straight above.
+            Palm up, fingers straight and relaxed, gently touching, with a bank card flat on your palm. Taken from straight above.
           </div>
           <span className="mt-1 inline-flex items-center gap-1.5 rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-black text-white">
             <Upload className="h-3.5 w-3.5" /> Choose photo
@@ -197,10 +189,8 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
               onPointerUp={() => (drag.current = null)}
               onPointerCancel={() => (drag.current = null)}
             >
-              <circle
-                cx={result.coin.center.x}
-                cy={result.coin.center.y}
-                r={result.coin.radius}
+              <polygon
+                points={result.card.corners.map((p) => `${p.x},${p.y}`).join(' ')}
                 fill="none"
                 stroke="#f59e0b"
                 strokeWidth={unit / 3}
@@ -223,7 +213,7 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
                       strokeWidth={unit / 3}
                       pointerEvents="none"
                     />
-                    {/* box sides shared with a neighbour: wide invisible lines to grab. The outer sides stay fixed. */}
+                    {/* inner box sides: wide invisible lines to grab. The outer sides stay fixed. */}
                     {(['x0', 'x1'] as const).filter((side) => !isOuter(f, side)).map((side) => (
                       <line
                         key={side}
@@ -269,32 +259,17 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
                   </g>
                 );
               })}
-              {measurements && <Dimensions result={result} m={measurements} coinId={coinId} unit={unit} />}
+              {measurements && <Dimensions result={result} m={measurements} unit={unit} />}
             </svg>
           </div>
           <p className="text-[11px] leading-snug text-slate-500">
             Each box marks a finger, its line the crease of the upper finger joint. Drag a line up or down to put it on the
-            crease, or drag the side between two boxes to move where one finger ends and the next begins.
+            crease, or drag an inner box side to fit the finger at its widest point.
           </p>
 
-          <label className="flex items-center gap-2 text-xs font-bold text-slate-600">
-            <Coins className="h-4 w-4 shrink-0 text-amber-600" />
-            <span className="shrink-0">Coin</span>
-            <select
-              value={coinId}
-              onChange={(e) => setCoinId(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-2 py-1 text-xs font-bold text-slate-800 focus:border-amber-500 focus:outline-none"
-            >
-              {COINS.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.label} ({c.diameter} mm)
-                </option>
-              ))}
-            </select>
-          </label>
 
           {result.warnings.map((w) => (
-            <div key={w} className="flex gap-2 rounded-xl border border-amber-200 bg-amber-50 p-2.5 text-xs text-amber-900">
+            <div key={w} className="flex gap-2 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-xs text-slate-700">
               <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" />
               <div>{w}</div>
             </div>
@@ -318,6 +293,11 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
                 </div>
               ))}
               <p className="mt-1 text-xs text-slate-500">All values in mm, measured at the crease of the upper finger joint.</p>
+              <p className="mt-0.5 text-[11px] text-slate-400">
+                Camera about {Math.round(cameraDistance(result) / 10)} cm above the hand
+                {result.camera.fromMetadata ? ` (lens ${result.camera.focal35} mm from the photo)` : ' (estimated, no lens data in the photo)'}
+                ; corrected for the height of your fingers.
+              </p>
             </div>
           )}
 
@@ -342,15 +322,13 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
   );
 }
 
-/** Shows what is measured: the coin as the ruler, the pinky crease as zero, each length up to its crease, each width. */
-function Dimensions({ result, m, coinId, unit }: { result: HandPhotoResult; m: Measurements; coinId: string; unit: number }) {
+/** Shows what is measured: the card as the ruler, the pinky crease as zero, each length up to its crease, each width. */
+function Dimensions({ result, m, unit }: { result: HandPhotoResult; m: Measurements; unit: number }) {
   const boxes = ROW_ORDER.map((f) => result.fingers[f]);
   const left = Math.min(...boxes.map((b) => Math.min(b.x0, b.x1))) - unit * 3;
   const right = Math.max(...boxes.map((b) => Math.max(b.x0, b.x1))) + unit * 3;
   const zero = result.fingers.pinky.crease;
   const font = unit * 2;
-  const coin = coinById(coinId);
-  const { center, radius } = result.coin;
 
   const label = (x: number, y: number, text: string, color: string, key: string) => (
     <g key={key}>
@@ -394,9 +372,12 @@ function Dimensions({ result, m, coinId, unit }: { result: HandPhotoResult; m: M
 
   return (
     <g pointerEvents="none">
-      {/* coin diameter = the ruler */}
-      {dim(center.x - radius, center.y + radius + unit * 2, center.x + radius, center.y + radius + unit * 2, '#f59e0b', 'coin')}
-      {label(center.x, center.y + radius + unit * 4.5, `${coin.label} = ${coin.diameter} mm`, '#f59e0b', 'coin-l')}
+      {/* the ruler: the card's long side */}
+      {(() => {
+        const [a, b, c] = result.card.corners;
+        const [p, q] = Math.hypot(b.x - a.x, b.y - a.y) >= Math.hypot(c.x - b.x, c.y - b.y) ? [a, b] : [b, c];
+        return label((p.x + q.x) / 2, (p.y + q.y) / 2, `Card = ${CARD.long} mm`, '#f59e0b', 'card-l');
+      })()}
 
       {/* zero line through the pinky crease */}
       <line
@@ -416,14 +397,14 @@ function Dimensions({ result, m, coinId, unit }: { result: HandPhotoResult; m: M
         const color = FINGER_COLORS[f];
         // length: from the zero line up to this finger's crease, on the left quarter of its box
         const lx = x0 + (x1 - x0) * 0.22;
-        // width: measured along the crease, so drawn just below it
-        const wy = b.crease + unit * 1.3;
+        // width: drawn near the bottom of the box, away from the crease line and the length, so the two can't be confused
+        const wy = b.bottom - unit * 2;
         return (
           <g key={f}>
             {f !== 'pinky' && dim(lx, zero, lx, b.crease, color, 'len')}
             {f !== 'pinky' && label(lx, (zero + b.crease) / 2, String(m.offset[f]), color, 'len-l')}
             {dim(x0, wy, x1, wy, color, 'w')}
-            {label(x0 + (x1 - x0) * 0.7, wy + unit * 2, String(m.width[f]), color, 'w-l')}
+            {label((x0 + x1) / 2, wy - unit * 2.2, String(m.width[f]), color, 'w-l')}
           </g>
         );
       })}

@@ -7,7 +7,7 @@ import {
   Camera,
   Check,
   CheckCircle2,
-  Coins,
+  CreditCard,
   Download,
   Dumbbell,
   Hand as HandIcon,
@@ -42,7 +42,7 @@ import { EdgeMap, FINGER_COLORS, FINGER_NAMES } from '@/components/fingerprint/I
 import type { ViewerLabel } from '@/components/fingerprint/FingerPrintViewer';
 import CheckoutDialog from '@/components/fingerprint/CheckoutDialog';
 import Link from 'next/link';
-import { MEASURE_PAGE, decodeHand, loadHand } from '@/lib/fingerprint/savedHand';
+import { GENDERS, MEASURE_PAGE, decodeHand, formatHeight, isGender, loadGender, loadHand, loadHeight, type Gender } from '@/lib/fingerprint/savedHand';
 
 const FingerPrintViewer = dynamic(() => import('@/components/fingerprint/FingerPrintViewer'), { ssr: false });
 
@@ -72,6 +72,8 @@ export default function TailrEdgePhotoPage() {
   const [hand, setHand] = useState<Hand>('left');
   // Values saved on the measure page (link or this browser), used for both hands; until then the original design is shown
   const [measured, setMeasured] = useState<FingerParams | null>(null);
+  const [heightCm, setHeightCm] = useState<number | null>(null);
+  const [gender, setGender] = useState<Gender | null>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [buildError, setBuildError] = useState<string | null>(null);
   const [result, setResult] = useState<BuildResult | null>(null);
@@ -133,6 +135,8 @@ export default function TailrEdgePhotoPage() {
         body: JSON.stringify({
           design: { locked: true, left: params, right: params },
           originUrl: window.location.origin,
+          heightCm: heightCm || undefined,
+          gender: gender || undefined,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -154,6 +158,9 @@ export default function TailrEdgePhotoPage() {
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     setMeasured(decodeHand(q.get('left')) || decodeHand(q.get('right')) || loadHand());
+    setHeightCm(Number(q.get('height')) || loadHeight());
+    const g = q.get('gender');
+    setGender(isGender(g) ? g : loadGender());
     const orderParam = q.get('order');
     const sessionId = q.get('session_id');
     if (orderParam === 'cancelled') setOrder({ state: 'cancelled' });
@@ -308,7 +315,7 @@ export default function TailrEdgePhotoPage() {
         <title>Tailr Edge | Measure your hand from a photo</title>
         <meta
           name="description"
-          content="Upload a photo of your hand with a coin next to it and get a Tailr Edge crimp edge made for your fingers, as STL or STEP."
+          content="Upload a photo of your hand with a bank card on your palm and get a Tailr Edge crimp edge made for your fingers, as STL or STEP."
         />
         <meta name="robots" content="noindex" />
       </Head>
@@ -325,8 +332,8 @@ export default function TailrEdgePhotoPage() {
           </h1>
           <p className="mt-3 text-xl font-bold text-slate-900">Made to your fingers. Kind to your pulleys.</p>
           <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-700">
-            Your fingers are not the same length, so why train on a straight edge? Upload one photo of your hand with a coin next
-            to it. Tailr Edge finds the crease of each upper finger joint, measures how far each finger reaches past your pinky
+            Your fingers are not the same length, so why train on a straight edge? Upload one photo of your hand with a bank card
+            on your palm. Tailr Edge finds the crease of each upper finger joint, measures how far each finger reaches past your pinky
             and how wide it is, shapes each edge to match and shows you the result in 3D.
           </p>
           <ul className="mt-6 grid max-w-3xl gap-x-8 gap-y-2.5 text-sm text-slate-700 sm:grid-cols-2">
@@ -368,7 +375,10 @@ export default function TailrEdgePhotoPage() {
                   </div>
                 ))}
                 <div className="mt-2 flex items-center justify-between gap-2">
-                  <p className="text-xs text-slate-500">mm, from your photo</p>
+                  <p className="text-xs text-slate-500">
+                    mm, from your photo{heightCm ? ` · height ${formatHeight(heightCm)}` : ''}
+                    {gender ? ` · ${GENDERS.find(([id]) => id === gender)?.[1].toLowerCase()}` : ''}
+                  </p>
                   <Link
                     href={MEASURE_PAGE}
                     className="flex shrink-0 items-center gap-1 rounded-lg border border-slate-200 px-2 py-1 text-xs font-bold text-slate-500 hover:border-slate-300 hover:text-slate-950"
@@ -387,7 +397,7 @@ export default function TailrEdgePhotoPage() {
                 </div>
                 <div className="text-sm font-extrabold text-slate-900">Measure your hand from a photo</div>
                 <div className="text-xs leading-relaxed text-slate-500">
-                  Upload one photo of your hand with a coin next to it, check the result and save.
+                  Upload one photo of your hand with a bank card on your palm, check the result and save.
                 </div>
                 <span className="mt-1 rounded-lg bg-slate-950 px-3 py-1.5 text-xs font-black text-white">Start measuring</span>
               </Link>
@@ -557,20 +567,20 @@ export default function TailrEdgePhotoPage() {
           <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Measure your hand with one photo</h2>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Step n={1} title="Lay your hand flat" image={<StepIcon icon={<HandIcon className="h-12 w-12" />} />}>
-              Put your hand on a plain, light surface such as a sheet of paper or a table, palm up. Keep your fingers straight and
-              together, as you would hold an edge. One hand is enough: the other is usually the same.
+            <Step n={1} title="Hold your hand flat" image={<StepIcon icon={<HandIcon className="h-12 w-12" />} />}>
+              Hold your hand horizontal and roughly flat, palm up, over a plain, light background. Keep your fingers straight and
+              relaxed, gently touching each other. One hand is enough: the other is usually the same.
             </Step>
-            <Step n={2} title="Add a coin" image={<StepIcon icon={<Coins className="h-12 w-12" />} />}>
-              Lay a coin flat next to your hand, close to it but not touching it. The coin is the ruler: its known size turns the
-              photo into millimetres. A €2 or €1 coin works best.
+            <Step n={2} title="Add a bank card" image={<StepIcon icon={<CreditCard className="h-12 w-12" />} />}>
+              Lay a bank card (or any card of that size) flat on your palm, with the card number hidden. The card is the ruler: its
+              known size turns the photo into millimetres and corrects the camera angle.
             </Step>
             <Step n={3} title="Photo from straight above" image={<StepIcon icon={<Camera className="h-12 w-12" />} />}>
-              Hold your phone level, straight above your hand, so the whole hand and the coin are in view. Use good, even light so
-              the creases of your finger joints are visible. A slight angle is corrected automatically.
+              Hold your phone level, straight above your hand, so your fingers and the card fill most of the photo. Use good, even
+              light so the creases of your finger joints are visible. A slight angle is corrected automatically.
             </Step>
             <Step n={4} title="Upload and check" image={<StepIcon icon={<ScanLine className="h-12 w-12" />} />}>
-              Upload the photo on the measure page. It finds your hand, the coin and the crease of each upper finger joint. Drag a
+              Upload the photo on the measure page. It finds your hand, the card and the crease of each upper finger joint. Drag a
               line or a box side if it is off, then save: the designer shows your edge in 3D.
             </Step>
           </div>

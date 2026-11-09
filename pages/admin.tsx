@@ -19,7 +19,8 @@ import {
   ChevronDown,
   ChevronUp,
   ShieldCheck,
-  Truck
+  Truck,
+  Hand
 } from 'lucide-react';
 import { Partner } from '../types/partner';
 import { partnerService } from '../services/partnerService';
@@ -342,6 +343,13 @@ export default function AdminPage() {
               >
                 <Truck className="w-3.5 h-3.5 text-zinc-500" />
                 Sloper King Shipping
+              </Link>
+              <Link
+                href="/admin/tailr-edge"
+                className="px-3.5 py-1.5 rounded text-xs font-bold uppercase tracking-wider text-zinc-600 hover:text-black hover:bg-zinc-100 transition-colors flex items-center gap-1.5"
+              >
+                <Hand className="w-3.5 h-3.5 text-zinc-500" />
+                Tailr Edge Orders
               </Link>
               <Link 
                 href="/admin"

@@ -455,7 +455,8 @@ export default function ParaclimberSite() {
             <button onClick={() => scrollToSection('media')} className="hover:opacity-60 transition-opacity">Pers/Media</button>
             <button onClick={() => router.push('/partners')} className="hover:opacity-60 transition-opacity">Partners</button>
             <button onClick={() => router.push('/blog')} className="hover:opacity-60 transition-opacity">Blog</button>
-            <button 
+            <button onClick={() => router.push('/sloperking')} className="hover:opacity-60 transition-opacity">Sloper King</button>
+            <button
               onClick={() => router.push('/become-partner')} 
               className="inline-flex items-center justify-center text-sm font-semibold tracking-wide transition-all duration-200 h-10 px-6 text-xs ml-4 bg-red-600 hover:bg-red-700 text-white"
             >
@@ -483,6 +484,7 @@ export default function ParaclimberSite() {
              <button onClick={() => scrollToSection('media')} className="text-left hover:opacity-60">Pers/Media</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/partners'); }} className="text-left hover:opacity-60">Partners</button>
              <button onClick={() => { setIsMobileMenuOpen(false); router.push('/blog'); }} className="text-left hover:opacity-60">Blog</button>
+             <button onClick={() => { setIsMobileMenuOpen(false); router.push('/sloperking'); }} className="text-left hover:opacity-60">Sloper King</button>
              <Button onClick={() => { setIsMobileMenuOpen(false); router.push('/become-partner'); }} className="w-full">Word partner</Button>
           </div>
         </div>

@@ -147,3 +147,8 @@ _autosave-*
 # scraped data dumps
 apify_*.json
 *.npy
+
+# Web pages saved from a browser ("Save page as"): the page and its _files folder
+*_files/
+*.js.download
+/Sloper King/*.html
