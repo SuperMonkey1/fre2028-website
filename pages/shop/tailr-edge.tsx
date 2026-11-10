@@ -25,6 +25,7 @@ import {
   Unlock,
   X,
 } from 'lucide-react';
+import TailrEdgeAdvantages from '@/components/fingerprint/TailrEdgeAdvantages';
 import BambumLayout, { AlsoFromBambum } from '@/components/bambum/BambumLayout';
 import { PAYMENTS_API } from '@/lib/bambum/shop';
 import { newsletterService } from '@/services/newsletterService';
@@ -448,7 +449,7 @@ export default function TailrEdgePage() {
                 aria-pressed={locked}
                 className={`flex w-10 items-center justify-center rounded-xl border transition-all ${
                   locked
-                    ? 'border-amber-300 bg-amber-50 text-amber-700 hover:bg-amber-100'
+                    ? 'border-slate-900 bg-slate-900 text-white hover:bg-slate-800'
                     : 'border-slate-200 bg-white text-slate-400 hover:text-slate-700'
                 }`}
               >
@@ -519,7 +520,7 @@ export default function TailrEdgePage() {
               </div>
             )}
             {layout.errors.length === 0 && layout.shift > 0.05 && (
-              <div className="flex gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+              <div className="flex gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm text-slate-700">
                 <Info className="mt-0.5 h-4 w-4 shrink-0" />
                 <div>
                   All edges were moved <strong>{layout.shift.toFixed(1)} mm</strong> further back because a finger is shorter than your pinky.
@@ -550,7 +551,7 @@ export default function TailrEdgePage() {
               </div>
             </div>
 
-            <div className="rounded-xl border border-amber-200 bg-amber-50 p-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-3 shadow-sm">
               <div className="flex items-baseline justify-between gap-2">
                 <div>
                   <div className="text-sm font-extrabold text-slate-950">Printed set, made for you</div>
@@ -602,45 +603,7 @@ export default function TailrEdgePage() {
           </div>
         </section>
 
-        {/* Advantages */}
-        <section id="advantages" className="scroll-mt-20 pt-20">
-          <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Why Tailr Edge</div>
-          <h2 className="max-w-3xl text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-            Even load.{' '}
-            <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-amber-700 bg-clip-text text-transparent">
-              Every finger. Every session.
-            </span>
-          </h2>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            On a straight edge your longest fingers do most of the work while the others hang along. Tailr Edge gives every
-            finger its own edge at its own length, so all four fingers grip the way your hand is built.
-          </p>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            <Advantage icon={<Ruler className="h-5 w-5" />} title="Made to measure">
-              Each edge is 3D-printed from your own finger lengths and sits exactly where that fingertip lands, so your hand stays
-              in a natural position instead of bending to fit a straight line.
-            </Advantage>
-            <Advantage icon={<Scale className="h-5 w-5" />} title="Even load on all 4 fingers">
-              Every finger carries its own share, including your little finger. No single finger takes the peak load while the
-              others barely touch the edge.
-            </Advantage>
-            <Advantage icon={<Layers className="h-5 w-5" />} title="No pressure points">
-              The load is spread across the skin too, so you don&apos;t get pressure points or skin problems on your little
-              finger.
-            </Advantage>
-            <Advantage icon={<ShieldCheck className="h-5 w-5" />} title="Open drag position, kind to your A2">
-              The middle joint stays extended, which puts minimal load on the A2 pulley. Train hard without worrying about it.
-            </Advantage>
-            <Advantage icon={<Dumbbell className="h-5 w-5" />} title="The same position every time">
-              Your hand lands in the same spot every session, so your training is consistent and measurable.
-            </Advantage>
-            <Advantage icon={<Target className="h-5 w-5" />} title="Carries over to real holds">
-              Every finger is trained to its own maximum, which translates much better to three-finger drags and two-finger pocket
-              holds.
-            </Advantage>
-          </div>
-        </section>
+        <TailrEdgeAdvantages />
 
         {/* Tutorial */}
         <section id="tutorial" className="scroll-mt-20 pt-20">

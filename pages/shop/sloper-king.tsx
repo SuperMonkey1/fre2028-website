@@ -662,7 +662,7 @@ export default function SloperKingPage() {
               </div>
 
               {/* Mission & Paralympics 2028 Callout Banner */}
-              <div className="p-5 rounded-2xl bg-amber-50/80 border border-amber-300 flex items-start gap-4 shadow-sm">
+              <div className="p-5 rounded-2xl bg-white border border-slate-200 flex items-start gap-4 shadow-sm">
                 <div className="p-2.5 bg-amber-500 text-slate-950 rounded-xl shrink-0 mt-0.5 shadow-md">
                   <Trophy className="w-5 h-5" />
                 </div>
@@ -763,7 +763,7 @@ export default function SloperKingPage() {
           </div>
 
           {/* Anatomy Graphic Placeholder */}
-          <div className="max-w-4xl mx-auto mb-12 rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50/60 p-6 text-left">
+          <div className="max-w-4xl mx-auto mb-12 rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 text-left">
             <div className="flex items-center gap-2 text-xs font-extrabold text-amber-900 uppercase tracking-wider mb-1">
               <Camera className="w-4 h-4 text-amber-600" />
               <span>ILLUSTRATION / 3D ANATOMY GRAPHIC PLACEHOLDER</span>
@@ -803,7 +803,7 @@ export default function SloperKingPage() {
                   </div>
                 </div>
 
-                <div className="mt-4 p-3 bg-amber-50/70 rounded-lg border border-amber-200 text-xs text-amber-900 leading-relaxed">
+                <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs text-slate-700 leading-relaxed">
                   <strong>The Joint-Angle Blindspot:</strong> Muscle strength is joint-angle specific. Strength gained holding edges with an extended wrist has near-zero carryover to the active wrist contraction needed on slopers.
                 </div>
               </div>
@@ -981,7 +981,7 @@ export default function SloperKingPage() {
                 </p>
 
                 {/* Video/Image Placeholder Card */}
-                <div className="rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/70 p-3.5 space-y-1 text-left">
+                <div className="rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-3.5 space-y-1 text-left">
                   <div className="flex items-center gap-1.5 text-[10px] font-black text-amber-900 uppercase">
                     <Video className="w-3.5 h-3.5 text-amber-600" />
                     <span>VIDEO / GIF PLACEHOLDER</span>
@@ -1222,7 +1222,7 @@ export default function SloperKingPage() {
                   </div>
 
                   {/* Dummy Photo / Image Placeholder Container */}
-                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-dashed border-amber-300 bg-amber-50/70 p-4 flex flex-col justify-between group">
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden border-2 border-dashed border-slate-300 bg-slate-50 p-4 flex flex-col justify-between group">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-amber-900 uppercase tracking-wider bg-white/80 backdrop-blur-xs px-2 py-0.5 rounded-md border border-amber-200">
                         <Camera className="w-3.5 h-3.5 text-amber-600" />
@@ -1250,7 +1250,7 @@ export default function SloperKingPage() {
                     </p>
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {post.tags.map((tag, idx) => (
-                        <span key={idx} className="text-[10px] font-semibold text-amber-800 bg-amber-50 px-1.5 py-0.5 rounded">
+                        <span key={idx} className="text-[10px] font-semibold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded">
                           {tag}
                         </span>
                       ))}
@@ -1437,7 +1437,7 @@ export default function SloperKingPage() {
 
                     <div className="space-y-4">
                       {/* Photo Placeholder: Single Unit */}
-                      <div className="relative aspect-[16/10] rounded-2xl border-2 border-dashed border-amber-300 bg-amber-50/80 p-4 flex flex-col justify-between overflow-hidden">
+                      <div className="relative aspect-[16/10] rounded-2xl border-2 border-dashed border-slate-300 bg-slate-50 p-4 flex flex-col justify-between overflow-hidden">
                         <div className="flex items-center gap-1.5 text-[10px] font-extrabold text-amber-900 uppercase tracking-wider bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded-md border border-amber-200 w-fit">
                           <Camera className="w-3.5 h-3.5 text-amber-600" />
                           <span>PHOTO • SINGLE UNIT</span>

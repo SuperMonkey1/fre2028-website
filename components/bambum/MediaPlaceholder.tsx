@@ -19,7 +19,7 @@ export default function MediaPlaceholder({ kind, label, brief, aspect = 'aspect-
   return (
     <div
       className={`relative flex ${aspect} flex-col justify-between overflow-hidden rounded-2xl border-2 border-dashed p-4 text-left ${
-        dark ? 'border-amber-400/60 bg-slate-900' : 'border-amber-300 bg-amber-50/80'
+        dark ? 'border-amber-400/60 bg-slate-900' : 'border-slate-300 bg-slate-50'
       } ${className}`}
     >
       <div

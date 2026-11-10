@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { AlertTriangle, Camera, CheckCircle2, Info, Loader2, RotateCcw, Upload } from 'lucide-react';
 import type { Finger } from '@/lib/fingerprint/layout';
 import { FINGER_COLORS, FINGER_NAMES } from '@/components/fingerprint/Illustrations';
@@ -28,7 +28,25 @@ const STAGES: [Stage, string][] = [
 
 const ROW_ORDER: Finger[] = ['pinky', 'ring', 'middle', 'index'];
 
-export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measurements | null) => void }) {
+export interface HandPhotoMeasureHandle {
+  /** The photo with the boxes, lines and values drawn on it, as a JPEG (null before a photo was analysed). */
+  snapshot: () => Promise<Blob | null>;
+  /** The photo exactly as the customer uploaded it (null before a photo was analysed). */
+  original: () => File | null;
+}
+
+const loadImg = (src: string) =>
+  new Promise<HTMLImageElement>((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+
+const HandPhotoMeasure = forwardRef<HandPhotoMeasureHandle, { onMeasured: (m: Measurements | null) => void }>(function HandPhotoMeasure(
+  { onMeasured },
+  ref,
+) {
   const [stage, setStage] = useState<Stage | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<HandPhotoResult | null>(null);
@@ -36,8 +54,39 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
   const [dragOver, setDragOver] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const originalRef = useRef<File | null>(null);
   // The crease moves up and down only; the box sides move left and right only
   const drag = useRef<{ finger: Finger; part: 'crease' | 'x0' | 'x1' } | null>(null);
+
+  // Photo plus overlay in one image, stored with the order so the measurement can be checked later
+  useImperativeHandle(
+    ref,
+    () => ({
+      snapshot: async () => {
+        if (!result || !svgRef.current) return null;
+        const { width, height } = result;
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d')!;
+        ctx.drawImage(await loadImg(result.image), 0, 0, width, height);
+        const svg = svgRef.current.cloneNode(true) as SVGSVGElement;
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+        svg.setAttribute('width', String(width));
+        svg.setAttribute('height', String(height));
+        svg.setAttribute('font-family', 'Arial, Helvetica, sans-serif');
+        const url = URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)], { type: 'image/svg+xml' }));
+        try {
+          ctx.drawImage(await loadImg(url), 0, 0, width, height);
+        } finally {
+          URL.revokeObjectURL(url);
+        }
+        return new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.85));
+      },
+      original: () => (result ? originalRef.current : null),
+    }),
+    [result],
+  );
 
   // Recompute the values whenever a crease line is moved
   useEffect(() => {
@@ -56,6 +105,7 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
     onMeasured(null);
     try {
       const r = await analyzeHandPhoto(file, setStage);
+      originalRef.current = file;
       setResult(r);
     } catch (e: any) {
       if (!(e instanceof HandPhotoError)) console.error(e);
@@ -320,7 +370,9 @@ export default function HandPhotoMeasure({ onMeasured }: { onMeasured: (m: Measu
       )}
     </div>
   );
-}
+});
+
+export default HandPhotoMeasure;
 
 /** Shows what is measured: the card as the ruler, the pinky crease as zero, each length up to its crease, each width. */
 function Dimensions({ result, m, unit }: { result: HandPhotoResult; m: Measurements; unit: number }) {

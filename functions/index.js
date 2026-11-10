@@ -1,9 +1,11 @@
 const {onRequest} = require("firebase-functions/v2/https");
 const {initializeApp} = require("firebase-admin/app");
 const {getFirestore} = require("firebase-admin/firestore");
+const {getStorage} = require("firebase-admin/storage");
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const crypto = require("crypto");
 const {getWelcomeEmailTemplate, EMAIL_SUBJECTS} = require("./welcome_email_content");
 
 // Initialize Firebase Admin
@@ -566,7 +568,9 @@ const stripeRequest = async (path, {method = "GET", params, key = FINGERPRINT_ST
 
 paymentApp.post("/fingerprint/checkout", async (req, res) => {
   try {
-    const {design, email, originUrl, heightCm, gender} = req.body || {};
+    const {design, email, originUrl, heightCm, gender, measurementId, returnPath} = req.body || {};
+    // The friends test page (/tailr-edge/friends) sends buyers back to itself; anything else returns to the shop page
+    const friends = returnPath === "/tailr-edge/friends";
     if (!FINGERPRINT_PUBLISHABLE_KEY) throw new Error("Stripe publishable key for FingerPrint orders is not configured");
     const left = parseHand(design?.left);
     const right = parseHand(design?.right);
@@ -596,12 +600,15 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
       priceId: FINGERPRINT_PRICE_ID,
       heightCm: height,
       gender: sex,
+      measurementId: isMeasurementId(measurementId) ? measurementId : "",
+      source: friends ? "friends" : "shop",
       createdAt: new Date(),
     });
 
     const metadata = {
       product: "fingerprint",
       orderId,
+      source: friends ? "friends" : "shop",
       left: handSummary(left),
       right: handSummary(right),
       designUrl,
@@ -617,7 +624,7 @@ paymentApp.post("/fingerprint/checkout", async (req, res) => {
     params.append("line_items[0][quantity]", "1");
     params.append("customer_creation", "always");
     params.append("client_reference_id", orderId);
-    params.append("return_url", `${origin}/shop/tailr-edge?order=success&session_id={CHECKOUT_SESSION_ID}`);
+    params.append("return_url", `${origin}${friends ? "/tailr-edge/friends" : "/shop/tailr-edge"}?order=success&session_id={CHECKOUT_SESSION_ID}`);
     params.append("billing_address_collection", "required");
     // Same per-country shipping prices as Sloper King (edited on /admin/shipping)
     const rates = await getSloperKingRates();
@@ -740,7 +747,8 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
       // payment that skipped our address-based update), so it can be corrected by hand.
       const shipDetails = session.collected_information?.shipping_details || session.shipping_details;
       const expectedRate = sloperKingRateFor(await getSloperKingRates(), shipDetails?.address?.country);
-      const expectedShipping = freeCode ? 0 : expectedRate === undefined ? null : expectedRate;
+      const invite = session.metadata?.invite || "";
+      const expectedShipping = freeCode || invite ? 0 : expectedRate === undefined ? null : expectedRate;
       const chargedShipping = session.shipping_cost?.amount_total ?? null;
       const shippingCheck = expectedShipping === chargedShipping ? "ok" :
         `charged €${((chargedShipping || 0) / 100).toFixed(2)}, expected ` +
@@ -761,11 +769,16 @@ paymentApp.get("/fingerprint/order/:sessionId", async (req, res) => {
           customerEmail: session.customer_details?.email || "",
           customerName: session.customer_details?.name || "",
           customerPhone: session.customer_details?.phone || "",
-          shipping: shipDetails || null,
+          // Early-access orders keep the address of their Sloper King order (stored at checkout)
+          shipping: shipDetails || snap.data().shipping || null,
           shippingCharged: chargedShipping,
           shippingCheck,
         });
       });
+
+      if (invite) {
+        await db.collection("tailr_edge_invites").doc(invite).set({usedAt: new Date(), tailrOrderId: orderId}, {merge: true});
+      }
 
       // Notify the admin until one email has gone out. A failed send is retried on the next check;
       // the short claim window stops two simultaneous checks from both sending.
@@ -849,12 +862,281 @@ paymentApp.get("/fingerprint/admin/orders", async (req, res) => {
         designUrl: o.designUrl || "",
         amountTotal: o.amountTotal ?? null,
         shippingCountry: o.shipping?.address?.country || "",
+        measurementId: o.measurementId || "",
+        earlyAccess: o.invite ? {sloperKingOrderId: o.sloperKingOrderId || "", pickup: !!o.pickup} : null,
       };
     });
     res.status(200).json({orders});
   } catch (error) {
     console.error("Error listing Tailr Edge orders:", error);
     res.status(500).json({error: "Could not load the orders."});
+  }
+});
+
+// ==================== TAILR EDGE EARLY ACCESS ====================
+// Sloper King buyers get a personal link (/tailr-edge/early-access?invite=TOKEN) to order one Tailr Edge set
+// for €24 until the deadline. The set is sent with their Sloper King, to the address of that order (or picked up
+// with it), so the checkout has no address or shipping step. One set per link. Invites live in tailr_edge_invites.
+const EARLY_ACCESS_PRICE_CENTS = 2400;
+const EARLY_ACCESS_NORMAL_PRICE_CENTS = 3900;
+const EARLY_ACCESS_DEADLINE = new Date("2026-12-01T23:59:59+01:00");
+const EARLY_ACCESS_PAGE = "https://fre2028.la/tailr-edge/early-access";
+// Counter on the early-access page: starts at 20 of 50 Christmas sets, plus every set ordered through a link
+const EARLY_ACCESS_SOLD_START = 20;
+const EARLY_ACCESS_CHRISTMAS_SPOTS = 50;
+
+const requireAdmin = (req, res) => {
+  const adminKey = process.env.SLOPERKING_ADMIN_KEY;
+  if (!adminKey || req.get("x-admin-key") !== adminKey) {
+    res.status(401).json({error: "Wrong admin key."});
+    return false;
+  }
+  return true;
+};
+
+const inviteSummary = (id, v) => ({
+  token: id,
+  link: `${EARLY_ACCESS_PAGE}?invite=${id}`,
+  name: v.name || "",
+  email: v.email || "",
+  pickup: !!v.pickup,
+  city: v.shipping?.address?.city || "",
+  sloperKingOrderId: v.sloperKingOrderId || "",
+  livemode: v.livemode !== false,
+  usedAt: v.usedAt?.toDate ? v.usedAt.toDate().toISOString() : null,
+  tailrOrderId: v.tailrOrderId || "",
+});
+
+// Creates a link for every paid Sloper King order that doesn't have one yet, and lists all links.
+paymentApp.post("/fingerprint/admin/invites", async (req, res) => {
+  try {
+    if (!requireAdmin(req, res)) return;
+    const db = getFirestore();
+    const [orders, invites] = await Promise.all([
+      db.collection("sloperking_orders").where("status", "==", "paid").get(),
+      db.collection("tailr_edge_invites").get(),
+    ]);
+    const invited = new Set(invites.docs.map((d) => d.data().sloperKingOrderId));
+    let created = 0;
+    for (const doc of orders.docs) {
+      if (invited.has(doc.id)) continue;
+      const o = doc.data();
+      const token = crypto.randomBytes(9).toString("base64url");
+      await db.collection("tailr_edge_invites").doc(token).set({
+        sloperKingOrderId: doc.id,
+        name: o.customerName || o.shipping?.name || "",
+        email: o.customerEmail || o.email || "",
+        pickup: !!o.pickup,
+        shipping: o.shipping || null,
+        livemode: o.livemode !== false,
+        createdAt: new Date(),
+      });
+      created++;
+    }
+    const all = await db.collection("tailr_edge_invites").get();
+    res.status(200).json({created, invites: all.docs.map((d) => inviteSummary(d.id, d.data()))});
+  } catch (error) {
+    console.error("Error creating Tailr Edge invites:", error);
+    res.status(500).json({error: "Could not create the invites."});
+  }
+});
+
+// What the early-access page shows: first name and where the set goes, nothing more.
+paymentApp.get("/fingerprint/invite/:token", async (req, res) => {
+  try {
+    const invites = getFirestore().collection("tailr_edge_invites");
+    const snap = await invites.doc(String(req.params.token)).get();
+    if (!snap.exists) {
+      res.status(404).json({error: "This link is not valid."});
+      return;
+    }
+    const v = snap.data();
+    const addr = v.shipping?.address || {};
+    const ordered = await invites.where("usedAt", "!=", null).count().get().then((c) => c.data().count).catch(() => 0);
+    res.status(200).json({
+      sold: EARLY_ACCESS_SOLD_START + ordered,
+      christmasSpots: EARLY_ACCESS_CHRISTMAS_SPOTS,
+      firstName: String(v.name || "").trim().split(/\s+/)[0] || "",
+      pickup: !!v.pickup,
+      street: addr.line1 || "",
+      city: [addr.postal_code, addr.city].filter(Boolean).join(" "),
+      used: !!v.usedAt,
+      expired: Date.now() > EARLY_ACCESS_DEADLINE.getTime(),
+      deadline: EARLY_ACCESS_DEADLINE.toISOString(),
+      priceCents: EARLY_ACCESS_PRICE_CENTS,
+      normalPriceCents: EARLY_ACCESS_NORMAL_PRICE_CENTS,
+    });
+  } catch (error) {
+    console.error("Error loading Tailr Edge invite:", error);
+    res.status(500).json({error: "Could not load this link."});
+  }
+});
+
+// Checkout for one early-access set: €24, no address or shipping step, sent with the Sloper King order.
+paymentApp.post("/fingerprint/invite/:token/checkout", async (req, res) => {
+  try {
+    const token = String(req.params.token);
+    const db = getFirestore();
+    const inviteRef = db.collection("tailr_edge_invites").doc(token);
+    const snap = await inviteRef.get();
+    if (!snap.exists) {
+      res.status(404).json({error: "This link is not valid."});
+      return;
+    }
+    const v = snap.data();
+    if (v.usedAt) {
+      res.status(400).json({error: "You already ordered your Tailr Edge set with this link."});
+      return;
+    }
+    if (Date.now() > EARLY_ACCESS_DEADLINE.getTime()) {
+      res.status(400).json({error: "This early-access offer has ended."});
+      return;
+    }
+    const {design, originUrl, heightCm, gender, measurementId} = req.body || {};
+    const left = parseHand(design?.left);
+    const right = parseHand(design?.right);
+    if (!left || !right) {
+      res.status(400).json({error: "Invalid Tailr Edge design. Check your finger lengths and widths."});
+      return;
+    }
+    const height = toNumber(heightCm, 100, 250);
+    const sex = ["male", "female"].includes(gender) ? gender : "";
+
+    const origin = originUrl || req.headers.origin || "https://fre2028.la";
+    const orderRef = db.collection("fingerprint_orders").doc();
+    const orderId = orderRef.id;
+    const designUrl = `https://fre2028.la/shop/tailr-edge?left=${handParam(left)}&right=${handParam(right)}`;
+    await orderRef.set({
+      orderId,
+      status: "checkout_created",
+      livemode: FINGERPRINT_LIVE,
+      design: {left, right, sameForBothHands: !!design?.locked},
+      designUrl,
+      email: v.email || "",
+      priceId: "",
+      heightCm: height,
+      gender: sex,
+      measurementId: isMeasurementId(measurementId) ? measurementId : "",
+      invite: token,
+      sloperKingOrderId: v.sloperKingOrderId || "",
+      pickup: !!v.pickup,
+      shipping: v.shipping || null,
+      createdAt: new Date(),
+    });
+
+    const metadata = {
+      product: "fingerprint",
+      orderId,
+      invite: token,
+      sloperKingOrderId: v.sloperKingOrderId || "",
+      shipWith: v.pickup ? "Sloper King pickup in Leuven" : "Sloper King shipment",
+      left: handSummary(left),
+      right: handSummary(right),
+      designUrl,
+    };
+    if (height) metadata.heightCm = String(Math.round(height));
+    if (sex) metadata.gender = sex;
+
+    const price = await stripeRequest(`prices/${FINGERPRINT_PRICE_ID}`);
+    const params = new URLSearchParams();
+    params.append("mode", "payment");
+    params.append("ui_mode", "form");
+    params.append("line_items[0][price_data][currency]", "eur");
+    params.append("line_items[0][price_data][unit_amount]", String(EARLY_ACCESS_PRICE_CENTS));
+    params.append("line_items[0][price_data][product]", typeof price.product === "string" ? price.product : price.product.id);
+    params.append("line_items[0][quantity]", "1");
+    params.append("customer_creation", "always");
+    params.append("client_reference_id", orderId);
+    params.append("return_url", `${origin}/tailr-edge/early-access?invite=${token}&order=success&session_id={CHECKOUT_SESSION_ID}`);
+    if (v.email) params.append("customer_email", v.email);
+    for (const [key, value] of Object.entries(metadata)) {
+      params.append(`metadata[${key}]`, value);
+      params.append(`payment_intent_data[metadata][${key}]`, value);
+    }
+    params.append("payment_intent_data[description]", `Tailr Edge set (early access) - order ${orderId}`);
+
+    const session = await stripeRequest("checkout/sessions", {method: "POST", params});
+    await orderRef.update({sessionId: session.id});
+    res.status(200).json({
+      clientSecret: session.client_secret,
+      publishableKey: FINGERPRINT_PUBLISHABLE_KEY,
+      orderId,
+      livemode: FINGERPRINT_LIVE,
+    });
+  } catch (error) {
+    console.error("Error creating Tailr Edge early-access checkout:", error);
+    res.status(error.status && error.status < 500 ? error.status : 500).json({error: "Could not start the checkout. Please try again."});
+  }
+});
+
+// ==================== MEASUREMENT PHOTOS ====================
+// When a customer saves the measure page, the photo with the boxes and values drawn on it is stored in Firebase
+// Storage (tailr-edge-measurements/ID.jpg); the order keeps the ID so the measurement can be checked on
+// /admin/tailr-edge. Only readable with the admin key.
+const MEASUREMENT_DIR = "tailr-edge-measurements";
+const isMeasurementId = (v) => typeof v === "string" && /^[A-Za-z0-9_-]{16}$/.test(v);
+
+paymentApp.post("/fingerprint/measurement", async (req, res) => {
+  try {
+    const buf = req.rawBody || (Buffer.isBuffer(req.body) ? req.body : null);
+    // a JPEG of reasonable size
+    if (!buf || buf.length < 1000 || buf.length > 4 * 1024 * 1024 || buf[0] !== 0xff || buf[1] !== 0xd8) {
+      res.status(400).json({error: "Invalid image."});
+      return;
+    }
+    const id = crypto.randomBytes(12).toString("base64url");
+    await getStorage().bucket().file(`${MEASUREMENT_DIR}/${id}.jpg`).save(buf, {contentType: "image/jpeg", resumable: false});
+    res.status(200).json({id});
+  } catch (error) {
+    console.error("Error storing measurement photo:", error);
+    res.status(500).json({error: "Could not store the photo."});
+  }
+});
+
+// The customer's original photo, as uploaded (with its camera information), stored next to the overlay photo
+// as ID-original. Can only be added once, to a measurement that exists.
+const ORIGINAL_TYPES = {"image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/heic": "heic", "image/heif": "heif"};
+
+paymentApp.post("/fingerprint/measurement/:id/original", async (req, res) => {
+  try {
+    const id = String(req.params.id);
+    const type = String(req.get("content-type") || "").split(";")[0].trim().toLowerCase();
+    const buf = req.rawBody || (Buffer.isBuffer(req.body) ? req.body : null);
+    if (!isMeasurementId(id) || !ORIGINAL_TYPES[type] || !buf || buf.length < 1000 || buf.length > 25 * 1024 * 1024) {
+      res.status(400).json({error: "Invalid image."});
+      return;
+    }
+    const bucket = getStorage().bucket();
+    const [overlayExists] = await bucket.file(`${MEASUREMENT_DIR}/${id}.jpg`).exists();
+    const original = bucket.file(`${MEASUREMENT_DIR}/${id}-original`);
+    const [originalExists] = await original.exists();
+    if (!overlayExists || originalExists) {
+      res.status(400).json({error: "Invalid measurement."});
+      return;
+    }
+    await original.save(buf, {contentType: type, resumable: false});
+    res.status(200).json({ok: true});
+  } catch (error) {
+    console.error("Error storing original measurement photo:", error);
+    res.status(500).json({error: "Could not store the photo."});
+  }
+});
+
+// ?original=1 returns the original photo instead of the one with the overlay
+paymentApp.get("/fingerprint/admin/measurement/:id", async (req, res) => {
+  try {
+    if (!requireAdmin(req, res)) return;
+    if (!isMeasurementId(req.params.id)) {
+      res.status(400).end();
+      return;
+    }
+    const original = req.query.original === "1";
+    const file = getStorage().bucket().file(`${MEASUREMENT_DIR}/${req.params.id}${original ? "-original" : ".jpg"}`);
+    const [buf] = await file.download();
+    const type = original ? (await file.getMetadata())[0].contentType || "application/octet-stream" : "image/jpeg";
+    res.set("Content-Type", type).set("Cache-Control", "private, max-age=3600").send(buf);
+  } catch (error) {
+    res.status(error.code === 404 ? 404 : 500).end();
   }
 });
 

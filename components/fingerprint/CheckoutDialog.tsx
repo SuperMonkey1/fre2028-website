@@ -39,7 +39,7 @@ function HandSummary({ title, p }: { title: string; p: FingerParams }) {
 interface Props {
   clientSecret: string;
   publishableKey: string;
-  shippingUrl: string;
+  shippingUrl?: string;
   livemode: boolean;
   /** The design being ordered, shown in the order summary. */
   design: { left: FingerParams; right: FingerParams; locked: boolean };

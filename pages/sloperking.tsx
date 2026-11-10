@@ -287,28 +287,30 @@ export default function SloperKingPresalePage() {
       </Head>
 
       {/* Hero: the reel + the promise */}
-      <section className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-100 px-4 py-10 md:py-16">
-        <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[minmax(0,340px)_1fr]">
+      <section className="border-b border-slate-200 bg-gradient-to-b from-white to-slate-100 px-4 py-6 md:py-8">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[minmax(0,340px)_1fr] md:items-stretch">
           <video
-            className="mx-auto aspect-[9/16] w-full max-w-[340px] rounded-3xl bg-slate-900 object-cover shadow-2xl"
+            className="mx-auto aspect-[9/16] md:self-start w-full max-w-[340px] rounded-3xl md:h-[min(calc(100svh_-_10rem),604px)] md:w-auto bg-slate-900 object-cover shadow-2xl"
             src="/sloperking/reel.mp4"
             poster="/sloperking/reel-poster.png"
             controls
             playsInline
             preload="metadata"
           />
-          <div>
+          {/* On desktop the purchase box sits at the bottom, level with the bottom of the reel */}
+          <div className="flex max-w-xl flex-col">
+            <div>
             <span className="inline-block rounded-full bg-amber-400 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-slate-950">
               Presale open
             </span>
-            <h1 className="mt-4 text-4xl font-black leading-tight text-slate-950 md:text-5xl">
+            <h1 className="mt-3 text-3xl font-black leading-tight text-slate-950 md:text-4xl">
               The Sloper King™ is ready, tested and in production! It starts shipping on 1 December.
             </h1>
-            <p className="mt-4 text-base leading-relaxed text-slate-600">
+            <p className="mt-3 text-base leading-relaxed text-slate-600">
               Thanks for all the messages after the reel! Everything is here: pick your
               country, choose how many you want and lock in your spot.
             </p>
-            <ul className="mt-6 space-y-3 text-sm font-semibold text-slate-800">
+            <ul className="mt-4 space-y-2 text-sm font-semibold text-slate-800">
               <li className="flex items-start gap-3">
                 <Gift className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
                 {batchFull
@@ -334,83 +336,71 @@ export default function SloperKingPresalePage() {
                 </span>
               </li>
             </ul>
-            {(
-              <div className="mt-6 max-w-sm rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div className="flex items-baseline justify-between">
+            </div>
+            {/* One purchase box: counter, prices and the button, the same width as the text above */}
+            <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:mt-auto">
+              <div className="flex items-baseline justify-between gap-4 text-sm">
+                <div>
                   {stats ? (
-                    <span className="text-3xl font-black text-slate-950">{stats.sold}</span>
+                    <span className="text-2xl font-black text-slate-950">{stats.sold}</span>
                   ) : (
-                    <NumberSkeleton className="h-8 w-16" />
+                    <NumberSkeleton className="h-7 w-14" />
                   )}
-                  <span className="text-xs font-black uppercase tracking-wider text-slate-500">Sloper Kings sold so far</span>
-                </div>
-                <div className="mt-3 space-y-1.5 text-sm">
-                  <div className="flex justify-between text-[11px] font-black uppercase tracking-wider text-slate-400">
-                    <span>Price</span>
-                    <span>Single / Pair</span>
-                  </div>
-                  <div className="flex justify-between text-slate-400 line-through">
-                    <span>Early bird (first {EARLY_BIRD.count})</span>
-                    <span>
-                      {eur(EARLY_BIRD.single)} / {eur(EARLY_BIRD.pair)}
-                    </span>
-                  </div>
-                  <div className="flex justify-between font-black text-slate-950">
-                    <span>
-                      {(stats?.tier ?? FALLBACK_TIER).label} price{tierLeft !== null ? ` · ${tierLeft} left` : ''}
-                    </span>
-                    <span>
-                      {eur((stats?.tier ?? FALLBACK_TIER).prices.single)} / {eur((stats?.tier ?? FALLBACK_TIER).prices.pair)}
-                    </span>
-                  </div>
-                  {(stats ? stats.next : FALLBACK_NEXT) && (
-                    <div className="flex justify-between text-slate-500">
-                      <span>Then {(stats ? stats.next! : FALLBACK_NEXT).label.toLowerCase()}</span>
-                      <span>
-                        {eur((stats ? stats.next! : FALLBACK_NEXT).prices.single)} /{' '}
-                        {eur((stats ? stats.next! : FALLBACK_NEXT).prices.pair)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="mt-4 flex justify-between text-xs font-black text-slate-700">
-                  <span>Christmas spots</span>
-                  {spotsLeft === null ? (
-                    <NumberSkeleton className="h-4 w-24" />
-                  ) : (
-                    <span>{spotsLeft > 0 ? `${spotsLeft} of ${CHRISTMAS_SPOTS} left` : 'Christmas batch full'}</span>
-                  )}
-                </div>
-                <div className="relative mt-1.5">
-                  <div className="h-2.5 overflow-hidden rounded-full bg-slate-200">
-                    <div
-                      className="h-full rounded-full bg-amber-400"
-                      style={{ width: `${stats ? Math.min((stats.sold / CHRISTMAS_SPOTS) * 100, 100) : 0}%` }}
-                    />
-                  </div>
-                  {/* Break-even marker */}
-                  <div
-                    className="absolute -top-1 h-[18px] w-0.5 rounded bg-emerald-600"
-                    style={{ left: `${(BREAK_EVEN / CHRISTMAS_SPOTS) * 100}%` }}
-                    aria-hidden="true"
-                  />
-                </div>
-                <div className="relative mt-2 h-4 text-[10px] font-black uppercase tracking-wider text-emerald-700">
-                  <span
-                    className="absolute -translate-x-1/2 whitespace-nowrap"
-                    style={{ left: `${(BREAK_EVEN / CHRISTMAS_SPOTS) * 100}%` }}
-                  >
-                    {stats && stats.sold >= BREAK_EVEN ? `Break-even reached (${BREAK_EVEN})` : `Break-even · ${BREAK_EVEN}`}
+                  <span className="ml-1.5 font-bold text-slate-500">sold</span>
+                  <span className="ml-2 text-xs font-black text-emerald-700">
+                    {stats && stats.sold >= BREAK_EVEN ? '· break-even reached' : `· break-even ${BREAK_EVEN}`}
                   </span>
                 </div>
+                {spotsLeft === null ? (
+                  <NumberSkeleton className="h-4 w-32" />
+                ) : (
+                  <span className="font-black text-slate-700">
+                    {spotsLeft > 0 ? `${spotsLeft} of ${CHRISTMAS_SPOTS} Christmas spots left` : 'Christmas batch full'}
+                  </span>
+                )}
               </div>
-            )}
-            <button
-              onClick={scrollToOrder}
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-950 px-6 py-3.5 text-sm font-black text-white hover:bg-slate-800"
-            >
-              Pre-order now · from {eur(prices.single)} <ArrowRight className="h-4 w-4" />
-            </button>
+              <div className="relative mt-2">
+                <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+                  <div
+                    className="h-full rounded-full bg-amber-400"
+                    style={{ width: `${stats ? Math.min((stats.sold / CHRISTMAS_SPOTS) * 100, 100) : 0}%` }}
+                  />
+                </div>
+                {/* Break-even marker */}
+                <div
+                  className="absolute -top-1 h-4 w-0.5 rounded bg-emerald-600"
+                  style={{ left: `${(BREAK_EVEN / CHRISTMAS_SPOTS) * 100}%` }}
+                  aria-hidden="true"
+                />
+              </div>
+              {/* Price: the current tier large, early bird and the next tier on one small line */}
+              <div className="mt-3 flex items-end justify-between gap-4 border-t border-slate-100 pt-3">
+                <div className="text-sm">
+                  <div className="font-black text-slate-950">
+                    {(stats?.tier ?? FALLBACK_TIER).label} price{tierLeft !== null ? ` · ${tierLeft} left` : ''}
+                  </div>
+                  <div className="mt-0.5 text-xs text-slate-500">
+                    <span className="line-through">
+                      Early bird {eur(EARLY_BIRD.single)} / {eur(EARLY_BIRD.pair)}
+                    </span>
+                    {(stats ? stats.next : FALLBACK_NEXT) &&
+                      ` · then ${(stats ? stats.next! : FALLBACK_NEXT).label.toLowerCase()} ${eur((stats ? stats.next! : FALLBACK_NEXT).prices.single)} / ${eur((stats ? stats.next! : FALLBACK_NEXT).prices.pair)}`}
+                  </div>
+                </div>
+                <div className="shrink-0 text-right">
+                  <div className="text-2xl font-black text-slate-950">
+                    {eur((stats?.tier ?? FALLBACK_TIER).prices.single)} / {eur((stats?.tier ?? FALLBACK_TIER).prices.pair)}
+                  </div>
+                  <div className="text-[11px] font-black uppercase tracking-wider text-slate-400">Single / Pair</div>
+                </div>
+              </div>
+              <button
+                onClick={scrollToOrder}
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 px-6 py-3 text-sm font-black text-white hover:bg-slate-800"
+              >
+                Pre-order now · from {eur(prices.single)} <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -497,7 +487,7 @@ export default function SloperKingPresalePage() {
         <div className="mx-auto max-w-xl rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
           <h2 className="text-2xl font-black text-slate-950">Reserve your Sloper King™</h2>
           {batchFull && (
-            <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm font-semibold text-slate-800">
+            <p className="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm font-semibold text-slate-800">
               The Christmas batch is full, but you can still pre-order. New orders ship from {formatDay(shipDateFor(CHRISTMAS_SPOTS + 1))}.
             </p>
           )}
@@ -565,7 +555,7 @@ export default function SloperKingPresalePage() {
                     key={type}
                     onClick={() => setItemType(type)}
                     className={`rounded-xl border-2 p-4 text-left transition-colors ${
-                      itemType === type ? 'border-amber-400 bg-amber-50' : 'border-slate-200 hover:border-slate-300'
+                      itemType === type ? 'border-amber-400 bg-white' : 'border-slate-200 hover:border-slate-300'
                     }`}
                   >
                     <div className="text-sm font-black text-slate-950">{type === 'pair' ? 'Pair (2 units)' : 'Single unit'}</div>
@@ -630,7 +620,7 @@ export default function SloperKingPresalePage() {
                     </div>
                   </div>
 
-                  <div className="mt-3 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-slate-800">
+                  <div className="mt-3 flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-800">
                     <Package className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
                     {shipDate && position !== null ? (
                       <div>

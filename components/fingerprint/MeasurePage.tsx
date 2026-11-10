@@ -1,13 +1,14 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { AlertTriangle, ArrowLeft, ArrowRight } from 'lucide-react';
 import BambumLayout from '@/components/bambum/BambumLayout';
-import HandPhotoMeasure from '@/components/fingerprint/HandPhotoMeasure';
+import HandPhotoMeasure, { type HandPhotoMeasureHandle } from '@/components/fingerprint/HandPhotoMeasure';
+import { PAYMENTS_API } from '@/lib/bambum/shop';
 import { computeLayout, type Finger } from '@/lib/fingerprint/layout';
 import type { Measurements } from '@/lib/fingerprint/handPhoto';
-import { GENDERS, PHOTO_DESIGNER_PAGE, encodeHand, saveGender, saveHand, saveHeight, type Gender } from '@/lib/fingerprint/savedHand';
+import { FRIENDS_PAGE, GENDERS, PHOTO_DESIGNER_PAGE, encodeHand, saveGender, saveHand, saveHeight, saveMeasurementId, type Gender } from '@/lib/fingerprint/savedHand';
 
 /** Added to each measured finger width in the design only (not on the photo), in mm. */
 const EXTRA_WIDTH: Record<Finger, number> = { index: 3, middle: 3, ring: 3, pinky: 3 };
@@ -44,6 +45,12 @@ const PHOTO_TIPS: [string, string][] = [
 /** Measure page body (/shop/tailr-edge-measure). */
 export default function MeasurePage() {
   const router = useRouter();
+  // Opened from a personal early-access link: go back to that page instead of the normal designer
+  const invite = typeof router.query.invite === 'string' && /^[A-Za-z0-9_-]{6,40}$/.test(router.query.invite) ? router.query.invite : '';
+  // Came from the friends test page (/tailr-edge/friends?): go back there
+  const friends = !invite && router.query.from === 'friends';
+  const backPage = invite ? `/tailr-edge/early-access?invite=${invite}` : friends ? FRIENDS_PAGE : PHOTO_DESIGNER_PAGE;
+  const designerPage = invite ? `/tailr-edge/early-access?invite=${invite}&` : `${backPage}?`;
   const [measured, setMeasured] = useState<Measurements | null>(null);
   const layout = useMemo(() => (measured ? computeLayout(measured) : null), [measured]);
   // Body height, entered in cm (default) or feet and inches
@@ -68,7 +75,34 @@ export default function MeasurePage() {
   };
   const [gender, setGender] = useState<Gender | null>(null);
 
-  const save = () => {
+  const measureRef = useRef<HandPhotoMeasureHandle>(null);
+  const [saving, setSaving] = useState(false);
+
+  /** Stores the photo with its overlay and the original photo; the order refers to them. A failed upload doesn't stop the customer. */
+  const uploadPhoto = async (): Promise<string | null> => {
+    try {
+      const blob = await measureRef.current?.snapshot();
+      if (!blob) return null;
+      const res = await fetch(`${PAYMENTS_API}/fingerprint/measurement`, { method: 'POST', headers: { 'Content-Type': 'image/jpeg' }, body: blob });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.id) return null;
+      const original = measureRef.current?.original();
+      if (original) {
+        await fetch(`${PAYMENTS_API}/fingerprint/measurement/${data.id}/original`, {
+          method: 'POST',
+          headers: { 'Content-Type': original.type || 'image/jpeg' },
+          body: original,
+        }).catch((e) => console.error('Could not store the original photo:', e));
+      }
+      return data.id;
+    } catch (e) {
+      console.error('Could not store the measurement photo:', e);
+      return null;
+    }
+  };
+
+  const save = async () => {
+    if (saving) return;
     if (!measured || !heightValid || !gender) return;
     // From experience the edges work better a bit wider than the fingers themselves
     const w = measured.width;
@@ -81,15 +115,18 @@ export default function MeasurePage() {
         pinky: round1(w.pinky + EXTRA_WIDTH.pinky),
       },
     };
-    saveHand(design);
+    saveHand(design, invite || (friends ? 'friends' : ''));
     saveHeight(Math.round(heightCm));
     saveGender(gender);
     const hand = encodeHand(design);
-    router.push(`${PHOTO_DESIGNER_PAGE}?left=${hand}&right=${hand}&height=${Math.round(heightCm)}&gender=${gender}#designer`);
+    setSaving(true);
+    const photoId = await uploadPhoto();
+    if (photoId) saveMeasurementId(photoId);
+    router.push(`${designerPage}left=${hand}&right=${hand}&height=${Math.round(heightCm)}&gender=${gender}${photoId ? `&m=${photoId}` : ''}#designer`);
   };
 
   return (
-    <BambumLayout active="tailr-edge" links={[]}>
+    <BambumLayout active="tailr-edge" links={[]} hideShopNav={!!invite || friends}>
       <Head>
         <title>Tailr Edge | Measure your hand from a photo</title>
         <meta name="robots" content="noindex" />
@@ -98,16 +135,18 @@ export default function MeasurePage() {
       <main className="mx-auto max-w-3xl px-4 pb-24">
         <section className="py-6 md:py-8">
           <Link
-            href={PHOTO_DESIGNER_PAGE}
+            href={backPage}
             className="mb-4 inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-950"
           >
-            <ArrowLeft className="h-3.5 w-3.5" /> Back to the designer
+            <ArrowLeft className="h-3.5 w-3.5" /> {invite || friends ? 'Back to your Tailr Edge' : 'Back to the designer'}
           </Link>
           <div className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Step 1 of 2</div>
           <h1 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">Measure your hand from a photo</h1>
           <p className="mt-3 text-base leading-relaxed text-slate-600">
-            Upload a photo, check the boxes and the crease lines, adjust them where needed and save. Your values then go to the
-            designer.
+            Upload a photo, check the boxes and the crease lines, adjust them where needed and save.{' '}
+            {invite || friends
+              ? 'You then see your personal Tailr Edge in 3D and can order it.'
+              : 'Your values then go to the designer.'}
           </p>
           <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
             <h2 className="text-base font-black text-slate-950">How to take the photo</h2>
@@ -138,7 +177,7 @@ export default function MeasurePage() {
         </section>
 
         <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5">
-          <HandPhotoMeasure onMeasured={setMeasured} />
+          <HandPhotoMeasure ref={measureRef} onMeasured={setMeasured} />
 
           {measured && (
             <div className="mt-4 border-t border-slate-100 pt-4">
@@ -236,10 +275,10 @@ export default function MeasurePage() {
               </div>
               <button
                 onClick={save}
-                disabled={!heightValid || !gender}
+                disabled={!heightValid || !gender || saving}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-950 py-3 text-sm font-black text-white shadow-md transition-all hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Create your personalised design <ArrowRight className="h-4 w-4" />
+                {saving ? 'Saving…' : 'Create your personalised design'} <ArrowRight className="h-4 w-4" />
               </button>
               <p className="mt-2 text-center text-xs text-slate-500">
                 Don&apos;t worry: every measurement is checked by hand for outliers and compared with other measurements, to make

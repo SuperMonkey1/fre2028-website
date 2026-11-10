@@ -152,3 +152,4 @@ apify_*.json
 *_files/
 *.js.download
 /Sloper King/*.html
+/Tailr Edge/print/

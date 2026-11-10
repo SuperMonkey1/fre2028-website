@@ -55,10 +55,10 @@ export default function FingerPrintViewer({ result, labels, target }: Props) {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(35, 1, 1, 2000);
-    // Front view as in the CAD file (Y up): looking at the z = 0 face that carries the finger edges,
-    // straight on. On the left-hand design the pinky is on the left.
+    // Three-quarter view (Y up): the z = 0 face that carries the finger edges, seen from about 25° to the
+    // right and 22° above, so the edge tops and the right end show. On the left-hand design the pinky is on the left.
     camera.up.set(0, 1, 0);
-    camera.position.set(target[0], target[1], target[2] - 250);
+    camera.position.set(target[0] - 100, target[1] + 95, target[2] - 215);
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x94a3b8, 1.6);
     hemi.position.set(0, 1, 0);
